@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	
+	<!-- MVC 설정 -->
+	<mvc:annotation-driven/>
+	<mvc:default-servlet-handler/>
+
+	
+	<context:component-scan base-package="model"/>
+	<context:component-scan base-package="controller"/>
+	<context:component-scan base-package="view"/>
+	<context:component-scan base-package="service"/>
+	
+	<bean class="service.TestService"/>
+	
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="1"/>
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.ModelAndView" scope="prototype"/>
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="99"/>
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" p:order="4"/>
+	
+	
+	<!-- Tiles 설정 -->
+	<bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles/default-config.xml</value>
+				<value>/WEB-INF/tiles/advance-config.xml</value>
+				<value>/WEB-INF/tiles/file-config.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- ORM 설정 -->
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="mapperLocations">
+			<list>
+				<value>/WEB-INF/mappers/*-mapper.xml</value>
+			</list>
+		</property>
+		<property name="dataSource" ref="datasource"/>
+	</bean>
+	
+	<bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="datasource">
+		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.10.1:1521:xe"/>
+		<property name="user" value="spoon"/>
+		<property name="password" value="oracle"/>
+	</bean>
+	
+	<!-- 멀티파트 처리용 빈 등록 -->
+	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" 
+	id="multipartResolver" p:uploadTempDir="/temp/" p:defaultEncoding="utf-8" p:maxUploadSize="-1"/>
+</beans>
