@@ -54,7 +54,7 @@
               
               <button type="submit" class="btn btn-success btn-block">
               <b>네이버</b>로 시작하기</button>
-              
+              <!-- 서비스약관&개인정보 취급방침 -->
           </form>
         </div>
         
