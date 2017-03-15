@@ -49,8 +49,12 @@
             <div class="checkbox">
               <label><input type="checkbox" value="" checked>로그인상태 유지 </label>
             </div>
-              <button type="submit" class="btn btn-success btn-block">
+              <button type="submit" class="btn btn-warning btn-block">
               <span class="glyphicon glyphicon-off"></span> 로그인</button>
+              
+              <button type="submit" class="btn btn-success btn-block">
+              <b>네이버</b>로 시작하기</button>
+              
           </form>
         </div>
         
