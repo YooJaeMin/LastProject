@@ -16,7 +16,8 @@
 
 	<!-- 12등분  -->
 	<div class="col-md-3" align="center">
-		
+		<a href="javascript:joining()"><button class="btn" id="chat">
+		joining</button></a>
 	</div>
 	<div class="col-md-3">
 		
@@ -29,4 +30,11 @@
 	</div>
 
 </div>
+
+			<script>
+				function joining() {
+					window.open("/chat/open", "c",
+							"width=350, height=500, left=500");
+				}
+			</script>
 
