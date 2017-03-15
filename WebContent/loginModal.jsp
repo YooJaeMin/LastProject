@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
   <style>
   .modal-header, h4, .close {
       background-color: #FFD700;
@@ -51,9 +52,7 @@
             </div>
               <button type="submit" class="btn btn-warning btn-block">
               <span class="glyphicon glyphicon-off"></span> 로그인</button>
-              
-              <button type="submit" class="btn btn-success btn-block">
-              <b>네이버</b>로 시작하기</button>
+              <button id = "naver_id_login" type="submit" class="btn btn-warning btn-block"></button>
               
           </form>
         </div>
@@ -77,6 +76,33 @@ $(document).ready(function(){
     });
 });
 </script>
+
+<!-- 네이버아디디로로그인 초기화 Script -->
+<script type="text/javascript">
+	var naver_id_login = new naver_id_login("WTSpbzT1tpWir6Lw4yHO", "http://192.168.10.26:8080/dddd/loginTest.jsp");
+	var state = naver_id_login.getUniqState();
+	naver_id_login.setButton("green", 3,60);
+	naver_id_login.setDomain("http://192.168.10.26:8080/dddd/loginTest.jsp");
+	naver_id_login.setState(state);
+	naver_id_login.setPopup();
+	naver_id_login.init_naver_id_login();
+</script>
+<!-- // 네이버아이디로로그인 초기화 Script -->
+<!-- 네이버아디디로로그인 Callback페이지 처리 Script -->
+<script type="text/javascript">
+	// 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
+	function naverSignInCallback() {
+		// naver_id_login.getProfileData('프로필항목명');
+		// 프로필 항목은 개발가이드를 참고하시기 바랍니다.
+		alert(naver_id_login.getProfileData('email'));
+		alert(naver_id_login.getProfileData('nickname'));
+		alert(naver_id_login.getProfileData('age'));
+	}
+
+	// 네이버 사용자 프로필 조회
+	naver_id_login.get_naver_userprofile("naverSignInCallback()");
+</script>
+<!-- //네이버아디디로로그인 Callback페이지 처리 Script -->
 
 </body>
 </html>
