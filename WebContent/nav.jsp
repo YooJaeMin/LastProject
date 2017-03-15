@@ -60,7 +60,6 @@ li.dropdown {
 </style>
 </head>
 
-<!-- font -->
 <head>
 <link href='//fonts.googleapis.com/css?family=Coming Soon'
 	rel='stylesheet'>
@@ -76,33 +75,37 @@ body {
 
 	<ul>
 		<!-- 웹 정보 -->
-		<li class="dropdown"><a href="javascript:void(0)"
-			class="dropbtn_1"><b>Spoon Compass</b></a>
+		<li class="dropdown"><a href="javascript:void(0)" class="dropbtn_1">
+			<b>Spoon Compass</b></a>
 			<div class="dropdown-content">
-				<a href="about">About</a>
+				<a href="about.jsp">About</a>
 			</div></li>
 
 		<!-- FAQ -->
-		<li><a href="#faq"><b>FAQ</b></a></li>
+		<li><a href="faq.jsp"><b>FAQ</b></a></li>
 
-		<!-- 회원정보/수정 -->
-<c:choose>
-			<c:when test="${sessionScope.loginCheck ne null}">
-				<li class="dropdown"><a href="javascript:void(0)"
-					class="dropbtn_2"><b>MyPage</b></a>
-					<div class="dropdown-content">
-						<a href="foodBucket">My List</a> <a href="userInfo">Info.</a> <a
-							href="logOut">Logout</a>
-					</div></li>
+	<c:choose>
+			<c:when test="${sessionScope.auth ne null}">
+				<li><a href="join.jsp"><span class="glyphicon glyphicon-user"></span>
+						Join us</a></li>
+				<li><a href="javascript:login()"><span class="glyphicon glyphicon-log-in"></span>
+						Login</a></li>
+						<script>
+							function logIn(){
+								window.open("/login.jsp","c","width=350, height=500, left=500");
+							}
+						</script>
 			</c:when>
-
-		<!-- login&join-->
-		<c:otherwise >
-			<li><a href="join"><span class="glyphicon glyphicon-user"></span>
-					Join us</a></li>
-			<li><a href="longIn"><span class="glyphicon glyphicon-log-in"></span>
-					Login</a></li>
-		</c:otherwise>
+			
+			<c:otherwise >
+				<li class="dropdown"><a href="javascript:void(0)" class="dropbtn_2">
+				<b>(${auth_id})</b></a>
+					<div class="dropdown-content">
+						<a href="foodBucket.jsp">나의 먹킷리스트</a> 
+						<a href="userInfo.jsp">회원정보</a> 
+						<a href="logout.jsp">Logout</a>
+					</div></li>
+			</c:otherwise>
 </c:choose>
 
 </ul>
