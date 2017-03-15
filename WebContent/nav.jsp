@@ -108,7 +108,7 @@ body {
 
 	<c:choose>
 			<c:when test="${sessionScope.auth ne null}">
-				<li class="dropdown"><a href="javascript:void(0)" class="dropbtn2">
+				<li class="dropdown pull-right"><a href="javascript:void(0)" class="dropbtn2">
 				<b>(${auth_id})</b></a>
 					<div class="dropdown-content">
 						<a href="foodBucket.jsp">나의 먹킷리스트</a> 
