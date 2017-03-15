@@ -86,18 +86,6 @@ body {
 
 	<c:choose>
 			<c:when test="${sessionScope.auth ne null}">
-				<li><a href="join.jsp"><span class="glyphicon glyphicon-user"></span>
-						Join us</a></li>
-				<li><a href="javascript:login()"><span class="glyphicon glyphicon-log-in"></span>
-						Login</a></li>
-						<script>
-							function logIn(){
-								window.open("/login.jsp","c","width=350, height=500, left=500");
-							}
-						</script>
-			</c:when>
-			
-			<c:otherwise >
 				<li class="dropdown"><a href="javascript:void(0)" class="dropbtn_2">
 				<b>(${auth_id})</b></a>
 					<div class="dropdown-content">
@@ -105,6 +93,18 @@ body {
 						<a href="userInfo.jsp">회원정보</a> 
 						<a href="logout.jsp">Logout</a>
 					</div></li>
+			</c:when>
+			
+			<c:otherwise >
+				<li><a href="join.jsp"><span class="glyphicon glyphicon-user"></span>
+						<b>Join us</b></a></li>
+				<li><a href="javascript:login()"><span class="glyphicon glyphicon-log-in"></span>
+						<b>Login</b></a></li>
+						<script>
+							function logIn(){
+								window.open("/login.jsp","c","width=350, height=500, left=500");
+							}
+						</script>
 			</c:otherwise>
 </c:choose>
 
