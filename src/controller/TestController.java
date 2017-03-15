@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class TestController {
 	@RequestMapping({ "/", "/index" })
 	public ModelAndView indexHandle() {
-		ModelAndView mav = new ModelAndView("update_form");
+		ModelAndView mav = new ModelAndView("t_main");
 		
 		return mav;
 	}
