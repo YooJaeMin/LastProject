@@ -20,6 +20,8 @@
   }
   </style>
 </head>
+
+
 <body>
 
 <div class="container">
@@ -36,6 +38,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4><span class="glyphicon glyphicon-lock"></span> 로그인</h4>
         </div>
+        
         <div class="modal-body" style="padding:40px 50px;">
         <h1></h1>
           <form role="form">
@@ -50,11 +53,12 @@
             <div class="checkbox">
               <label><input type="checkbox" value="" checked>로그인상태 유지 </label>
             </div>
+            
+			<div align="center">
               <button type="submit" class="btn btn-warning btn-block">
-              <span class="glyphicon glyphicon-off"></span> 로그인</button>
-
-              <button id = "naver_id_login" type="submit" class="btn btn-warning btn-block"></button>
-
+              <span class="glyphicon glyphicon-off"></span> 로그인</button><br>
+              <button id = "naver_id_login" type="submit" ></button>
+				</div>
           </form>
         </div>
         

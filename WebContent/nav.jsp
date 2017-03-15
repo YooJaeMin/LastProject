@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<html>
 
 <head>
 <style>
@@ -61,9 +60,9 @@ li.dropdown {
 </style>
 </head>
 
+<!-- font -->
 <head>
-<link href='//fonts.googleapis.com/css?family=Coming Soon'
-	rel='stylesheet'>
+<link href='//fonts.googleapis.com/css?family=Coming Soon' rel='stylesheet'>
 <style>
 body {
 	font-family: 'Coming Soon';
@@ -133,4 +132,3 @@ body {
 </ul>
 
 </body>
-</html>
