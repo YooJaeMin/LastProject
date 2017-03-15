@@ -21,17 +21,16 @@
 	<context:component-scan base-package="view"/>
 	<context:component-scan base-package="service"/>
 	
-	<bean class="service.TestService"/>
+	<!--  <bean class="service.TestService"/>-->
 	
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<property name="order" value="1"/>
 	</bean>
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:prefix="/WEB-INF/views/" p:suffix=".jsp" p:order="98" />
 	
 	<bean class="org.springframework.web.servlet.ModelAndView" scope="prototype"/>
-	
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="order" value="99"/>
-	</bean>
 	
 	<bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" p:order="4"/>
 	
