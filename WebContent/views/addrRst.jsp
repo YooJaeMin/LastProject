@@ -6,7 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String addr = request.getParameter("addr");
-	String target = "https://maps.googleapis.com/maps/api/geocode/json?address="+addr+"&key=AIzaSyCpcNf3T5eaviEl5TMxnzo0gk6Bzvlkw6M";
+	String target = "https://maps.googleapis.com/maps/api/geocode/json?address="+addr+"&key=AIzaSyCpcNf3T5eaviEl5TMxnzo0gk6Bzvlkw6M&language=ko";
 	// 요청보내는 방법은 꽤 많다.
 	System.out.println(target);
 	URL url = new URL(target);
