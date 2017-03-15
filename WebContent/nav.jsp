@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <html>
+
 <head>
 <style>
 ul {
@@ -70,12 +71,33 @@ body {
 }
 </style>
 </head>
+
+<!-- modal login -->
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  .modal-header, h4, .close {
+      background-color: #5cb85c;
+      color:white !important;
+      text-align: center;
+      font-size: 30px;
+  }
+  .modal-footer {
+      background-color: #f9f9f9;
+  }
+  </style>
+</head>
+
+<!-- -------------------------------------------------------------------------------- -->
 <body>
 
 
 	<ul>
 		<!-- 웹 정보 -->
-		<li class="dropdown"><a href="javascript:void(0)" class="dropbtn_1">
+		<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">
 			<b>Spoon Compass</b></a>
 			<div class="dropdown-content">
 				<a href="about.jsp">About</a>
@@ -86,7 +108,7 @@ body {
 
 	<c:choose>
 			<c:when test="${sessionScope.auth ne null}">
-				<li class="dropdown"><a href="javascript:void(0)" class="dropbtn_2">
+				<li class="dropdown"><a href="javascript:void(0)" class="dropbtn2">
 				<b>(${auth_id})</b></a>
 					<div class="dropdown-content">
 						<a href="foodBucket.jsp">나의 먹킷리스트</a> 
@@ -96,9 +118,9 @@ body {
 			</c:when>
 			
 			<c:otherwise >
-				<li><a href="join.jsp"><span class="glyphicon glyphicon-user"></span>
+				<li class="pull-right"><a href="join.jsp"><span class="glyphicon glyphicon-user"></span>
 						<b>Join us</b></a></li>
-				<li><a href="javascript:login()"><span class="glyphicon glyphicon-log-in"></span>
+				<li class="pull-right"><a href="javascript:login()"><span class="glyphicon glyphicon-log-in"></span>
 						<b>Login</b></a></li>
 						<script>
 							function logIn(){
