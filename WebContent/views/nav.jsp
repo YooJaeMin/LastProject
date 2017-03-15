@@ -110,11 +110,12 @@ li.dropdown {
 			<c:otherwise >
 				<li class="pull-right"><a href="join.jsp"><span class="glyphicon glyphicon-user"></span>
 						<b>Join us</b></a></li>
-				<li class="pull-right"><a href="javascript:login()"><span class="glyphicon glyphicon-log-in"></span>
-						<b>Login</b></a></li>
+<!-- 				<li class="pull-right"><a href="javascript:logIn()"><span class="glyphicon glyphicon-log-in"></span> -->
+<!-- 						<b>Login</b></a></li> -->
+				<li class="pull-right"><button class="btn"  data-toggle="modal" data-target="#myModal">login</button></li>
 						<script>
 							function logIn(){
-								window.open("/login.jsp","c","width=350, height=500, left=500");
+								window.open("/loginModal.jsp","c","width=350, height=500, left=500");
 							}
 						</script>
 			</c:otherwise>
