@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
 <head>
 <style>
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -25,12 +27,13 @@ li a, .dropbtn {
 }
 
 li a:hover, .dropdown:hover .dropbtn {
-    background-color: red;
+    background-color: #FF4500;
 }
 
 li.dropdown {
     display: inline-block;
 }
+
 
 .dropdown-content {
     display: none;
@@ -56,21 +59,37 @@ li.dropdown {
 }
 </style>
 </head>
+
+<!-- font -->
+<head>
+<link href='//fonts.googleapis.com/css?family=Coming Soon' rel='stylesheet'>
+<style>
+body {
+    font-family: 'Coming Soon';font-size: 18px;
+}
+</style>
+</head>
 <body>
 
+
 <ul>
-  <li><a href="#about">Spoon Compass</a></li>
-  <li><a href="#faq">FAQ</a></li>
   <li class="dropdown">
-    <a href="javascript:void(0)" class="dropbtn">MyPage</a>
+  	<a href="javascript:void(0)" class="dropbtn_1"><b>Spoon Compass</b></a>
+  	<div class="dropdown-content">
+  		<a href="about">About</a>
+  	</div>	
+  </li>
+  <li><a href="#faq"><b>FAQ</b></a></li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn_2"><b>MyPage</b></a>
     <div class="dropdown-content">
-      <a href="foodBucket">나의 먹킷 List</a>
-      <a href="userInfo">회원정보</a>
-      <a href="logOut">Logout</a>
+      <a href="foodBucket">My List</a>
+      <a href="userInfo">Info.</a>
+  	  <a href="logOut" >Logout</a>
     </div>
   </li>
 </ul>
-
+<!-- login& -->
 
 </body>
 </html>
