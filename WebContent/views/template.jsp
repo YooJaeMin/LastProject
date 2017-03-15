@@ -20,21 +20,22 @@
 		<tiles:insertAttribute name="header" />
 	</div>
 
-	<!--  
+	
    <div>
    <tiles:insertAttribute name="nav"/>
    </div>
-   -->
+  
 
 
 	<div style="min-height: 50%">
 		<tiles:insertAttribute name="main" />
 	</div>
 
-	<!--   <div style="min-height:20%">
+
+ <div style="min-height:20%">
   <tiles:insertAttribute name="search"/>
-   </div>
-   -->
+  </div>
+
 
 
 	<div style="min-height: 10%">

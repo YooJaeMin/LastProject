@@ -7,7 +7,7 @@
 
 <div align="center">
 	<h1>spoon compass</h1>
-	<img src="123.png" width="10%" height="20%"/>
+	<img src="/img/123.png" width="10%" height="20%"/>
 	
 </div>
 

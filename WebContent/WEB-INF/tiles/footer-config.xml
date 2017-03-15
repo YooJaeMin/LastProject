@@ -10,8 +10,8 @@
 		<put-attribute name="footer" value="/views/footer.jsp" />
 	</definition>
 	
-	<definition name="t_main" extends="base">
-		<put-attribute name="main" value="/views/main_form.jsp"/>
+	<definition name="t_FPolicy" extends="base">
+		<put-attribute name="main" value="/views/policy_service.jsp"/>
 	</definition>
 
 </tiles-definitions>
