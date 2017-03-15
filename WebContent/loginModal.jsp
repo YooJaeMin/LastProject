@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -56,7 +57,7 @@
             
 			<div align="center">
               <button type="submit" class="btn btn-warning btn-block">
-              <span class="glyphicon glyphicon-off"></span> 로그인</button><br>
+              <span class="glyphicon glyphicon-off" ></span> 로그인</button><br>
               <button id = "naver_id_login" type="submit" ></button>
 				</div>
           </form>
