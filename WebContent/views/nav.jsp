@@ -2,8 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Coming+Soon" />
-
+  <head>
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Coming+Soon" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Tangerine', cursive;
+        font-size: 35px;
+      }
+    </style>
+  </head>
 
 <head>
 <style>
