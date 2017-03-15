@@ -6,50 +6,29 @@
 <title><tiles:getAsString name="title" /></title>
 <!-- getAsString 출력용 -->
 <head>
-
-
 <link rel="stylesheet"
-	href="http://maxcah.hootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-
-</head>
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <body>
-
 	<div style="min-height: 10%">
 		<!-- insertAttribute vpdlwl Rldnj sjgrl -->
 		<tiles:insertAttribute name="header" />
 	</div>
-
+	<div>
+		<tiles:insertAttribute name="nav" />
+	</div>
 	
-   <div>
-   <tiles:insertAttribute name="nav"/>
-   </div>
-  
-
-
 	<div style="min-height: 50%">
 		<tiles:insertAttribute name="main" />
 	</div>
-
-
- <div style="min-height:20%">
-  <tiles:insertAttribute name="search"/>
-  </div>
-
-
-
+	<div style="min-height: 20%">
+		<tiles:insertAttribute name="search" />
+	</div>
 	<div style="min-height: 10%">
 		<tiles:insertAttribute name="footer" />
 	</div>
 
-
-
-
-
-
 </body>
-
-
-
-
 </html>
+
+
+

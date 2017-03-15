@@ -56,7 +56,7 @@
 	
 	<bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="datasource">
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.10.1:1521:xe"/>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@121.134.125.131:1521:xe"/>
 		<property name="user" value="spoon"/>
 		<property name="password" value="oracle"/>
 	</bean>
