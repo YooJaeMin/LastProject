@@ -61,7 +61,6 @@
 <body>
 <div class="container">
   <!-- Trigger the modal with a button -->
-  <button type="button"  data-toggle="modal" data-target="#myModal">login</button>
 
   <!-- Modal -->
 <!--   <div class="modal fade" id="myModal" role="dialog"> -->
@@ -184,5 +183,5 @@ $(document).ready(function(){
 </script>
 <!-- //네이버아디디로로그인 Callback페이지 처리 Script -->
 
->>>>>>> branch 'master' of https://github.com/YooJaeMin/LastProject.git
+
 
