@@ -1,8 +1,7 @@
-</form><%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
 <head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,11 +16,6 @@
 	charset="utf-8"></script>
 </head>
 
-<!-- 로고 -->
-<div align="center">
-	<h1>spoon compass</h1>
-	<img src="/img/123.png" width="10%" height="20%" />
-</div>
 
 <!-- 모달 헤더+풋터 -->
 <style>
@@ -37,21 +31,12 @@
 }
 </style>
 
-<div class="well row">
-	<!-- 12등분  -->
-	<div class="col-md-3" align="center">메뉴1??</div>
-	<div class="col-md-3" class="form-control">메뉴2??</div>
-	<div class="col-md-3" class="form-control">메뉴3??</div>
-	<div class="col-md-3" class="form-control">메뉴4??</div>
-</div>
-
 <li class="pull-right">
 	<button class="btn" data-toggle="modal" data-target="#myModal">LOG
 		IN</button>
 </li>
 
 <body>
-	<div class="container">
 		<!-- Trigger the modal with a button -->
 		<!-- Modal -->
 		<div class="modal fade" id="myModal" role="dialog">
@@ -96,15 +81,17 @@
 											<span class="glyphicon glyphicon-off"></span>로그인
 										</button>
 
-										<button id="naver_id_login" type="submit"
-											style="background: none; border: 0px;"></button>
+										
 									</div><br>
 
 									
-									<p>아직 회원이 아니신가요? 지금 회원가입을 하시면 맛있는 프리미엄 기능이 제공됩니다.</p>
+									
 
 
 								</form>
+								<button id="naver_id_login" type="submit"
+											style="background: none; border: 0px;"></button>
+											<p>아직 회원이 아니신가요? 지금 회원가입을 하시면 맛있는 프리미엄 기능이 제공됩니다.</p>
 							</div>
 						</div>
 
@@ -196,15 +183,19 @@
 </script>
 
 <!-- 네이버아디디로로그인 초기화 Script -->
-
+<!-- naverLogn  -->
 <script type="text/javascript">
-	var naver_id_login = new naver_id_login("WTSpbzT1tpWir6Lw4yHO",
-			"http://192.168.10.26:8080/dddd/loginTest.jsp");
+	var naver_id_login = new naver_id_login("RiHbbkwWnQhprjXrVbi3",	//
+			"http://192.168.56.1/SpoonCompass/views/nav.jsp");		//돌아오는 url 
 	var state = naver_id_login.getUniqState();
-	naver_id_login.setButton("green", 3, 60);
-	naver_id_login.setDomain("http://192.168.10.26:8080/dddd/loginTest.jsp");
+			
+	naver_id_login.setButton("green", 3, 40);
+//	naver_id_login.setDomain("http://192.168.10.26:8080/dddd/loginTest.jsp");		
+												//service URL >> 여기서 로그인 서이스 제공 후 "돌아오는 URL로"  
+												//로그인 하는쪽과 콜백하는 쪽이 다른경우 설정 (여기서는 없어도 됨)
 	naver_id_login.setState(state);
-	naver_id_login.setPopup();
+//	naver_id_login.setPopup();			// popup이 없으면 해당화면 내에서 콜백 유알엘로 
+												//있으면 callback url인 팝업창이 띄어짐 
 	naver_id_login.init_naver_id_login();
 </script>
 <!-- // 네이버아이디로로그인 초기화 Script -->
@@ -214,12 +205,49 @@
 	function naverSignInCallback() {
 		// naver_id_login.getProfileData('프로필항목명');
 		// 프로필 항목은 개발가이드를 참고하시기 바랍니다.
+		console.log("callback_status>>"+naver_id_login.callback_status);
+		console.log("callback_message>>"+naver_id_login.callback_message);
+		console.log("profileParams>>"+naver_id_login.profileParams );
+		console.log("oauthParams>>"+naver_id_login.oauthParams);
+		console.log("client_id>>"+naver_id_login.client_id );
+		
 		alert(naver_id_login.getProfileData('email'));
 		alert(naver_id_login.getProfileData('nickname'));
 		alert(naver_id_login.getProfileData('age'));
+		
 	}
 
 	// 네이버 사용자 프로필 조회
 	naver_id_login.get_naver_userprofile("naverSignInCallback()");
+	
+	//=======================================
+	this.get_naver_userprofile=function(callback_func1){
+		$.ajax({
+			url: "https://openapi.naver.com/v1/nid/getUserProfile.json?response_type=json",
+			type:"GET";
+			data:{"access_token":this.oauthParams.access_token},
+			dataType: "jsonp",
+			jsonp: "oauth_callback",
+			success: function (result) {
+				inner_profileParams.age = result.response.age;
+				inner_profileParams.birthday  = result.response.birthday;
+				inner_profileParams.email  = result.response.email;
+				inner_profileParams.gender = result.response.gender;
+				inner_profileParams.id = result.response.id;
+				inner_profileParams.nickname = result.response.nickname;
+				eval(callback_func1);
+			},
+			error: function (xhr, ajaxOptions, thrownError) {
+				alert(xhr.status);
+				alert(thrownError);
+			}
+			});
+		}
+	
+}
+var inner_profileParams = {};
+		
+		
+		
 </script>
 <!-- //네이버아디디로로그인 Callback페이지 처리 Script -->
