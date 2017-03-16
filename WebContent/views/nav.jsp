@@ -124,8 +124,8 @@
 									</div>
 
 									<p>
-										가입과 함께 Spoon Compass의 <a href="#servicePolicy"
-											class="underline">서비스약관</a>과 <a href="#privacyPolicy"
+										가입과 함께 Spoon Compass의 <a href=policy_service.jsp
+											class="underline">서비스약관</a>과 <a href=policy_privacy.jsp
 											class="underline">개인정보수집이용</a>에 동의하시게 됩니다.
 									</p>
 								</form>
