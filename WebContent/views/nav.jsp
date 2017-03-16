@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <head>
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -16,8 +15,72 @@
 	charset="utf-8"></script>
 </head>
 
+<!-- nav (default) -->
+<head>
+<style>
+.container {
+    overflow: hidden;
+    background-color: #333;
+    font-family: Arial;
+}
 
-<!-- 모달 헤더+풋터 -->
+.container a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.dropdown {
+    float: right;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    cursor: pointer;
+    font-size: 16px;    
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+}
+
+.container a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.show {
+    display: block;
+}
+</style>
+</head>
+
+<!-- modal -->
 <style>
 .nav, h4, .close {
 	background-color: #FFD700;
@@ -36,97 +99,97 @@
 		IN</button>
 </li>
 
-<body>
-		<!-- Trigger the modal with a button -->
-		<!-- Modal -->
-		<div class="modal fade" id="myModal" role="dialog">
-			<div class="modal-dialog">
+	<!-- Trigger the modal with a button -->
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
 
-				<!-- Modal content-->
-				<div class="modal-content">
-					<ul class="nav nav-tabs">
-						<!-- header 사이즈 -->
-						<li class="active"><a data-toggle="tab" href="#login">LOG
-								IN</a></li>
-						<li><a data-toggle="tab" href="#member">회원가입</a></li>
-					</ul>
+			<!-- Modal content-->
+			<div class="modal-content">
+				<ul class="nav nav-tabs">
+					<!-- header 사이즈 -->
+					<li class="active"><a data-toggle="tab" href="#login">LOG
+							IN</a></li>
+					<li><a data-toggle="tab" href="#member">회원가입</a></li>
+				</ul>
 
-					<!--tab contents -->
-					<div class="tab-content">
-						<!-- tab1 contents -->
-						<div id="login" class="tab-pane fade in active">
-							<div class="modal-body" style="padding: 30px 45px;">
-								<h1></h1>
-								<form role="form" action="/join/result" method="post">
-									<div class="form-group">
-										<label for="id"><span class="glyphicon glyphicon-user"></span>
-											이메일로 로그인하기</label> <input type="text" class="form-control" id="id"
-											placeholder="이메일 주소">
-									</div>
-									<div class="form-group">
-										<label for="pw"><span
-											class="glyphicon glyphicon-eye-open"></span> 비밀번호</label> <input
-											type="password" class="form-control" id="pw"
-											placeholder="비밀번호">
+				<!--tab contents -->
+				<div class="tab-content">
+					<!-- tab1 contents -->
+					<div id="login" class="tab-pane fade in active">
+						<div class="modal-body" style="padding: 30px 45px;">
+							<h1></h1>
+							<form role="form" action="/join/result" method="post">
+								<div class="form-group">
+									<label for="id"><span class="glyphicon glyphicon-user"></span>
+										이메일로 로그인하기</label> <input type="text" class="form-control" id="id"
+										placeholder="이메일 주소">
+								</div>
+								<div class="form-group">
+									<label for="pw"><span
+										class="glyphicon glyphicon-eye-open"></span> 비밀번호</label> <input
+										type="password" class="form-control" id="pw"
+										placeholder="비밀번호">
 
-										<div class="checkbox">
-											<label><input type="checkbox" value="" checked>로그인상태
-												유지 </label> <a href="#" class="pull-right">비밀번호찾기</a>
-										</div>
-
+									<div class="checkbox">
+										<label><input type="checkbox" value="" checked>로그인상태
+											유지 </label> <a href="#" class="pull-right">비밀번호찾기</a>
 									</div>
 
-									<div align="center">
-										<button type="submit" class="btn btn-warning btn-block">
-											<span class="glyphicon glyphicon-off"></span>로그인
-										</button>
-
-										
-									</div><br>
-
-									
-									
-
-
-								</form>
-								<button id="naver_id_login" type="submit"
-											style="background: none; border: 0px;"></button>
-											<p>아직 회원이 아니신가요? 지금 회원가입을 하시면 맛있는 프리미엄 기능이 제공됩니다.</p>
-							</div>
-						</div>
-
-						<!-- 회원가입 tab -->
-						<div id="member" class="tab-pane fade">
-							<div class="modal-body" style="padding: 30px 45px;">
-								<h1></h1>
-								<form role="form">
-									<div class="form-group">
-										<!--  이메일로 가입하기  -->
-										<label for="id"><span class="glyphicon glyphicon-user"></span>이메일로
-											가입하기</label> <input type="text" class="form-control" id="id"
-											name="id" placeholder="이메일 주소"><br /> <input
-											type="text" class="form-control" id="name" name="name"
-											placeholder="이름(별명)"><br> <input type="password"
-											class="form-control" id="pw" name="pw" placeholder="비밀번호">
-									</div>
-
-									<p>
-										가입과 함께 Spoon Compass의 <a href=policy_service.jsp
-											class="underline">서비스약관</a>과 <a href=policy_privacy.jsp
-											class="underline">개인정보수집이용</a>에 동의하시게 됩니다.
-									</p>
-								</form>
+								</div>
 
 								<div align="center">
-									<button type="submit" class="btn btn-warning btn-block"
-										id="join_btn">가입하기</button>
-								</div>
-							</div>
+									<button type="submit" class="btn btn-warning btn-block">
+										<span class="glyphicon glyphicon-off"></span>로그인
+									</button>
 
+
+								</div>
+								<br>
+
+
+
+
+
+							</form>
+							<button id="naver_id_login" type="submit"
+								style="background: none; border: 0px;"></button>
+							<p>아직 회원이 아니신가요? 지금 회원가입을 하시면 맛있는 프리미엄 기능이 제공됩니다.</p>
+						</div>
+					</div>
+
+					<!-- 회원가입 tab -->
+					<div id="member" class="tab-pane fade">
+						<div class="modal-body" style="padding: 30px 45px;">
+							<h1></h1>
+							<form role="form">
+								<div class="form-group">
+									<!--  이메일로 가입하기  -->
+									<label for="id"><span class="glyphicon glyphicon-user"></span>이메일로
+										가입하기</label> <input type="text" class="form-control" id="id" name="id"
+										placeholder="이메일 주소"><br /> <input type="text"
+										class="form-control" id="name" name="name"
+										placeholder="이름(별명)"><br> <input type="password"
+										class="form-control" id="pw" name="pw" placeholder="비밀번호">
+								</div>
+
+								<p>
+									가입과 함께 Spoon Compass의 <a href=policy_service.jsp
+										class="underline">서비스약관</a>과 <a href=policy_privacy.jsp
+										class="underline">개인정보수집이용</a>에 동의하시게 됩니다.
+								</p>
+							</form>
+
+							<div align="center">
+								<button type="submit" class="btn btn-warning btn-block"
+									id="join_btn">가입하기</button>
+							</div>
 						</div>
 
-						<!-- tab-pane -->
-						<!-- 
+					</div>
+
+					<!-- tab-pane -->
+					<!-- 
 						<h2>Dynamic Tabs</h2>
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
@@ -161,18 +224,19 @@
      -->
 
 
-						<div class="modal-footer">
-							<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
-								<span class="glyphicon glyphicon-remove"></span> 취소
-							</button>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-danger btn-default pull-left"
+							data-dismiss="modal">
+							<span class="glyphicon glyphicon-remove"></span> 취소
+						</button>
 
-						</div>
 					</div>
-
 				</div>
-			</div>
 
+			</div>
 		</div>
+
+	</div>
 </body>
 <script>
 	$(document).ready(function() {
