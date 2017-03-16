@@ -65,11 +65,11 @@
 								<form role="form" action="/join/result" method="post">
 									<div class="form-group">
 										<label for="id"><span class="glyphicon glyphicon-user"></span>
-											이메일로 로그인하기</label> <input type="text" class="form-control" id="id" placeholder="Enter email">
+											이메일로 로그인하기</label> <input type="text" class="form-control" id="id" placeholder="이메일 주소">
 									</div>
 									<div class="form-group">
 										<label for="pw"><span class="glyphicon glyphicon-eye-open"></span> 
-											비밀번호</label> <input	type="text" class="form-control" id="pw" placeholder="Enter password">
+											비밀번호</label> <input	type="password" class="form-control" id="pw" placeholder="비밀번호">
 
 									<div class="checkbox">
 										<label><input type="checkbox" value="" checked>로그인상태	유지 </label>
@@ -77,10 +77,11 @@
 								</div>
 								
 									<div align="center">
-										<button type="submit" class="btn btn-warning btn-block">
+										<button type="submit" class="btn btn-warning btn-block" >
 											<span class="glyphicon glyphicon-off"></span>로그인
 										</button>
-										<button id="naver_id_login" type="submit"></button>
+										
+										<button id="naver_id_login" type="submit" style="background:none;border:0px;"></button>
 									</div>
 									
 								</form>
