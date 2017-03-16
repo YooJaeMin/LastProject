@@ -8,21 +8,14 @@
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <body>
-	<div style="min-height: 10%">
-		<!-- insertAttribute vpdlwl Rldnj sjgrl -->
-		<tiles:insertAttribute name="header" />
-	</div>
 	<div>
 		<tiles:insertAttribute name="nav" />
 	</div>
 	
-	<div style="min-height: 50%">
+	<div style="min-height: 85%">
 		<tiles:insertAttribute name="main" />
 	</div>
-	<div style="min-height: 20%">
-		<tiles:insertAttribute name="search" />
-	</div>
-	<div style="min-height: 10%">
+	<div style="min-height: 5%">
 		<tiles:insertAttribute name="footer" />
 	</div>
 
