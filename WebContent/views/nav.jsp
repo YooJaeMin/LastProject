@@ -1,37 +1,43 @@
-</form><%@ page language="java" contentType="text/html; charset=UTF-8" 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+</form><%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
- </head>
- 
- <!-- 로고 -->
- <div align="center">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js"
+	charset="utf-8"></script>
+</head>
+
+<!-- 로고 -->
+<div align="center">
 	<h1>spoon compass</h1>
 	<img src="/img/123.png" width="10%" height="20%" />
 </div>
-  
-  <!-- 모달 헤더+풋터 -->
-  <style>
-  .nav, h4, .close {
-      background-color: #FFD700;
-      color:white !important;
-      text-align: center;
-      font-size: 30px;
-  }
-  
-  .modal-footer {
-      background-color: #f9f9f9;
-  }
-  </style>
-  
-  <div class="well row">
+
+<!-- 모달 헤더+풋터 -->
+<style>
+.nav, h4, .close {
+	background-color: #FFD700;
+	color: white !important;
+	text-align: center;
+	font-size: 30px;
+}
+
+.modal-footer {
+	background-color: #f9f9f9;
+}
+</style>
+
+<div class="well row">
 	<!-- 12등분  -->
 	<div class="col-md-3" align="center">메뉴1??</div>
 	<div class="col-md-3" class="form-control">메뉴2??</div>
@@ -40,24 +46,28 @@
 </div>
 
 <li class="pull-right">
-	<button class="btn" data-toggle="modal" data-target="#myModal">LOG IN</button></li>
+	<button class="btn" data-toggle="modal" data-target="#myModal">LOG
+		IN</button>
+</li>
 
 <body>
-<div class="container">
-  <!-- Trigger the modal with a button -->
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+	<div class="container">
+		<!-- Trigger the modal with a button -->
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">
 
-      <!-- Modal content-->
-      <div class="modal-content">
-			<ul class="nav nav-tabs" >			<!-- header 사이즈 -->
-					<li class="active"><a data-toggle="tab" href="#login">LOG IN</a></li>		
-					<li><a data-toggle="tab" href="#member">회원가입</a></li>			
-			</ul>
-			
-			<!--tab contents -->
-			<div class="tab-content">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<ul class="nav nav-tabs">
+						<!-- header 사이즈 -->
+						<li class="active"><a data-toggle="tab" href="#login">LOG
+								IN</a></li>
+						<li><a data-toggle="tab" href="#member">회원가입</a></li>
+					</ul>
+
+					<!--tab contents -->
+					<div class="tab-content">
 						<!-- tab1 contents -->
 						<div id="login" class="tab-pane fade in active">
 							<div class="modal-body" style="padding: 30px 45px;">
@@ -65,53 +75,71 @@
 								<form role="form" action="/join/result" method="post">
 									<div class="form-group">
 										<label for="id"><span class="glyphicon glyphicon-user"></span>
-											이메일로 로그인하기</label> <input type="text" class="form-control" id="id" placeholder="이메일 주소">
+											이메일로 로그인하기</label> <input type="text" class="form-control" id="id"
+											placeholder="이메일 주소">
 									</div>
 									<div class="form-group">
-										<label for="pw"><span class="glyphicon glyphicon-eye-open"></span> 
-											비밀번호</label> <input	type="password" class="form-control" id="pw" placeholder="비밀번호">
+										<label for="pw"><span
+											class="glyphicon glyphicon-eye-open"></span> 비밀번호</label> <input
+											type="password" class="form-control" id="pw"
+											placeholder="비밀번호">
 
-									<div class="checkbox">
-										<label><input type="checkbox" value="" checked>로그인상태	유지 </label>
+										<div class="checkbox">
+											<label><input type="checkbox" value="" checked>로그인상태
+												유지 </label> <a href="#" class="pull-right">비밀번호찾기</a>
+										</div>
+
 									</div>
-								</div>
-								
+
 									<div align="center">
-										<button type="submit" class="btn btn-warning btn-block" >
+										<button type="submit" class="btn btn-warning btn-block">
 											<span class="glyphicon glyphicon-off"></span>로그인
 										</button>
-										
-										<button id="naver_id_login" type="submit" style="background:none;border:0px;"></button>
-									</div>
+
+										<button id="naver_id_login" type="submit"
+											style="background: none; border: 0px;"></button>
+									</div><br>
+
 									
+									<p>아직 회원이 아니신가요? 지금 <a href="#">회원가입</a>을 하시면 맛있는 프리미엄 기능이 제공됩니다.</p>
+
+
 								</form>
 							</div>
 						</div>
-						
+
 						<!-- 회원가입 tab -->
-						<div id = "member" class="tab-pane fade">
-								<div class="modal-body" style="padding: 30px 45px;">
+						<div id="member" class="tab-pane fade">
+							<div class="modal-body" style="padding: 30px 45px;">
 								<h1></h1>
 								<form role="form">
-									<div class="form-group" >
+									<div class="form-group">
 										<!--  이메일로 가입하기  -->
-										<label for="id"><span class="glyphicon glyphicon-user"></span>이메일로 가입하기</label> 
-											<input type="text" class="form-control" id="id" 	name="id" placeholder="이메일 주소"><br/>
-											<input type="text" class="form-control" id="name" name="name" placeholder="이름(별명)"><br>
-											<input type="password" class="form-control" id="pw"	name="pw" placeholder="비밀번호">
+										<label for="id"><span class="glyphicon glyphicon-user"></span>이메일로
+											가입하기</label> <input type="text" class="form-control" id="id"
+											name="id" placeholder="이메일 주소"><br /> <input
+											type="text" class="form-control" id="name" name="name"
+											placeholder="이름(별명)"><br> <input type="password"
+											class="form-control" id="pw" name="pw" placeholder="비밀번호">
 									</div>
+
+									<p>
+										가입과 함께 Spoon Compass의 <a href="#servicePolicy"
+											class="underline">서비스약관</a>과 <a href="#privacyPolicy"
+											class="underline">개인정보수집이용</a>에 동의하시게 됩니다.
+									</p>
 								</form>
-							
-							<div align="center">
-										<button type="submit" class="btn btn-warning btn-block">가입하기
-										</button>
+
+								<div align="center">
+									<button type="submit" class="btn btn-warning btn-block"
+										id="join_btn">가입하기</button>
+								</div>
 							</div>
+
 						</div>
-							
-						</div>
-						
-<!-- tab-pane -->
-  <!-- 
+
+						<!-- tab-pane -->
+						<!-- 
 						<h2>Dynamic Tabs</h2>
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
@@ -144,24 +172,20 @@
     </div>
   </div>
      -->
-    
 
-					<div class="modal-footer">
-						<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
-							<span class="glyphicon glyphicon-remove"></span> 취소 </button>
-								<p>아직 회원이 아니신가요?</p>
-								<p>지금 <a href="#">회원가입</a>을 하시면 맛있는 프리미엄 기능이 제공됩니다.
-						</p>
-						<p>
-							<a href="#">비밀번호찾기</a>
-						</p>
+
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">
+								<span class="glyphicon glyphicon-remove"></span> 취소
+							</button>
+
+						</div>
 					</div>
+
 				</div>
-
 			</div>
-		</div>
 
-	</div>
+		</div>
 </body>
 <script>
 	$(document).ready(function() {
@@ -199,5 +223,3 @@
 	naver_id_login.get_naver_userprofile("naverSignInCallback()");
 </script>
 <!-- //네이버아디디로로그인 Callback페이지 처리 Script -->
-
-		
