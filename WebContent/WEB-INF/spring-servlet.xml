@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:c="http://www.springframework.org/schema/c"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
-	
-	<!-- MVC 설정 -->
-	<mvc:annotation-driven/>
-	<mvc:default-servlet-handler/>
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.10.xsd">
 
-	
-	<context:component-scan base-package="model"/>
-	<context:component-scan base-package="controller"/>
-	<context:component-scan base-package="view"/>
-	<context:component-scan base-package="service"/>
-	
-	<!--  <bean class="service.TestService"/>-->
-	
+	<!-- MVC 설정 -->
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler />
+
+
+	<context:component-scan base-package="model" />
+	<context:component-scan base-package="controller" />
+	<context:component-scan base-package="view" />
+	<context:component-scan base-package="service" />
+
+	<!-- <bean class="service.TestService"/> -->
+
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
-		<property name="order" value="1"/>
+		<property name="order" value="1" />
 	</bean>
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		p:prefix="/WEB-INF/views/" p:suffix=".jsp" p:order="98" />
-	
-	<bean class="org.springframework.web.servlet.ModelAndView" scope="prototype"/>
-	
-	<bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" p:order="4"/>
-	
-	
+
+	<bean class="org.springframework.web.servlet.ModelAndView" scope="prototype" />
+
+	<bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"
+		p:order="4" />
+
+
 	<!-- Tiles 설정 -->
 	<bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">
@@ -43,7 +43,7 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<!-- ORM 설정 -->
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="mapperLocations">
@@ -51,17 +51,27 @@
 				<value>/WEB-INF/mappers/*-mapper.xml</value>
 			</list>
 		</property>
-		<property name="dataSource" ref="datasource"/>
+		<property name="dataSource" ref="datasource" />
 	</bean>
-	
+
 	<bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="datasource">
-		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@121.134.125.131:1521:xe"/>
-		<property name="user" value="spoon"/>
-		<property name="password" value="oracle"/>
+		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@121.134.125.131:1521:xe" />
+		<property name="user" value="spoon" />
+		<property name="password" value="oracle" />
 	</bean>
-	
+
+	<mongo:mongo-client host="192.168.10.26" port="27017"
+		id="mongo" />
+	<bean class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg name="mongo" ref="mongo" />
+		<constructor-arg name="databaseName" value="jm"></constructor-arg>
+	</bean>
+
+
 	<!-- 멀티파트 처리용 빈 등록 -->
-	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" 
-	id="multipartResolver" p:uploadTempDir="/temp/" p:defaultEncoding="utf-8" p:maxUploadSize="-1"/>
+	<bean
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+		id="multipartResolver" p:uploadTempDir="/temp/" p:defaultEncoding="utf-8"
+		p:maxUploadSize="-1" />
 </beans>
