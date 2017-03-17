@@ -3,19 +3,35 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
-	<insert id="createOne" parameterType="java.util.HashMap">
-		insert into member values(#{id},#{pass}, #{name}, #{age}, #{gender}, #{email}, sysdate)
+	<insert id="normalCreate" parameterType="java.util.HashMap">
+		insert into user_basic values(#{id},#{pass},sysdate)
 	</insert>
-	<select id="checkCountOne" parameterType="java.util.HashMap" resultType="java.lang.Integer">
-		select count(*) from member where id=#{id} and pass=#{pass}
-	</select>
 	
-	<select id="checklonginlog" parameterType="java.util.HashMap" >
-		insert into loginlog values(#{id},sysdate)  
-	</select>
+	<insert id="normalDetail" parameterType="java.util.HashMap">
+		insert into user_detail values(#{id}, null, null, null, #{profile},null,null)
+	</insert>
 	
-	<select id="infolist" resultType="java.util.HashMap" >
-		select * from member where id=#{id}
-	</select>	
+	<insert id="naverDetail" parameterType="java.util.HashMap">
+		insert into user_detail values(#{id}, #{nick}, #{gender}, #{birth}, #{profile},null,null)
+	</insert>
+	
+	
+	
+	
+<!-- 	<insert id="createOne" parameterType="java.util.HashMap"> -->
+<!-- 		insert into member values(#{id},#{pass}, #{name}, #{age}, #{gender}, #{email}, sysdate) -->
+<!-- 	</insert> -->
+	
+<!-- 	<select id="checkCountOne" parameterType="java.util.HashMap" resultType="java.lang.Integer"> -->
+<!-- 		select count(*) from member where id=#{id} and pass=#{pass} -->
+<!-- 	</select> -->
+	
+<!-- 	<select id="checklonginlog" parameterType="java.util.HashMap" > -->
+<!-- 		insert into loginlog values(#{id},sysdate)   -->
+<!-- 	</select> -->
+	
+<!-- 	<select id="infolist" resultType="java.util.HashMap" > -->
+<!-- 		select * from member where id=#{id} -->
+<!-- 	</select>	 -->
 	
 </mapper>
