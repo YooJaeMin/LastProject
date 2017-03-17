@@ -42,12 +42,10 @@
 	</update>
 	<update id ="updateReview" parameterType="java.util.HashMap">
 		update review
-		set tel_id=#{tel_id}, clean_s=#{clean_s}, taste_s=#{taste_s}, price_s=#{price_s}, 
+		set clean_s=#{clean_s}, taste_s=#{taste_s}, price_s=#{price_s}, 
 		good_s=#{good_s}, location_s=#{location_s}, avg_s=#{avg_s}, hit=#{hit}, weather=#{weather}, type=#{type}, 
 		content=#{content}, img=#{img}
-		where tel_id=#{tel_id}, clean_s=#{clean_s}, taste_s=#{taste_s}, price_s=#{price_s}, 
-		good_s=#{good_s}, location_s=#{location_s}, avg_s=#{avg_s}, hit=#{hit}, weather=#{weather}, type=#{type}, 
-		content=#{content}, img=#{img}
+		where tel_id=#{tel_id}
 	</update>
 	
 </mapper>
