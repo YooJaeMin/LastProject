@@ -4,15 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="review">
 	<!-- 별점만 등록 -->
-	<insert id="createOnlyStar" parameterType="java.util.HashMap">
-		insert into user_basic
-		values(#{id},#{pass},sysdate)
+	<insert id="insertOnlyStar" parameterType="java.util.HashMap">
+		insert into review
+		values(#{clean_s}, #{taste_s}, #{price_s}, #{good_s}, #{location_s}, #{avgs_s} )
 	</insert>
 
 	<!-- 별점이외에 많은 정보 등록 -->
-	<insert id="createDetail" parameterType="java.util.HashMap">
-		insert into user_basic
-		values(#{id},#{pass},sysdate)
+	<insert id="insertDetails" parameterType="java.util.HashMap">
+		insert into review
+		values( 
 	</insert>
 
 	<!-- 카테고리 검색 결과 리뷰 불러오기 -->
