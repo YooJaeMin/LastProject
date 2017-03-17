@@ -35,22 +35,27 @@
 <div id="map" style="width: 500; height: 500"></div>
 <script>
 	function initMap() {
-	<c:forEach items="${list }" var="item" varStatus="vs">
+		var map = new google.maps.Map(document.getElementById('map'), {
+			"center" : pos0,
+			"scrollwheel" : true,
+			"zoom" : 1
+		});
+	<c:forEach items="${topList }" var="item" varStatus="vs" begin="0" end="0">
 		var pos${vs.index } = { 			
-					'lat' : ${list.lat },
-					'lng' : ${list.lng } };
-		var marker${vs.index } = new google.maps.Marker({
-	          "map" : map,
-	          "position" : pos${vs.index },
-	          "title" : 'ss'
-	    });
-		var contentString${vs.index } = 'kkkk';
-		var infowindow${vs.index } = new google.maps.InfoWindow({
-			'content' : contentString${vs.index }
-		});
-		marker${vs.index }.addListener('click', function() {
-			infowindow.open(map, marker${vs.index });
-		});
+					'lat' : ${item.lat },
+					'lng' : ${item.lng } };
+// 		var marker${vs.index } = new google.maps.Marker({
+// 	          "map" : map,
+// 	          "position" : pos${vs.index },
+// 	          "title" : 'ss'
+// 	    });
+// 		var contentString${vs.index } = 'kkkk';
+// 		var infowindow${vs.index } = new google.maps.InfoWindow({
+// 			'content' : contentString${vs.index }
+// 		});
+// 		marker${vs.index }.addListener('click', function() {
+// 			infowindow.open(map, marker${vs.index });
+// 		});
 	</c:forEach>
 	}
 
