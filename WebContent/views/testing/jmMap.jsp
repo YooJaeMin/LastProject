@@ -1,53 +1,71 @@
 <!DOCTYPE html>
 <html>
-  <!-- Select an option from the style selector to see some of the
+<!-- Select an option from the style selector to see some of the
        customizations you can apply with map styling. -->
-  <head>
-    <!-- This stylesheet contains specific styles for displaying the map
+<head>
+<!-- This stylesheet contains specific styles for displaying the map
          on this page. Replace it with your own styles as described in the
          documentation:
          https://developers.google.com/maps/documentation/javascript/tutorial -->
-    <link rel="stylesheet" href="/maps/documentation/javascript/demos/demos.css">
-    <style>
-      .map-control {
-        background-color: #fff;
-        border: 1px solid #ccc;
-        box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
-        font-family: 'Roboto','sans-serif';
-        margin: 10px;
-        /* Hide the control initially, to prevent it from appearing
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<link rel="canonical" href="https://developers.google.com/maps/documentation/javascript/examples/maptype-styled-simple?hl=ko">
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpcNf3T5eaviEl5TMxnzo0gk6Bzvlkw6M&callback=initMap"
+	async defer></script>
+<style>
+.map-control {
+	background-color: #fff;
+	border: 1px solid #ccc;
+	box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
+	font-family: 'Roboto', 'sans-serif';
+	margin: 10px;
+	/* Hide the control initially, to prevent it from appearing
            before the map loads. */
-        display: none;
-      }
-      /* Display the control once it is inside the map. */
-      #map .map-control { display: block; }
+	display: none;
+}
+/* Display the control once it is inside the map. */
+#map .map-control {
+	display: block;
+}
 
-      .selector-control {
-        font-size: 14px;
-        line-height: 30px;
-        padding-left: 5px;
-        padding-right: 5px;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="style-selector-control"  class="map-control">
-      <select id="style-selector" class="selector-control">
-        <option value="default">Default</option>
-        <option value="silver">Silver</option>
-        <option value="night">Night mode</option>
-        <option value="retro" selected="selected">Retro</option>
-        <option value="hiding">Hide features</option>
-      </select>
-    </div>
-    <div id="map"></div>
-    <script>
+.selector-control {
+	font-size: 14px;
+	line-height: 30px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+</style>
+</head>
+
+<body>
+	<div id="style-selector-control" class="map-control">
+		<select id="style-selector" class="selector-control">
+			<option value="default">Default</option>
+			<option value="silver">Silver</option>
+			<option value="night">Night mode</option>
+			<option value="retro" selected="selected">Retro</option>
+			<option value="hiding">Hide features</option>
+		</select>
+	</div>
+	<div id="style-selector-control" class="map-control">
+		<select id="style-selector" class="selector-control">
+			<option value="default">Default</option>
+			<option value="silver">Silver</option>
+			<option value="night">Night mode</option>
+			<option value="retro" selected="selected">Retro</option>
+			<option value="hiding">Hide features</option>
+		</select>
+	</div>
+	<div id="map"></div>
+	<script>
       var map;
       function initMap() {
         // Create the map with no initial style specified.
         // It therefore has default styling.
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -33.86, lng: 151.209},
+          center: myLatLng,
+          scrollwheel: false,
           zoom: 13,
           mapTypeControl: false
         });
@@ -65,9 +83,17 @@
           map.setOptions({styles: styles[styleSelector.value]});
         });
       }
-
+      var myLatLng = {lat: -25.363, lng: 131.044};
+      
+      
+      var marker = new google.maps.Marker({
+        map: map,
+        position: myLatLng,
+        title: 'Hello World!'
+      });
+	
       var styles = {
-        default: null,
+        default : null,
         silver: [
           {
             elementType: 'geometry',
@@ -364,7 +390,6 @@
 
 
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpcNf3T5eaviEl5TMxnzo0gk6Bzvlkw6M&callback=initMap"
-        async defer></script>
-  </body>
+
+</body>
 </html>
