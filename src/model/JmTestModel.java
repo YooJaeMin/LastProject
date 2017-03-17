@@ -15,7 +15,7 @@ public class JmTestModel {
 	
 	public List getAll(){
 		
-		List list  = template.findAll(Map.class,"food");
+		List list  = template.findAll(Map.class,"test");
 		return list;
 	}
 	
