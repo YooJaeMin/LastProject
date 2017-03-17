@@ -16,8 +16,6 @@
 	</insert>
 	
 	
-	
-	
 <!-- 	<insert id="createOne" parameterType="java.util.HashMap"> -->
 <!-- 		insert into member values(#{id},#{pass}, #{name}, #{age}, #{gender}, #{email}, sysdate) -->
 <!-- 	</insert> -->
