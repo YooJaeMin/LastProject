@@ -11,49 +11,11 @@
 	<!-- 별점이외에 많은 정보 등록 -->
 	<insert id="insertDetails" parameterType="java.util.HashMap">
 		insert into review
-		values( 
+		values( #{clean_s}, #{taste_s}, #{price_s}, #{good_s}, #{location_s}, #{avgs_s},#{hit}, #{weather},#{type}, #{content}, #{img} )
 	</insert>
-
-	<!-- 카테고리 검색 결과 리뷰 불러오기 -->
-	<select id="categoryReviewResult" parameterType="java.util.HashMap"
-		resultType="java.lang.Integer">
-		select count(*) from member where id=#{id} and pass=#{pass}
+	<!-- 카테고리 검색 결과 -->
+	<select id="reviewResult" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select * from review where tel=#{tel};
 	</select>
-
-	<!-- 업체 하나의 리뷰 불러오기 -->
-	<select id="detailReviewResult" parameterType="java.util.HashMap"
-		resultType="java.lang.Integer">
-		select count(*) from member where id=#{id} and pass=#{pass}
-	</select>
-
-	<!-- <insert id="normalDetail" parameterType="java.util.HashMap"> -->
-	<!-- insert into user_detail values(#{id}, null, null, null, #{profile},null,null) -->
-	<!-- </insert> -->
-
-	<!-- <insert id="naverDetail" parameterType="java.util.HashMap"> -->
-	<!-- insert into user_detail values(#{id}, #{nick}, #{gender}, #{birth}, 
-		#{profile},null,null) -->
-	<!-- </insert> -->
-
-
-
-
-	<!-- <insert id="createOne" parameterType="java.util.HashMap"> -->
-	<!-- insert into member values(#{id},#{pass}, #{name}, #{age}, #{gender}, 
-		#{email}, sysdate) -->
-	<!-- </insert> -->
-
-	<select id="checkCountOne" parameterType="java.util.HashMap"
-		resultType="java.lang.Integer">
-		select count(*) from member where id=#{id} and pass=#{pass}
-	</select>
-
-	<!-- <select id="checklonginlog" parameterType="java.util.HashMap" > -->
-	<!-- insert into loginlog values(#{id},sysdate) -->
-	<!-- </select> -->
-
-	<!-- <select id="infolist" resultType="java.util.HashMap" > -->
-	<!-- select * from member where id=#{id} -->
-	<!-- </select> -->
 
 </mapper>
