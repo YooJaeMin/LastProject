@@ -185,8 +185,8 @@
 <!-- 네이버아디디로로그인 초기화 Script -->
 <!-- naverLogn  -->
 <script type="text/javascript">
-	var naver_id_login = new naver_id_login("WTSpbzT1tpWir6Lw4yHO",	//
-			"http://192.168.10.26/dddd/nav.jsp");		//돌아오는 url 
+	var naver_id_login = new naver_id_login("tsbCd7wyhckg0AQ8seVR",	//
+			"http://192.168.10.21/views/testing/testNav.jsp");		//돌아오는 url 
 	var state = naver_id_login.getUniqState();
 			
 	naver_id_login.setButton("green", 3, 40);
@@ -211,9 +211,9 @@
 		var gender = naver_id_login.getProfileData('gender');//M||F로 나옴
 		var birth = naver_id_login.getProfileData('birthday'); //단, 월-일까지만 나옴 임의로 년도는 2017년 정도를 붙여서 넣어놔야 할듯
 		var profile = naver_id_login.getProfileData('profile_image'); //프로필 이미지가 저장된 src 출력됨
-		
+		consloe.log(email);
 		$.ajax({
-			"url" : "/dddd/test.jsp?",
+			"url" : "/testing/test.jsp?",
 			"method" : "post",
 			"data" : {
 				"email" : email,
@@ -227,6 +227,7 @@
 
 		
 	}
+	
 	function joinSignal(){
 		
 	}
