@@ -32,7 +32,7 @@
 </style>
 
 <div class="main_visual" style="width: 100%; height: 100%; overflow: hidden;Opacity : 0.9;
-   background-image: url(&quot;/img/result.jpg&quot;)">
+   background-image: url(&quot;/img/result.jpg&quot;); background-size: cover;">
    <!--  -->
 
    <div align="center" style="color:white;">
