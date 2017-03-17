@@ -14,7 +14,36 @@
 	<insert id="naverDetail" parameterType="java.util.HashMap">
 		insert into user_detail values(#{id}, #{nick}, #{gender}, #{birth}, #{profile},null,null)
 	</insert>
-	
+	<!-- 
+	<select id = "selectBasic" parameterType="java.util.HashMap" resultType="java.util.HashMap"> 
+		select * from user_basic where id=#{id} and pass=#{pass}
+	</select>
+	 -->
+	<select id = "selectDetail" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select * from user_detail where id=#{id}, nick=#{nick}, gender=#{gender}, birth=#{birth},
+		profile=#{profile}, favor=#{favor}, marry=#{marry}
+	</select>	
+	<select id = "selectReview" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select * from review where tel_id=#{tel_id}, clean_s=#{clean_s}, taste_s=#{taste_s}, price_s=#{price_s}, 
+		good_s=#{good_s}, location_s=#{location_s}, avg_s=#{avg_s}, hit=#{hit}, weather=#{weather}, type=#{type}, 
+		content=#{content}, img=#{img}
+	</select>
+
+	<update id="updateBasic" parameterType="java.util.HashMap">
+		update user_basic set  pass=#{pass} where  id=#{id} and pass=#{pass}
+	</update>	
+	<update id="updateDetail" parameterType="java.util.HashMap">
+		update user_detail 
+		set  nick=#{nick}, gender=#{gender}, birth=#{birth}, profile=#{profile}, favor=#{favor}, marry=#{marry} 
+		where id=#{id}
+	</update>
+	<update id ="updateReview" parameterType="java.util.HashMap">
+		update review
+		set clean_s=#{clean_s}, taste_s=#{taste_s}, price_s=#{price_s}, 
+		good_s=#{good_s}, location_s=#{location_s}, avg_s=#{avg_s}, hit=#{hit}, weather=#{weather}, type=#{type}, 
+		content=#{content}, img=#{img}
+		where tel_id=#{tel_id}
+	</update>
 	
 	
 	
