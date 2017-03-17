@@ -13,6 +13,12 @@ public class JmTestModel {
 	@Autowired
 	MongoTemplate template;
 	
+	public List getAll(){
+		
+		List list  = template.findAll(Map.class,"food");
+		return list;
+	}
+	
 	public List getLocation(double lat1, double lng1){
 		List list  = template.findAll(Map.class);
 		list = calDistance(lat1, lng1, list);

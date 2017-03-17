@@ -18,10 +18,10 @@ public class JmTestController {
 	
 	@RequestMapping("/drawMap")
 	public ModelAndView testMapViewer(@RequestParam Map map){
-		ModelAndView mav = new ModelAndView("/views/testing/jmMap.jsp");
-		double lat1 = Double.parseDouble((String)map.get("lat"));
-		double lng1 = Double.parseDouble((String)map.get("lng"));
-		List list = jtm.getLocation(lat1, lng1);
+		ModelAndView mav = new ModelAndView("/testing/addrRst");
+//		double lat1 = Double.parseDouble((String)map.get("lat"));
+//		double lng1 = Double.parseDouble((String)map.get("lng"));
+		List list = jtm.getAll();
 		mav.addObject("topList", list);
 		return mav;
 	}
