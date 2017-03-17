@@ -1,109 +1,60 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript"
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript"
 	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js"
 	charset="utf-8"></script>
+  <link href='//fonts.googleapis.com/css?family=Coming Soon' rel='stylesheet'>
 </head>
-
-<!-- nav (default) -->
-<head>
-<style>
-.container {
-    overflow: hidden;
-    background-color: #333;
-    font-family: Arial;
+  <style>
+body {
+    font-family: 'Coming Soon';font-size: 18px;
 }
 
-.container a {
-    float: left;
-    font-size: 16px;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+
+.navbar-inverse {
+     background-color: #222;
+     border-color: #080808;
 }
 
-.dropdown {
-    float: right;
-    overflow: hidden;
-}
-
-.dropdown .dropbtn {
-    cursor: pointer;
-    font-size: 16px;    
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: inherit;
-}
-
-.container a:hover, .dropdown:hover .dropbtn {
-    background-color: red;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.dropdown-content a {
-    float: none;
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
-
-.dropdown-content a:hover {
-    background-color: #ddd;
-}
-
-.show {
-    display: block;
-}
-</style>
-</head>
-
-<!-- modal -->
-<style>
-.nav, h4, .close {
-	background-color: #FFD700;
-	color: white !important;
-	text-align: center;
-	font-size: 20px;
-}
-.modal-body{
- 	style="padding: 10px 10px;"
-}
-.modal-footer {
-	background-color: #f9f9f9;
-}
 </style>
 
-<li class="pull-right">
-	<button class="btn" data-toggle="modal" data-target="#myModal">LOG
-		IN</button>
+<body>
+
+<nav class="navbar navbar-inverse" >
+  <div class="container-fluid">
+  
+    <ul class="nav navbar-nav">
+     <li><a href="#"><b>Spoon Compass</b></a></li>
+      <li class="active"><a href="#"><b>HOME</b></a></li>
+      <li><a href="#"><b>About us</b></a></li>
+      <li><a href="#"><b>FAQ</b></a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><b>Page 1 </b><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Page 1-1</a></li>
+          <li><a href="#">Page 1-2</a></li>
+          <li><a href="#">Page 1-3</a></li>
+        </ul>
+      </li>
+    </ul>
+    
+    <ul class="nav navbar-nav navbar-right">
+      <li class="pull-right">
+	<a class="glyphicon glyphicon-log-in" data-toggle="modal" data-target="#myModal">
+	</a>
 </li>
 
 	<!-- Trigger the modal with a button -->
 	<!-- Modal -->
-	<div class="modal fade" id="myModal" role="dialog">
+
+    </ul>
+    	<div class="modal fade" id="myModal" role="dialog">
 		<div class="modal-dialog">
 
 			<!-- Modal content-->
@@ -203,9 +154,17 @@
 
 			</div>
 		</div>
-
+		
 	</div>
+	
+  </div>
+</nav>
+  
+
+
 </body>
+
+
 <script>
 	$(document).ready(function() {
 		$("#myBtn").click(function() {
@@ -217,8 +176,7 @@
 <!-- 네이버아디디로로그인 초기화 Script -->
 <!-- naverLogn  -->
 <script type="text/javascript">
-	var naver_id_login = new naver_id_login("RiHbbkwWnQhprjXrVbi3",	//
-			"http://192.168.56.1/SpoonCompass/views/nav.jsp");		//돌아오는 url 
+	var naver_id_login = new naver_id_login("RiHbbkwWnQhprjXrVbi3",	"http://192.168.56.1/nav2.jsp");		//돌아오는 url 
 	var state = naver_id_login.getUniqState();
 			
 	naver_id_login.setButton("green", 3, 40);
@@ -282,4 +240,3 @@ var inner_profileParams = {};
 		
 		
 </script>
-<!-- //네이버아디디로로그인 Callback페이지 처리 Script -->
