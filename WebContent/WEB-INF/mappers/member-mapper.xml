@@ -2,36 +2,52 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
 <mapper namespace="member">
-	<insert id="normalCreate" parameterType="java.util.HashMap">
+
+	<insert id="insertBasic" parameterType="java.util.HashMap">
 		insert into user_basic values(#{id},#{pass},sysdate)
 	</insert>
-	
-	<insert id="normalDetail" parameterType="java.util.HashMap">
+	<insert id="insertDetail" parameterType="java.util.HashMap">
 		insert into user_detail values(#{id}, null, null, null, #{profile},null,null)
 	</insert>
-	
-	<insert id="naverDetail" parameterType="java.util.HashMap">
-		insert into user_detail values(#{id}, #{nick}, #{gender}, #{birth}, #{profile},null,null)
+	<insert id="insertNaverDetail" parameterType="java.util.HashMap">
+		insert into user_detail values(#{id}, #{nick}, #{gender}, #{birth}, #{profile}, null, null)
+	</insert>
+	<insert id="insertReview" parameterType="java.util.HashMap">
+		insert into review values(#{tel_id}, #{clean_s}, #{taste_s}, #{price_s}, #{good_s}, #{location_s}, #{avg_s}
+		, #{hit}, #{weather}, #{type}, #{content}, #{img} )
 	</insert>
 	
-	
-	
-	
-<!-- 	<insert id="createOne" parameterType="java.util.HashMap"> -->
-<!-- 		insert into member values(#{id},#{pass}, #{name}, #{age}, #{gender}, #{email}, sysdate) -->
-<!-- 	</insert> -->
-	
-<!-- 	<select id="checkCountOne" parameterType="java.util.HashMap" resultType="java.lang.Integer"> -->
-<!-- 		select count(*) from member where id=#{id} and pass=#{pass} -->
-<!-- 	</select> -->
-	
-<!-- 	<select id="checklonginlog" parameterType="java.util.HashMap" > -->
-<!-- 		insert into loginlog values(#{id},sysdate)   -->
-<!-- 	</select> -->
-	
-<!-- 	<select id="infolist" resultType="java.util.HashMap" > -->
-<!-- 		select * from member where id=#{id} -->
-<!-- 	</select>	 -->
+	<select id = "selectBasic" parameterType="java.util.HashMap" resultType="java.util.HashMap"> 
+		select * from user_basic where id=#{id} and pass=#{pass}
+	</select>
+	<select id = "selectBasic" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select * from user_detail where id=#{id}, nick=#{nick}, gender=#{gender}, birth=#{birth},
+		profile=#{profile}, favor=#{favor}, marry=#{marry}
+	</select>	
+	<select id = "selectReview" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select * from review where tel_id=#{tel_id}, clean_s=#{clean_s}, taste_s=#{taste_s}, price_s=#{price_s}, 
+		good_s=#{good_s}, location_s=#{location_s}, avg_s=#{avg_s}, hit=#{hit}, weather=#{weather}, type=#{type}, 
+		content=#{content}, img=#{img}
+	</select>
+
+	<update id="updateBasic" parameterType="java.util.HashMap">
+		update user_basic set  pass=#{pass} where  id=#{id} and pass=#{pass}
+	</update>	
+	<update id="updateDetail" parameterType="java.util.HashMap">
+		update user_detail 
+		set  nick=#{nick}, gender=#{gender}, birth=#{birth}, profile=#{profile}, favor=#{favor}, marry=#{marry} 
+		where id=#{id}
+	</update>
+	<update id ="updateReview" parameterType="java.util.HashMap">
+		update review
+		set tel_id=#{tel_id}, clean_s=#{clean_s}, taste_s=#{taste_s}, price_s=#{price_s}, 
+		good_s=#{good_s}, location_s=#{location_s}, avg_s=#{avg_s}, hit=#{hit}, weather=#{weather}, type=#{type}, 
+		content=#{content}, img=#{img}
+		where tel_id=#{tel_id}, clean_s=#{clean_s}, taste_s=#{taste_s}, price_s=#{price_s}, 
+		good_s=#{good_s}, location_s=#{location_s}, avg_s=#{avg_s}, hit=#{hit}, weather=#{weather}, type=#{type}, 
+		content=#{content}, img=#{img}
+	</update>
 	
 </mapper>
