@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import model.JmTestModel;
+import model.LocationCalculator;
 
 @Controller
 @RequestMapping("/testingJM")
 public class JmTestController {
 	@Autowired
-	JmTestModel jtm;
+	LocationCalculator jtm;
 	
 	@RequestMapping("/drawMap")
 	public ModelAndView testMapViewer(@RequestParam Map map){

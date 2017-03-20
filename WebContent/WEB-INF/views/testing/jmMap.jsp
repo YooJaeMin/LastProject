@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBS-83LLE8F1nvtVtsy1Adu-j4LeS9qAQg&callback=initMap"
 	async defer></script>
 
+<c:forEach items="${list }" var ="item">
+	${item.title }
+</c:forEach>
 <div id="map " style="width: 500; height: 500"></div>
 <script>
 	function initMap() {
