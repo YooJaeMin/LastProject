@@ -41,6 +41,9 @@
 				<li class="active"><a href="/"><b>HOME</b></a></li>
 				<li><a href="#"><b>About us</b></a></li>
 				<li><a href="#"><b>FAQ</b></a></li>
+				<c:if test="${sessionScope.auth ne  null }">
+					<li><a href="#"><b>나의 맛집</b></a></li>
+				</c:if>
 				<li class="dropdown"><a class="dropdown-toggle"
 					data-toggle="dropdown" href="#"><b>Page 1 </b><span
 						class="caret"></span></a>
@@ -48,14 +51,9 @@
 						<li><a href="#">Page 1-1</a></li>
 						<li><a href="#">Page 1-2</a></li>
 						<li><a href="#">Page 1-3</a></li>
-					</ul> 
-<%-- 					
- --%>						
-					<%--  --%>
-					</li>
-					<c:if test="${sessionScope.auth ne  null }">
-					<li><a href="#"><b>나의 맛집</b></a></li>
-					</c:if>
+					</ul> <%-- 					
+ --%> <%--  --%></li>
+
 			</ul>
 
 			<ul>
@@ -65,11 +63,11 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="pull-right"><a class="glyphicon glyphicon-log-in"
-					data-toggle="modal" data-target="#myModal"> 
-					<c:if test="${sessionScope.auth ne  null }">
-					<li><a href="#"><b>${sessionScope.auth_id}</b></a></li>
-					</c:if>
-					</a></li>
+					data-toggle="modal" data-target="#myModal"> <c:if
+							test="${sessionScope.auth ne  null }">
+							<li><a href="#"><b>${sessionScope.auth_id}</b></a></li>
+						</c:if>
+				</a></li>
 
 				<!-- Trigger the modal with a button -->
 				<!-- Modal -->
@@ -149,11 +147,11 @@
 												class="underline">서비스약관</a>과 <a href=policy_privacy.jsp
 												class="underline">개인정보수집이용</a>에 동의하시게 됩니다.
 										</p>
-										</form>
-										<div align="center">
-											<button type="submit" class="btn btn-warning btn-block"
-												id="join_btn">가입하기</button>
-										</div>
+									</form>
+									<div align="center">
+										<button type="submit" class="btn btn-warning btn-block"
+											id="join_btn">가입하기</button>
+									</div>
 								</div>
 
 							</div>
@@ -274,8 +272,7 @@
 			}
 			window.alert(printRst);
 		});
-		
-		
+
 	});
 
 	$("#member_id_login").click(function() {
