@@ -34,12 +34,13 @@ public class SearchDao {
 		AggregationOperation ao1 = Aggregation.match(criteria);
 		AggregationOperation ao2 = Aggregation.group("keyword").count().as("cnt");
 		AggregationOperation ao3 = Aggregation.sort(Direction.DESC, "cnt");
-		AggregationOperation ao4 = Aggregation.limit(10);
-
+		AggregationOperation ao4 = Aggregation.limit(5);
+		
 		
 		Aggregation aggr = Aggregation.newAggregation(ao1,ao2,ao3,ao4);
 		
 		AggregationResults<Map> result = template.aggregate(aggr,"searchKey",Map.class );
+
 		list = result.getMappedResults();
 		
 		return list;
@@ -56,7 +57,7 @@ public class SearchDao {
 		AggregationOperation ao1 = Aggregation.match(criteria);
 		AggregationOperation ao2 = Aggregation.group("keyword").count().as("cnt");
 		AggregationOperation ao3 = Aggregation.sort(Direction.DESC, "cnt");
-		AggregationOperation ao4 = Aggregation.limit(10);
+		AggregationOperation ao4 = Aggregation.limit(5);
 
 		
 		Aggregation aggr = Aggregation.newAggregation(ao1,ao2,ao3,ao4);

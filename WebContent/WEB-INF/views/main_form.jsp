@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -88,24 +90,20 @@ animation-direction: alternate;
    <div class="main_view row" style="width:35%; color: white; background-color: rgba(0,0,0,.5)" align="center">
 
          <div class="input col-sm-6" style="width: 50%; font-size: 18px" >
- 			
-             <ul >
- 				<li >disc 타입의 리스트
- 				<li >circle 타입의 리스트
- 				<li >square 타입의 리스트
- 				<li >none 타입의 리스트
+         <ul >
+ 			<c:forEach items="${realRank}" var="item">
+ 				<li>${item._id }</li>
+ 			</c:forEach>
 			</ul>
 
           </div>
           
          <div class="input col-sm-6" style="width: 50%; font-size: 18px">
  			
-             <ul >
- 				<li>강남 
- 				<li>강북
- 				<li>이태원
- 				<li>고기동
- 				<li>수지구
+            <ul >
+ 			<c:forEach items="${todayRank}" var="item">
+ 				<li>${item._id }</li>
+ 			</c:forEach>
 			</ul>
 
           </div>
