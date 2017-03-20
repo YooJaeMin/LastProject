@@ -22,13 +22,13 @@
   			select * from freeboard order by num desc
   		</select>
   		<!-- 하나의 데이터 추출 -->
-  		<select id="getOneInDetail" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+  		<select id="getOneInDetail" parameterType="java.lang.Integer" resultType="java.util.HashMap">
   			select * from freeboard where num=%d
   		</select>
   		
   		<!-- 데이터 등록 -->
   		<insert id="addNew" parameterType="java.util.HashMap">
-  			insert into freeboard values(freeboard_seq.nextval, #{writer},#{category},#{content},sysdate,0,0)
+  			insert into freeboard values(freeboard_seq.nextval, #{writer},#{title},#{category},#{content},sysdate,0,0)
   		</insert>
   		
   </mapper>

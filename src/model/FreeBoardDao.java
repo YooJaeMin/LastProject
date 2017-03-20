@@ -55,7 +55,8 @@ public class FreeBoardDao {
 		SqlSession session = factory.openSession();
 		int rst = 0; // µðÆúÆ® : 0
 		try {
-			rst=session.insert("freeboard.listSome",map);
+			System.out.println("addNew="+map);
+			rst=session.insert("freeboard.addNew",map);
 			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();

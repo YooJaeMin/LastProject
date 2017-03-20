@@ -19,19 +19,19 @@
 	rel='stylesheet'>
 </head>
 <style>
-body {
+#nav_body {
 	font-family: 'Coming Soon';
-	font-size: 18px;
+	font-size: 20px;
 }
 
-.navbar-inverse {
-	background-color: #222;
-	border-color: #080808;
-	margin-bottom: 10px;
-}
+/* .navbar-inverse { */
+/* 	background-color: #222; */
+/*  	border-color: #080808; */
+/*  	margin-bottom: 10px; */
+/* } */
 </style>
 
-<body>
+<div id="nav_body">
 
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
@@ -180,7 +180,7 @@ body {
 
 
 
-</body>
+</div>
 
 
 <script>

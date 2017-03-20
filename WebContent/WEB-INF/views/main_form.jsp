@@ -10,10 +10,10 @@
 -webkit-transition:0s ease-in-out left
 ;transition:0s ease-in-out left}
 
-.input {
-   font-family: '나눔고딕';
-   font-size: 10pt;
-}
+/* .input { */
+/*    font-family: '나눔고딕'; */
+/*    font-size: 10pt; */
+/* } */
 
 .main_view {
    	position: absolute;

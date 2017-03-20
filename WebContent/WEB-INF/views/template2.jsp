@@ -11,7 +11,7 @@
 	<div>
 		<tiles:insertAttribute name="nav" />
 	</div>
-	<div style="min-height: 90%;" >
+	<div style="min-height: 90%; padding-right: 20%; padding-left: 20%;">
 		<tiles:insertAttribute name="main" />
 	</div>
 	<div style="min-height: 5%">
