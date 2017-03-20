@@ -4,8 +4,19 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
 	<insert id="normalCreate" parameterType="java.util.HashMap">
-		insert into user_basic values(#{id},#{pass},sysdate)
+		insert into user_basic values(#{id},#{pw},sysdate)
 	</insert>
+	
+	
+	<select id="memberCountOne" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		select count(*) from user_basic where id=#{id} and pw=#{pw}
+	</select>
+	
+	<select id="naverCountOne" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		select count(*) from user_detail where id=#{id}
+	</select>
+	
+	
 	
 	<insert id="normalDetail" parameterType="java.util.HashMap">
 		insert into user_detail values(#{id}, null, null, null, #{profile},null,null)
@@ -30,7 +41,7 @@
 	</select>
 
 	<update id="updateBasic" parameterType="java.util.HashMap">
-		update user_basic set  pass=#{pass} where  id=#{id} and pass=#{pass}
+		update user_basic set  pw=#{pw} where  id=#{id} and pass=#{pass}
 	</update>	
 	<update id="updateDetail" parameterType="java.util.HashMap">
 		update user_detail 

@@ -1,4 +1,4 @@
-package controller;
+/*package controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,23 +30,120 @@ public class JoinController {
 	
 	
 	@RequestMapping("/checkAjax")
-	@ResponseBody	// ¸®ÅÏµÇ´Â ±× °ªÀ» SpringDispatcher¿¡¼­ ºäÀÌ¸§À¸·Î »ı°¢ÇÏÁö ¾Ê°í,
-		// ¹Ù·Î ÀÀ´äÀ¸·Î Ãâ·ÂÇÑ´Ù. String °´Ã¼¸¸ Ãâ·ÂÀÌ °¡´ÉÇÏ°í, ÇÑ±Û µ¥ÀÌÅÍ Ãâ·Â X
+	@ResponseBody	// ï¿½ï¿½ï¿½ÏµÇ´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ SpringDispatcherï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½,
+		// ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. String ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½, ï¿½Ñ±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ X
 	public String cAjaxHandler(@RequestParam(name="id") String id) {
 		ModelAndView mav = new ModelAndView("t_join02");
 		// boolean rst = mdao.useAvailableCheck(id);
 		boolean rst = true;	// false;
-		// 'YYYYY' or 'NNNNN'  ÀÌ·± ¹®ÀÚ¸¸ Ãâ·ÂÇØÁÖ¸é µÈ´Ù.
+		// 'YYYYY' or 'NNNNN'  ï¿½Ì·ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½È´ï¿½.
 		if(rst) 
 			return "YYYYY";
 		else
 			return "NNNNN";
 	}
 }
+*/
+package controller;
 
+import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import model.MemberDao;
 
+@Controller
+@RequestMapping("/join")
+public class JoinController {
+	@Autowired
+	MemberDao mdao;
 
+	@RequestMapping("/naverJoin")
+	@ResponseBody
+	public String nvJoinHandler(@RequestParam Map map, HttpSession session,
+			/*@RequestParam(name = "keep", defaultValue = "off") String val,*/ HttpServletResponse response) {
+		System.out.println(map);
+		String id = (String) map.get("email");
+		String birth2="2017-";
+		String birth3=((String) map.get("birth"));
+		String birth=birth2+birth3;
+		map.remove("birth");
+		map.put("id", id);
+		map.put("birth", birth);
+		System.out.println(map);
+		map.remove("email");
+		map.remove("age");
+		
+		System.out.println(map);
+		int result = 0;
+		result = mdao.naverMamber(map);
+		if (result == 1) {
+			session.setAttribute("auth_id", map.get("id"));
+			session.setAttribute("auth", "yes");
+			/*if (val.equals("on")) {
+				Cookie c = new Cookie("save", (String)map.get("id")); // ë°¸ë¥˜ì—ëŠ” ê³„ì •ì •ë³´ê°€ ìˆì–´ì•¼ í•¨.
+				c.setMaxAge(60 * 60 * 24 * 7);
+				c.setPath("/");
+				response.addCookie(c);
+			}*/
+			return "yes";
+		} else {
+			boolean membercheck = mdao.naverCheckMember(map);
+			if (membercheck == true) {
+				return "chOk";
+			} else {
+				return "fail";
+			}
+		}
+	}
 
+	@RequestMapping("/memberJoin")
+	@ResponseBody
+	public String mbJoinHandler(@RequestParam Map map) {
+		System.out.println(map);
+		String result = "";
+		result = mdao.Mamber(map);
+		if (result == "succed") {
+			return "succed";
+		} else {
+			return "fail";
+			
+		}
+	}
+	
+	@RequestMapping("/memberCheck")//ë¡œê·¸ì¸ ì²´í¬
+	@ResponseBody
+	public String memberCehck(@RequestParam Map map, HttpSession session,
+			/*@RequestParam(name = "keep", defaultValue = "off") String val,*/ HttpServletResponse response) {
+		System.out.println(map);
+		boolean result = false;
+		result = mdao.checkMember(map);
+		System.out.println("result"+result);
+		if (result) {
+			session.setAttribute("auth_id", map.get("id"));
+			session.setAttribute("auth", "yes");
+			/*if (val.equals("on")) {
+				Cookie c = new Cookie("save", (String)map.get("id")); // ë°¸ë¥˜ì—ëŠ” ê³„ì •ì •ë³´ê°€ ìˆì–´ì•¼ í•¨.
+				c.setMaxAge(60 * 60 * 24 * 7);
+				c.setPath("/");
+				response.addCookie(c);
+			}*/
+			return "succed";
+		} else {
+			System.out.println("í‹€ë¦¼");
+			return "fail";
+			
+			
+		}
+	}
+
+}

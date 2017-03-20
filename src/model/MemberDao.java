@@ -15,37 +15,91 @@ public class MemberDao {
 	@Autowired
 	SqlSessionFactory factory;
 
-	public int addMember(Map map) {
+	public int naverMamber(Map map) {
 		SqlSession session = factory.openSession();
 		int r = 0;
 		try {
-			r = session.insert("member.createOne", map);
+			r = session.insert("member.naverDetail", map);
+			System.out.println("ë„¤ì´ë²„ë©¤ë²„ ê°€ìž… ê²°ê³¼ê°’ : "+r);
 			session.commit();
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			return r;
 		} finally {
 			session.close();
 		}
 		return r;
 	}
 	
+	
+	public String Mamber(Map map) {
+		SqlSession session = factory.openSession();
+		int r = 0;
+		int r2 = 0;
+		System.out.println(map.get("id"));
+		System.out.println(map.get("pw"));
+		map.put("profile", "/views/picture/default.jpg");
+		try {
+			r2 = session.insert("member.normalDetail",map);
+			if(r2==1){
+				r = session.insert("member.normalCreate", map);
+			}
+			System.out.println("ì¼ë°˜ë©¤ë²„ ê°€ìž…  ê²°ê³¼ê°’ : "+r+"/"+r2);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "fail";
+		} finally {
+			session.close();
+		}
+		if(r==1&&r2==1){
+			return "succed";
+		}else{
+			return "fail";
+		}
+		
+	}
+	
+	
 	public boolean checkMember(Map map) {
 		boolean flag = false;
 		SqlSession session = factory.openSession();
 		try {
-			// select mapperÀÇ resultTypeÀº µ¥ÀÌÅÍ ÇÑÁÙÀ» ¹Ù²Ü °´Ã¼ 
-			// select ¸¦ »ç¿ëÇÒ¶§ ÇÑÁÙÀÌ ³ª¿À¸é selectOne ==> resultType
-			//                    ¿©·¯ÁÙÀÌ ³ª¿À¸é selectList ==> List<resultType> 
-			int r = session.selectOne("member.checkCountOne", map);
+			int r = session.selectOne("member.memberCountOne", map);
 			if(r==1)
 				flag = true;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return flag;
 		} finally {
 			session.close();
 		}
 		return flag;
 	}
+	
+	public boolean naverCheckMember(Map map) {
+		boolean flag = false;
+		SqlSession session = factory.openSession();
+		try {
+			int r = session.selectOne("member.naverCountOne", map);
+			if(r==1)
+				flag = true;
+			else{
+				flag = false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return flag;
+		} finally {
+			session.close();
+			
+		}
+		return flag;
+	}
+	
+	
+	
+	
 	public List<HashMap> readinfo(Map map){
 		List<HashMap> list = new ArrayList<>();
 		SqlSession session = factory.openSession();
