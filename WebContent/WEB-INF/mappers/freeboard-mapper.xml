@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="freeboard">
+  		<!-- 전체 데이터 개수 추출 -->
+  		<select id="cntAll" resultType="java.lang.Integer">
+  			select count(*) as cnt from freeboard
+  		</select>
+  		
+  		<!-- 일부분 데이터 리스트화 -->
+  		<select id="listSome" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+  		<![CDATA[
+  			select * from ( 
+				select rownum as rnum, step1.* from 
+				(select * from freeboard order by num desc) step1) 
+				where rnum >=#{start} and rnum <=#{end}
+			]]>
+  		</select>
+  		<!-- 모든데이터 추출 -->
+  		<select id="listAll" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+  			select * from freeboard order by num desc
+  		</select>
+  		<!-- 하나의 데이터 추출 -->
+  		<select id="getOneInDetail" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+  			select * from freeboard where num=%d
+  		</select>
+  		
+  		<!-- 데이터 등록 -->
+  		<insert id="addNew" parameterType="java.util.HashMap">
+  			insert into freeboard values(freeboard_seq.nextval, #{writer},#{category},#{content},sysdate,0,0)
+  		</insert>
+  		
+  </mapper>
+  
