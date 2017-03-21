@@ -1,7 +1,15 @@
 package model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -9,7 +17,6 @@ import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationOperation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,19 +25,83 @@ public class SearchDao {
 	MongoTemplate template;
 	@Autowired
 	LocationCalculator lc;
+	@Autowired
+	SqlSessionFactory factory;
+	public List mongoWithSql (List<Map> list){
+		List tempList = new ArrayList();
+		SqlSession session = factory.openSession();
+		try {
+			for (Map map : list) {
+
+				List sqlList = session.selectList("review.reviewResult", map);
+				int hitCnt = session.selectOne("store.hitCnt", map);
+				int avg = session.selectOne("review.avgResult", map);
+				map.put("sqlInfo", sqlList);
+				map.put("avg", avg);
+				map.put("hitCnt", hitCnt);
+				tempList.add(map);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return tempList;
+	}
+	
+	public List rankFilter(List<Map> list) {
+		
+		Collections.sort(list, new Comparator<Map>() {
+			public int compare(Map o1, Map o2) {
+				// o1이 더작으면 -1 (우선순위)
+				// o2가 더작으면 1 (우선순위)
+				if((int)o1.get("avg")>(int)o2.get("avg")){
+					return 1;
+				} else if((int)o1.get("avg")<(int)o2.get("avg")){
+					return -1;
+				} else {
+					if((int)o1.get("hitCnt")>(int)o2.get("hitCnt")){
+						return 1;
+					} else if((int)o1.get("avg")<(int)o2.get("hitCnt")){
+						return -1;
+					} else 	return 0;
+				}
+			}
+		});
+		
+		return list;
+	}
 
 	public List tagSearch(String selectedTag) {
-		Query query = new Query();
 		List list = template.findAll(Map.class, "food");
 		List tempList = new ArrayList();
-
-		for (int i = 0; i < list.size(); i++) {
+		outerLoof: for (int i = 0; i < list.size(); i++) {
 			Map innerMap = (Map) list.get(i);
 			List tagList = (List) innerMap.get("type");
 			for (int j = 0; j < tagList.size(); j++) {
 				String tag = (String) tagList.get(j);
 				if (tag.equals(selectedTag)) {
 					tempList.add(list.get(i));
+					continue outerLoof;
+				}
+			}
+		}
+		System.out.println(tempList.toString());
+		return tempList;
+	}
+
+	public List titleSearch(Map map) {
+		List list = template.findAll(Map.class, "food");
+		String[] words = ((String) map.get("keyword")).split("\\s");
+		List tempList = new ArrayList();
+		outerLoof: for (int i = 0; i < list.size(); i++) {
+			Map innerMap = (Map) list.get(i);
+			String title = (String) innerMap.get("title");
+			for (String word : words) {
+				if (title.contains(word)) {
+					tempList.add(innerMap);
+					break;
 				}
 			}
 		}
@@ -63,6 +134,23 @@ public class SearchDao {
 		if (keyword.length != 1) {
 			outterLoof: for (int i = 0; i < list.size(); i++) {
 				Map innerMap = (Map) list.get(i);
+
+				List typeList = (List) innerMap.get("type");
+				try {
+					for (int j = 0; j < typeList.size(); j++) {
+						String type = (String) typeList.get(j);
+						for (String key : keyword) {
+							if (key.equals(type)) {
+								filterList.add(innerMap);
+								continue outterLoof;
+							}
+						}
+					}
+				} catch (Exception e) {
+					continue;
+
+				}
+
 				List tagList = (List) innerMap.get("tag");
 				try {
 					for (int j = 0; j < tagList.size(); j++) {
@@ -93,6 +181,7 @@ public class SearchDao {
 					continue;
 
 				}
+
 			}
 		} else {
 			filterList = list;

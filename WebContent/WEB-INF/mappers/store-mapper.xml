@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="store">
+	<!-- 별점+많은 정보 등록 -->
+	<insert id="insertHit" parameterType="java.util.HashMap">
+		insert into store_hit values( #{tel},#{id})
+	</insert>
+	<delete id="deleteHit" parameterType="java.util.HashMap">
+		delete store_hit where id=#{id} and tel=#{tel}
+	</delete>
+	<select id="hitCnt" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		select count(*) from store_hit where tel = #{tel}
+	</select>
+</mapper>
