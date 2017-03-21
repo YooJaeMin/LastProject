@@ -4,6 +4,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<style type="text/css">
+input[type=checkbox] {
+	/* Double-sized Checkboxes */
+	-ms-transform: scale(2); /* IE */
+	-moz-transform: scale(2); /* FF */
+	-webkit-transform: scale(2); /* Safari and Chrome */
+	-o-transform: scale(2); /* Opera */
+	padding: 10px;
+}
+
+/* Might want to wrap a span around your checkbox text */
+.checkboxtext {
+	/* Checkbox text */
+	font-size: 110%;
+	display: inline;
+}
+</style>
+
+
 <div>
 	<h3>회원정보</h3>
 </div>
@@ -56,15 +76,14 @@
 					</select>
 
 				</p>
-				
+
 				<p>
-					<b>food preferency</b><br />
-						<input type="checkbox" name="vehicle1" value="Bike"> I have a bike
-						<input type="checkbox" name="vehicle1" value="Bike"> I have a bike
-						<input type="checkbox" name="vehicle1" value="Bike"> I have a bike
-						<input type="checkbox" name="vehicle1" value="Bike"> I have a bike
-						<input type="checkbox" name="vehicle1" value="Bike"> I have a bike
-						<input type="checkbox" name="vehicle1" value="Bike"> I have a bike
+					<b>food preferency</b><br /> <br/>
+					<c:forEach var="tg" items="${taglist}">
+					<input type="checkbox" name="preferency" id="opta" value="${tg}"/> 
+						<span class="checkboxtext">${tg} &nbsp;&nbsp; </span>
+					</c:forEach>
+					
 				</p>
 				<br />
 				<p>
