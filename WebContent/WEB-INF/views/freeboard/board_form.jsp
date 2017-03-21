@@ -1,8 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<head>
+<link href='//fonts.googleapis.com/css?family=Coming Soon'
+	rel='stylesheet'>
+</head>
+<style>
+div {
+	font-family: 'Coming Soon';
+	font-size: 20px;
+}
+</style>
 <div>
-	<h3>게시글작성</h3>
+	<h3>FAQ</h3>
 </div>
 <div class="well row"> 
 	<form action="/spoon_board/add" method="post">

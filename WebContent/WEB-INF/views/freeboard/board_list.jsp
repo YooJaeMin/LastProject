@@ -22,16 +22,10 @@
 			${one.get('CATEGORY')} ｜작성자 : ${one.WRITER} | 조회수:${one.VIEWCOUNT}
 			(추천:<span style="color: red;">${one.HITCOUNT}</span>)
 		</p>
-		<p>
-			<c:choose>
-				<c:when test="${fn:length(one.CONTENT) le 40}">${one.CONTENT}</c:when>
-				<c:otherwise>
-					${fn:substring(one.CONTENT, 0, 40) } ...
-				</c:otherwise>
-			</c:choose>
-		</p>
+
 	</div>
 </c:forEach>
+
 <!-- 페이지 뷰 -->
 <div align="center" class="well">
 	<c:if test="${page ne 1 }">

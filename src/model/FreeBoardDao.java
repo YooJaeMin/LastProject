@@ -81,8 +81,7 @@ public class FreeBoardDao {
 		SqlSession session = factory.openSession();
 		HashMap one = null;
 		try {
-			one = (HashMap)session.selectList("freeboard.getOneInDetail",map);
-			session.commit();
+			one = (HashMap)session.selectOne("freeboard.getOneInDetail",(int)map.get("num"));
 			}catch(Exception e){
 				e.printStackTrace();
 			}finally{

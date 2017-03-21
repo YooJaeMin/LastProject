@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -47,8 +48,11 @@ public class FreeboardController {
 	
 	
 	@RequestMapping("/detail")
-	public ModelAndView getOneInDetailHandler(){
+	public ModelAndView getOneInDetailHandler(@RequestParam Map map ){
 		ModelAndView mav = new ModelAndView("t_board freeboard/board_list"); 
+		HashMap detail = fdao.getOneInDetail(map);
+		mav.addObject("detail", detail);
+		
 		return mav;
 	}
 	@RequestMapping("/write")
