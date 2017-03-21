@@ -37,9 +37,11 @@
 		<div class="container-fluid">
 
 			<ul class="nav navbar-nav">
-				<li><a href="/"><b>Spoon Compass</b></a></li>
-				<li class="active"><a href="/"><b>HOME</b></a></li>
+				<li><a><span style="color: #ffd700;"><b>Spoon
+								Compass</b></span></a></li>
+				<li class="active"><a href="#"><b>HOME</b></a></li>
 				<li><a href="#"><b>About us</b></a></li>
+				<li><a href="/spoon_board/listAll"><b>Board</b></a></li>
 				<li><a href="#"><b>FAQ</b></a></li>
 				<c:if test="${sessionScope.auth ne  null }">
 					<li><a href="#"><b>나의 맛집</b></a></li>
@@ -51,8 +53,7 @@
 						<li><a href="#">Page 1-1</a></li>
 						<li><a href="#">Page 1-2</a></li>
 						<li><a href="#">Page 1-3</a></li>
-					</ul> <%-- 					
- --%> <%--  --%></li>
+					</ul></li>
 
 			</ul>
 
@@ -144,7 +145,7 @@
 
 										<p>
 											가입과 함께 Spoon Compass의 <a href=policy_service.jsp
-												class="underline">서비스약관</a>과 <a href=policy_privacy.jsp
+												class="underline">서비스약관</a>과 <a href="/WEB-INF/views/policy_privacy.jsp"
 												class="underline">개인정보수집이용</a>에 동의하시게 됩니다.
 										</p>
 									</form>

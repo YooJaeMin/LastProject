@@ -1,7 +1,10 @@
 package controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,23 +20,32 @@ public class FreeboardController {
 	@Autowired
 	FreeBoardDao fdao;
 	
-	@RequestMapping("/tot")
+	@RequestMapping("/cntAll")
 	public ModelAndView cntAllHandler(){
-		ModelAndView mav = new ModelAndView("t_board freeboard/board_list");
-		return mav; 
+		int all = fdao.cntAll();
+		ModelAndView mav = new ModelAndView("t_board freeboard/board_list"); 
+		mav.addObject("cnt", all);
+		
+		return mav;
 	}
+		
 	@RequestMapping("/list")
 	public ModelAndView getSomeHandler(@RequestParam Map map){
 		ModelAndView mav = new ModelAndView("t_board freeboard/board_list");
 		return mav; 
 	}
-	@RequestMapping("/totList")
-	public ModelAndView listAllHandler(){
-		int all = fdao.cntAll();
+	
+	@RequestMapping("/listAll")
+	public ModelAndView listAllHandler(@RequestParam Map map){
 		ModelAndView mav = new ModelAndView("t_board freeboard/board_list"); 
-		mav.addObject("data", all);
+		List list = fdao.listAll(map);
+		mav.addObject("list", list);
+		int all = fdao.cntAll();
+		mav.addObject("cnt", all);
 		return mav;
 	}
+	
+	
 	@RequestMapping("/detail")
 	public ModelAndView getOneInDetailHandler(){
 		ModelAndView mav = new ModelAndView("t_board freeboard/board_list"); 
@@ -45,11 +57,14 @@ public class FreeboardController {
 		return mav;
 	}
 	@RequestMapping("/add")
-	public ModelAndView addNewHandler(@RequestParam Map map){
+	public ModelAndView addNewHandler(HttpServletRequest req ,@RequestParam Map map) throws UnsupportedEncodingException{
+		req.setCharacterEncoding("UTF-8");
+		System.out.println(req.getParameter("title"));
+		System.out.println(map.toString());
 		int a = fdao.addNew(map);
 		
 		System.out.println(a);
-		ModelAndView mav = new ModelAndView("/spoon_board/totList");
+		ModelAndView mav = new ModelAndView("/spoon_board/listAll");
 		return mav;
 	}
 }

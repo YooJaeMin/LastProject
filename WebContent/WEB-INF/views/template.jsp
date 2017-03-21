@@ -8,7 +8,7 @@
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <body>
-	<div>
+	<div  style="max-height: 30px ">
 		<tiles:insertAttribute name="nav" />
 	</div>
 	<div style="min-height: 90%;" >
