@@ -17,17 +17,36 @@
 
 		// Create the map with no initial style specified.
 		// It therefore has default styling.
+		var posSpecial= {
+				'lat' : 37.49794199999999,
+				'lng' : 127.027621
+			};
+		
 		<c:forEach items="${searchResult }" var="item" begin="0" end="10" varStatus="vs">
 		var pos${vs.index} = {
 			'lat' : ${item.lat},
 			'lng' : ${item.lng}
 		};
 		</c:forEach>
+
+		<c:choose>
+		<c:when test="${searchResult.size() eq 0 }">
+		var map = new google.maps.Map(document.getElementById('map'), {
+			"center" : 	posSpecial,
+			"scrollwheel" : false,
+			"zoom" : 15
+		});
+		</c:when>
+		<c:otherwise>
 		var map = new google.maps.Map(document.getElementById('map'), {
 			"center" : 	pos0,
 			"scrollwheel" : false,
 			"zoom" : 15
 		});
+		</c:otherwise>
+	</c:choose>
+
+
 		<c:forEach items="${searchResult }" var="item" begin="0" end="10" varStatus="vs">
 		var marker${vs.index} = new google.maps.Marker({
 			"map" : map,
@@ -44,3 +63,5 @@
 		</c:forEach>
 	}
 </script>
+
+

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 public class StoreDao {
 	@Autowired
 	MongoTemplate template;
+	
 	public List find() {
 		List list = new ArrayList<>();
 		Query query = new Query();

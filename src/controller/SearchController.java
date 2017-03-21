@@ -24,14 +24,23 @@ public class SearchController {
 	@RequestMapping("/keyword")
 	public ModelAndView searchBar(@RequestParam(name="keyword") String keyword){
 		ModelAndView mav = new ModelAndView("test");
-		keyword=keyword+"+맛집";
 		sd.insertSearch(keyword);
 		Map map = ld.googleLocation(keyword);
+		map.put("keyword", keyword);
 		List list = sd.doSearch(map);
+		if(list.size()==0){
+		}
 		mav.addObject("searchResult",list);
 		return mav;
 	}
 	
+	@RequestMapping("/tag")
+	public ModelAndView selectTag(@RequestParam(name="selectedTag") String selectedTag){
+		ModelAndView mav = new ModelAndView("test");
+		List list = sd.tagSearch(selectedTag);
+		mav.addObject("tagResult",list);
+		return mav;
+	}
 	
 	
 }
