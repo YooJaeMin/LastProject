@@ -38,7 +38,7 @@ public class MemberDao {
 		int r2 = 0;
 		System.out.println(map.get("id"));
 		System.out.println(map.get("pw"));
-		map.put("profile", "/views/picture/default.jpg");
+		map.put("profile", "/WEB-INF/memberImg/default.jpg");
 		try {
 			r2 = session.insert("member.normalDetail",map);
 			if(r2==1){
