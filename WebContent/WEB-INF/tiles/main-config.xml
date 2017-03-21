@@ -27,8 +27,6 @@
 	</definition>
 
 	
-		
-	
 	<!-- freeBoard -->
 	<definition name="t_board */*" extends="base2">
 		<put-attribute name="main" value="/WEB-INF/views/{1}/{2}.jsp"/>

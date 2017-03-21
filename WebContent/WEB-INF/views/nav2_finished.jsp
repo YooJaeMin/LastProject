@@ -61,7 +61,7 @@
 					<a class="glyphicon glyphicon-log-in"
 					data-toggle="modal" data-target="#myModal"> 
 					<c:if test="${sessionScope.auth ne  null }">
-							<li><a href="#"><b>${sessionScope.auth_id}</b></a></li>
+							<li><a href="/Mypage/info"><b>${sessionScope.auth_id}</b></a></li>
 						</c:if>
 				</a></li>
 
