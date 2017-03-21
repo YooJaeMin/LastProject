@@ -32,6 +32,7 @@
 <div id="tags" class="row col-md-offset-1 col-md-9">
 	<c:forEach items="${tagsList }" var="item">
 		<form class="col-md-2" action="/search/tag">
+				<input type="hidden" name="type" value="basic"/>
 			<button class="btn" name="selectedTag" value="${item }">${item }</button>
 		</form>
 	</c:forEach>
