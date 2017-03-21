@@ -18,68 +18,141 @@ public class SearchDao {
 	MongoTemplate template;
 	@Autowired
 	LocationCalculator lc;
-	
-	public List doSearch(Map map){
-		List list = new ArrayList();
-		list = template.findAll(Map.class,"food");
-		List newList = new ArrayList();
-		newList = lc.calDistance((double)map.get("lat"), (double)map.get("lng"), list);
-		return newList;
+
+	public List tagSearch(String selectedTag) {
+		Query query = new Query();
+		List list = template.findAll(Map.class, "food");
+		List tempList = new ArrayList();
+
+		for (int i = 0; i < list.size(); i++) {
+			Map innerMap = (Map) list.get(i);
+			List tagList = (List) innerMap.get("type");
+			for (int j = 0; j < tagList.size(); j++) {
+				String tag = (String) tagList.get(j);
+				if (tag.equals(selectedTag)) {
+					tempList.add(list.get(i));
+				}
+			}
+		}
+		System.out.println(tempList.toString());
+		return tempList;
 	}
-	
-	public List realTimeRank(){
+
+	public List doSearch(Map map) {
 		List list = new ArrayList();
-		Criteria criteria = Criteria.where("date").gte(System.currentTimeMillis()-3*60*60*1000);
-		
+		list = template.findAll(Map.class, "food");
+		List newList = new ArrayList();
+		try {
+			newList = lc.calDistance((double) map.get("lat"), (double) map.get("lng"), list);
+		} catch (Exception e) {
+			System.out.println("double터짐");
+			try {
+				newList = lc.calDistance((int) map.get("lat"), (int) map.get("lng"), list);
+			} catch (Exception e2) {
+				System.out.println("int터짐");
+			}
+		}
+		List filterList = doFilter(newList, map);
+
+		return filterList;
+	}
+
+	public List doFilter(List list, Map map) {
+		String[] keyword = ((String) map.get("keyword")).split("\\s");
+		List filterList = new ArrayList();
+		if (keyword.length != 1) {
+			outterLoof: for (int i = 0; i < list.size(); i++) {
+				Map innerMap = (Map) list.get(i);
+				List tagList = (List) innerMap.get("tag");
+				try {
+					for (int j = 0; j < tagList.size(); j++) {
+						String tag = (String) tagList.get(j);
+						for (String key : keyword) {
+							if (key.equals(tag)) {
+								filterList.add(innerMap);
+								continue outterLoof;
+							}
+						}
+					}
+				} catch (Exception e) {
+					continue;
+				}
+
+				List itemList = (List) innerMap.get("item");
+				try {
+					for (int j = 0; j < itemList.size(); j++) {
+						String item = (String) itemList.get(j);
+						for (String key : keyword) {
+							if (key.equals(item)) {
+								filterList.add(innerMap);
+								continue outterLoof;
+							}
+						}
+					}
+				} catch (Exception e) {
+					continue;
+
+				}
+			}
+		} else {
+			filterList = list;
+		}
+
+		return filterList;
+
+	}
+
+	public List realTimeRank() {
+		List list = new ArrayList();
+		Criteria criteria = Criteria.where("date").gte(System.currentTimeMillis() - 3 * 60 * 60 * 1000);
+
 		AggregationOperation ao1 = Aggregation.match(criteria);
 		AggregationOperation ao2 = Aggregation.group("keyword").count().as("cnt");
 		AggregationOperation ao3 = Aggregation.sort(Direction.DESC, "cnt");
 		AggregationOperation ao4 = Aggregation.limit(5);
-		
-		
-		Aggregation aggr = Aggregation.newAggregation(ao1,ao2,ao3,ao4);
-		
-		AggregationResults<Map> result = template.aggregate(aggr,"searchKey",Map.class );
+
+		Aggregation aggr = Aggregation.newAggregation(ao1, ao2, ao3, ao4);
+
+		AggregationResults<Map> result = template.aggregate(aggr, "searchKey", Map.class);
 
 		list = result.getMappedResults();
-		
+
 		return list;
 	}
-	
-	public List todayRank(){
+
+	public List todayRank() {
 		List list = new ArrayList();
 
 		Date date = new Date();
-		Date date2 = new Date(date.getYear(),date.getMonth(),date.getDate());
-		
+		Date date2 = new Date(date.getYear(), date.getMonth(), date.getDate());
+
 		Criteria criteria = Criteria.where("date").gte(date2.getTime());
-		
+
 		AggregationOperation ao1 = Aggregation.match(criteria);
 		AggregationOperation ao2 = Aggregation.group("keyword").count().as("cnt");
 		AggregationOperation ao3 = Aggregation.sort(Direction.DESC, "cnt");
 		AggregationOperation ao4 = Aggregation.limit(5);
 
-		
-		Aggregation aggr = Aggregation.newAggregation(ao1,ao2,ao3,ao4);
-		
-		AggregationResults<Map> result = template.aggregate(aggr,"storeRank",Map.class );
+		Aggregation aggr = Aggregation.newAggregation(ao1, ao2, ao3, ao4);
+
+		AggregationResults<Map> result = template.aggregate(aggr, "storeRank", Map.class);
 		list = result.getMappedResults();
-		
+
 		return list;
 	}
-	
-	public void insertSearch(String keyword){
+
+	public void insertSearch(String keyword) {
 		Map map = new HashMap<>();
 		map.put("keyword", keyword);
 		map.put("date", System.currentTimeMillis());
 		template.insert(map, "searchKey");
 	}
-	
-	public void insertLike(String keyword){
+
+	public void insertLike(String keyword) {
 		Map map = new HashMap<>();
 		map.put("keyword", keyword);
 		map.put("date", System.currentTimeMillis());
 		template.insert(map, "storeRank");
 	}
-	
+
 }

@@ -16,7 +16,8 @@
   
  
 body {
-    font-family: 'Coming Soon';font-size: 18px;
+    font-family: 'Coming Soon';
+    font-size: 18px;
 }
 
 
@@ -33,7 +34,7 @@ body {
   <div class="container-fluid">
   
     <ul class="nav navbar-nav">
-     <li><a href="#"><b>Spoon Compass</b></a></li>
+   <li><a href="#"><span style="color: #ffd700;"><b>Spoon Compass</b></span></a></li>
       <li class="active"><a href="#"><b>HOME</b></a></li>
       <li><a href="#"><b>About us</b></a></li>
       <li><a href="#"><b>FAQ</b></a></li>
@@ -50,12 +51,10 @@ body {
       <li class="pull-right">
 	<a class="glyphicon glyphicon-log-in" data-toggle="modal" data-target="#myModal">
 	</a>
-</li>
-
+	</li>
+    </ul>
 	<!-- Trigger the modal with a button -->
 	<!-- Modal -->
-
-    </ul>
     	<div class="modal fade" id="myModal" role="dialog">
 		<div class="modal-dialog">
 
