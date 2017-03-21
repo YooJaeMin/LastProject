@@ -8,6 +8,7 @@
 	</insert>
 	
 	
+	
 	<select id="memberCountOne" parameterType="java.util.HashMap" resultType="java.lang.Integer">
 		select count(*) from user_basic where id=#{id} and pw=#{pw}
 	</select>
@@ -55,6 +56,10 @@
 		content=#{content}, img=#{img}
 		where tel_id=#{tel_id}
 	</update>
-
+	
+	
+	<select id="info" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select * from user_detail where id=#{id}
+	</select>
 	
 </mapper>

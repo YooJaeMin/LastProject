@@ -20,12 +20,17 @@
 	<definition name="t_main" extends="base">
 		<put-attribute name="main" value="/WEB-INF/views/main_form.jsp"/>
 	</definition>
-	
-		
+
+
+	<definition name="t_mypage" extends="base">
+		<put-attribute name="main" value="/WEB-INF/views/info/update_form.jsp"/>
+	</definition>
+
 	
 	<!-- freeBoard -->
 	<definition name="t_board */*" extends="base2">
 		<put-attribute name="main" value="/WEB-INF/views/{1}/{2}.jsp"/>
 	</definition>
 	
+
 </tiles-definitions>
