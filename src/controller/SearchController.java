@@ -22,16 +22,20 @@ public class SearchController {
 	LocationDao ld;
 
 	@RequestMapping("/keyword")
-	public ModelAndView searchBar(@RequestParam(name = "keyword") String keyword) {
+	public ModelAndView searchBar(@RequestParam Map reqMap) {
 		ModelAndView mav = new ModelAndView("/searchMain.jsp");
 		String[] foods = { "수요미식회", "생활의달인", "TV맛집", "한식", "중식", "일식", "카페", "술집", "고기집", "횟집", "해산물", "밥집", "분식",
 				"파스타", "뷔페", "국물요리", "면요리", "이탈리안", "멕시칸", "프렌치", "아시안" };
-
+		String keyword = (String) reqMap.get("keyword");
+		mav.addObject("tagsList", foods);
+		System.out.println(keyword);
+		if (keyword == null)
+			return mav;
 		sd.insertSearch(keyword);
 		Map map = ld.googleLocation(keyword);
 		map.put("keyword", keyword);
 		mav.addObject("keyword", keyword);
-		mav.addObject("tagsList", foods);
+
 		List list = sd.doSearch(map);
 
 		// 리뷰가 완성되면 진행할 예정
@@ -46,20 +50,33 @@ public class SearchController {
 	}
 
 	@RequestMapping("/list")
-	public ModelAndView searchList(@RequestParam(name = "keyword") String keyword,
-			@RequestParam(name = "type") String type) {
+	public ModelAndView searchList(@RequestParam Map reqMap) {
 		ModelAndView mav = new ModelAndView("/searchList.jsp");
 		String[] foods = { "수요미식회", "생활의달인", "TV맛집", "한식", "중식", "일식", "카페", "술집", "고기집", "횟집", "해산물", "밥집", "분식",
 				"파스타", "뷔페", "국물요리", "면요리", "이탈리안", "멕시칸", "프렌치", "아시안" };
-
+		String keyword = (String) reqMap.get("keyword");
+		String type = (String) reqMap.get("type");
+		int page = 0;
+		try {
+			page = Integer.parseInt((String) reqMap.get("page"));
+		} catch (Exception e) {
+			page = 1;
+		}finally {
+			mav.addObject("page", page);
+		}
+		mav.addObject("tagsList", foods);
+		if (keyword == null || type == null)
+			return mav;
 		Map map = ld.googleLocation(keyword);
 		map.put("keyword", keyword);
 		mav.addObject("keyword", keyword);
 		String searchType;
 
-		mav.addObject("tagsList", foods);
 		List list = null;
-		if (type.equals("location")) {
+		if (type == null) {
+			list = sd.doSearch(map);
+			mav.addObject("type", "위치");
+		} else if (type.equals("location")) {
 			list = sd.doSearch(map);
 			mav.addObject("type", "위치");
 		} else if (type.equals("title")) {
@@ -78,14 +95,19 @@ public class SearchController {
 	}
 
 	@RequestMapping("/tag")
-	public ModelAndView selectTag(@RequestParam(name = "selectedTag") String selectedTag,
-			@RequestParam(name = "type", required = false) String type) {
+	public ModelAndView selectTag(@RequestParam Map reqMap) {
 		ModelAndView mav = null;
-		if(type.equals("all")){
+		String type = (String) reqMap.get("type");
+		String selectedTag = (String) reqMap.get("selectedTag");
+		if (type == null) {
+			mav = new ModelAndView("/tags.jsp");
+		} else if (type.equals("all")) {
 			mav = new ModelAndView("/tagsList.jsp");
-		} else if(type.equals("basic") || type == null){
+		} else {
 			mav = new ModelAndView("/tags.jsp");
 		}
+		if (selectedTag == null)
+			selectedTag = "한식";
 
 		String[] foods = { "수요미식회", "생활의달인", "TV맛집", "한식", "중식", "일식", "카페", "술집", "고기집", "횟집", "해산물", "밥집", "분식",
 				"파스타", "뷔페", "국물요리", "면요리", "이탈리안", "멕시칸", "프렌치", "아시안" };
