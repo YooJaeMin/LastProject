@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -31,7 +31,8 @@
 
 <div id="tags" class="row col-md-offset-1 col-md-9">
 	<c:forEach items="${tagsList }" var="item">
-		<form class="col-md-2" action="/search/tag?type=basic">
+		<form class="col-md-2" action="/search/tag">
+			<input type="hidden" name="type" value="basic" />
 			<button class="btn" name="selectedTag" value="${item }">${item }</button>
 		</form>
 	</c:forEach>
@@ -58,4 +59,17 @@
 			</div>
 		</div>
 	</c:forEach>
+</div>
+<div class="row col-md-offset-1 col-md-9">
+	<div>
+		
+	</div>
+	<div>
+		<c:forEach begin="1"
+			end="${result.size()%10 eq 0 ? result.size()/10 : result.size()/10 +1  }"
+			varStatus="vs">
+			<b>${vs.count }</b>
+		</c:forEach>
+	</div>
+	<div></div>
 </div>
