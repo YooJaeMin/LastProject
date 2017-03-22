@@ -8,15 +8,20 @@
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <body>
-	<div>
+	<div  style="min-height: 5%">
 		<tiles:insertAttribute name="nav" />
 	</div>
-	<div style="min-height: 90%;" >
+	<div  style="min-height: 20%">
+		<tiles:insertAttribute name="map" />
+	</div>
+	<div style="min-height: 70%;">
 		<tiles:insertAttribute name="main" />
 	</div>
-	<div style="min-height: 5%">
+	<div style="min-height: 4%">
 		<tiles:insertAttribute name="footer" />
 	</div>
-
 </body>
 </html>
+
+
+

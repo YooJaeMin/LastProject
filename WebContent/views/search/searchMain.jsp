@@ -60,11 +60,12 @@
 					</div>
 					<div class="col-md-6">
 						<h3>
-							<a href="#">${vs.count}. ${item.title }</a>
+							
+							<a href="/search/detail?tel=${item.tel }">${vs.count}. ${item.title }</a>
 						</h3>
 						<br />
 						<c:forEach items="${item.tag }" var="tag" varStatus="vs">
-							<a href="#">${tag}</a>
+							<a href="/search/tag?type=basic&selectedTag=${tag }">${tag}</a>
 						</c:forEach>
 						<div>Like : ${item.hitCnt } / AVG : ${item.avg }</div>
 					</div>
@@ -99,11 +100,11 @@
 					</div>
 					<div class="col-md-6">
 						<h3>
-							<a href="#">${vs.count}. ${item.title }</a>
+							<a href="/search/detail?tel=${item.tel }">${vs.count}. ${item.title }</a>
 						</h3>
 						<br />
 						<c:forEach items="${item.tag }" var="tag" varStatus="vs">
-							<a href="#">${tag}</a>
+							<a href="/search/tag?type=basic&selectedTag=${tag }">${tag}</a>
 						</c:forEach>
 						<div>Like : ${item.hitCnt } / AVG : ${item.avg }</div>
 					</div>
