@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import model.FileUpLoadDao;
 import model.infoDao;
 
 @Controller
@@ -21,6 +23,13 @@ import model.infoDao;
 public class infoController {
 	@Autowired
 	infoDao infoDao;
+	
+	@Autowired
+	ServletContext application;
+	
+	@Autowired
+	FileUpLoadDao upload;
+
 	
 	@RequestMapping("/info")
 	public ModelAndView infoHandle(@RequestParam Map map, HttpSession session,
@@ -42,7 +51,8 @@ public class infoController {
 	@RequestMapping("pictureR")
 	public ModelAndView pictR(@RequestParam Map param,
 			@RequestParam(name="itme") MultipartFile file)throws Exception{
-		/*Map map = fuSrv.execute(file);*/
+		Map map = upload.execute(file);
+		
 		return null;
 	}
 
