@@ -111,8 +111,7 @@ opacity
 	<!--  -->
 
 	<div align="center" style="color: white;">
-		<h1>spoon compass</h1>
-		<img src="/img/123.png" width="10%" height="20%" />
+		<img src="/img/spooncompass.png" width="50%" height="50%" />
 
 	</div>
 
@@ -163,7 +162,7 @@ opacity
 	var header = $('.main_visual');
 
 	var backgrounds = new Array('url(./img/result.jpg)',
-			'url(./img/main1.jpg)', 'url(./img/main11.jpg)',
+			 'url(./img/main11.jpg)',
 			'url(./img/main16.jpg)');
 
 	var current = 0;

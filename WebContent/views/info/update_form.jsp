@@ -22,19 +22,21 @@ input[type=checkbox] {
 	display: inline;
 }
 </style>
-
-
-<div>
-	<h3>회원정보</h3>
+<br/>
+<br/>
+<br/>
+<div align="center">
+	<h2><span>회원정보</span></h2>
 </div>
-
-<div class="well row" style="size: 80px;">
+<br/>
+<br/>
+<div class="well row" style="size: 80px; margin: 0 250; padding: 0px 25px;">
 
 
 	<c:forEach var="pic" items="${InfoR}">
 		<!-- 12등분  -->
 		<div class="col-md-3" align="center">
-			<form action="/my/update_picture.jsp" method="post"
+			<form action="/info/pictureR" method="post"
 				enctype="multipart/form-data">
 				<b>PICTURE</b><br /> <img src="${pic.PROFILE}" width="200"
 					height="200" style="border-radius: 100px;" />
