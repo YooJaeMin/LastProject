@@ -17,6 +17,7 @@ import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationOperation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -189,6 +190,14 @@ public class SearchDao {
 
 		return filterList;
 
+	}
+	
+	public List storeDetail(Map map){
+		Query query = new Query();
+		query.addCriteria(Criteria.where("tel").is((String)map.get("tel")));
+		
+		List result = template.find(query, Map.class, "food");
+		return result;
 	}
 
 	public List realTimeRank() {

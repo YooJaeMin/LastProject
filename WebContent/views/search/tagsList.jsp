@@ -39,15 +39,15 @@
 </div>
 <div id="location-list" class="row col-md-offset-1 col-md-9">
 	<h2 align="center">위치 검색</h2>
-	<h3>${tagResult.size() }개검색</h3>
+	<h3>${result.size() }개검색</h3>
 	<c:choose>
-		<c:when test="${tagResult.size() eq 0}">
+		<c:when test="${result.size() eq 0}">
 			<div class="item_container col-md-12">
 				<h3 align="center">검색 결과가 없습니다.</h3>
 			</div>
 		</c:when>
 		<c:otherwise>
-			<c:forEach items="${tagResult }" var="item"
+			<c:forEach items="${result }" var="item"
 				varStatus="vs">
 				<div class="item_container col-md-6">
 					<div class="col-md-6">

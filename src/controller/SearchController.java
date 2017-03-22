@@ -114,8 +114,19 @@ public class SearchController {
 		mav.addObject("tagsList", foods);
 		List list = sd.tagSearch(selectedTag);
 		mav.addObject("selectedTag", selectedTag);
-		mav.addObject("tagResult", list);
+		mav.addObject("result", list);
 		return mav;
 	}
+	
+	@RequestMapping("/detail")
+	public ModelAndView storeDetail(@RequestParam Map reqMap) {
+		ModelAndView mav = new ModelAndView("t_detail");
+		String tel = (String) reqMap.get("tel");
+		List list = sd.storeDetail(reqMap);
+		mav.addObject("result",list);
+		mav.addObject("store",list.get(0));
+		System.out.println(list.get(0).toString());
+		return mav;
+	} 
 
 }
