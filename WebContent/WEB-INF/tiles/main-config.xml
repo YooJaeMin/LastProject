@@ -25,6 +25,22 @@
 	<definition name="t_mypage" extends="base">
 		<put-attribute name="main" value="/views/info/update_form.jsp"/>
 	</definition>
+	
+	<definition name="t_searchMain" extends="base">
+		<put-attribute name="main" value="/views/search/searchMain.jsp"/>
+	</definition>
+	
+	<definition name="t_searchList" extends="base">
+		<put-attribute name="main" value="/views/search/searchList.jsp"/>
+	</definition>
+	
+	<definition name="t_tagSearch" extends="base">
+		<put-attribute name="main" value="/views/search/tags.jsp"/>
+	</definition>
+	
+	<definition name="t_tagList" extends="base">
+		<put-attribute name="main" value="/views/search/tagsList.jsp"/>
+	</definition>
 
 	
 	<!-- freeBoard -->
