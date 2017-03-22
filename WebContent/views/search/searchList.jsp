@@ -30,7 +30,7 @@
 }
 
 .button-box {
-	margin: 3px;
+	margin: 1px;
 	background-color: black;
 	color: yellow;
 }
@@ -86,17 +86,16 @@
 <div class="row col-md-offset-1 col-md-9">
 	<div align="center" class="number-box">
 		<c:forEach begin="1"
-			end="${result.size()%10 eq 0 ? result.size()/10 : result.size()/10 +1  }"
+			end="${result.size() %10 eq 0 ? result.size()/10 : result.size()/10 +1  }"
 			varStatus="vs">
 			<form action="/search/list">
 				<input type="hidden" name="keyword" value="${keyword }"> <input
 					type="hidden" name="type"
 					value="${type eq '상호' ? 'title' : type eq '위치' ? 'location' : ''}">
-					<div class="col-md-1">
+					<div class=" col-md-1">
 				<button name="page" class="btn button-box" value="${vs.count }">${vs.count }</button>
 				</div>
 			</form>
 		</c:forEach>
 	</div>
-	<div></div>
 </div>

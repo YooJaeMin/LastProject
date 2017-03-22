@@ -23,7 +23,7 @@ public class SearchController {
 
 	@RequestMapping("/keyword")
 	public ModelAndView searchBar(@RequestParam Map reqMap) {
-		ModelAndView mav = new ModelAndView("/searchMain.jsp");
+		ModelAndView mav = new ModelAndView("t_searchMain");
 		String[] foods = { "수요미식회", "생활의달인", "TV맛집", "한식", "중식", "일식", "카페", "술집", "고기집", "횟집", "해산물", "밥집", "분식",
 				"파스타", "뷔페", "국물요리", "면요리", "이탈리안", "멕시칸", "프렌치", "아시안" };
 		String keyword = (String) reqMap.get("keyword");
@@ -51,7 +51,7 @@ public class SearchController {
 
 	@RequestMapping("/list")
 	public ModelAndView searchList(@RequestParam Map reqMap) {
-		ModelAndView mav = new ModelAndView("/searchList.jsp");
+		ModelAndView mav = new ModelAndView("t_searchList");
 		String[] foods = { "수요미식회", "생활의달인", "TV맛집", "한식", "중식", "일식", "카페", "술집", "고기집", "횟집", "해산물", "밥집", "분식",
 				"파스타", "뷔페", "국물요리", "면요리", "이탈리안", "멕시칸", "프렌치", "아시안" };
 		String keyword = (String) reqMap.get("keyword");
@@ -100,11 +100,11 @@ public class SearchController {
 		String type = (String) reqMap.get("type");
 		String selectedTag = (String) reqMap.get("selectedTag");
 		if (type == null) {
-			mav = new ModelAndView("/tags.jsp");
+			mav = new ModelAndView("t_tagSearch");
 		} else if (type.equals("all")) {
-			mav = new ModelAndView("/tagsList.jsp");
+			mav = new ModelAndView("t_tagList");
 		} else {
-			mav = new ModelAndView("/tags.jsp");
+			mav = new ModelAndView("t_tagSearch");
 		}
 		if (selectedTag == null)
 			selectedTag = "한식";
