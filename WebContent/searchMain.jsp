@@ -32,7 +32,7 @@
 <div id="tags" class="row col-md-offset-1 col-md-9">
 	<c:forEach items="${tagsList }" var="item">
 		<form class="col-md-2" action="/search/tag?type=basic">
-				<input type="hidden" name="type" value="basic"/>
+			<input type="hidden" name="type" value="basic" />
 			<button class="btn" name="selectedTag" value="${item }">${item }</button>
 		</form>
 	</c:forEach>
@@ -41,14 +41,17 @@
 
 <div id="location-list" class="row col-md-offset-1 col-md-9">
 	<h2 align="center">위치 검색</h2>
-	<h3>${locationResult.size() }개검색</h3>
+
 	<c:choose>
-		<c:when test="${locationResult.size() eq 0}">
+		<c:when
+			test="${locationResult.size() eq 0 || locationResult eq null }">
+			<h3>0개검색</h3>
 			<div class="item_container col-md-12">
 				<h3 align="center">검색 결과가 없습니다.</h3>
 			</div>
 		</c:when>
 		<c:otherwise>
+			<h3>${locationResult.size() }개검색</h3>
 			<c:forEach items="${locationResult }" var="item" begin="0" end="5"
 				varStatus="vs">
 				<div class="item_container col-md-6">
@@ -69,21 +72,25 @@
 			</c:forEach>
 		</c:otherwise>
 	</c:choose>
-	<div align="right">
-		<a href="/search/list?keyword=${keyword }&type=location">리스트 더보기</a>
-	</div>
+	<c:if test="${locationResult.size() ne 0 && locationResult ne null}">
+		<div align="right">
+			<a href="/search/list?keyword=${keyword }&type=location">리스트 더보기</a>
+		</div>
+	</c:if>
 </div>
 <hr>
 <div id="title-list" class="row col-md-offset-1 col-md-9">
 	<h2 align="center">상호명 검색</h2>
-	<h3>${titleResult.size() }개검색</h3>
+
 	<c:choose>
-		<c:when test="${titleResult.size() eq 0}">
+		<c:when test="${titleResult.size() eq 0 || titleResult eq null}">
+			<h3>0개검색</h3>
 			<div class="item_container col-md-12">
 				<h3 align="center">검색 결과가 없습니다.</h3>
 			</div>
 		</c:when>
 		<c:otherwise>
+			<h3>${titleResult.size() }개검색</h3>
 			<c:forEach items="${titleResult }" var="item" begin="0" end="5"
 				varStatus="vs">
 				<div class="item_container col-md-6">
@@ -105,8 +112,10 @@
 			</c:forEach>
 		</c:otherwise>
 	</c:choose>
+	<c:if test="${titleResult.size() ne 0 && titleResult ne null}">
+		<div align="right">
+			<a href="/search/list?keyword=${keyword }&type=title">리스트 더보기</a>
+		</div>
+	</c:if>
 
-	<div align="right">
-		<a href="/search/list?keyword=${keyword }&type=title">리스트 더보기</a>
-	</div>
 </div>
