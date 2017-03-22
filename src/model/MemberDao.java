@@ -23,7 +23,7 @@ public class MemberDao {
 			System.out.println("네이버멤버 가입 결과값 : "+r);
 			session.commit();
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			return r;
 		} finally {
 			session.close();
@@ -38,7 +38,7 @@ public class MemberDao {
 		int r2 = 0;
 		System.out.println(map.get("id"));
 		System.out.println(map.get("pw"));
-		map.put("profile", "/WEB-INF/memberImg/default.jpg");
+		map.put("profile", "/views/memberImg/default.png");
 		try {
 			r2 = session.insert("member.normalDetail",map);
 			if(r2==1){

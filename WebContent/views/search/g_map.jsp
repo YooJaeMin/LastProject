@@ -22,15 +22,15 @@
 				'lng' : 127.027621
 			};
 		
-		<c:forEach items="${locationResult }" var="item" begin="0" end="10" varStatus="vs">
+		<c:forEach items="${result }" var="item" begin="0" end="10" varStatus="vs">
 		var pos${vs.index} = {
-			'lat' : ${item.lat},
+			'lat' : ${item.lat},	
 			'lng' : ${item.lng}
 		};
 		</c:forEach>
 
 		<c:choose>
-		<c:when test="${locationResult.size() eq 0 }">
+		<c:when test="${result.size() eq 0 }">
 		var map = new google.maps.Map(document.getElementById('map'), {
 			"center" : 	posSpecial,
 			"scrollwheel" : false,
@@ -47,7 +47,7 @@
 	</c:choose>
 
 
-		<c:forEach items="${locationResult }" var="item" begin="0" end="10" varStatus="vs">
+		<c:forEach items="${result }" var="item" begin="0" end="10" varStatus="vs">
 		var marker${vs.index} = new google.maps.Marker({
 			"map" : map,
 			"position" : pos${vs.index},

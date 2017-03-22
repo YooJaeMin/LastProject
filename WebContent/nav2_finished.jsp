@@ -220,7 +220,6 @@ body {
 			dataType: "jsonp",
 			jsonp: "oauth_callback",
 			success: function (result) {
-				inner_profileParams.age = result.response.age;
 				inner_profileParams.birthday  = result.response.birthday;
 				inner_profileParams.email  = result.response.email;
 				inner_profileParams.gender = result.response.gender;
