@@ -7,8 +7,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import org.springframework.stereotype.Service;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+@Service
 public class WeatherInformer {
 	public Map service() {
 		Map rst = new HashMap<>();
@@ -34,11 +37,5 @@ public class WeatherInformer {
 			e.printStackTrace();
 		}
 		return rst;
-	}
-	public static void main(String[] args) {
-		Map map = new WeatherInformer().service();
-		String s = (String)map.get("status");
-		String t = (String)map.get("temp");
-		System.out.println(s+"/"+t);
 	}
 }
