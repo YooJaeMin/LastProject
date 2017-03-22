@@ -36,7 +36,7 @@ input[type=checkbox] {
 	<c:forEach var="pic" items="${InfoR}">
 		<!-- 12등분  -->
 		<div class="col-md-3" align="center">
-			<form action="/info/pictureR" method="post"
+			<form action="/Mypage/pictureR" method="post"
 				enctype="multipart/form-data">
 				<b>PICTURE</b><br /> <img src="${pic.PROFILE}" width="200"
 					height="200" style="border-radius: 100px;" />
@@ -49,10 +49,10 @@ input[type=checkbox] {
 
 	<c:forEach var="map" items="${InfoR}">
 		<div class="col-md-9">
-			<form action="/my/update_pictureR.jsp" method="post">
+			<form action="/Mypage/infoUpdate" method="post">
 				<p>
-					<b>ID</b><br /> <input type="text" class="form-control" disabled
-						name="id" value="${map.ID}" />
+					<b>ID</b><br /> <b>${map.ID}</b>
+					<input type="hidden" name="id" value="${map.ID }">
 				</p>
 				<p>
 					<b>NICK</b><br /> <input type="text" class="form-control"
@@ -72,7 +72,7 @@ input[type=checkbox] {
 					</select>
 				</p>
 				<p>
-					<b>MARRY</b><br /> <select name="MARRY" class="form-control">
+					<b>MARRY</b><br /> <select name="marry" class="form-control">
 						<option value="미혼" ${map.GENDER eq 'couple' ? 'selected' : ''}>couple</option>
 						<option value="기혼" ${map.GENDER eq 'single' ? 'selected' : ''}>single</option>
 					</select>
@@ -80,7 +80,8 @@ input[type=checkbox] {
 				</p>
 
 				<p>
-					<b>food preferency</b><br /> <br/>
+					<b>food preferency</b><br /><b>${map.FAVOR}</b><hr/>
+					
 					<c:forEach var="tg" items="${taglist}">
 					<input type="checkbox" name="preferency" id="opta" value="${tg}"/> 
 						<span class="checkboxtext">${tg} &nbsp;&nbsp; </span>
@@ -89,7 +90,6 @@ input[type=checkbox] {
 				</p>
 				<br />
 				<p>
-					<a href="/my/leave.jsp"><button type="button" class="btn">탈퇴하기</button></a>
 					<button type="submit" class="btn">변경하기</button>
 				</p>
 			</form>
