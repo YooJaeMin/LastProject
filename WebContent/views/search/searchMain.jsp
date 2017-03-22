@@ -60,6 +60,7 @@
 					</div>
 					<div class="col-md-6">
 						<h3>
+							
 							<a href="/search/detail?tel=${item.tel }">${vs.count}. ${item.title }</a>
 						</h3>
 						<br />

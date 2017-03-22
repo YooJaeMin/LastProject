@@ -124,7 +124,15 @@ public class SearchController {
 		String tel = (String) reqMap.get("tel");
 		List list = sd.storeDetail(reqMap);
 		mav.addObject("result",list);
-		mav.addObject("store",list.get(0));
+		Map map = (Map)list.get(0);
+		List imgList = (List) map.get("img");
+		for(int i = 0; i<imgList.size(); i++){
+			if(((String)imgList.get(i)).contains("arrow-right")||((String)imgList.get(i)).contains("arrow-left")){
+				imgList.remove(i);
+			}
+		}
+		map.put("img", imgList);
+		mav.addObject("store",map);
 		System.out.println(list.get(0).toString());
 		return mav;
 	} 

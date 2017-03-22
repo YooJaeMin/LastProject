@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="/js/jquery.bxslider.min.js"></script>
+<link href="/lib/jquery.bxslider.css" rel="stylesheet">
+
+
 <style>
 .mainpic {
 	width: 100%;
@@ -122,8 +127,8 @@
 	<div class="row">
 		<div class="col-md-8">
 			<div class="location">
-				${store.adress } <span style="font-size: 0.8em;"> <br/>
-				<c:forEach items="${store.tag }" var="tag">
+				${store.adress } <span style="font-size: 0.8em;"> <br /> <c:forEach
+						items="${store.tag }" var="tag">
 					#${tag }
 				</c:forEach>
 				</span>
@@ -154,13 +159,22 @@
 	</div>
 
 	<div class="row font1" align="center">
-		<div class="col-md-3"><c:forEach items="${store.type }" var="type">${type } </c:forEach> </div>
-		<div class="col-md-3"><c:forEach items="${store.item }" var="item">${item } </c:forEach></div>
-		<div class="col-md-3"><c:forEach items="${store.parking }" var="parking">${parking } </c:forEach></div>
-		<div class="col-md-3"><c:forEach items="${store.time }" var="time">${time }<br/></c:forEach></div>
+		<div class="col-md-3">
+			<c:forEach items="${store.type }" var="type">${type } </c:forEach>
+		</div>
+		<div class="col-md-3">
+			<c:forEach items="${store.item }" var="item">${item } </c:forEach>
+		</div>
+		<div class="col-md-3">
+			<c:forEach items="${store.parking }" var="parking">${parking } </c:forEach>
+		</div>
+		<div class="col-md-3">
+			<c:forEach items="${store.time }" var="time">${time }<br />
+			</c:forEach>
+		</div>
 	</div>
 	<hr />
-	<div class="font2">상세설명</div>
+	<div class="font2">리뷰</div>
 	<hr />
 	<!-- 숙소 -->
 	<div class="row font1">
@@ -173,90 +187,79 @@
 		</div>
 	</div>
 	<hr />
-	<!-- 시설 -->
-	<div class="row font1">
-		<div class="col-md-4" style="font-weight: bold;">편의</div>
-		<div class="col-md-8">
-			TV, 세탁기, 수건, 드라이기<br />
-		</div>
 
-	</div>
-	<hr />
-	<!-- 가격 -->
-	<div class="row font1">
-		<div class="col-md-4" style="font-weight: bold;">가격</div>
-		<div class="col-md-4">주중 90000원</div>
-		<div class="col-md-4">주말 110000원</div>
-	</div>
 
-	<hr />
-	<!-- 설명 -->
-	<div class="row font1">
-		<div class="col-md-4" style="font-weight: bold;">설명</div>
-		<div class="col-md-8">깨끗히 사용하고 예의범절을 지켜줬으면 좋겠습니다.</div>
-	</div>
-	<hr />
-	<!-- 규칙 -->
-	<div class="row font1">
-		<div class="col-md-4" style="font-weight: bold;">규칙</div>
-		<div class="col-md-8">4호선 지하철역에서 도보로 7분거리에 있어 서울 각지에 이동하기 편리합니다.
-			또한 주변에 서울대공원, 경마공원, 과천과학과, 국립현대미술관 등 유익한 관광지가 많이 있습니다. 원룸형태이며 침대는
-			사용하기 전날 원룸으로 옮겨드립니다.</div>
-	</div>
-
-	<hr />
 	<div class="row font2">
 		사진
 		<hr />
 	</div>
 
-	<div class="row" align="center">
+	<!-- 	<div class="row" align="center"> -->
+
+	<!-- 		<div class="w3-content" style="max-width: 500px"> -->
+	<%-- 			<c:forEach items="${store.img }" var="img"> --%>
+	<%-- 				<img class="mySlides" src="${img }" style="width: 100%"> --%>
+	<%-- 			</c:forEach> --%>
+	<!-- 		</div> -->
+	<!-- 	</div> -->
 
 
-		<img
-			src="https://a0.muscache.com/im/pictures/10356601/100d72b9_original.jpg?aki_policy=x_large"
-			width="70%"> <br /> <br /> <br /> <img
-			src="https://a0.muscache.com/im/pictures/10356552/b9aa6c5b_original.jpg?aki_policy=x_large"
-			width="70%"> <br /> <br /> <br /> <img
-			src="https://a0.muscache.com/im/pictures/10356396/88dbba65_original.jpg?aki_policy=x_large"
-			width="70%"> <br /> <br /> <br /> <img
-			src="https://a0.muscache.com/im/pictures/10356334/a831e142_original.jpg?aki_policy=xx_large"
-			width="70%"> <br /> <br /> <br />
+	<div>
+		<div class="col-md-1" align="left">
+			<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <span
+				id="slider-prev" style="font-size: 2em; padding-right: 20%"></span>
+		</div>
+		<div class="col-md-10">
+			<ul class="bxslider">
 
+				<c:forEach items="${store.img }" var="img" varStatus="vs">
+					
+						<li><img src="${img }"
+							style="width: 300px; overflow: hidden;"></li>
+
+				</c:forEach>
+			</ul>
+		</div>
+		<div class="col-md-1" align="right">
+			<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <span
+				id="slider-next" style="font-size: 2em; padding-right: 20%"></span>
+		</div>
 	</div>
-
-	<!-- 리뷰 -->
-	<hr />
-	<div class="row">
-		<div class="col-md-3">
-			<div class="font2">
-				후기 0개 <span class="font3">0.0점</span>
-			</div>
-		</div>
-		<div class="col-md-5" align="left">
-
-			<div class="point1">
-				<div class="point2">
-					<img src="/icon/star_on.png" width="120px" height="30px">
-				</div>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<button id="myBtn1" class="btn">후기등록</button>
-		</div>
-
-
-	</div>
-	<hr />
-
-
-
-	후기가 없다.
-
-
 
 
 </div>
+
+<!-- 리뷰 -->
+<hr />
+<div class="row">
+	<div class="col-md-3">
+		<div class="font2">
+			후기 0개 <span class="font3">0.0점</span>
+		</div>
+	</div>
+	<div class="col-md-5" align="left">
+
+		<div class="point1">
+			<div class="point2">
+				<img src="/icon/star_on.png" width="120px" height="30px">
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<button id="myBtn1" class="btn">후기등록</button>
+	</div>
+
+
+</div>
+<hr />
+
+
+
+후기가 없다.
+
+
+
+
 
 <!-- =============================== -->
 
@@ -309,3 +312,21 @@
 		}
 	}
 </script>
+
+<script>
+	$('.bxslider').bxSlider({
+		nextSelector : '#slider-next',
+		prevSelector : '#slider-prev',
+		nextText : '>',
+		prevText : '<',
+
+		minSlides : 3,
+		maxSlides : 3,
+		slideWidth : 500,
+		slideMargin : 10,
+		mode : 'horizontal',
+		captions : true,
+		pagerCustom : '#bx-pager'
+	});
+</script>
+
