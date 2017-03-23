@@ -28,7 +28,8 @@ public class SearchDao {
 	LocationCalculator lc;
 	@Autowired
 	SqlSessionFactory factory;
-	public List mongoWithSql (List<Map> list){
+
+	public List mongoWithSql(List<Map> list) {
 		List tempList = new ArrayList();
 		SqlSession session = factory.openSession();
 		try {
@@ -42,7 +43,7 @@ public class SearchDao {
 				map.put("hitCnt", hitCnt);
 				tempList.add(map);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -50,27 +51,28 @@ public class SearchDao {
 		}
 		return tempList;
 	}
-	
+
 	public List rankFilter(List<Map> list) {
-		
+
 		Collections.sort(list, new Comparator<Map>() {
 			public int compare(Map o1, Map o2) {
 				// o1이 더작으면 -1 (우선순위)
 				// o2가 더작으면 1 (우선순위)
-				if((int)o1.get("avg")>(int)o2.get("avg")){
+				if ((int) o1.get("avg") > (int) o2.get("avg")) {
 					return 1;
-				} else if((int)o1.get("avg")<(int)o2.get("avg")){
+				} else if ((int) o1.get("avg") < (int) o2.get("avg")) {
 					return -1;
 				} else {
-					if((int)o1.get("hitCnt")>(int)o2.get("hitCnt")){
+					if ((int) o1.get("hitCnt") > (int) o2.get("hitCnt")) {
 						return 1;
-					} else if((int)o1.get("avg")<(int)o2.get("hitCnt")){
+					} else if ((int) o1.get("avg") < (int) o2.get("hitCnt")) {
 						return -1;
-					} else 	return 0;
+					} else
+						return 0;
 				}
 			}
 		});
-		
+
 		return list;
 	}
 
@@ -79,13 +81,27 @@ public class SearchDao {
 		List tempList = new ArrayList();
 		outerLoof: for (int i = 0; i < list.size(); i++) {
 			Map innerMap = (Map) list.get(i);
-			List tagList = (List) innerMap.get("type");
-			for (int j = 0; j < tagList.size(); j++) {
-				String tag = (String) tagList.get(j);
+			List typeList = (List) innerMap.get("type");
+			for (int j = 0; j < typeList.size(); j++) {
+				String tag = (String) typeList.get(j);
 				if (tag.equals(selectedTag)) {
 					tempList.add(list.get(i));
 					continue outerLoof;
 				}
+			}
+
+			try {
+				List tagList = (List) innerMap.get("tag");
+				for (int j = 0; j < tagList.size(); j++) {
+					String tag = (String) tagList.get(j);
+					if (tag.equals(selectedTag)) {
+						System.out.println(tagList.toString());
+						tempList.add(list.get(i));
+						continue outerLoof;
+					}
+				}
+			} catch (Exception e) {
+				continue outerLoof;
 			}
 		}
 		System.out.println(tempList.toString());
@@ -191,11 +207,11 @@ public class SearchDao {
 		return filterList;
 
 	}
-	
-	public List storeDetail(Map map){
+
+	public List storeDetail(Map map) {
 		Query query = new Query();
-		query.addCriteria(Criteria.where("tel").is((String)map.get("tel")));
-		
+		query.addCriteria(Criteria.where("tel").is((String) map.get("tel")));
+
 		List result = template.find(query, Map.class, "food");
 		return result;
 	}

@@ -125,13 +125,14 @@ public class SearchController {
 		List list = sd.storeDetail(reqMap);
 		mav.addObject("result",list);
 		Map map = (Map)list.get(0);
-		List imgList = (List) map.get("img");
-		for(int i = 0; i<imgList.size(); i++){
-			if(((String)imgList.get(i)).contains("arrow-right")||((String)imgList.get(i)).contains("arrow-left")){
-				imgList.remove(i);
+		List<String> imgList = (List) map.get("img");
+		List tempList = new ArrayList();
+		for(String str : imgList){
+			if(!str.contains("btn-arrow")){
+				tempList.add(str);
 			}
 		}
-		map.put("img", imgList);
+		map.put("img", tempList);
 		mav.addObject("store",map);
 		System.out.println(list.get(0).toString());
 		return mav;

@@ -24,6 +24,10 @@
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
 		rgba(0, 0, 0, 0.19);
 }
+.btn-box {
+	background-color: black;
+	color: yellow;
+}
 </style>
 <div class="row col-md-offset-1 col-md-9" align="left">
 	<h3>'${selectedTag }'(으)로 검색 결과</h3>
@@ -33,7 +37,7 @@
 	<c:forEach items="${tagsList }" var="item">
 		<form class="col-md-2" action="/search/tag">
 				<input type="hidden" name="type" value="basic"/>
-			<button class="btn" name="selectedTag" value="${item }">${item }</button>
+			<button class="btn btn-box" name="selectedTag" value="${item }">${item }</button>
 		</form>
 	</c:forEach>
 </div>

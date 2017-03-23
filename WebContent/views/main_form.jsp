@@ -142,13 +142,15 @@ opacity
 		</div>
 	</div>
 
-	<div class="main_search_area row" style="width: 101%; color: white;">
+	<div class="main_search_area row col-md-offset-2 col-md-8">
 		<div class="input-group" style="width: 100%;">
 			<form action="/search/keyword" method="get">
+				<div class="col-md-10">
 				<input type="text" name="keyword" class="form-control"
 					style="height: 55px; font-size: 18px; border: 4px solid; border-color: #FFD700;"
 					placeholder="지역명">
-				<div class="input-group-btn">
+					</div>
+				<div class="input-group-btn col-md-2">
 					<button class="btn btn-default" type="submit"
 						style="height: 55px; width: 120px; font-size: 18px; border: 4px solid; border-color: #FFD700; background-color: #FFD700; color: white;">
 						<b>←</b>

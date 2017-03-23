@@ -117,6 +117,38 @@
 	background-color: white;
 	font-weight: bold;
 }
+
+.img-box {
+	max-height: 250px;
+	width: 300px;
+	overflow: hidden;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+}
+
+#hiddenIMG {
+	max-height: 250px;
+	width: 300px;
+	overflow: hidden;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+}
+
+.pop-up-* {
+	max-height: 500px;
+	width: 400px;
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 300px; /* Location of the box */
+	left: 0;
+	top: 0;
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
 </style>
 
 <div
@@ -129,7 +161,7 @@
 			<div class="location">
 				${store.adress } <span style="font-size: 0.8em;"> <br /> <c:forEach
 						items="${store.tag }" var="tag">
-					#${tag }
+				<a href="/search/tag?type=basic&selectedTag=${tag }">#${tag } </a>
 				</c:forEach>
 				</span>
 				<div class="point1">
@@ -174,19 +206,7 @@
 		</div>
 	</div>
 	<hr />
-	<div class="font2">리뷰</div>
-	<hr />
-	<!-- 숙소 -->
-	<div class="row font1">
-		<div class="col-md-4" style="font-weight: bold;">숙소</div>
-		<div class="col-md-4">
-			집 유형: 집전체<br /> 숙박 가능 인원: 3<br /> 방 개수: 1<br /> 침대 개수: 1<br />
-		</div>
-		<div class="col-md-4">
-			체크인: 2017-03-17 00:00:00.0<br /> 체크아웃: 2017-03-28 00:00:00.0<br />
-		</div>
-	</div>
-	<hr />
+
 
 
 	<div class="row font2">
@@ -194,68 +214,76 @@
 		<hr />
 	</div>
 
-	<!-- 	<div class="row" align="center"> -->
-
-	<!-- 		<div class="w3-content" style="max-width: 500px"> -->
-	<%-- 			<c:forEach items="${store.img }" var="img"> --%>
-	<%-- 				<img class="mySlides" src="${img }" style="width: 100%"> --%>
-	<%-- 			</c:forEach> --%>
-	<!-- 		</div> -->
-	<!-- 	</div> -->
-
-
-	<div>
+	<div class="row">
 		<div class="col-md-1" align="left">
-			<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <span
-				id="slider-prev" style="font-size: 2em; padding-right: 20%"></span>
+			<br /> <br /> <br /> <br /> <br /> <span id="slider-prev"
+				style="font-size: 2em; padding-right: 20%"></span>
 		</div>
 		<div class="col-md-10">
 			<ul class="bxslider">
 
 				<c:forEach items="${store.img }" var="img" varStatus="vs">
-					
-						<li><img src="${img }"
-							style="width: 300px; overflow: hidden;"></li>
+
+					<li><a href="#" data-toggle="modal"
+						data-target=".pop-up-${vs.index }"><img class="img-box"
+							src="${img }"></a></li>
 
 				</c:forEach>
 			</ul>
 		</div>
+
+
 		<div class="col-md-1" align="right">
-			<br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <span
-				id="slider-next" style="font-size: 2em; padding-right: 20%"></span>
+			<br /> <br /> <br /> <br /> <br />
+			<span id="slider-next" style="font-size: 2em; padding-right: 20%"></span>
 		</div>
 	</div>
 
+	<div class="row">
+		<hr />
+		<div class="font2">리뷰</div>
+		<hr />
+		<div class="row">
+			<div align="center">
+				<button id="myBtn1" class="btn">후기등록</button>
+			</div>
+		</div>
+		<!-- 숙소 -->
+		<hr/>
+		<div class="row font1">
+			<div class="col-md-4" style="font-weight: bold;">숙소</div>
+			<div class="col-md-4">
+				집 유형: 집전체<br /> 숙박 가능 인원: 3<br /> 방 개수: 1<br /> 침대 개수: 1<br />
+			</div>
+			<div class="col-md-4">
+				체크인: 2017-03-17 00:00:00.0<br /> 체크아웃: 2017-03-28 00:00:00.0<br />
+			</div>
+		</div>
+	</div>
 
 </div>
 
 <!-- 리뷰 -->
 <hr />
-<div class="row">
-	<div class="col-md-3">
-		<div class="font2">
-			후기 0개 <span class="font3">0.0점</span>
-		</div>
-	</div>
-	<div class="col-md-5" align="left">
+<!-- <div class="row"> -->
+<!-- 	<div class="col-md-3"> -->
+<!-- 		<div class="font2"> -->
+<!-- 			후기 0개 <span class="font3">0.0점</span> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+<!-- 	<div class="col-md-5" align="left"> -->
 
-		<div class="point1">
-			<div class="point2">
-				<img src="/icon/star_on.png" width="120px" height="30px">
-			</div>
-		</div>
-	</div>
-	<div class="col-md-4">
-		<button id="myBtn1" class="btn">후기등록</button>
-	</div>
+<!-- 		<div class="point1"> -->
+<!-- 			<div class="point2"> -->
+<!-- 				<img src="/icon/star_on.png" width="120px" height="30px"> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 
 
-</div>
+
+<!-- </div> -->
 <hr />
-
-
-
-후기가 없다.
 
 
 
@@ -329,4 +357,3 @@
 		pagerCustom : '#bx-pager'
 	});
 </script>
-
