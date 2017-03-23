@@ -51,13 +51,13 @@ public class LikeDao {
 		List<HashMap> list = new ArrayList<>();
 		SqlSession session = factory.openSession();
 		try{
-			/*list = session.selectList("")*/
+			list = session.selectList("like.result");
 		}catch (Exception e){
-			
+			e.printStackTrace();
 		}finally{
 			session.close();
 		}
-		return null;
+		return list;
 		
 	}
 	
