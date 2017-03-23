@@ -39,6 +39,7 @@ public class infoController {
 		List<HashMap> result = infoDao.getInfo(map);
 		String[] taglist = { "한식", "중식", "일식", "카페", "술집", "고기집", "횟집", "해산물", "밥집", "분식", "파스타", "뷔페", "국물요리", "면요리",
 				"이탈리안", "멕시칸", "프렌치", "아시안" };
+		
 		ModelAndView mav = new ModelAndView("t_mypage");
 		mav.addObject("taglist", taglist);
 		mav.addObject("InfoR", result);

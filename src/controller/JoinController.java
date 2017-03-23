@@ -99,6 +99,8 @@ public class JoinController {
 		} else {
 			boolean membercheck = mdao.naverCheckMember(map);
 			if (membercheck == true) {
+				session.setAttribute("auth_id", map.get("id"));
+				session.setAttribute("auth", "yes");
 				return "chOk";
 			} else {
 				return "fail";

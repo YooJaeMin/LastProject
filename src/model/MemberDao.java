@@ -19,15 +19,19 @@ public class MemberDao {
 		SqlSession session = factory.openSession();
 		int r = 0;
 		try {
+			System.out.println("네이버 들어가기전 값"+map);
 			r = session.insert("member.naverDetail", map);
-			System.out.println("네이버멤버 가입 결과값 : "+r);
+			System.out.println("네이버 들어가서 나온값"+r);
+			
 			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("네이버 들어가서 나온값"+r);
 			return r;
 		} finally {
 			session.close();
 		}
+		System.out.println("네이버멤버 가입 결과값 : "+r);
 		return r;
 	}
 	
