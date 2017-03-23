@@ -29,8 +29,10 @@ public class WeatherInformer {
 				List li = (List)(((Map)map.get("weather")).get("hourly"));
 				Map sky =(Map)((Map)li.get(0)).get("sky");
 					String name =(String)sky.get("name");
+					String code =(String)sky.get("code");
 				Map temperature =(Map)((Map)li.get(0)).get("temperature");
 					String tc =(String)temperature.get("tc");
+				rst.put("code", code);
 				rst.put("status", name);	
 				rst.put("temp", tc);	
 		} catch (Exception e) {
