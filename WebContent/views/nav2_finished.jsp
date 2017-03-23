@@ -187,7 +187,7 @@
 <!-- naverLogn  -->
 <script type="text/javascript">
 	var naver_id_login = new naver_id_login("tsbCd7wyhckg0AQ8seVR",
-			"http://192.168.10.21/WEB-ING/views/nav2_finished.jsp"); //돌아오는 url 
+			"http://192.168.10.21/"); //돌아오는 url 
 	var state = naver_id_login.getUniqState();
 
 	naver_id_login.setButton("green", 3, 40);

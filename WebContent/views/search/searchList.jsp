@@ -35,6 +35,8 @@
 	color: yellow;
 }
 </style>
+
+
 <div class="row col-md-offset-1 col-md-9" align="left">
 	<h3>'${keyword }'을(를) ${type }(으)로 검색 결과</h3>
 </div>

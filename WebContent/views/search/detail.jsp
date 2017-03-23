@@ -171,6 +171,11 @@
 				</div>
 			</div>
 		</div>
+		<!--  -->
+		<div class="col-md-2" style="left: 400px">
+		 		<button type="button"  id="btn" class="btn"><img class="btn-img" src=""></button>
+		</div>
+		<!--  -->
 
 	</div>
 
