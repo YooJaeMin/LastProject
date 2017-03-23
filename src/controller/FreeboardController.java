@@ -24,7 +24,7 @@ public class FreeboardController {
 	@RequestMapping("/cntAll")
 	public ModelAndView cntAllHandler(){
 		int all = fdao.cntAll();
-		ModelAndView mav = new ModelAndView("t_board freeboard/board_list"); 
+		ModelAndView mav = new ModelAndView("t_board freeboard&qna/board_list"); 
 		mav.addObject("cnt", all);
 		
 		return mav;
@@ -32,13 +32,13 @@ public class FreeboardController {
 		
 	@RequestMapping("/list")
 	public ModelAndView getSomeHandler(@RequestParam Map map){
-		ModelAndView mav = new ModelAndView("t_board freeboard/board_list");
+		ModelAndView mav = new ModelAndView("t_board freeboard&qna/board_list");
 		return mav; 
 	}
 	
 	@RequestMapping("/listAll")
 	public ModelAndView listAllHandler(@RequestParam Map map){
-		ModelAndView mav = new ModelAndView("t_board freeboard/board_list"); 
+		ModelAndView mav = new ModelAndView("t_board freeboard&qna/board_list"); 
 		List list = fdao.listAll(map);
 		mav.addObject("list", list);
 		int all = fdao.cntAll();
@@ -49,7 +49,7 @@ public class FreeboardController {
 	
 	@RequestMapping("/detail")
 	public ModelAndView getOneInDetailHandler(@RequestParam Map map ){
-		ModelAndView mav = new ModelAndView("t_board freeboard/board_list"); 
+		ModelAndView mav = new ModelAndView("t_board freeboard&qna/board_list"); 
 		HashMap detail = fdao.getOneInDetail(map);
 		mav.addObject("detail", detail);
 		
@@ -57,7 +57,7 @@ public class FreeboardController {
 	}
 	@RequestMapping("/write")
 	public ModelAndView addNewHandler(){
-		ModelAndView mav = new ModelAndView("t_board freeboard/board_form"); 
+		ModelAndView mav = new ModelAndView("t_board freeboard&qna/board_form"); 
 		return mav;
 	}
 	@RequestMapping("/add")

@@ -29,4 +29,25 @@ public class infoDao {
 		}
 		return list;
 	}
+	
+	public int infoUpdate(Map map){
+		SqlSession session = factory.openSession();
+		int r=0;
+		System.out.println("dao의 info"+map);
+		List list = (List)map.get("favor");
+		map.put("favor", list.toString());
+		System.out.println("dao의 info"+map);
+		try{
+			r=session.update("info.update",map);
+			session.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println("infoUpdate err");
+		}finally{
+			session.close();
+		}
+		return r;
+	}
+	
+	
 }
