@@ -24,6 +24,10 @@
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
 		rgba(0, 0, 0, 0.19);
 }
+.btn-box {
+	background-color: black;
+	color: yellow;
+}
 </style>
 <div class="row col-md-offset-1 col-md-9" align="left">
 	<h3>'${selectedTag }'(으)로 검색 결과</h3>
@@ -33,22 +37,22 @@
 	<c:forEach items="${tagsList }" var="item">
 		<form class="col-md-2" action="/search/tag">
 				<input type="hidden" name="type" value="basic"/>
-			<button class="btn" name="selectedTag" value="${item }">${item }</button>
+			<button class="btn btn-box" name="selectedTag" value="${item }">${item }</button>
 		</form>
 	</c:forEach>
 </div>
 <div id="location-list" class="row col-md-offset-1 col-md-9">
 	<h2 align="center">위치 검색</h2>
 	<c:choose>
-		<c:when test="${tagResult.size() eq 0 || tagResult eq null}">
+		<c:when test="${result.size() eq 0 || result eq null}">
 			<h3>0개검색</h3>
 			<div class="item_container col-md-12">
 				<h3 align="center">검색 결과가 없습니다.</h3>
 			</div>
 		</c:when>
 		<c:otherwise>
-			<h3>${tagResult.size() }개검색</h3>
-			<c:forEach items="${tagResult }" var="item" begin="0" end="5"
+			<h3>${result.size() }개검색</h3>
+			<c:forEach items="${result }" var="item" begin="0" end="5"
 				varStatus="vs">
 				<div class="item_container col-md-6">
 					<div class="col-md-6">
@@ -68,7 +72,7 @@
 			</c:forEach>
 		</c:otherwise>
 	</c:choose>
-	<c:if test="${tagResult.size() ne 0 && tagResult ne null}">
+	<c:if test="${result.size() ne 0 && result ne null}">
 	<div align="right">
 		<a href="/search/tag?selectedTag=${selectedTag }&type=all">리스트 더보기</a>
 	</div>
