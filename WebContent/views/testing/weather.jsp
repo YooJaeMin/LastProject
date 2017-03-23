@@ -29,13 +29,18 @@
 </c:choose>
 </div>
 
-<div class="weatherBtn">
+<div>
 		<input type="radio" name="weather" value="sunny">
-			<img src="/img_weather/sunny.png"/>
+			<img class="weather_box" src="/img_weather/sunny.png"/>
 		<input type="radio" name="weather" value="cloudy">
-			<img src="/img_weather/cloudy.png"/>
+			<img class="weather_box" src="/img_weather/cloudy.png"/>
 		<input type="radio" name="weather" value="rainy">
-			<img src="/img_weather/rainy.png"/>
+			<img class="weather_box"  src="/img_weather/rainy.png"/>
 			<input type="radio" name="weather" value="snowy">
-			<img src="/img_weather/snowy.png"/>
+			<img class="weather_box" src="/img_weather/snowy.png"/>
 </div>
+
+	<input type="image" class="weather_box" name="weather" value="sunny" src="/img_weather/sunny.png">
+	<input type="image" class="weather_box" name="weather" value="cloudy" src="/img_weather/cloudy.png">
+	<input type="image" class="weather_box" name="weather" value="rainy" src="/img_weather/rainy.png">
+	<input type="image" class="weather_box" name="weather" value="snowy" src="/img_weather/snowy.png">

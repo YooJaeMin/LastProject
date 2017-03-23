@@ -63,4 +63,8 @@
 	<definition name="/byHaeri" extends="base2">
 		<put-attribute name="main" value="/views/testing/weather.jsp"/>
 	</definition>
+	<!-- about -->
+	<definition name="t_about" extends="base">
+		<put-attribute name="main" value="/views/testing/about.jsp"/>
+	</definition>
 </tiles-definitions>
