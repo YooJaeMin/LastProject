@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import model.FileUpLoadDao;
+import model.LikeDao;
 import model.infoDao;
 
 @Controller
@@ -30,7 +31,10 @@ public class infoController {
 
 	@Autowired
 	FileUpLoadDao upload;
-
+	
+	@Autowired
+	LikeDao likedao;
+	
 	@RequestMapping("/info")
 	public ModelAndView infoHandle(@RequestParam Map map, HttpSession session, HttpServletResponse response) {
 		System.out.println(session.getAttribute("auth_id"));
@@ -55,7 +59,7 @@ public class infoController {
 		param.put("id", session.getAttribute("auth_id"));
 		System.out.println(param);
 		int rst = upload.picSave(param);
-
+		
 		if (rst == 1)
 			return new ModelAndView("redirect:/Mypage/info");
 		else {
