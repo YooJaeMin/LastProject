@@ -177,11 +177,11 @@
 			<!--  -->
 			<button type="button" id="like" class="btn" value="true"
 				style="border: 0; outline: 0">
-				
+
 				<img class="btn-img" id="likeR"
 					src="/img/SketchTalk201361917350.png"
 					style="width: 15%; height: auto;">
-			
+
 			</button>
 		</div>
 
@@ -263,15 +263,84 @@
 		</div>
 		<!-- 숙소 -->
 		<hr />
-		<div class="row font1">
-			<div class="col-md-4" style="font-weight: bold;">숙소</div>
-			<div class="col-md-4">
-				집 유형: 집전체<br /> 숙박 가능 인원: 3<br /> 방 개수: 1<br /> 침대 개수: 1<br />
+
+		<div class="row font1" align="center">
+			<c:forEach items="${reviewList }" var="item" begin="1" end="5" varStatus="vs">
+				<div class="row font1">
+					<div class="col-md-offset-1 col-md-3">${item.ID }</div>
+					<div class="col-md-3">${item.EAT_DATE }</div>
+					<div class="col-md-1">${item.HIT }</div>
+					<div class="col-md-3">총점 / ${item.AVG_S }</div>
+				</div>
+				<div class="row font1">
+					<div class="col-md-6">${item.TYPE }</div>
+					<div class="col-md-6">${item.WEATHER }</div>
+				</div>
+				<div class="row font1">
+					<div class="col-md-2">청결도</div>
+					<div class="col-md-2">맛평가</div>
+					<div class="col-md-2">가격평가</div>
+					<div class="col-md-2">친절도</div>
+					<div class="col-md-2">접근성</div>
+				</div>
+				<div class="row font1">
+					<div class="col-md-2">${item.CLEAN_S }</div>
+					<div class="col-md-2">${item.TASTE_S }</div>
+					<div class="col-md-2">${item.PRICE_S }</div>
+					<div class="col-md-2">${item.GOOD_S }</div>
+					<div class="col-md-2">${item.LOCATION_S }</div>
+				</div>
+				<div class="row font1">
+					<div class="col-md-12">평가</div>
+				</div>
+				<div class="row font1">
+					<div class="col-md-12">${item.CONTENT }</div>
+				</div>
+			</c:forEach>
+			<div class="row font1" align="right">
+				<button class="btn" onclick="listMore()">리스트 더보기</button>
 			</div>
-			<div class="col-md-4">
-				체크인: 2017-03-17 00:00:00.0<br /> 체크아웃: 2017-03-28 00:00:00.0<br />
+
+			<div id="reviewList row font1" style="display: none">
+				<c:forEach items="${reviewList }" var="item" varStatus="vs">
+					<c:if test="${vs.count ge 6  }">
+						<div class="row font1">
+							<div class="col-md-offset-1 col-md-3">${item.ID }</div>
+							<div class="col-md-3">${item.EAT_DATE }</div>
+							<div class="col-md-1">${item.HIT }</div>
+							<div class="col-md-3">총점 / ${item.AVG_S }</div>
+						</div>
+						<div class="row font1">
+							<div class="col-md-6">${item.TYPE }</div>
+							<div class="col-md-6">${item.WEATHER }</div>
+						</div>
+						<div class="row font1">
+							<div class="col-md-2">청결도</div>
+							<div class="col-md-2">맛평가</div>
+							<div class="col-md-2">가격평가</div>
+							<div class="col-md-2">친절도</div>
+							<div class="col-md-2">접근성</div>
+						</div>
+						<div class="row font1">
+							<div class="col-md-2">${item.CLEAN_S }</div>
+							<div class="col-md-2">${item.TASTE_S }</div>
+							<div class="col-md-2">${item.PRICE_S }</div>
+							<div class="col-md-2">${item.GOOD_S }</div>
+							<div class="col-md-2">${item.LOCATION_S }</div>
+						</div>
+						<div class="row font1">
+							<div class="col-md-12">평가</div>
+						</div>
+						<div class="row font1">
+							<div class="col-md-12">${item.CONTENT }</div>
+						</div>
+					</c:if>
+				</c:forEach>
 			</div>
+
 		</div>
+
+
 	</div>
 
 </div>
@@ -376,26 +445,47 @@
 </script>
 
 <script>
-	$("#like").click(function() {
-		$.ajax({
-			"url" : "/like/button?",
-			"method" : "post",
-			"data" : {
-				"id" : "${sessionScope.auth_id}",
-				"tel" : "${store.tel}",
-			}
-		}).done(function(rst) {
-			var printRst = rst;
-			console.log(rst)
-			if(rst=='like'){
-				$("#likeR").attr("src", "/img/1414328714455_PicsArt_1389242401746.png")
-			}else if(rst=='delete'){
-				$("#likeR").attr("src", "/img/SketchTalk201361917350.png")
-			}else{
-				
-			}
+	$("#like")
+			.click(
+					function() {
+						$
+								.ajax({
+									"url" : "/like/button?",
+									"method" : "post",
+									"data" : {
+										"id" : "${sessionScope.auth_id}",
+										"tel" : "${store.tel}",
+									}
+								})
+								.done(
+										function(rst) {
+											var printRst = rst;
+											console.log(rst)
+											if (rst == 'like') {
+												$("#likeR")
+														.attr("src",
+																"/img/1414328714455_PicsArt_1389242401746.png")
+											} else if (rst == 'delete') {
+												$("#likeR")
+														.attr("src",
+																"/img/SketchTalk201361917350.png")
+											} else {
 
-		});
-	});
-		
+											}
+
+										});
+					});
+</script>
+
+<script>
+	function listMore() {
+		var x = document.getElementById('reviewList');
+		if (x.style.display === 'none') {
+			x.style.display = 'block';
+			x.innerHTML = '리스트 닫기';
+		} else {
+			x.style.display = 'none';
+			x.innerHTML = '리스트 더보기';
+		}
+	}
 </script>
