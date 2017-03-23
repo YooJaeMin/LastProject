@@ -28,7 +28,7 @@
 
 <div id="nav_body" data-spy="scroll" data-toggle=".navbar" data-offset="50">
 
-	<nav class="navbar navbar-inverse navbar-fixed-top">
+	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			
 			<ul class="nav navbar-nav">
