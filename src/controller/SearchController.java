@@ -124,7 +124,10 @@ public class SearchController {
 	@RequestMapping("/detail")
 	public ModelAndView storeDetail(@RequestParam Map reqMap) {
 		ModelAndView mav = new ModelAndView("t_detail");
-		/*List<Hash> like = likedao.*/
+		/*태영 고친부분 */
+		List<HashMap> like = likedao.getliekN(reqMap);
+		System.out.println(like);
+		/*태영 like*/
 		String tel = (String) reqMap.get("tel");
 		List list = sd.storeDetail(reqMap);
 		mav.addObject("result",list);
