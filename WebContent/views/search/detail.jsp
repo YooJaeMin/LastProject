@@ -265,7 +265,8 @@
 		<hr />
 
 		<div class="row font1" align="center">
-			<c:forEach items="${reviewList }" var="item" begin="1" end="5" varStatus="vs">
+			<c:forEach items="${reviewList }" var="item" begin="1" end="5"
+				varStatus="vs">
 				<div class="row font1">
 					<div class="col-md-offset-1 col-md-3">${item.ID }</div>
 					<div class="col-md-3">${item.EAT_DATE }</div>
