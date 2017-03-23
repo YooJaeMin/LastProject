@@ -12,26 +12,53 @@ public class ReviewDao {
 	@Autowired
 	SqlSessionFactory factory;
 
-	public boolean insertOne(Map map) {
+	public boolean insertBasic(Map map) {
 		SqlSession session = factory.openSession();
-		try{			
-			int i = session.insert("review.insertDetails", map);
-			if (i == 0) {
-				int j = session.update("review.updateDetails", map);
-				if (j == 0) {
-					return false;
-				} else {
-					return true;
-				}
-			} else {
+		try {
+			int i = session.insert("review.insertBasic", map);
+			if (i == 1) {
 				return true;
 			}
-		} catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			try {
+				int j = session.update("review.updateDetails", map);
+				if (j == 1)
+					return true;
+				else
+					return false;
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		} finally {
 			session.close();
 		}
+		return false;
+
+	}
+	
+	public boolean insertDetail(Map map) {
+		SqlSession session = factory.openSession();
+		try {
+			int i = session.insert("review.insertBasic", map);
+			if (i == 1) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				int j = session.update("review.updateDetails", map);
+				if (j == 1)
+					return true;
+				else
+					return false;
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		} finally {
+			session.close();
+		}
+		return false;
 
 	}
 }

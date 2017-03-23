@@ -46,12 +46,22 @@
 		</c:otherwise>
 	</c:choose>
 
-
+		var img = {
+				"url" : "http://icon-icons.com/icons2/934/PNG/512/black-silhouette-shape-of-an-object-like-a-spoon_icon-icons.com_73080.png",
+				"size" : new google.maps.Size(20, 32),
+				
+			    "origin": new google.maps.Point(0, 0),
+			    "anchor": new google.maps.Point(0, 32)
+		}
 		<c:forEach items="${result }" var="item" begin="0" end="10" varStatus="vs">
 		var marker${vs.index} = new google.maps.Marker({
 			"map" : map,
 			"position" : pos${vs.index},
-			"title" : '${item.title}'
+			"title" : '${item.title}',
+			"icon": {
+				"url" : "http://icon-icons.com/icons2/934/PNG/512/black-silhouette-shape-of-an-object-like-a-spoon_icon-icons.com_73080.png",
+				"size" : new google.maps.Size(20, 32)
+			}
 		});
 		var contentString${vs.index} = '${item.adress}';
 		var infowindow${vs.index} = new google.maps.InfoWindow({
@@ -64,5 +74,7 @@
 		</c:forEach>
 	}
 </script>
+
+<div></div>
 
 

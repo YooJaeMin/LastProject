@@ -179,7 +179,7 @@ public class TestController {
 				ch++;
 			}
 			String target = "https://maps.googleapis.com/maps/api/geocode/json?address=" + adress
-					+ "&key=AIzaSyCpcNf3T5eaviEl5TMxnzo0gk6Bzvlkw6M&language=ko";
+					+ "&key=AIzaSyC4Ao4DNSHj_KEDrTLzVUsyGxoemaZJeRA&language=ko";
 			// 요청보내는 방법은 꽤 많다.
 			// System.out.println(target);
 			URL url = null;
