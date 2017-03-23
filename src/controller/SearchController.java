@@ -139,6 +139,9 @@ public class SearchController {
 				tempList.add(str);
 			}
 		}
+		
+		List reviewList = sd.reviewList(reqMap);
+		mav.addObject("reviewList", reviewList);
 		map.put("img", tempList);
 		mav.addObject("store",map);
 		System.out.println(list.get(0).toString());

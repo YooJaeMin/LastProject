@@ -261,6 +261,17 @@ public class SearchDao {
 		map.put("date", System.currentTimeMillis());
 		template.insert(map, "searchKey");
 	}
-
+	public List reviewList(Map map){
+		SqlSession session = factory.openSession();
+		List list = null;
+		try {
+			list = session.selectList("review.reviewResult", map);
+		} catch(Exception e){
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return list;
+	}
 
 }
