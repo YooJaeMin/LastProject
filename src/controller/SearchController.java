@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import model.LikeDao;
 import model.LocationDao;
 import model.SearchDao;
 
@@ -20,6 +21,8 @@ public class SearchController {
 	SearchDao sd;
 	@Autowired
 	LocationDao ld;
+	@Autowired 
+	LikeDao likedao;
 
 	@RequestMapping("/keyword")
 	public ModelAndView searchBar(@RequestParam Map reqMap) {
@@ -121,6 +124,7 @@ public class SearchController {
 	@RequestMapping("/detail")
 	public ModelAndView storeDetail(@RequestParam Map reqMap) {
 		ModelAndView mav = new ModelAndView("t_detail");
+		/*List<Hash> like = likedao.*/
 		String tel = (String) reqMap.get("tel");
 		List list = sd.storeDetail(reqMap);
 		mav.addObject("result",list);

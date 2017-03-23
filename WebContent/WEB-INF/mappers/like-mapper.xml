@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="like">
+	<insert id="insert" parameterType="java.util.HashMap">
+		insert into store_hit values(#{tel},#{id},#{good})
+	</insert>
+	<delete id="delete" parameterType="java.util.HashMap">
+		delete store_hit where id=#{id} and tel = #{tel}
+	</delete>
+	
+	<select id="result" parameterType="java.util.HashMap">
+		select  tp.* from (select sh.TEL,count(sh.TEL) cnt from store_hit sh group by sh.tel) tp where tel=#{tel}
+	</select>
+</mapper>

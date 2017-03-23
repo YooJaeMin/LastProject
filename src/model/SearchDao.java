@@ -262,11 +262,5 @@ public class SearchDao {
 		template.insert(map, "searchKey");
 	}
 
-	public void insertLike(String keyword) {
-		Map map = new HashMap<>();
-		map.put("keyword", keyword);
-		map.put("date", System.currentTimeMillis());
-		template.insert(map, "storeRank");
-	}
 
 }

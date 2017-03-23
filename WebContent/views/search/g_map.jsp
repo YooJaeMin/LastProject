@@ -60,6 +60,11 @@
 		marker${vs.index}.addListener('click', function() {
 			infowindow${vs.index}.open(map, marker${vs.index});
 		});
+		
+		
+		 var markerCluster = new MarkerClusterer(map, markers,
+		            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+		      }
 		</c:forEach>
 	}
 </script>

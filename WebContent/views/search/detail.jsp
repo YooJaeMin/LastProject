@@ -161,8 +161,9 @@
 			<div class="location">
 				${store.adress } <span style="font-size: 0.8em;"> <br /> <c:forEach
 						items="${store.tag }" var="tag">
-				<a href="/search/tag?type=basic&selectedTag=${tag }">#${tag } </a>
-				</c:forEach>
+						<a href="/search/tag?type=basic&selectedTag=${tag }">#${tag }
+						</a>
+					</c:forEach>
 				</span>
 				<div class="point1">
 					<div class="point2">
@@ -171,11 +172,18 @@
 				</div>
 			</div>
 		</div>
-		<!--  -->
-		<div class="col-md-2" style="left: 400px">
-		 		<button type="button"  id="btn" class="btn"><img class="btn-img" src=""></button>
+		<div class="col-md-2" style="left: 200px">
+			<!--  -->
+			<!--  -->
+			<button type="button" id="like" class="btn" value="true"
+				style="border: 0; outline: 0">
+				
+				<img class="btn-img" id="likeR"
+					src="/img/SketchTalk201361917350.png"
+					style="width: 15%; height: auto;">
+			
+			</button>
 		</div>
-		<!--  -->
 
 	</div>
 
@@ -239,8 +247,8 @@
 
 
 		<div class="col-md-1" align="right">
-			<br /> <br /> <br /> <br /> <br />
-			<span id="slider-next" style="font-size: 2em; padding-right: 20%"></span>
+			<br /> <br /> <br /> <br /> <br /> <span id="slider-next"
+				style="font-size: 2em; padding-right: 20%"></span>
 		</div>
 	</div>
 
@@ -254,7 +262,7 @@
 			</div>
 		</div>
 		<!-- 숙소 -->
-		<hr/>
+		<hr />
 		<div class="row font1">
 			<div class="col-md-4" style="font-weight: bold;">숙소</div>
 			<div class="col-md-4">
@@ -318,6 +326,10 @@
 	</div>
 
 </div>
+
+
+
+
 <script>
 	// Get the modal
 	var modal1 = document.getElementById('myModal1');
@@ -361,4 +373,29 @@
 		captions : true,
 		pagerCustom : '#bx-pager'
 	});
+</script>
+
+<script>
+	$("#like").click(function() {
+		$.ajax({
+			"url" : "/like/button?",
+			"method" : "post",
+			"data" : {
+				"id" : "${sessionScope.auth_id}",
+				"tel" : "${store.tel}",
+			}
+		}).done(function(rst) {
+			var printRst = rst;
+			console.log(rst)
+			if(rst=='like'){
+				$("#likeR").attr("src", "/img/1414328714455_PicsArt_1389242401746.png")
+			}else if(rst=='delete'){
+				$("#likeR").attr("src", "/img/SketchTalk201361917350.png")
+			}else{
+				
+			}
+
+		});
+	});
+		
 </script>
