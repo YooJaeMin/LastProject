@@ -28,11 +28,11 @@
 
 <div id="nav_body" data-spy="scroll" data-toggle=".navbar" data-offset="50">
 
-	<nav class="navbar navbar-inverse">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
-
+			
 			<ul class="nav navbar-nav">
-				<li><a href="#"><span style="color: #ffd700;"><b>Spoon
+				<li><a href="/"><span style="color: #ffd700;"><b>Spoon
 								Compass</b></span></a></li>
 				<li class="active">
 					<a href="#home" data-toggle="tooltip" data-placement="bottom"title="홈">
@@ -40,6 +40,7 @@
 				<li><a href="#about" data-toggle="tooltip" data-placement="bottom"title="스푼컴파스 소개">
 					<b>ABOUT</b></a></li>
 				<li><a href="#contact" data-toggle="tooltip" data-placement="bottom" title="연락하기"><b>CONTACT</b></a>
+				
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><b>MORE</b>
 					<span class="caret"></span></a>
@@ -49,8 +50,9 @@
 						<li><a href="#" data-toggle="tooltip" data-placement="bottom"title="질문하기"><b>QnA</b></a></li>
 					</ul>
 				</li> 
+				
 				<c:if test="${sessionScope.auth ne  null }">
-					<li><a href="#"><b>나의 맛집</b></a></li>
+					<li><a href="#"><b>My List</b></a></li>
 				</c:if>
 			</ul>
 
@@ -301,3 +303,6 @@
 	var inner_profileParams = {};
 </script>
 <!-- //네이버아디디로로그인 Callback페이지 처리 Script -->
+
+
+
