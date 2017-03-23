@@ -6,7 +6,7 @@
 	<!-- 별점+많은 정보 등록 -->
 	<insert id="insertDetails" parameterType="java.util.HashMap">
 		insert into review
-		values( #{tel},#{id},#{clean_s}, #{taste_s}, #{price_s}, #{good_s}, #{location_s}, #{avg_s}, 0, #{weather},#{type}, #{content}, #{img} )
+		values( #{tel},#{id},#{clean_s}, #{taste_s}, #{price_s}, #{good_s}, #{location_s}, #{avg_s}, 0 #{weather},#{type}, #{content}, #{img}, sysdate )
 	</insert>
 	<!-- 이미 등록된 경우 -->
 	<update id="updateDetails" parameterType="java.util.HashMap">

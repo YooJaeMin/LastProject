@@ -7,7 +7,9 @@
 		insert into user_basic values(#{id},#{pw},sysdate)
 	</insert>
 	
-	
+	<select id="All"  resultType="java.util.HashMap">
+		select id from user_basic
+	</select>
 	
 	<select id="memberCountOne" parameterType="java.util.HashMap" resultType="java.lang.Integer">
 		select count(*) from user_basic where id=#{id} and pw=#{pw}
@@ -20,7 +22,7 @@
 	
 	
 	<insert id="normalDetail" parameterType="java.util.HashMap">
-		insert into user_detail values(#{id}, null, null, null, #{profile},null,null)
+		insert into user_detail values(#{id}, #{nick}, null, null, #{profile},null,null)
 	</insert>
 	
 	<insert id="naverDetail" parameterType="java.util.HashMap">
