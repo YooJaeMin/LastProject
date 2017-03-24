@@ -9,6 +9,10 @@
 	width: 300px;
 }
 
+.weather {
+	width: 30px;
+}
+
 .mainpic {
 	width: 100%;
 	height: 70%;
@@ -177,7 +181,7 @@
 
 .rating label:hover ~ label, .rating input:focus ~ label, .rating label:hover,
 	.rating a:hover, .rating a:hover ~ a, .rating a:focus, .rating a:focus 
-	~ a {
+	 ~ a {
 	color: orange;
 	cursor: pointer;
 }
@@ -212,7 +216,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-2">
+		<div class="col-md-3">
 			<!--  -->
 			<!--  -->
 			<div class="col-md-8">
@@ -242,7 +246,7 @@
 			</div>
 		</div>
 	</div>
-	<hr class="line" />
+	<hr style="border: solid 2px red;" />
 	<div class="row" align="center">
 		<div class="col-md-3">
 			<img src="/views/search/images/store_red.png" class="icon">
@@ -273,11 +277,11 @@
 			</c:forEach>
 		</div>
 	</div>
-	<hr />
+	<hr style="border: solid 2px red;" />
 
 	<div class="row font2">
 		사진
-		<hr />
+		<hr style="border: solid 2px red;"/>
 	</div>
 
 	<div class="row">
@@ -311,13 +315,12 @@
 		</div>
 	</div>
 	<div class="row">
-		<hr />
+		<hr style="border: solid 2px red;" />
 		<div class="row font2" align="left">
 			<b>리뷰</b>
 		</div>
-		<hr />
+		<hr style="border: solid 2px red;" />
 		<!-- 숙소 -->
-		<hr />
 
 		<div class="row font1" align="center">
 			<c:forEach items="${reviewList }" var="item" begin="1" end="5"
@@ -328,13 +331,44 @@
 				<div class="row font1 col-md-9">
 					<div class="col-md-offset-1 col-md-5">${item.ID }</div>
 					<div class="col-md-3">${item.EAT_DATE }</div>
-					<div class="col-md-1">${item.HIT }</div>
-					<div class="col-md-2">총점 / ${item.AVG_S }</div>
+					<div class="col-md-1">좋아요<br/>${item.HIT }<img id="HIT" style="WIDTH: 15pt; HEIGHT: 15pt" src="/img/SketchTalk201361917350.png" ></div>
+					<!--  -->
+					<!--  -->
+					<div class="col-md-2">
+						<div
+							style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
+							총점 / ${item.AVG_S }
+							<p
+								style="WIDTH: ${item.AVG_S*20}%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(/img/icon_star.gif) 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;">
+							</p>
+						</div>
+					</div>
+
+
 				</div>
 
 				<div class="row font1">
 					<div class="col-md-6">커플 : ${item.TYPE }</div>
-					<div class="col-md-6">날씨 : ${item.WEATHER }</div>
+					<div class="col-md-6">
+						날씨 : ${item.WEATHER }
+						<c:choose>
+							<c:when test="${item.WEATHER eq 'cloudy' }">
+								<img class="weather" src="/img_weather/cloudy.png">
+							</c:when>
+							<c:when test="${item.WEATHER eq 'rainy' }">
+								<img class="weather" src="/img_weather/rainy.png">
+							</c:when>
+							<c:when test="${item.WEATHER eq 'snowy' }">
+								<img class="weather" src="/img_weather/snowy.png">
+							</c:when>
+							<c:when test="${item.WEATHER eq 'sunny' }">
+								<img class="weather" src="/img_weather/sunny.png">
+							</c:when>
+							<c:when test="${item.WEATHER eq 'windy' }">
+								<img class="weather" src="/img_weather/windy.png">
+							</c:when>
+						</c:choose>
+					</div>
 				</div>
 				<div class="row font1">
 					<div class="col-md-2">청결도</div>
@@ -426,7 +460,7 @@
 						</c:choose>
 					</div>
 					<div class="col-md-2" style="color: #FF0015;">
-							<c:choose>
+						<c:choose>
 							<c:when test="${item.LOCATION_S eq 1 }">
 							★
 						</c:when>
@@ -443,7 +477,7 @@
 								★★★★★
 						</c:when>
 						</c:choose>
-					
+
 					</div>
 				</div>
 				<div class="row font1">
@@ -454,7 +488,7 @@
 				<div class="row font1">
 					<div class="col-md-12" align="left">${item.CONTENT }</div>
 				</div>
-				<hr />
+				<hr style="border: solid 2px red;" />
 			</c:forEach>
 
 
@@ -527,7 +561,7 @@
 </div>
 
 <!-- 리뷰 -->
-<hr />
+<hr style="border: solid 2px red;"/>
 <!-- <div class="row"> -->
 <!-- 	<div class="col-md-3"> -->
 <!-- 		<div class="font2"> -->
@@ -546,7 +580,7 @@
 
 
 <!-- </div> -->
-<hr />
+<hr style="border: solid 2px red;"/>
 
 
 
