@@ -239,7 +239,7 @@ public class SearchDao {
 	}
 
 	public List todayRank() {
-		List list = new ArrayList();
+		List<Map> list = new ArrayList();
 
 		Date date = new Date();
 		Date date2 = new Date(date.getYear(), date.getMonth(), date.getDate());
@@ -247,7 +247,7 @@ public class SearchDao {
 		Criteria criteria = Criteria.where("date").gte(date2.getTime());
 
 		AggregationOperation ao1 = Aggregation.match(criteria);
-		AggregationOperation ao2 = Aggregation.group("keyword").count().as("cnt");
+		AggregationOperation ao2 = Aggregation.group("tel").count().as("cnt");
 		AggregationOperation ao3 = Aggregation.sort(Direction.DESC, "cnt");
 		AggregationOperation ao4 = Aggregation.limit(5);
 
@@ -255,8 +255,16 @@ public class SearchDao {
 
 		AggregationResults<Map> result = template.aggregate(aggr, "storeRank", Map.class);
 		list = result.getMappedResults();
-
-		return list;
+		List tempList = new ArrayList();
+		for(Map map : list){
+			
+			Map innerMap = template.findOne(Query.query(Criteria.where("tel").is((String) map.get("_id"))), Map.class,"food");
+			String title = (String)innerMap.get("title");
+			map.put("title", title);
+			tempList.add(map);
+		}
+		
+		return tempList;
 	}
 
 	public void insertSearch(String keyword) {
@@ -265,6 +273,14 @@ public class SearchDao {
 		map.put("date", System.currentTimeMillis());
 		template.insert(map, "searchKey");
 	}
+	
+	public void insertStore(String tel) {
+		Map map = new HashMap<>();
+		map.put("tel", tel);
+		map.put("date", System.currentTimeMillis());
+		template.insert(map, "storeRank");
+	}
+	
 	public List reviewList(Map map){
 		SqlSession session = factory.openSession();
 		List<Map> list = null;

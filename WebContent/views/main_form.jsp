@@ -12,10 +12,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <style type="text/css">
-
-
-
- .input {
+.input {
 	font-family: '나눔고딕';
 	font-size: 10pt;
 }
@@ -66,7 +63,7 @@
 	<!--  -->
 
 	<div align="center" style="color: white;">
-		<img src="/img/spooncompass.png" width="50%" height="50%" />
+		<img src="/img/spooncompass.png" width="50%" height="60%" />
 
 	</div>
 
@@ -77,20 +74,24 @@
 		style="width: 35%; color: white; background-color: rgba(0, 0, 0, .5)"
 		align="center">
 
-		<div class="input col-sm-6" style="width: 50%; font-size: 18px">
+		<div class="input col-sm-6">
+			<span style="font: italic bold ; font-size: 16pt">실시간 검색어</span>
 			<ul>
-				<c:forEach items="${realRank}" var="item">
-					<li><a href="/search/keyword?keyword=${item._id }">${item._id }</a></li>
+				<c:forEach items="${realRank}" var="item" varStatus="vs">
+					${vs.count }. <a
+						href="/search/keyword?keyword=${item._id }"><b style="font-size: 14pt">${item._id }</b></a>
+						<br/>
 				</c:forEach>
 			</ul>
 
 		</div>
 
-		<div class="input col-sm-6" style="width: 50%; font-size: 18px">
-
+		<div class="input col-sm-6">
+			<span style="font: italic bold ; font-size: 16pt">오늘의 맛집</span>
 			<ul>
-				<c:forEach items="${todayRank}" var="item">
-					<li><a href="/search/keyword?keyword=${item._id }">${item._id }</a></li>
+				<c:forEach items="${todayRank}" var="item" varStatus="vs">
+					${vs.count }. <a href="/search/detail?tel=${item._id }"><b style="font-size: 14pt;">${item.title }</b></a>
+					<br/>
 				</c:forEach>
 			</ul>
 
@@ -103,7 +104,7 @@
 				<div class="col-md-10">
 					<input type="text" name="keyword" class="form-control"
 						style="height: 55px; font-size: 18px; border: 4px solid; border-color: #FFD700;"
-						placeholder="지역명">
+						placeholder="검색어 입력! 예) 강남역 수요미식회">
 				</div>
 				<div class="input-group-btn col-md-2">
 					<button class="btn btn-default" type="submit"
