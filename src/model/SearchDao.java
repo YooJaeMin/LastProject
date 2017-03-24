@@ -62,15 +62,15 @@ public class SearchDao {
 			public int compare(Map o1, Map o2) {
 				// o1이 더작으면 -1 (우선순위)
 				// o2가 더작으면 1 (우선순위)
-				if ((int) o1.get("avg") > (int) o2.get("avg")) {
-					return 1;
-				} else if ((int) o1.get("avg") < (int) o2.get("avg")) {
+				if ((double) o1.get("avg") > (double) o2.get("avg")) {
 					return -1;
+				} else if ((double) o1.get("avg") < (double) o2.get("avg")) {
+					return 1;
 				} else {
 					if ((int) o1.get("hitCnt") > (int) o2.get("hitCnt")) {
-						return 1;
-					} else if ((int) o1.get("avg") < (int) o2.get("hitCnt")) {
 						return -1;
+					} else if ((int) o1.get("hitCnt") < (int) o2.get("hitCnt")) {
+						return 1;
 					} else
 						return 0;
 				}
@@ -99,7 +99,7 @@ public class SearchDao {
 				for (int j = 0; j < tagList.size(); j++) {
 					String tag = (String) tagList.get(j);
 					if (tag.equals(selectedTag)) {
-						System.out.println(tagList.toString());
+//						System.out.println(tagList.toString());
 						tempList.add(list.get(i));
 						continue outerLoof;
 					}
@@ -108,7 +108,7 @@ public class SearchDao {
 				continue outerLoof;
 			}
 		}
-		System.out.println(tempList.toString());
+//		System.out.println(tempList.toString());
 		return tempList;
 	}
 
@@ -126,7 +126,7 @@ public class SearchDao {
 				}
 			}
 		}
-		System.out.println(tempList.toString());
+//		System.out.println(tempList.toString());
 		return tempList;
 	}
 

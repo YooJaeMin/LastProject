@@ -35,7 +35,7 @@ public class SearchController {
 				"파스타", "뷔페", "국물요리", "면요리", "이탈리안", "멕시칸", "프렌치", "아시안" };
 		String keyword = (String) reqMap.get("keyword");
 		mav.addObject("tagsList", foods);
-		System.out.println(keyword);
+//		System.out.println(keyword);
 		if (keyword == null)
 			return mav;
 		sd.insertSearch(keyword);
@@ -47,13 +47,13 @@ public class SearchController {
 
 		// 리뷰가 완성되면 진행할 예정
 		list = sd.mongoWithSql(list);
-		mav.addObject("locationResult", list);
-		// mav.addObject("locationResult", sd.rankFilter(list));
+//		mav.addObject("locationResult", list);
+		 mav.addObject("locationResult", sd.rankFilter(list));
 
 		List list2 = sd.titleSearch(map);
 		list2 = sd.mongoWithSql(list2);
-		// mav.addObject("titleResult",sd.rankFilter(list2));
-		mav.addObject("titleResult", list2);
+		 mav.addObject("titleResult",sd.rankFilter(list2));
+//		mav.addObject("titleResult", list2);
 
 		return mav;
 	}
@@ -93,10 +93,10 @@ public class SearchController {
 			mav.addObject("type", "상호");
 		}
 		list = sd.mongoWithSql(list);
-		mav.addObject("result", list);
+//		mav.addObject("result", list);
 		// 리뷰가 완성되면 진행할 예정
 
-		// mav.addObject("locationResult", sd.rankFilter(list));
+		 mav.addObject("result", sd.rankFilter(list));
 
 		// mav.addObject("titleResult",sd.rankFilter(list2));
 
@@ -130,7 +130,7 @@ public class SearchController {
 		List list = sd.tagSearch(selectedTag);
 		list = sd.mongoWithSql(list);
 		mav.addObject("selectedTag", selectedTag);
-		mav.addObject("result", list);
+		mav.addObject("result", sd.rankFilter(list));
 		return mav;
 	}
 	
@@ -160,7 +160,7 @@ public class SearchController {
 		List list = sd.storeDetail(reqMap);
 		list = sd.mongoWithSql(list);
 		
-		mav.addObject("result",list);
+		mav.addObject("result",sd.rankFilter(list));
 		Map map = (Map)list.get(0);
 		List<String> imgList = (List) map.get("img");
 		List tempList = new ArrayList();
@@ -179,10 +179,10 @@ public class SearchController {
 		/*  */
 		map.put("img", tempList);
 		mav.addObject("store",map);
-		System.out.println(list.get(0).toString());
+//		System.out.println(list.get(0).toString());
 		String adress = ((String)map.get("adress")).substring(0,((String)map.get("adress")).lastIndexOf("동")+1);
 		String title = (String)map.get("title");
-		System.out.println(adress +" "+title);
+//		System.out.println(adress +" "+title);
 		Map blogMap = nbd.getBlogData(adress+" "+(String)map.get("title"));
 		mav.addObject("blog", blogMap);
 		return mav;

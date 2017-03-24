@@ -47,7 +47,7 @@ public class NaverBlogDao {
 	            br.close();
 	            JSONObject json = (JSONObject) jsonParser.parse(response.toString());
 	            
-	            System.out.println(json.toJSONString());
+//	            System.out.println(json.toJSONString());
 	            
 	            map.put("total", (long)json.get("display"));
 	            map.put("itemList", (List) json.get("items"));

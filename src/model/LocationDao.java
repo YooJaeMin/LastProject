@@ -23,7 +23,7 @@ public class LocationDao {
 			String target = "https://maps.googleapis.com/maps/api/geocode/json?address=" + key
 					+ "&key=AIzaSyBS-83LLE8F1nvtVtsy1Adu-j4LeS9qAQg&language=ko";
 			URL url = null;
-			System.out.println(target);
+//			System.out.println(target);
 			try{
 				url = new URL(target);
 			} catch(IOException e1 ){
@@ -68,7 +68,7 @@ public class LocationDao {
 					JSONObject resultObject = (JSONObject) jsonParser
 							.parse(resultArray.get(0).toString());
 					JSONArray addressArray = (JSONArray) resultObject.get("address_components");
-					System.out.println(addressArray.toJSONString());
+//					System.out.println(addressArray.toJSONString());
 					for(int i =0; i<addressArray.size(); i++){
 						if(((JSONObject)addressArray.get(i)).get("short_name").toString().equals("KR")){
 							JSONObject geoMetryObject = (JSONObject) resultObject.get("geometry");
@@ -80,7 +80,7 @@ public class LocationDao {
 							// location의 배열을 추출
 							innerMap.put("lng", lng);
 							innerMap.put("lat", lat);
-							System.out.println("google Location innerMap : "+innerMap.toString());
+//							System.out.println("google Location innerMap : "+innerMap.toString());
 							break Loof;
 						}
 					}
@@ -97,7 +97,7 @@ public class LocationDao {
 				innerMap.put("lng", 0);
 				innerMap.put("lat", 0);
 			}
-			System.out.println("google Location innerMap : "+innerMap.toString());
+//			System.out.println("google Location innerMap : "+innerMap.toString());
 
 		}
 

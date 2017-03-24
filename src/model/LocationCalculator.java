@@ -55,7 +55,7 @@ public class LocationCalculator {
 			dist = dist * 1000.0; // 단위 km 에서 m 로 변환
 			if (dist <= 1000){
 				newList.add(map);
-				System.out.println(map.toString());
+//				System.out.println(map.toString());
 			}
 			
 
