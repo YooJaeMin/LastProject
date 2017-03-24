@@ -22,5 +22,26 @@
 		insert into shopping values(#{tel},#{id})
 	</insert>
 	
+	<delete id="shoppingD" parameterType="java.util.HashMap">
+		delete shopping where tel=#{tel} and id=#{id}
+	</delete>
+	
+	<select id="shoppingC" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		select count(*) from shopping where tel=#{tel} and id=#{id}
+	</select>
+	
+	<insert id="review" parameterType="java.util.HashMap">
+		insert into review_hit values(#{id},#{review_id},#{good})
+	</insert>
+	
+	<delete id="reviewD" parameterType="java.util.HashMap">
+		delete review_hit where reviw_id=#{review_id} and id = #{id}
+	</delete>
+	
+	<select id="reviewC" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		select count(*) from review_hit where tel=#{review_id} and id=#{id}
+	</select>
+	
+	
 	
 </mapper>
