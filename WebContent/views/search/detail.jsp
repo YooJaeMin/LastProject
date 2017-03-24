@@ -4,9 +4,11 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script src="/js/jquery.bxslider.min.js"></script>
 <link href="/lib/jquery.bxslider.css" rel="stylesheet">
-
-
 <style>
+.profile_img {
+	width: 300px;
+}
+
 .mainpic {
 	width: 100%;
 	height: 70%;
@@ -150,25 +152,42 @@
 	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
-.alert {
-    padding: 20px;
-    background-color: #f44336;
-    color: white;
+.rating {
+	width: 226px;
+	margin: 0 auto 1em;
+	font-size: 45px;
+	overflow: hidden;
 }
 
-.closebtn {
-    margin-left: 15px;
-    color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
+.rating input {
+	float: right;
+	opacity: 0;
+	position: absolute;
 }
 
-.closebtn:hover {
-    color: black;
+.rating a, .rating label {
+	float: right;
+	color: #aaa;
+	text-decoration: none;
+	-webkit-transition: color .4s;
+	-moz-transition: color .4s;
+	-o-transition: color .4s;
+	transition: color .4s;
+}
+
+.rating label:hover ~ label, .rating input:focus ~ label, .rating label:hover,
+	.rating a:hover, .rating a:hover ~ a, .rating a:focus, .rating a:focus 
+	~ a {
+	color: orange;
+	cursor: pointer;
+}
+
+.rating {
+	direction: rtl;
+}
+
+.rating a {
+	float: none
 }
 </style>
 
@@ -193,36 +212,36 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-2" >
+		<div class="col-md-2">
 			<!--  -->
 			<!--  -->
 			<div class="col-md-8">
-			<button type="button" id="like" class="btn" value="true"
-				style="WIDTH: 80pt; HEIGHT: 30pt">
-				좋아요<span id="like_cnt">${like.CNT}</span>
-				<!--  -->
-				<c:choose>
-					<c:when test="${likeResult eq true}">
-						<img class="btn-img" id="likeR"
-							src="/img/1414328714455_PicsArt_1389242401746.png"
-							style="width: 15%; height: auto;">
-					</c:when>
-					<c:otherwise>
-						<img class="btn-img" id="likeR"
-							src="/img/SketchTalk201361917350.png"
-							style="width: 15%; height: auto;">
-					</c:otherwise>
-				</c:choose>
-				<!--  -->
-			</button>
+				<button type="button" id="like" class="btn" value="true"
+					style="WIDTH: 80pt; HEIGHT: 30pt">
+					좋아요<span id="like_cnt">${like.CNT}</span>
+					<!--  -->
+					<c:choose>
+						<c:when test="${likeResult eq true}">
+							<img class="btn-img" id="likeR"
+								src="/img/1414328714455_PicsArt_1389242401746.png"
+								style="width: 15%; height: auto;">
+						</c:when>
+						<c:otherwise>
+							<img class="btn-img" id="likeR"
+								src="/img/SketchTalk201361917350.png"
+								style="width: 15%; height: auto;">
+						</c:otherwise>
+					</c:choose>
+					<!--  -->
+				</button>
 			</div>
 			<div class="col-md-4">
-				<a href="#" id="shopping"><img src="/views/search/images/food bucket.png" style="width:40pt;height:30pt "></a>
+				<a href="#" id="shopping"><img
+					src="/views/search/images/food bucket.png" id="shoppingR"
+					style="width: 40pt; height: 30pt"></a>
 			</div>
 		</div>
-
 	</div>
-
 	<hr class="line" />
 	<div class="row" align="center">
 		<div class="col-md-3">
@@ -256,8 +275,6 @@
 	</div>
 	<hr />
 
-
-
 	<div class="row font2">
 		사진
 		<hr />
@@ -289,29 +306,35 @@
 	</div>
 
 	<div class="row">
-		<hr />
-		<div class="font2">리뷰</div>
-		<hr />
-		<div class="row">
-			<div align="center">
-				<button id="myBtn1" class="btn">후기등록</button>
-			</div>
+		<div align="center">
+			<button id="myBtn1" class="btn">후기등록</button>
 		</div>
+	</div>
+	<div class="row">
+		<hr />
+		<div class="row font2" align="left">
+			<b>리뷰</b>
+		</div>
+		<hr />
 		<!-- 숙소 -->
 		<hr />
 
 		<div class="row font1" align="center">
 			<c:forEach items="${reviewList }" var="item" begin="1" end="5"
 				varStatus="vs">
-				<div class="row font1">
-					<div class="col-md-offset-1 col-md-3">${item.ID }</div>
+				<div class="row font1 col-md-3">
+					<img class="profile_img" src="${item.PROFILE }">
+				</div>
+				<div class="row font1 col-md-9">
+					<div class="col-md-offset-1 col-md-5">${item.ID }</div>
 					<div class="col-md-3">${item.EAT_DATE }</div>
 					<div class="col-md-1">${item.HIT }</div>
-					<div class="col-md-3">총점 / ${item.AVG_S }</div>
+					<div class="col-md-2">총점 / ${item.AVG_S }</div>
 				</div>
+
 				<div class="row font1">
-					<div class="col-md-6">${item.TYPE }</div>
-					<div class="col-md-6">${item.WEATHER }</div>
+					<div class="col-md-6">커플 : ${item.TYPE }</div>
+					<div class="col-md-6">날씨 : ${item.WEATHER }</div>
 				</div>
 				<div class="row font1">
 					<div class="col-md-2">청결도</div>
@@ -321,19 +344,120 @@
 					<div class="col-md-2">접근성</div>
 				</div>
 				<div class="row font1">
-					<div class="col-md-2">${item.CLEAN_S }</div>
-					<div class="col-md-2">${item.TASTE_S }</div>
-					<div class="col-md-2">${item.PRICE_S }</div>
-					<div class="col-md-2">${item.GOOD_S }</div>
-					<div class="col-md-2">${item.LOCATION_S }</div>
+					<div class="col-md-2" style="color: #FF0015;">
+						<!--  -->
+						<c:choose>
+							<c:when test="${item.CLEAN_S eq 1 }">
+							★
+						</c:when>
+							<c:when test="${item.CLEAN_S eq 2 }">
+							★★
+						</c:when>
+							<c:when test="${item.CLEAN_S eq 3 }">
+								★★★
+						</c:when>
+							<c:when test="${item.CLEAN_S eq 4 }">
+								★★★★
+						</c:when>
+							<c:when test="${item.CLEAN_S eq 5 }">
+								★★★★★
+						</c:when>
+						</c:choose>
+					</div>
+
+					<!--  -->
+					<div class="col-md-2" style="color: #FF0015;">
+						<!--  -->
+						<c:choose>
+							<c:when test="${item.TASTE_S eq 1 }">
+							★
+						</c:when>
+							<c:when test="${item.TASTE_S eq 2 }">
+							★★
+						</c:when>
+							<c:when test="${item.TASTE_S eq 3 }">
+								★★★
+						</c:when>
+							<c:when test="${item.TASTE_S eq 4 }">
+								★★★★
+						</c:when>
+							<c:when test="${item.TASTE_S eq 5 }">
+								★★★★★
+						</c:when>
+						</c:choose>
+					</div>
+					<div class="col-md-2" style="color: #FF0015;">
+						<c:choose>
+							<c:when test="${item.PRICE_S eq 1 }">
+							★
+						</c:when>
+							<c:when test="${item.PRICE_S eq 2 }">
+							★★
+						</c:when>
+							<c:when test="${item.PRICE_S eq 3 }">
+								★★★
+						</c:when>
+							<c:when test="${item.PRICE_S eq 4 }">
+								★★★★
+						</c:when>
+							<c:when test="${item.PRICE_S eq 5 }">
+								★★★★★
+						</c:when>
+						</c:choose>
+					</div>
+					<div class="col-md-2" style="color: #FF0015;">
+
+						<c:choose>
+							<c:when test="${item.GOOD_S eq 1 }">
+							★
+						</c:when>
+							<c:when test="${item.GOOD_S eq 2 }">
+							★★
+						</c:when>
+							<c:when test="${item.GOOD_S eq 3 }">
+								★★★
+						</c:when>
+							<c:when test="${item.GOOD_S eq 4 }">
+								★★★★
+						</c:when>
+							<c:when test="${item.GOOD_S eq 5 }">
+								★★★★★
+						</c:when>
+						</c:choose>
+					</div>
+					<div class="col-md-2" style="color: #FF0015;">
+							<c:choose>
+							<c:when test="${item.LOCATION_S eq 1 }">
+							★
+						</c:when>
+							<c:when test="${item.LOCATION_S eq 2 }">
+							★★
+						</c:when>
+							<c:when test="${item.LOCATION_S eq 3 }">
+								★★★
+						</c:when>
+							<c:when test="${item.LOCATION_S eq 4 }">
+								★★★★
+						</c:when>
+							<c:when test="${item.LOCATION_S eq 5 }">
+								★★★★★
+						</c:when>
+						</c:choose>
+					
+					</div>
 				</div>
 				<div class="row font1">
-					<div class="col-md-12">평가</div>
+					<div class="col-md-12" align="left">
+						<b>평가</b>
+					</div>
 				</div>
 				<div class="row font1">
-					<div class="col-md-12">${item.CONTENT }</div>
+					<div class="col-md-12" align="left">${item.CONTENT }</div>
 				</div>
+				<hr />
 			</c:forEach>
+
+
 			<div class="row font1" align="right">
 				<button class="btn" onclick="listMore()">리스트 더보기</button>
 			</div>
@@ -359,8 +483,26 @@
 							<div class="col-md-2">접근성</div>
 						</div>
 						<div class="row font1">
-							<div class="col-md-2">${item.CLEAN_S }</div>
-							<div class="col-md-2">${item.TASTE_S }</div>
+							<div class="col-md-2">${item.CLEAN_S}</div>
+							<div class="col-md-2">
+								<c:choose>
+									<c:when test="${item.TASTE_S eq 1 }">
+								★
+								</c:when>
+									<c:when test="${item.TASTE_S eq 2 }">
+								★★
+								</c:when>
+									<c:when test="${item.TASTE_S eq 3 }">
+								★★★
+								</c:when>
+									<c:when test="${item.TASTE_S eq 4 }">
+								★★★★
+								</c:when>
+									<c:when test="${item.TASTE_S eq 5 }">
+								★★★★★
+								</c:when>
+								</c:choose>
+							</div>
 							<div class="col-md-2">${item.PRICE_S }</div>
 							<div class="col-md-2">${item.GOOD_S }</div>
 							<div class="col-md-2">${item.LOCATION_S }</div>
@@ -372,6 +514,8 @@
 							<div class="col-md-12">${item.CONTENT }</div>
 						</div>
 					</c:if>
+
+
 				</c:forEach>
 			</div>
 
@@ -482,70 +626,88 @@
 </script>
 
 <script>
-	$("#like").click(function() {
-		$.ajax({
-						"url" : "/like/button?",
-						"method" : "post",
-						"data" : {
-						"id" : "${sessionScope.auth_id}",
-						"tel" : "${store.tel}",
-				}
-		}).done(function(rst) {
-						var printRst = rst;
-						console.log(rst)
-						if (rst.like == 'like') {
-							$("#likeR").attr("src","/img/1414328714455_PicsArt_1389242401746.png")
-							$("#like_cnt").html(rst.CNT)
-							
-						} else if (rst.like == 'delete') {
-							$("#likeR").attr("src","/img/SketchTalk201361917350.png")
-							$("#like_cnt").html(rst.CNT)
-						} else {
+	$("#like")
+			.click(
+					function() {
+						$
+								.ajax({
+									"url" : "/like/button?",
+									"method" : "post",
+									"data" : {
+										"id" : "${sessionScope.auth_id}",
+										"tel" : "${store.tel}",
+									}
+								})
+								.done(
+										function(rst) {
+											var printRst = rst;
+											console.log(rst)
+											if (rst.like == 'like') {
+												$("#likeR")
+														.attr("src",
+																"/img/1414328714455_PicsArt_1389242401746.png")
+												$("#like_cnt").html(rst.CNT)
 
-						}
+											} else if (rst.like == 'delete') {
+												$("#likeR")
+														.attr("src",
+																"/img/SketchTalk201361917350.png")
+												$("#like_cnt").html(rst.CNT)
+											} else {
 
-				});
-		});
+											}
+
+										});
+					});
 </script>
 
 
 <!--  -->
 <script>
-$("#shopping").click(function() {
-	$.ajax({
-					"url" : "/like/shopping?",
-					"method" : "post",
-					"data" : {
-					"id" : "${sessionScope.auth_id}",
-					"tel" : "${store.tel}",
-			}
-	}).done(function(rst) {
-					var printRst = rst;
-					console.log(rst)
-					if(rst==1){
-						window.alert("장바구니에 추가 되었습니다.!");
-					}else{
-						window.alert("장바구니 오류.!");
-					}
-					
-					/* if (rst.like == 'like') {
-						$("#likeR").attr("src","/img/1414328714455_PicsArt_1389242401746.png")
-						$("#like_cnt").html(rst.CNT)
-						
-					} else if (rst.like == 'delete') {
-						$("#likeR").attr("src","/img/SketchTalk201361917350.png")
-						$("#like_cnt").html(rst.CNT)
-					} else {
+	$("#shopping")
+			.click(
+					function() {
+						$
+								.ajax({
+									"url" : "/like/shopping?",
+									"method" : "post",
+									"data" : {
+										"id" : "${sessionScope.auth_id}",
+										"tel" : "${store.tel}",
+									}
+								})
+								.done(
+										function(rst) {
+											var printRst = rst;
+											console.log(rst)
+											if (rst == 1) {
+												window
+														.alert("장바구니에 추가 되었습니다.!")
+												$("#shoppingR")
+														.attr("src",
+																"/views/search/images/food_bucket_R.png")
+											} else {
+												window
+														.alert("이미 선택된 장바구니 입니다.!")
+											}
 
-					} */
+											/* if (rst.like == 'like') {
+												$("#likeR").attr("src","/img/1414328714455_PicsArt_1389242401746.png")
+												$("#like_cnt").html(rst.CNT)
+												
+											} else if (rst.like == 'delete') {
+												$("#likeR").attr("src","/img/SketchTalk201361917350.png")
+												$("#like_cnt").html(rst.CNT)
+											} else {
 
-			});
-	});
+											} */
+
+										});
+					});
 </script>
 
 
 <script>
-
 	function listMore() {
 		var x = document.getElementById('reviewList');
 		if (x.style.display === 'none') {
@@ -557,3 +719,28 @@ $("#shopping").click(function() {
 		}
 	}
 </script>
+
+<div class="row font2">
+	블로그 검색 결과 총 ${blog.total }개
+	<hr />
+</div>
+<c:forEach items="${blog.itemList }" var="item" varStatus="vs">
+	<div class="row">
+		<div class="col-md-6" align="left">
+			<a href="${item.link }">${item.title }</a>
+		</div>
+		<div class="col-md-6" align="right">
+			<div class="col-md-6">post date. ${item.postdate }</div>
+			<div class="col-md-6">write by. ${item.bloggername }</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">${item.description }</div>
+	</div>
+</c:forEach>
+<div class="row">
+	<c:forEach varStatus="vs" begin="1"
+		end="${blog.total % 10 eq 0 ? blog.total/10 : blog.total/10 +1 }">
+		${vs.count }
+	</c:forEach>
+</div>

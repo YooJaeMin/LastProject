@@ -1,5 +1,6 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -266,14 +267,33 @@ public class SearchDao {
 	}
 	public List reviewList(Map map){
 		SqlSession session = factory.openSession();
-		List list = null;
+		List<Map> list = null;
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Map innerMap = new HashMap();
+		Date date = null;
+		String to ="";
+		List<Map> profileList = new ArrayList();
 		try {
 			list = session.selectList("review.reviewResult", map);
 		} catch(Exception e){
 			e.printStackTrace();
-		} finally {
-			session.close();
+		} 
+		for(int i =0; i<list.size(); i++){
+			innerMap = list.get(i);
+			date = (Date) innerMap.get("EAT_DATE");
+			to = transFormat.format(date);
+			innerMap.put("EAT_DATE", to);
+			
+			try{
+				profileList = session.selectList("member.selectDetail",innerMap);
+				String profile = (String) profileList.get(0).get("PROFILE");
+				innerMap.put("PROFILE", profile);
+			} catch(Exception e2){
+				e2.printStackTrace();
+			} 
+			
 		}
+		session.close();
 		return list;
 	}
 
