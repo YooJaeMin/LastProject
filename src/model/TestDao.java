@@ -22,81 +22,90 @@ import com.mongodb.WriteResult;
 
 @Service
 public class TestDao {
-	
+
 	@Autowired
 	SqlSessionFactory factory;
-	
+
 	@Autowired
 	MongoTemplate template;
-	
-	public  boolean insertOne(Map map){
-		SqlSession session =  factory.openSession();
+
+	public boolean insertOne(Map map) {
+		SqlSession session = factory.openSession();
 		int i = 0;
-		try{
-			i = session.insert("member.normalCreate",map);
+		try {
+			i = session.insert("member.normalCreate", map);
 			session.commit();
-			session.insert("member.normalDetail",map);
+			session.insert("member.normalDetail", map);
 			session.commit();
-		} catch(Exception e){
-			
-		} finally{
+		} catch (Exception e) {
+
+		} finally {
 			session.close();
 		}
-		if(i==1) return true;
-		else return false;
-		
+		if (i == 1)
+			return true;
+		else
+			return false;
+
 	}
-	
-	public List getId(){
-		SqlSession session =  factory.openSession();
+
+	public List getId() {
+		SqlSession session = factory.openSession();
 		List list = null;
-		try{
+		try {
 			list = session.selectList("member.All");
-		} catch(Exception e){
-			
-		}finally {
+		} catch (Exception e) {
+
+		} finally {
 			session.close();
 		}
 		return list;
 	}
-	
-	public List getTel(){
-		List list = template.findAll(Map.class,"food");
+
+	public List getTel() {
+		List list = template.findAll(Map.class, "food");
 		return list;
 	}
-	
-	public void insertReview(Map map){
-		SqlSession session =  factory.openSession();
-		try{
-			session.insert("review.insertDetails",map);
-		} catch (Exception e){
+
+	public void insertReview(Map map) {
+		SqlSession session = factory.openSession();
+		try {
+			session.insert("review.insertDetails", map);
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			session.close();
 		}
 
 	}
-	
-	public List modifyLoc(){
+
+	public List modifyLoc() {
 		Query query = new Query(Criteria.where("lat").is(0));
-		List list = template.find(query, Map.class,"food");
+		List list = template.find(query, Map.class, "food");
 		return list;
 	}
-	
-	public void modifyFinal(List list){
-		for(int i=0; i<500; i++){
-			Map map = (Map)list.get(i);
-			Update update = new Update();
-			
-			Query query = new Query(Criteria.where("tel").is((String)map.get("tel")));
-			try{
-				update.set("lat", (double)map.get("lat"));
-				update.set("lng", (double)map.get("lng"));
-			} catch(Exception e) {
-				update.set("lat", 0);
-				update.set("lng", 0);
-			}
 
+	public void modifyFinal(List list) {
+		Update update = new Update();
+		Map map = null;
+		Query query = null;
+		for (int i = 0; i < list.size() - 1; i++) {
+
+			try {
+				map = (Map) list.get(i);
+				query = new Query(Criteria.where("tel").is((String) map.get("tel")));
+
+				try {
+					update.set("lat", (double) map.get("lat"));
+					update.set("lng", (double) map.get("lng"));
+				} catch (Exception e) {
+					update.set("lat", 0);
+					update.set("lng", 0);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				continue;
+			}
 			template.updateFirst(query, update, "food");
 
 		}
