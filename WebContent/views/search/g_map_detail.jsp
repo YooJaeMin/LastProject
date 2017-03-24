@@ -61,11 +61,13 @@
 			"title" : '${item.title}',
 // 			"icon": image
 		});
-		var contentString${vs.index} = '<div>'+
-			'<div class="row"><a href="/search/detail?tel=${item.tel }">${item.title }</a></div>'+
-			'<div class="row">${item.adress }</div>'+
-			'<div class="row">${item.tel }</div>'+
-		'</div>';
+		
+		var contentString${vs.index} =
+			'<a href="/search/detail?tel=${item.tel }"style="font-size: 15pt; bold;">${item.title }</a><br/>'+
+			'${item.adress }<br/>'+
+			'☏ ${item.tel }<br/>'+
+			'평점 : ${item.avg }';
+			
 		var infowindow${vs.index} = new google.maps.InfoWindow({
 			'content' : contentString${vs.index},
 			'maxWidth': 200

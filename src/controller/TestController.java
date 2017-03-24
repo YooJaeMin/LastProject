@@ -167,97 +167,103 @@ public class TestController {
 		JSONParser jsonParser = new JSONParser();
 
 		List list = td.modifyLoc();
-		
-		elementLoof: for (int i = 0; i < 500; i++) {
-			Map map = (Map) list.get(i);
-			String[] adressArr = ((String) map.get("adress")).split("\\s");
-			String adress="";
-			int ch =0;
-			for(String chip : adressArr){
-				if(ch >= 4 ) break;
-				adress += chip;
-				ch++;
-			}
-			String target = "https://maps.googleapis.com/maps/api/geocode/json?address=" + adress
-					+ "&key=AIzaSyC4Ao4DNSHj_KEDrTLzVUsyGxoemaZJeRA&language=ko";
-			// 요청보내는 방법은 꽤 많다.
-			// System.out.println(target);
-			URL url = null;
-			try {
-				url = new URL(target);
-			} catch (IOException e1) {
-				e1.printStackTrace();
-				continue elementLoof;
-			}
 
-			BufferedReader br = null;
+		elementLoof: for (int i = 0; i < list.size() - 1; i++) {
 			try {
-				br = new BufferedReader(new InputStreamReader(url.openStream()));
-			} catch (IOException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-				continue elementLoof;
 
-			}
-			String outstr = "";
-			while (true) {
-				String str = null;
+				Map map = (Map) list.get(i);
+				String[] adressArr = ((String) map.get("adress")).split("\\s");
+				String adress = "";
+				int ch = 0;
+				for (String chip : adressArr) {
+					if (ch >= 4)
+						break;
+					adress += chip;
+					ch++;
+				}
+				String target = "https://maps.googleapis.com/maps/api/geocode/json?address=" + adress
+						+ "&key=AIzaSyC4Ao4DNSHj_KEDrTLzVUsyGxoemaZJeRA&language=ko";
+				// 요청보내는 방법은 꽤 많다.
+				// System.out.println(target);
+				URL url = null;
 				try {
-					str = br.readLine();
+					url = new URL(target);
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 					continue elementLoof;
 				}
-				if (str == null)
-					break;
-				// out.println(str);
-				outstr += str;
-			}
 
-			try {
-
-
-
-				// JSON데이터를 넣어 JSON Object 로 만들어 준다.
-				JSONObject jsonObject = (JSONObject) jsonParser.parse(outstr);
-				JSONArray resultArray = (JSONArray) jsonObject.get("results");
-				if (resultArray.size() != 0) {
-					JSONObject resultObject = (JSONObject) jsonParser.parse(resultArray.get(0).toString());
-					// System.out.println(resultObject.toString());
-					JSONObject geoMetryObject = (JSONObject) resultObject.get("geometry");
-					// System.out.println(geoMetryObject.toString());
-					JSONObject locationObject = (JSONObject) geoMetryObject.get("location");
-					// System.out.println(locationObject.toString());
-					// System.out.println("lat ==
-					// "+latObject.toString());
-					Double lng = (Double) locationObject.get("lng");
-					Double lat = (Double) locationObject.get("lat");
-					// System.out.println("lng ==
-					// "+lngObject.toString());
-					// location의 배열을 추출
-					map.put("lng", lng);
-					map.put("lat", lat);
-				}
-			} catch (ParseException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				BufferedReader br = null;
 				try {
-					JSONObject jsonObject = (JSONObject) jsonParser.parse(outstr);
-					String ss = (String) jsonObject.get("status");
-					if(ss.equals("OVER_QUERY_LIMIT")){
-						break elementLoof;
-					}
-				} catch (ParseException e) {
+					br = new BufferedReader(new InputStreamReader(url.openStream()));
+				} catch (IOException e2) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					e2.printStackTrace();
+					continue elementLoof;
+
+				}
+				String outstr = "";
+				while (true) {
+					String str = null;
+					try {
+						str = br.readLine();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						continue elementLoof;
+					}
+					if (str == null)
+						break;
+					// out.println(str);
+					outstr += str;
+				}
+
+				try {
+
+					// JSON데이터를 넣어 JSON Object 로 만들어 준다.
+					JSONObject jsonObject = (JSONObject) jsonParser.parse(outstr);
+					JSONArray resultArray = (JSONArray) jsonObject.get("results");
+					if (resultArray.size() != 0) {
+						JSONObject resultObject = (JSONObject) jsonParser.parse(resultArray.get(0).toString());
+						// System.out.println(resultObject.toString());
+						JSONObject geoMetryObject = (JSONObject) resultObject.get("geometry");
+						// System.out.println(geoMetryObject.toString());
+						JSONObject locationObject = (JSONObject) geoMetryObject.get("location");
+						// System.out.println(locationObject.toString());
+						// System.out.println("lat ==
+						// "+latObject.toString());
+						Double lng = (Double) locationObject.get("lng");
+						Double lat = (Double) locationObject.get("lat");
+						// System.out.println("lng ==
+						// "+lngObject.toString());
+						// location의 배열을 추출
+						map.put("lng", lng);
+						map.put("lat", lat);
+					}
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					try {
+						JSONObject jsonObject = (JSONObject) jsonParser.parse(outstr);
+						String ss = (String) jsonObject.get("status");
+						if (ss.equals("OVER_QUERY_LIMIT")) {
+							break elementLoof;
+						}
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						continue elementLoof;
+					}
 					continue elementLoof;
 				}
-				continue elementLoof;
+				// System.out.println(innerMap.toString());
+				list.set(i, map);
+			} catch (Exception e) {
+				e.printStackTrace();
+				continue;
 			}
-			// System.out.println(innerMap.toString());
-			list.set(i, map);
-	
+
+
 		}
 		td.modifyFinal(list);
 		return mav;

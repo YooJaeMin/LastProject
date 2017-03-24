@@ -14,16 +14,8 @@
 <style type="text/css">
 <<<<<<<
 HEAD
-.main_visual.item:not (.left ):not (.right ){
-	-webkit-transition: 0s ease-in-out left;
-	transition: 0s ease-in-out left
-}
 
-/* .input { */
-/*    font-family: '나눔고딕'; */
-/*    font-size: 10pt; */
-/* } */
-=======
+
 .main_visual
 .item
 :not
@@ -59,6 +51,80 @@ s
 ease-in-out
  
 left
+
+
+}
+
+/* .input { */
+/*    font-family: '나눔고딕'; */
+/*    font-size: 10pt; */
+/* } */
+=======
+.main_visual
+
+
+.item
+
+
+:not
+
+ 
+
+(
+.left
+
+ 
+
+)
+:not
+
+ 
+
+(
+.right
+
+ 
+
+){
+-webkit-transition
+
+
+:
+
+ 
+
+0
+s
+
+ 
+
+ease-in-out
+
+ 
+
+left
+
+
+;
+transition
+
+
+:
+
+ 
+
+0
+s
+
+ 
+
+ease-in-out
+
+ 
+
+left
+
+
 
 
 }
@@ -113,7 +179,11 @@ keyframes cf3FadeInOut { 0% {
 opacity
 
 
+
+
 :
+
+
 
 
 1;
@@ -123,7 +193,11 @@ opacity
 opacity
 
 
+
+
 :
+
+
 
 
 0;
@@ -133,7 +207,11 @@ opacity
 opacity
 
 
+
+
 :
+
+
 
 
 0;
