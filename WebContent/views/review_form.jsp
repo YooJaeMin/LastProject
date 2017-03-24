@@ -87,6 +87,27 @@ div {
 			--><a href="#2" title="2 stars">★</a><!--
 			--><a href="#1" title="1 star">★</a>
 	</div> 	
+		<div class="rating"><!--
+			--><a href="#5" title="5 stars">★</a><!--
+			--><a href="#4" title="4 stars">★</a><!--
+			--><a href="#3" title="3 stars">★</a><!--
+			--><a href="#2" title="2 stars">★</a><!--
+			--><a href="#1" title="1 star">★</a>
+	</div> 
+		<div class="rating"><!--
+			--><a href="#5" title="5 stars">★</a><!--
+			--><a href="#4" title="4 stars">★</a><!--
+			--><a href="#3" title="3 stars">★</a><!--
+			--><a href="#2" title="2 stars">★</a><!--
+			--><a href="#1" title="1 star">★</a>
+	</div> 
+		<div class="rating"><!--
+			--><a href="#5" title="5 stars">★</a><!--
+			--><a href="#4" title="4 stars">★</a><!--
+			--><a href="#3" title="3 stars">★</a><!--
+			--><a href="#2" title="2 stars">★</a><!--
+			--><a href="#1" title="1 star">★</a>
+	</div> 
 
 
 

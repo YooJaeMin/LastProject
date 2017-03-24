@@ -75,7 +75,4 @@
 		<put-attribute name="main" value="/views/testing/about.jsp"/>
 	</definition>
 	<!-- review -->
-	<definition name="t_review" extends="base">
-		<put-attribute name="main" value="/views/review_form.jsp"/>
-	</definition>
 </tiles-definitions>
