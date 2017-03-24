@@ -137,6 +137,9 @@ public class SearchController {
 		/*태영 고친부분 */
 		
 		
+		
+		
+		
 		List<HashMap> like = likedao.getliekN(reqMap);
 		HashMap likeRR = like.get(0);
 		
