@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
@@ -18,6 +18,16 @@
 .starScore {
 	cursor: pointer;
 }
+
+#review_detail {
+	width: 100%;
+	padding: 50px;
+	background-color: lightblue;
+	margin-top: 20px;
+}
+
+
+
 </style>
 
 
@@ -34,10 +44,11 @@
 
 				<!-- Modal content-->
 				<div class="modal-content">
-
+					<div class="w3-container w3-yellow">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 						<h4 class="modal-title" align="center">나의 후기 등록하기</h4>
+					</div>
 					</div>
 					<!-- 후기작성란+별점+날씨등록란 -->
 					<div class="modal-body">
@@ -70,7 +81,7 @@
 							</p>
 
 							<div class="row">
-								<div class="col-sm-3">
+								<div class="container">
 									<!-- 별점 평가란 -->
 									청결도 : <input type="hidden" id="clean_s" name="clean_s"
 										value="1" />
@@ -145,33 +156,37 @@
 									<br />
 								</div>
 								<br>
-								<div class="col-sm-9">
-									<textarea rows="5" cols="80" id="content" class="form-control"
-										placeholder="후기를 입력해주세요" required="required"
-										style="height: 251px;"></textarea>
-									<br />
-									<div class="submit_btn" align="right">
-										<hr>
-										<button type="submit" class="btn btn-default">등록하기</button>
-										<button type="button" class="btn btn-default"
-											data-dismiss="modal">취소</button>
-									</div>
+								<div align="center">
+									<button type="button" class="btn btn-warning" value="hide" id="hbt">자세한 후기 작성하기</button>
+									<button type="submit" class="btn btn-primary">
+										등록하기 <span class="glyphicon glyphicon-pencil"></span>
+									</button>
+									<button type="button" class="btn btn-danger"
+										data-dismiss="modal">취소</button>
 								</div>
 							</div>
-
-
-
+							
+							<br/><div class="review_detail" id="text1" style="display: none;">
+								<textarea placeholder="내용을 입력하세요."
+								style="width:565px;height:150px;"></textarea>
+							</div><br/>
+							
 						</form>
 					</div>
-				</div>
 
+
+
+				</div>
 			</div>
 		</div>
-
 	</div>
 
 </body>
 <script>
+	$("#hbt").click(function(){
+		$("#text1").toggle();
+	});
+	
 	function star(x,type){
 		
 		if($("#star_"+type+x).html()=="☆"){
@@ -198,5 +213,9 @@
 
 		$("#"+type+"_s").val(x);
 	}
+	
+
+
 </script>
+
 

@@ -12,6 +12,9 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <style type="text/css">
+
+
+
  .input {
 	font-family: '나눔고딕';
 	font-size: 10pt;
