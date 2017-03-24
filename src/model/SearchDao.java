@@ -277,9 +277,7 @@ public class SearchDao {
 			list = session.selectList("review.reviewResult", map);
 		} catch(Exception e){
 			e.printStackTrace();
-		} finally {
-			session.close();
-		}
+		} 
 		for(int i =0; i<list.size(); i++){
 			innerMap = list.get(i);
 			date = (Date) innerMap.get("EAT_DATE");
@@ -292,9 +290,10 @@ public class SearchDao {
 				innerMap.put("PROFILE", profile);
 			} catch(Exception e2){
 				e2.printStackTrace();
-			}
+			} 
 			
 		}
+		session.close();
 		return list;
 	}
 
