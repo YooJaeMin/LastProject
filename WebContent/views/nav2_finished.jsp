@@ -28,14 +28,14 @@
 
 <div id="nav_body" data-spy="scroll" data-toggle=".navbar" data-offset="50">
 
-	<nav class="navbar navbar-inverse">
-		<div class="container-fluid">
+	<nav class="navbar navbar-inverse ">
+		<div class="container-fluid ">
 			
 			<ul class="nav navbar-nav">
 				<li><a href="/"><span style="color: #ffd700;"><b>Spoon
 								Compass</b></span></a></li>
 				<li class="active">
-					<a href="#home" data-toggle="tooltip" data-placement="bottom"title="홈">
+					<a href="#" data-toggle="tooltip" data-placement="bottom"title="홈">
 					<b>HOME</b></a></li>
 				<li><a href="#about" data-toggle="tooltip" data-placement="bottom"title="스푼컴파스 소개">
 					<b>ABOUT</b></a></li>

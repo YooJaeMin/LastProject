@@ -112,7 +112,12 @@ public class SearchController {
 		}
 		if (selectedTag == null)
 			selectedTag = "한식";
-
+		int page = 1;
+		if((String)reqMap.get("page")!=null){
+			page = Integer.parseInt((String)reqMap.get("page"));
+		}
+		mav.addObject("page",page);
+		
 		String[] foods = { "수요미식회", "생활의달인", "TV맛집", "한식", "중식", "일식", "카페", "술집", "고기집", "횟집", "해산물", "밥집", "분식",
 				"파스타", "뷔페", "국물요리", "면요리", "이탈리안", "멕시칸", "프렌치", "아시안" };
 		mav.addObject("tagsList", foods);
