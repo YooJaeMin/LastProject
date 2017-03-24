@@ -61,7 +61,9 @@
 					<input type="radio" name="type" value="family">가족
 					<img class="weather_box" src="/img_weather/family.png"/>
 				</p>
-				<div>
+				
+				<div class="row">
+				<div class="col-sm-3">
 					청결도
 					<select	id="clean_s" name="clean_s" style="width:120px;" class="form-control">
 						<option>★★★★★</option>
@@ -103,21 +105,21 @@
 						<option>★</option>
 					</select>
 				</div><br>
-				
-				후기 작성란
-				<textarea rows="5" cols="80" id="content" class="form-control"
-					placeholder="후기를 입력해주세요" required="required"></textarea><br/>
-				<div class="submit_btn" align="right">
-				<button type="submit" class="btn btn-default">등록하기</button>
-	         	<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+				<div class="col-sm-9">
+					<textarea rows="5" cols="80" id="content" class="form-control" 
+						placeholder="후기를 입력해주세요" required="required"
+						style="height:251px;"></textarea><br/>
+					<div class="submit_btn" align="right">
+					<hr>
+					<button type="submit" class="btn btn-default">등록하기</button>
+		         	<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+		         	</div>
+	         	</div>
 	         	</div>
 	         	
 
 	         	
 			</form>
-        </div>
-        <div class="modal-footer">
-        	<!-- 모달 풋터 -->
         </div>
       </div>
       
