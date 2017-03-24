@@ -12,28 +12,64 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <style type="text/css">
-<<<<<<< HEAD
-.main_visual.item:not(.left):not(.right){
--webkit-transition:0s ease-in-out left
-;transition:0s ease-in-out left}
+<<<<<<<
+HEAD
+.main_visual.item:not (.left ):not (.right ){
+	-webkit-transition: 0s ease-in-out left;
+	transition: 0s ease-in-out left
+}
 
 /* .input { */
 /*    font-family: '나눔고딕'; */
 /*    font-size: 10pt; */
 /* } */
 =======
-.main_visual.item:not (.left ):not (.right ){
-	-webkit-transition: 0s ease-in-out left;
-	transition: 0s ease-in-out left
+.main_visual
+.item
+:not
+ 
+(
+.left
+ 
+)
+:not
+ 
+(
+.right
+ 
+){
+-webkit-transition
+:
+ 
+0
+s
+ 
+ease-in-out
+ 
+left
+;
+
+	
+transition
+:
+ 
+0
+s
+ 
+ease-in-out
+ 
+left
+
+
 }
->>>>>>> branch 'master' of https://github.com/YooJaeMin/LastProject.git
+>>>>>>>
+branch 'master ' of https: //github.com /YooJaeMin/LastProject.git
 
 
  .input {
 	font-family: '나눔고딕';
 	font-size: 10pt;
-} 
-
+}
 
 .main_view {
 	position: absolute;
@@ -75,26 +111,32 @@ keyframes cf3FadeInOut { 0% {
 45%
 {
 opacity
+
+
 :
+
+
 1;
-
-
 }
 55%
 {
 opacity
+
+
 :
+
+
 0;
-
-
 }
 100%
 {
 opacity
+
+
 :
+
+
 0;
-
-
 }
 }
 #main_visual img.top {
@@ -125,7 +167,7 @@ opacity
 		<div class="input col-sm-6" style="width: 50%; font-size: 18px">
 			<ul>
 				<c:forEach items="${realRank}" var="item">
-					<li>${item._id }</li>
+					<li><a href="/search/keyword?keyword=${item._id }">${item._id }</a></li>
 				</c:forEach>
 			</ul>
 
@@ -135,7 +177,7 @@ opacity
 
 			<ul>
 				<c:forEach items="${todayRank}" var="item">
-					<li>${item._id }</li>
+					<li><a href="/search/keyword?keyword=${item._id }">${item._id }</a></li>
 				</c:forEach>
 			</ul>
 
@@ -146,10 +188,10 @@ opacity
 		<div class="input-group" style="width: 100%;">
 			<form action="/search/keyword" method="get">
 				<div class="col-md-10">
-				<input type="text" name="keyword" class="form-control"
-					style="height: 55px; font-size: 18px; border: 4px solid; border-color: #FFD700;"
-					placeholder="지역명">
-					</div>
+					<input type="text" name="keyword" class="form-control"
+						style="height: 55px; font-size: 18px; border: 4px solid; border-color: #FFD700;"
+						placeholder="지역명">
+				</div>
 				<div class="input-group-btn col-md-2">
 					<button class="btn btn-default" type="submit"
 						style="height: 55px; width: 120px; font-size: 18px; border: 4px solid; border-color: #FFD700; background-color: #FFD700; color: white;">
@@ -164,8 +206,7 @@ opacity
 	var header = $('.main_visual');
 
 	var backgrounds = new Array('url(./img/result.jpg)',
-			 'url(./img/main11.jpg)',
-			'url(./img/main16.jpg)');
+			'url(./img/main11.jpg)', 'url(./img/main16.jpg)');
 
 	var current = 0;
 

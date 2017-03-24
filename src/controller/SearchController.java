@@ -2,6 +2,7 @@ package controller;
 
 import java.util.*;
 
+import javax.servlet.http.HttpSession;
 import javax.tools.DocumentationTool.Location;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,10 +43,12 @@ public class SearchController {
 		List list = sd.doSearch(map);
 
 		// 리뷰가 완성되면 진행할 예정
+		list = sd.mongoWithSql(list);
 		mav.addObject("locationResult", list);
 		// mav.addObject("locationResult", sd.rankFilter(list));
 
 		List list2 = sd.titleSearch(map);
+		list2 = sd.mongoWithSql(list2);
 		// mav.addObject("titleResult",sd.rankFilter(list2));
 		mav.addObject("titleResult", list2);
 
@@ -86,7 +89,7 @@ public class SearchController {
 			list = sd.titleSearch(map);
 			mav.addObject("type", "상호");
 		}
-
+		list = sd.mongoWithSql(list);
 		mav.addObject("result", list);
 		// 리뷰가 완성되면 진행할 예정
 
@@ -111,25 +114,49 @@ public class SearchController {
 		}
 		if (selectedTag == null)
 			selectedTag = "한식";
-
+		int page = 1;
+		if((String)reqMap.get("page")!=null){
+			page = Integer.parseInt((String)reqMap.get("page"));
+		}
+		
+		mav.addObject("page",page);
+		
 		String[] foods = { "수요미식회", "생활의달인", "TV맛집", "한식", "중식", "일식", "카페", "술집", "고기집", "횟집", "해산물", "밥집", "분식",
 				"파스타", "뷔페", "국물요리", "면요리", "이탈리안", "멕시칸", "프렌치", "아시안" };
 		mav.addObject("tagsList", foods);
 		List list = sd.tagSearch(selectedTag);
+		list = sd.mongoWithSql(list);
 		mav.addObject("selectedTag", selectedTag);
 		mav.addObject("result", list);
 		return mav;
 	}
 	
 	@RequestMapping("/detail")
-	public ModelAndView storeDetail(@RequestParam Map reqMap) {
+	public ModelAndView storeDetail(@RequestParam Map reqMap ,HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_detail");
 		/*태영 고친부분 */
+		
+		
+		
+		
+		
 		List<HashMap> like = likedao.getliekN(reqMap);
-		System.out.println(like);
+		HashMap likeRR = like.get(0);
+		
+		reqMap.put("id", session.getAttribute("auth_id"));
+		int likeR = likedao.Check(reqMap);
+		boolean likeResult=false;
+		if(likeR==1){
+			likeResult=true;
+		}
+	
 		/*태영 like*/
+		
+		
 		String tel = (String) reqMap.get("tel");
 		List list = sd.storeDetail(reqMap);
+		list = sd.mongoWithSql(list);
+		
 		mav.addObject("result",list);
 		Map map = (Map)list.get(0);
 		List<String> imgList = (List) map.get("img");
@@ -142,6 +169,10 @@ public class SearchController {
 		
 		List reviewList = sd.reviewList(reqMap);
 		mav.addObject("reviewList", reviewList);
+		/*태영 고친 부분*/
+		mav.addObject("like", likeRR);
+		mav.addObject("likeResult", likeResult);
+		/*  */
 		map.put("img", tempList);
 		mav.addObject("store",map);
 		System.out.println(list.get(0).toString());

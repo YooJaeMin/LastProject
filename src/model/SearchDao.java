@@ -35,10 +35,13 @@ public class SearchDao {
 		try {
 			for (Map map : list) {
 
-				List sqlList = session.selectList("review.reviewResult", map);
+//				List sqlList = session.selectList("review.reviewResult", map);
 				int hitCnt = session.selectOne("store.hitCnt", map);
-				int avg = session.selectOne("review.avgResult", map);
-				map.put("sqlInfo", sqlList);
+				double avg = session.selectOne("review.avgResult", map);
+//				map.put("sqlInfo", sqlList);
+				avg = Double.parseDouble(String.format("%.2f",avg));
+
+
 				map.put("avg", avg);
 				map.put("hitCnt", hitCnt);
 				tempList.add(map);

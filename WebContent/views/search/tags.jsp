@@ -42,7 +42,7 @@
 	</c:forEach>
 </div>
 <div id="location-list" class="row col-md-offset-1 col-md-9">
-	<h2 align="center">위치 검색</h2>
+	<h2 align="center">태그 검색</h2>
 	<c:choose>
 		<c:when test="${result.size() eq 0 || result eq null}">
 			<h3>0개검색</h3>
@@ -60,11 +60,11 @@
 					</div>
 					<div class="col-md-6">
 						<h3>
-							<a href="#">${vs.count}. ${item.title }</a>
+							<a href="/search/detail?tel=${item.tel }">${vs.count}. ${item.title }</a>
 						</h3>
 						<br />
 						<c:forEach items="${item.tag }" var="tag" varStatus="vs">
-							<a href="#">${tag}</a>
+							<a href="/search/tag?selectedTag=${tag }">${tag}</a>
 						</c:forEach>
 						<div>Like : ${item.hitCnt } / AVG : ${item.avg }</div>
 					</div>

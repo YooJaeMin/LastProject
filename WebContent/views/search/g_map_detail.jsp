@@ -24,12 +24,10 @@
 			};
 		
 		<c:forEach items="${result }" var="item" varStatus="vs">
-		<c:if test="${vs.index ge (page-1)*10 && vs.index lt page*10  }">
 		var pos${vs.index} = {
 			'lat' : ${item.lat},	
 			'lng' : ${item.lng}
 		};
-		</c:if>
 		</c:forEach>
 
 		<c:choose>
@@ -42,7 +40,7 @@
 		</c:when>
 		<c:otherwise>
 		var map = new google.maps.Map(document.getElementById('map'), {
-			"center" : 	pos${(page-1)*10},
+			"center" : 	pos0,
 			"scrollwheel" : true,
 			"zoom" : 15
 		});
@@ -57,7 +55,6 @@
 // 				  scaledSize: new google.maps.Size(40, 60)
 // 				};
 		<c:forEach items="${result }" var="item" varStatus="vs">
-		<c:if test="${vs.index ge (page-1)*10 && vs.index lt page*10  }">
 		var marker${vs.index} = new google.maps.Marker({
 			"map" : map,
 			"position" : pos${vs.index},
@@ -76,7 +73,6 @@
 		marker${vs.index}.addListener('click', function() {
 			infowindow${vs.index}.open(map, marker${vs.index});
 		});
-		</c:if>
 		</c:forEach>
 	}
 </script>

@@ -10,7 +10,13 @@
 		delete store_hit where id=#{id} and tel = #{tel}
 	</delete>
 	
-	<select id="result" parameterType="java.util.HashMap">
+	<select id="result" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		select  tp.* from (select sh.TEL,count(sh.TEL) cnt from store_hit sh group by sh.tel) tp where tel=#{tel}
 	</select>
+	
+	<select id="check" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		select count(*) from store_hit where tel=#{tel} and id=#{id}
+	</select>
+	
+	
 </mapper>
