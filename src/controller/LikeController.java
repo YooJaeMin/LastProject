@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import model.LikeDao;
 
@@ -19,10 +20,13 @@ public class LikeController {
 	
 	@RequestMapping("/button")
 	@ResponseBody
-	public String likeHandle(@RequestParam Map map){
+	public HashMap likeHandle(@RequestParam Map map){
 		String r = ldao.allLike(map);
-		System.out.println("결과값"+r);
-		return r;
+		List<HashMap> cnt = ldao.getliekN(map);
+		HashMap cnt2 = cnt.get(0);
+		cnt2.put("like", r);
+		System.out.println("결과값"+cnt2);
+		return cnt2;
 	}
 
 }

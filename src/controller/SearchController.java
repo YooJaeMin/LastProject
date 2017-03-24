@@ -2,6 +2,7 @@ package controller;
 
 import java.util.*;
 
+import javax.servlet.http.HttpSession;
 import javax.tools.DocumentationTool.Location;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,14 +123,27 @@ public class SearchController {
 	}
 	
 	@RequestMapping("/detail")
-	public ModelAndView storeDetail(@RequestParam Map reqMap) {
+	public ModelAndView storeDetail(@RequestParam Map reqMap ,HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_detail");
 		/*태영 고친부분 */
+		
+		
 		List<HashMap> like = likedao.getliekN(reqMap);
-		System.out.println(like);
+		HashMap likeRR = like.get(0);
+		
+		reqMap.put("id", session.getAttribute("auth_id"));
+		int likeR = likedao.Check(reqMap);
+		boolean likeResult=false;
+		if(likeR==1){
+			likeResult=true;
+		}
+	
 		/*태영 like*/
+		
+		
 		String tel = (String) reqMap.get("tel");
 		List list = sd.storeDetail(reqMap);
+		
 		mav.addObject("result",list);
 		Map map = (Map)list.get(0);
 		List<String> imgList = (List) map.get("img");
@@ -142,6 +156,10 @@ public class SearchController {
 		
 		List reviewList = sd.reviewList(reqMap);
 		mav.addObject("reviewList", reviewList);
+		/*태영 고친 부분*/
+		mav.addObject("like", likeRR);
+		mav.addObject("likeResult", likeResult);
+		/*  */
 		map.put("img", tempList);
 		mav.addObject("store",map);
 		System.out.println(list.get(0).toString());
