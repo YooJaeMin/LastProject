@@ -172,11 +172,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-2" style="left: 130px">
+		<div class="col-md-2" >
 			<!--  -->
 			<!--  -->
+			<div class="col-md-8">
 			<button type="button" id="like" class="btn" value="true"
-				style="WIDTH: 100pt; HEIGHT: 30pt">
+				style="WIDTH: 80pt; HEIGHT: 30pt">
 				좋아요<span id="like_cnt">${like.CNT}</span>
 				<!--  -->
 				<c:choose>
@@ -193,6 +194,10 @@
 				</c:choose>
 				<!--  -->
 			</button>
+			</div>
+			<div class="col-md-4">
+				<a href=""><img src="/views/search/images/food bucket.png" style="width:40pt;height:30pt "></a>
+			</div>
 		</div>
 
 	</div>
@@ -482,7 +487,68 @@
 		});
 </script>
 
+
+<!--  -->
 <script>
+$("#like").click(function() {
+	$.ajax({
+					"url" : "/like/button?",
+					"method" : "post",
+					"data" : {
+					"id" : "${sessionScope.auth_id}",
+					"tel" : "${store.tel}",
+			}
+	}).done(function(rst) {
+					var printRst = rst;
+					console.log(rst)
+					if (rst.like == 'like') {
+						$("#likeR").attr("src","/img/1414328714455_PicsArt_1389242401746.png")
+						$("#like_cnt").html(rst.CNT)
+						
+					} else if (rst.like == 'delete') {
+						$("#likeR").attr("src","/img/SketchTalk201361917350.png")
+						$("#like_cnt").html(rst.CNT)
+					} else {
+
+					}
+
+			});
+	});
+</script>
+<!--  -->
+<script>
+$("#like").click(function() {
+	$.ajax({
+					"url" : "/like/button?",
+					"method" : "post",
+					"data" : {
+					"id" : "${sessionScope.auth_id}",
+					"tel" : "${store.tel}",
+			}
+	}).done(function(rst) {
+					var printRst = rst;
+					console.log(rst)
+					if (rst.like == 'like') {
+						$("#likeR").attr("src","/img/1414328714455_PicsArt_1389242401746.png")
+						$("#like_cnt").html(rst.CNT)
+						
+					} else if (rst.like == 'delete') {
+						$("#likeR").attr("src","/img/SketchTalk201361917350.png")
+						$("#like_cnt").html(rst.CNT)
+					} else {
+
+					}
+
+			});
+	});
+
+</script>
+<!--  -->
+<script>
+
+
+
+
 	function listMore() {
 		var x = document.getElementById('reviewList');
 		if (x.style.display === 'none') {

@@ -132,7 +132,7 @@
 												class="glyphicon glyphicon-user"></span>이메일로 가입하기</label> <input
 												type="text" class="form-control" id="id2" name="id"
 												placeholder="이메일 주소"><br /> <input type="text"
-												class="form-control" id="name2" name="nick"
+												class="form-control" id="name2" name="name"
 												placeholder="이름(별명)"><br> <input
 												type="password" class="form-control" id="pw2" name="pw"
 												placeholder="비밀번호">
