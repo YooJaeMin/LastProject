@@ -66,46 +66,8 @@
 				
 				<div class="row">
 				<div class="col-sm-3">
-					청결도
-					<select	id="clean_s" name="clean_s" style="width:120px;" class="form-control">
-						<option>★★★★★</option>
-						<option>★★★★</option>
-						<option>★★★</option>
-						<option>★★</option>
-						<option>★</option>
-					</select>
-					맛
-					<select	id="taste_s" name="taste_s" style="width:120px;" class="form-control">
-						<option>★★★★★</option>
-						<option>★★★★</option>
-						<option>★★★</option>
-						<option>★★</option>
-						<option>★</option>
-					</select>
-					가격
-					<select	id="taste_s" name="taste_s" style="width:120px;" class="form-control">
-						<option>★★★★★</option>
-						<option>★★★★</option>
-						<option>★★★</option>
-						<option>★★</option>
-						<option>★</option>
-					</select>
-					친절도
-					<select	id="taste_s" name="taste_s" style="width:120px;" class="form-control">
-						<option>★★★★★</option>
-						<option>★★★★</option>
-						<option>★★★</option>
-						<option>★★</option>
-						<option>★</option>
-					</select>
-					접근성
-					<select	id="taste_s" name="taste_s" style="width:120px;" class="form-control">
-						<option>★★★★★</option>
-						<option>★★★★</option>
-						<option>★★★</option>
-						<option>★★</option>
-						<option>★</option>
-					</select>
+				<!-- 별점 평가란 -->
+				
 				</div><br>
 				<div class="col-sm-9">
 					<textarea rows="5" cols="80" id="content" class="form-control" 
