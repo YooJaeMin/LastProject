@@ -50,15 +50,39 @@ public class LikeDao {
 	public List<HashMap> getliekN(Map map){
 		List<HashMap> list = new ArrayList<>();
 		SqlSession session = factory.openSession();
+		System.out.println("테영삼삼"+map);
 		try{
-			list = session.selectList("like.result");
+			list = session.selectList("like.result",map);
+			if(list.size()==0){
+				HashMap mapR = new HashMap<>();
+				mapR.put("CNT", 0);
+				list.add(mapR);
+			}
+			System.out.println("태영삼삼삼"+list);
 		}catch (Exception e){
+			
 			e.printStackTrace();
+			
 		}finally{
 			session.close();
 		}
 		return list;
 		
+	}
+	public int Check(Map map){
+		SqlSession session = factory.openSession();
+		int r = 0;
+		try{
+			r = session.selectOne("like.check", map);
+			System.out.println("likecheck"+r);
+		}catch(Exception e){
+			e.printStackTrace();
+			return r;
+		}finally {
+			session.close();
+		}
+		
+		return r;
 	}
 	
 	

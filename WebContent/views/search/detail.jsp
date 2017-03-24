@@ -167,21 +167,31 @@
 				</span>
 				<div class="point1">
 					<div class="point2">
-						<img src="/icon/star_on.png" width="120px" height="30px">
+						<img src="/icon/star_on.png" width="160px" height="30px">
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-2" style="left: 200px">
+		<div class="col-md-2" style="left: 130px">
 			<!--  -->
 			<!--  -->
 			<button type="button" id="like" class="btn" value="true"
-				style="border: 0; outline: 0">
-
-				<img class="btn-img" id="likeR"
-					src="/img/SketchTalk201361917350.png"
-					style="width: 15%; height: auto;">
-
+				style="WIDTH: 100pt; HEIGHT: 30pt">
+				좋아요<span id="like_cnt">${like.CNT}</span>
+				<!--  -->
+				<c:choose>
+					<c:when test="${likeResult eq true}">
+						<img class="btn-img" id="likeR"
+							src="/img/1414328714455_PicsArt_1389242401746.png"
+							style="width: 15%; height: auto;">
+					</c:when>
+					<c:otherwise>
+						<img class="btn-img" id="likeR"
+							src="/img/SketchTalk201361917350.png"
+							style="width: 15%; height: auto;">
+					</c:otherwise>
+				</c:choose>
+				<!--  -->
 			</button>
 		</div>
 
@@ -446,36 +456,30 @@
 </script>
 
 <script>
-	$("#like")
-			.click(
-					function() {
-						$
-								.ajax({
-									"url" : "/like/button?",
-									"method" : "post",
-									"data" : {
-										"id" : "${sessionScope.auth_id}",
-										"tel" : "${store.tel}",
-									}
-								})
-								.done(
-										function(rst) {
-											var printRst = rst;
-											console.log(rst)
-											if (rst == 'like') {
-												$("#likeR")
-														.attr("src",
-																"/img/1414328714455_PicsArt_1389242401746.png")
-											} else if (rst == 'delete') {
-												$("#likeR")
-														.attr("src",
-																"/img/SketchTalk201361917350.png")
-											} else {
+	$("#like").click(function() {
+		$.ajax({
+						"url" : "/like/button?",
+						"method" : "post",
+						"data" : {
+						"id" : "${sessionScope.auth_id}",
+						"tel" : "${store.tel}",
+				}
+		}).done(function(rst) {
+						var printRst = rst;
+						console.log(rst)
+						if (rst.like == 'like') {
+							$("#likeR").attr("src","/img/1414328714455_PicsArt_1389242401746.png")
+							$("#like_cnt").html(rst.CNT)
+							
+						} else if (rst.like == 'delete') {
+							$("#likeR").attr("src","/img/SketchTalk201361917350.png")
+							$("#like_cnt").html(rst.CNT)
+						} else {
 
-											}
+						}
 
-										});
-					});
+				});
+		});
 </script>
 
 <script>
