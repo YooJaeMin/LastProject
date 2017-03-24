@@ -86,4 +86,21 @@ public class LikeDao {
 	}
 	
 	
+	////////////////////////////////////////////////////////
+	public int shoppingInsert(Map map){
+		SqlSession session = factory.openSession();
+		int r = 0;
+		try{
+			r = session.insert("like.shopping",map);
+			System.out.println("shopping Dao"+r);
+		}catch(Exception e){
+			e.printStackTrace();
+			return r;
+			
+		}finally{
+			session.close();
+		}
+		return r;
+	}
+	
 }
