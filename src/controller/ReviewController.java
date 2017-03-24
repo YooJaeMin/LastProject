@@ -18,7 +18,7 @@ public class ReviewController {
 	
 	@RequestMapping("/basic")
 	public ModelAndView basicHandle(@RequestParam Map map){
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView("t_review");
 		rd.insertBasic(map);
 		return mav;
 	}
