@@ -12,60 +12,6 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <style type="text/css">
-<<<<<<<
-HEAD
-.main_visual.item:not (.left ):not (.right ){
-	-webkit-transition: 0s ease-in-out left;
-	transition: 0s ease-in-out left
-}
-
-/* .input { */
-/*    font-family: '나눔고딕'; */
-/*    font-size: 10pt; */
-/* } */
-=======
-.main_visual
-.item
-:not
- 
-(
-.left
- 
-)
-:not
- 
-(
-.right
- 
-){
--webkit-transition
-:
- 
-0
-s
- 
-ease-in-out
- 
-left
-;
-
-	
-transition
-:
- 
-0
-s
- 
-ease-in-out
- 
-left
-
-
-}
->>>>>>>
-branch 'master ' of https: //github.com /YooJaeMin/LastProject.git
-
-
  .input {
 	font-family: '나눔고딕';
 	font-size: 10pt;
@@ -103,42 +49,6 @@ branch 'master ' of https: //github.com /YooJaeMin/LastProject.git
 	transition: opacity 1s ease-in-out;
 }
 
-@
-keyframes cf3FadeInOut { 0% {
-	opacity: 1;
-}
-
-45%
-{
-opacity
-
-
-:
-
-
-1;
-}
-55%
-{
-opacity
-
-
-:
-
-
-0;
-}
-100%
-{
-opacity
-
-
-:
-
-
-0;
-}
-}
 #main_visual img.top {
 	animation-name: cf3FadeInOut;
 	animation-timing-function: ease-in-out;
