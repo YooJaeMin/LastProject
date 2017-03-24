@@ -217,7 +217,7 @@
 			</button>
 			</div>
 			<div class="col-md-4">
-				<a href="#" id="shopping"><img src="/views/search/images/food bucket.png" style="width:40pt;height:30pt "></a>
+				<a href="#" id="shopping"><img src="/views/search/images/food bucket.png" id="shoppingR" style="width:40pt;height:30pt "></a>
 			</div>
 		</div>
 
@@ -288,27 +288,31 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<hr />
-		<div class="font2">리뷰</div>
-		<hr />
 		<div class="row">
 			<div align="center">
 				<button id="myBtn1" class="btn">후기등록</button>
 			</div>
 		</div>
+	<div class="row">
+		<hr />
+		<div class="row font2" align="left"><b>리뷰</b></div>
+		<hr />
 		<!-- 숙소 -->
 		<hr />
 
 		<div class="row font1" align="center">
 			<c:forEach items="${reviewList }" var="item" begin="1" end="5"
 				varStatus="vs">
-				<div class="row font1">
-					<div class="col-md-offset-1 col-md-3">${item.ID }</div>
+				<div class="row font1 col-md-3">
+					
+				</div>
+				<div class="row font1 col-md-9">
+					<div class="col-md-offset-1 col-md-2">${item.ID }</div>
 					<div class="col-md-3">${item.EAT_DATE }</div>
 					<div class="col-md-1">${item.HIT }</div>
 					<div class="col-md-3">총점 / ${item.AVG_S }</div>
 				</div>
+				
 				<div class="row font1">
 					<div class="col-md-6">${item.TYPE }</div>
 					<div class="col-md-6">${item.WEATHER }</div>
@@ -328,12 +332,15 @@
 					<div class="col-md-2">${item.LOCATION_S }</div>
 				</div>
 				<div class="row font1">
-					<div class="col-md-12">평가</div>
+					<div class="col-md-12" align="left"><b>평가</b></div>
 				</div>
 				<div class="row font1">
-					<div class="col-md-12">${item.CONTENT }</div>
+					<div class="col-md-12" align="left">${item.CONTENT }</div>
 				</div>
+				<hr/>
 			</c:forEach>
+			
+			
 			<div class="row font1" align="right">
 				<button class="btn" onclick="listMore()">리스트 더보기</button>
 			</div>
@@ -372,6 +379,8 @@
 							<div class="col-md-12">${item.CONTENT }</div>
 						</div>
 					</c:if>
+					
+					
 				</c:forEach>
 			</div>
 
@@ -523,9 +532,10 @@ $("#shopping").click(function() {
 					var printRst = rst;
 					console.log(rst)
 					if(rst==1){
-						window.alert("장바구니에 추가 되었습니다.!");
+						window.alert("장바구니에 추가 되었습니다.!")
+						$("#shoppingR").attr("src","/views/search/images/food_bucket_R.png")
 					}else{
-						window.alert("장바구니 오류.!");
+						window.alert("이미 선택된 장바구니 입니다.!")
 					}
 					
 					/* if (rst.like == 'like') {
