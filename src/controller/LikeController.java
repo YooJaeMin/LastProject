@@ -28,5 +28,15 @@ public class LikeController {
 		System.out.println("결과값"+cnt2);
 		return cnt2;
 	}
+	
+	
+	@RequestMapping("/shopping")
+	@ResponseBody
+	public int shoppingHandle(@RequestParam Map map){
+		int r = 0;
+		r = ldao.shoppingInsert(map);
+		System.out.println("shopping Controller"+r);
+		return r;
+	}
 
 }
