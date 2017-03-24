@@ -35,6 +35,7 @@ public class TestController {
 		List list1 = sd.realTimeRank();
 		mav.addObject("realRank", list1);
 		List list2 = sd.todayRank();
+		
 		mav.addObject("todayRank", list2);
 		return mav;
 	}
@@ -166,19 +167,18 @@ public class TestController {
 		ModelAndView mav = new ModelAndView();
 		JSONParser jsonParser = new JSONParser();
 
-		List list = td.modifyLoc();
-
-		elementLoof: for (int i = 0; i < list.size() - 1; i++) {
+		List<Map> list = td.modifyLoc();
+		List<Map> tempList = new ArrayList();
+		elementLoof: for (Map map : list) {
 			try {
-
-				Map map = (Map) list.get(i);
+				
 				String[] adressArr = ((String) map.get("adress")).split("\\s");
 				String adress = "";
 				int ch = 0;
 				for (String chip : adressArr) {
 					if (ch >= 4)
 						break;
-					adress += chip;
+					adress += chip+"+";
 					ch++;
 				}
 				String target = "https://maps.googleapis.com/maps/api/geocode/json?address=" + adress
@@ -257,7 +257,7 @@ public class TestController {
 					continue elementLoof;
 				}
 				// System.out.println(innerMap.toString());
-				list.set(i, map);
+				tempList.add(map);
 			} catch (Exception e) {
 				e.printStackTrace();
 				continue;
