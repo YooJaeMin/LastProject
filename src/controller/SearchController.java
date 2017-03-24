@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import model.LikeDao;
 import model.LocationDao;
+import model.NaverBlogDao;
 import model.SearchDao;
 
 @Controller
@@ -24,7 +25,9 @@ public class SearchController {
 	LocationDao ld;
 	@Autowired 
 	LikeDao likedao;
-
+	@Autowired
+	NaverBlogDao nbd;
+	
 	@RequestMapping("/keyword")
 	public ModelAndView searchBar(@RequestParam Map reqMap) {
 		ModelAndView mav = new ModelAndView("t_searchMain");
@@ -168,6 +171,7 @@ public class SearchController {
 		}
 		
 		List reviewList = sd.reviewList(reqMap);
+		
 		mav.addObject("reviewList", reviewList);
 		/*태영 고친 부분*/
 		mav.addObject("like", likeRR);
@@ -176,6 +180,11 @@ public class SearchController {
 		map.put("img", tempList);
 		mav.addObject("store",map);
 		System.out.println(list.get(0).toString());
+		String adress = ((String)map.get("adress")).substring(0,((String)map.get("adress")).lastIndexOf("동")+1);
+		String title = (String)map.get("title");
+		System.out.println(adress +" "+title);
+		Map blogMap = nbd.getBlogData(adress+" "+(String)map.get("title"));
+		mav.addObject("blog", blogMap);
 		return mav;
 	} 
 
