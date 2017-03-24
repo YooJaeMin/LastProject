@@ -3,7 +3,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="/lib/w3-theme-amber.css">
 <style>
 	.weather_box {
 		width: 40px;
@@ -27,6 +28,7 @@
     
       <!-- Modal content-->
       <div class="modal-content">
+      
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title" align="center">나의 후기 등록하기</h4>
@@ -39,13 +41,13 @@
 				<input type="hidden" name="tel" value="${store.tel }" />
           		<p>
           			날씨가 어땠나요?<br/>
-					<input type="radio" name="weather" value="sunny">
+					<input type="radio" name="weather" value="sunny">맑음
 					<img class="weather_box" src="/img_weather/sunny.png"/>
-					<input type="radio" name="weather" value="cloudy">
+					<input type="radio" name="weather" value="cloudy">흐림
 					<img class="weather_box" src="/img_weather/cloudy.png"/>
-					<input type="radio" name="weather" value="rainy">
+					<input type="radio" name="weather" value="rainy">비
 					<img class="weather_box"  src="/img_weather/rainy.png"/>
-					<input type="radio" name="weather" value="snowy">
+					<input type="radio" name="weather" value="snowy">눈
 					<img class="weather_box" src="/img_weather/snowy.png"/>
 				</p>
 				<p>
