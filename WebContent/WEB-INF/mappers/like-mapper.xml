@@ -18,5 +18,9 @@
 		select count(*) from store_hit where tel=#{tel} and id=#{id}
 	</select>
 	
+	<insert id="shopping" parameterType="java.util.HashMap">
+		insert into shopping values(#{tel},#{id})
+	</insert>
+	
 	
 </mapper>

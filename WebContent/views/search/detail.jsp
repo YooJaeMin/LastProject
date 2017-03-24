@@ -149,12 +149,33 @@
 	background-color: rgb(0, 0, 0); /* Fallback color */
 	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
+
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
 </style>
 
 <div
 	style="padding-top: 5%; margin: 0 250; padding-right: 25px; padding-left: 25px;">
 
-	<span class="title">${store.title }</span> <br />
+	<span class="title">${store.title },${store.avg}</span> <br />
 
 	<div class="row">
 		<div class="col-md-8">
@@ -196,7 +217,7 @@
 			</button>
 			</div>
 			<div class="col-md-4">
-				<a href=""><img src="/views/search/images/food bucket.png" style="width:40pt;height:30pt "></a>
+				<a href="#" id="shopping"><img src="/views/search/images/food bucket.png" style="width:40pt;height:30pt "></a>
 			</div>
 		</div>
 
@@ -490,9 +511,9 @@
 
 <!--  -->
 <script>
-$("#like").click(function() {
+$("#shopping").click(function() {
 	$.ajax({
-					"url" : "/like/button?",
+					"url" : "/like/shopping?",
 					"method" : "post",
 					"data" : {
 					"id" : "${sessionScope.auth_id}",
@@ -501,7 +522,13 @@ $("#like").click(function() {
 	}).done(function(rst) {
 					var printRst = rst;
 					console.log(rst)
-					if (rst.like == 'like') {
+					if(rst==1){
+						window.alert("장바구니에 추가 되었습니다.!");
+					}else{
+						window.alert("장바구니 오류.!");
+					}
+					
+					/* if (rst.like == 'like') {
 						$("#likeR").attr("src","/img/1414328714455_PicsArt_1389242401746.png")
 						$("#like_cnt").html(rst.CNT)
 						
@@ -510,44 +537,14 @@ $("#like").click(function() {
 						$("#like_cnt").html(rst.CNT)
 					} else {
 
-					}
+					} */
 
 			});
 	});
 </script>
-<!--  -->
+
+
 <script>
-$("#like").click(function() {
-	$.ajax({
-					"url" : "/like/button?",
-					"method" : "post",
-					"data" : {
-					"id" : "${sessionScope.auth_id}",
-					"tel" : "${store.tel}",
-			}
-	}).done(function(rst) {
-					var printRst = rst;
-					console.log(rst)
-					if (rst.like == 'like') {
-						$("#likeR").attr("src","/img/1414328714455_PicsArt_1389242401746.png")
-						$("#like_cnt").html(rst.CNT)
-						
-					} else if (rst.like == 'delete') {
-						$("#likeR").attr("src","/img/SketchTalk201361917350.png")
-						$("#like_cnt").html(rst.CNT)
-					} else {
-
-					}
-
-			});
-	});
-
-</script>
-<!--  -->
-<script>
-
-
-
 
 	function listMore() {
 		var x = document.getElementById('reviewList');
