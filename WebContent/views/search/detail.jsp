@@ -281,7 +281,7 @@
 
 	<div class="row font2">
 		사진
-		<hr style="border: solid 2px red;"/>
+		<hr style="border: solid 2px red;" />
 	</div>
 
 	<div class="row">
@@ -331,7 +331,13 @@
 				<div class="row font1 col-md-9">
 					<div class="col-md-offset-1 col-md-5">${item.ID }</div>
 					<div class="col-md-3">${item.EAT_DATE }</div>
-					<div class="col-md-1">좋아요<br/>${item.HIT }<img id="HIT" style="WIDTH: 15pt; HEIGHT: 15pt" src="/img/SketchTalk201361917350.png" ></div>
+					<div class="col-md-1">
+						좋아요<br /><div> ${item.HIT }</div><a id="${item.ID}"
+							onclick="goReviewHit(${vs.count },'${item.ID}',${item.HIT})"><img
+							id="img${vs.count }"
+							style="WIDTH: 15pt; HEIGHT: 15pt"
+							src="/img/SketchTalk201361917350.png"></a>
+					</div>
 					<!--  -->
 					<!--  -->
 					<div class="col-md-2">
@@ -561,7 +567,7 @@
 </div>
 
 <!-- 리뷰 -->
-<hr style="border: solid 2px red;"/>
+<hr style="border: solid 2px red;" />
 <!-- <div class="row"> -->
 <!-- 	<div class="col-md-3"> -->
 <!-- 		<div class="font2"> -->
@@ -580,7 +586,7 @@
 
 
 <!-- </div> -->
-<hr style="border: solid 2px red;"/>
+<hr style="border: solid 2px red;" />
 
 
 
@@ -658,7 +664,7 @@
 		pagerCustom : '#bx-pager'
 	});
 </script>
-
+<!--업소 좋아요-->
 <script>
 	$("#like")
 			.click(
@@ -696,7 +702,7 @@
 </script>
 
 
-<!--  -->
+<!--장바구니-->
 <script>
 	$("#shopping")
 			.click(
@@ -725,20 +731,42 @@
 														.alert("이미 선택된 장바구니 입니다.!")
 											}
 
-											/* if (rst.like == 'like') {
-												$("#likeR").attr("src","/img/1414328714455_PicsArt_1389242401746.png")
-												$("#like_cnt").html(rst.CNT)
-												
-											} else if (rst.like == 'delete') {
-												$("#likeR").attr("src","/img/SketchTalk201361917350.png")
-												$("#like_cnt").html(rst.CNT)
-											} else {
-
-											} */
-
 										});
 					});
 </script>
+<!--리뷰 좋아요-->
+<script>
+					function goReviewHit(cnt, id,hit) {
+						
+						$.ajax({
+									"url" : "/like/review?",
+									"method" : "post",
+									"data" : {
+										"id" : "${sessionScope.auth_id}",
+										"review_id" : id,
+										"good" : hit,
+										
+									}
+								}).done(function(rst) {
+											var printRst = rst;
+											console.log(rst)
+											if (rst == 1){
+												$("#img"+cnt)
+												.attr("src",
+																"/img/1414328714455_PicsArt_1389242401746.png")
+											} else {
+												$("#img"+cnt)
+												.attr("src",
+														"/img/SketchTalk201361917350.png")
+											}
+
+										});
+					}
+</script>
+
+
+
+<!--  -->
 
 
 <script>
@@ -752,6 +780,7 @@
 			x.innerHTML = '리스트 더보기';
 		}
 	}
+	
 </script>
 
 <div class="row font2">

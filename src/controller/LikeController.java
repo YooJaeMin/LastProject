@@ -38,5 +38,33 @@ public class LikeController {
 		System.out.println("shopping Controller"+r);
 		return r;
 	}
+	
+	@RequestMapping("/review")
+	@ResponseBody
+	public int reviewInsert(@RequestParam Map map){
+		int r = 0;
+		System.out.println(map.toString());
+			r = ldao.reviewInsert(map);
+		System.out.println("shopping Controller"+r);
+		return r;
+	}
+	
+	@RequestMapping("/reviewD")
+	@ResponseBody
+	public int reviewDelete(@RequestParam Map map){
+		int r = 0;
+		r = ldao.reviewDelete(map);
+		System.out.println("shopping Controller"+r);
+		return r;
+	}
+	
+	@RequestMapping("/reviewC")
+	@ResponseBody
+	public int reviewCheck(@RequestParam Map map){
+		int r = 0;
+		r = ldao.reviewCheck(map);
+		System.out.println("shopping Controller"+r);
+		return r;
+	}
 
 }

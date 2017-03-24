@@ -93,6 +93,7 @@ public class LikeDao {
 		try{
 			r = session.insert("like.shopping",map);
 			System.out.println("shopping Dao"+r);
+			session.commit();
 		}catch(Exception e){
 			e.printStackTrace();
 			return r;
@@ -102,5 +103,90 @@ public class LikeDao {
 		}
 		return r;
 	}
+	
+	public int shoppingDelete(Map map){
+		SqlSession session = factory.openSession();
+		int r = 0;
+		try{
+			r = session.insert("like.shoppingD",map);
+			System.out.println("shopping Dao"+r);
+			session.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+			return r;
+			
+		}finally{
+			session.close();
+		}
+		return r;
+	}
+	
+	public int shoppingCheck(Map map){
+		SqlSession session = factory.openSession();
+		int r = 0;
+		try{
+			r = session.insert("like.shoppingC",map);
+			System.out.println("shopping Dao"+r);
+			session.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+			return r;
+			
+		}finally{
+			session.close();
+		}
+		return r;
+	}
+	///////////////////////////////////////////////////////////
+	public int reviewInsert(Map map){
+		SqlSession session = factory.openSession();
+		int good = Integer.parseInt((String)map.get("good"));
+		map.put("good", good);
+		System.out.println("왜안돼!!"+map);
+		int r = 0;
+		try{
+			r = session.insert("like.review",map);
+			System.out.println("review Dao"+r);
+			session.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+			return r;
+		}finally{
+			session.close();
+		}
+		return r;
+	}
+	
+	public int reviewCheck(Map map){
+		SqlSession session = factory.openSession();
+		int r = 0;
+		try{
+			r = session.selectOne("like.reviewC",map);
+			System.out.println("reviewC Dao"+r);
+		}catch(Exception e){
+			e.printStackTrace();
+			return r;
+		}finally{
+			session.close();
+		}
+		return r;
+	}
+	
+	public int reviewDelete(Map map){
+		SqlSession session = factory.openSession();
+		int r = 0;
+		try{
+			r = session.insert("like.reviewD",map);
+			System.out.println("reviewC Dao"+r);
+			session.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+			return r;
+		}finally{
+			session.close();
+		}
+		return r;
+	}
+	
 	
 }
