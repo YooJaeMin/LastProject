@@ -42,7 +42,7 @@
 	</c:forEach>
 </div>
 <div id="location-list" class="row col-md-offset-1 col-md-9">
-	<h2 align="center">위치 검색</h2>
+	<h2 align="center">태그 검색</h2>
 	<h3>${result.size() }개검색</h3>
 	<c:choose>
 		<c:when test="${result.size() eq 0}">
@@ -53,22 +53,39 @@
 		<c:otherwise>
 			<c:forEach items="${result }" var="item"
 				varStatus="vs">
+				<c:if test="${vs.count ge page*10-10+1 && vs.count le page*10  }">
 				<div class="item_container col-md-6">
 					<div class="col-md-6">
 						<img class="img-box" src="${item.img[0] }">
 					</div>
 					<div class="col-md-6">
 						<h3>
-							<a href="#">${vs.count}. ${item.title }</a>
+							<a href="/search/detail?tel=${item.tel }">${vs.count}. ${item.title }</a>
 						</h3>
 						<br />
 						<c:forEach items="${item.tag }" var="tag" varStatus="vs">
-							<a href="#">${tag}</a>
+							<a href="/search/tag?selectedTag=${tag }">${tag}</a>
 						</c:forEach>
 						<div>Like : ${item.hitCnt } / AVG : ${item.avg }</div>
 					</div>
 				</div>
+				</c:if>
 			</c:forEach>
 		</c:otherwise>
 	</c:choose>
+</div>
+<div class="row col-md-offset-1 col-md-9">
+	<div align="center" class="number-box">
+		<c:forEach begin="1"
+			end="${result.size() %10 eq 0 ? result.size()/10 : result.size()/10 +1  }"
+			varStatus="vs">
+			<form action="/search/tag">
+				<input type="hidden" name="selectedTag" value="${selectedTag }">
+				 <input	type="hidden" name="type" value="all">
+					<div class=" col-md-1">
+				<button name="page" class="btn button-box" value="${vs.count }">${vs.count }</button>
+				</div>
+			</form>
+		</c:forEach>
+	</div>
 </div>
