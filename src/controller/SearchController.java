@@ -43,10 +43,12 @@ public class SearchController {
 		List list = sd.doSearch(map);
 
 		// 리뷰가 완성되면 진행할 예정
+		list = sd.mongoWithSql(list);
 		mav.addObject("locationResult", list);
 		// mav.addObject("locationResult", sd.rankFilter(list));
 
 		List list2 = sd.titleSearch(map);
+		list2 = sd.mongoWithSql(list2);
 		// mav.addObject("titleResult",sd.rankFilter(list2));
 		mav.addObject("titleResult", list2);
 
@@ -87,7 +89,7 @@ public class SearchController {
 			list = sd.titleSearch(map);
 			mav.addObject("type", "상호");
 		}
-
+		list = sd.mongoWithSql(list);
 		mav.addObject("result", list);
 		// 리뷰가 완성되면 진행할 예정
 
@@ -116,12 +118,14 @@ public class SearchController {
 		if((String)reqMap.get("page")!=null){
 			page = Integer.parseInt((String)reqMap.get("page"));
 		}
+		
 		mav.addObject("page",page);
 		
 		String[] foods = { "수요미식회", "생활의달인", "TV맛집", "한식", "중식", "일식", "카페", "술집", "고기집", "횟집", "해산물", "밥집", "분식",
 				"파스타", "뷔페", "국물요리", "면요리", "이탈리안", "멕시칸", "프렌치", "아시안" };
 		mav.addObject("tagsList", foods);
 		List list = sd.tagSearch(selectedTag);
+		list = sd.mongoWithSql(list);
 		mav.addObject("selectedTag", selectedTag);
 		mav.addObject("result", list);
 		return mav;
@@ -148,6 +152,7 @@ public class SearchController {
 		
 		String tel = (String) reqMap.get("tel");
 		List list = sd.storeDetail(reqMap);
+		list = sd.mongoWithSql(list);
 		
 		mav.addObject("result",list);
 		Map map = (Map)list.get(0);
