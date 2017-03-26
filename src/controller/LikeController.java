@@ -32,8 +32,8 @@ public class LikeController {
 	
 	@RequestMapping("/shopping")
 	@ResponseBody
-	public int shoppingHandle(@RequestParam Map map){
-		int r = 0;
+	public String shoppingHandle(@RequestParam Map map){
+		String r = "";
 		r = ldao.shoppingInsert(map);
 		System.out.println("shopping Controller"+r);
 		return r;

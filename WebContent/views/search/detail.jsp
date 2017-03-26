@@ -240,9 +240,21 @@
 				</button>
 			</div>
 			<div class="col-md-4">
-				<a href="#" id="shopping"><img
+				<!-- <a href="#" id="shopping"><img
 					src="/views/search/images/food bucket.png" id="shoppingR"
-					style="width: 40pt; height: 30pt"></a>
+					style="width: 40pt; height: 30pt"></a> -->\
+				<c:choose>
+						<c:when test="${shoppingR eq true}">
+							<img class="btn-img" id=shoppingR
+								src="/views/search/images/food bucket.png"
+								style="width: 40pt; height: 30pt;">
+						</c:when>
+						<c:otherwise>
+							<img class="btn-img" id="shoppingR"
+								src="/views/search/images/food_bucket_R.png"
+								style="width: 40pt; height: 30pt;">
+						</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 	</div>
@@ -323,8 +335,7 @@
 		<!-- 숙소 -->
 
 		<div class="row font1" align="center">
-			<c:forEach items="${reviewList }" var="item" begin="1" end="5"
-				varStatus="vs">
+			<c:forEach items="${reviewList}" var="item" begin="1" end="5" varStatus="vs">
 				<div class="row font1 col-md-3">
 					<img class="profile_img" src="${item.PROFILE }">
 				</div>
@@ -332,6 +343,7 @@
 					<div class="col-md-offset-1 col-md-5">${item.ID }</div>
 					<div class="col-md-3">${item.EAT_DATE }</div>
 					<div class="col-md-1">
+					
 						좋아요<br /><div> ${item.HIT }</div><a id="${item.ID}"
 							onclick="goReviewHit(${vs.count },'${item.ID}',${item.HIT})"><img
 							id="img${vs.count }"
@@ -720,15 +732,18 @@
 										function(rst) {
 											var printRst = rst;
 											console.log(rst)
-											if (rst == 1) {
+											if (rst =="ShopingS") {
 												window
 														.alert("장바구니에 추가 되었습니다.!")
 												$("#shoppingR")
 														.attr("src",
 																"/views/search/images/food_bucket_R.png")
-											} else {
+											} else if(rst=="ShopingF"){
 												window
-														.alert("이미 선택된 장바구니 입니다.!")
+														.alert("장바구니가 취소 되었습니다.!")
+											}else{
+												window
+												.alert("장바구니가 등록에 실패하였습니다.!")
 											}
 
 										});
@@ -753,7 +768,7 @@
 											if (rst == 1){
 												$("#img"+cnt)
 												.attr("src",
-																"/img/1414328714455_PicsArt_1389242401746.png")
+														"/img/1414328714455_PicsArt_1389242401746.png")
 											} else {
 												$("#img"+cnt)
 												.attr("src",

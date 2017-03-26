@@ -39,8 +39,6 @@ public class LikeDao {
 				e.printStackTrace();
 				return result;
 			}
-
-			return result;
 		}finally{
 			session.close();
 		}
@@ -87,38 +85,32 @@ public class LikeDao {
 	
 	
 	////////////////////////////////////////////////////////
-	public int shoppingInsert(Map map){
+	public String shoppingInsert(Map map){
 		SqlSession session = factory.openSession();
 		int r = 0;
+		String shoppingR ="false";
 		try{
 			r = session.insert("like.shopping",map);
 			System.out.println("shopping Dao"+r);
+			if(r==1){
+				shoppingR = "ShopingS";
+			}
 			session.commit();
 		}catch(Exception e){
 			e.printStackTrace();
-			return r;
-			
+			try{
+				r = session.delete("like.shoppingD",map);
+				if(r==1){
+					shoppingR = "ShopingF";
+				}
+				session.commit();
+			}catch(Exception e2){
+				e.printStackTrace();
+			}
 		}finally{
 			session.close();
 		}
-		return r;
-	}
-	
-	public int shoppingDelete(Map map){
-		SqlSession session = factory.openSession();
-		int r = 0;
-		try{
-			r = session.insert("like.shoppingD",map);
-			System.out.println("shopping Dao"+r);
-			session.commit();
-		}catch(Exception e){
-			e.printStackTrace();
-			return r;
-			
-		}finally{
-			session.close();
-		}
-		return r;
+		return shoppingR;
 	}
 	
 	public int shoppingCheck(Map map){
