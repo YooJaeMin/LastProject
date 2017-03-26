@@ -85,14 +85,12 @@ public class TestDao {
 		return list;
 	}
 
-	public void modifyFinal(List list) {
+	public void modifyFinal(List<Map> list) {
 		Update update = new Update();
-		Map map = null;
 		Query query = null;
-		for (int i = 0; i < list.size() - 1; i++) {
+		for (Map map : list) {
 
 			try {
-				map = (Map) list.get(i);
 				query = new Query(Criteria.where("tel").is((String) map.get("tel")));
 
 				try {
