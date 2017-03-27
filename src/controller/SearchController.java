@@ -140,7 +140,6 @@ public class SearchController {
 		/*태영 고친부분 */
 
 		/*태영 like*/
-
 		List<HashMap> like = likedao.getliekN(reqMap);
 		HashMap likeRR = like.get(0);
 		
@@ -153,7 +152,7 @@ public class SearchController {
 		/*                    */
 		
 		
-		/* 태영 shopping 부분*/
+		/* 태영 shopping 3-26부분*/
 		int shoppingN = likedao.shoppingCheck(reqMap);
 		boolean shoppingR = false;
 		if(shoppingN==1){
@@ -180,16 +179,34 @@ public class SearchController {
 		}
 		
 		List reviewList = sd.reviewList(reqMap);
-		List reviewLikeC = new ArrayList<>();
+		/*태영 리뷰 체크  3-26*/
+		/*List reviewLikeC = new ArrayList<>();
+		Map reviewLikeCR = new HashMap<>();
 		for(Object m : reviewList){
-			HashMap r = (HashMap)m; 
-			r.get("ID");
+			HashMap r = (HashMap)m;
+			r.put("auth_id", session.getAttribute("auth_id"));
+			int reviewC = likedao.reviewCheck(r);
+			if(reviewC==1)
+			{
+				reviewLikeCR.put("id", session.getAttribute("auth_id"));
+				reviewLikeCR.put("review_id", r.get("ID"));
+				reviewLikeCR.put("reviewC", true);
+				
+			}else{
+				reviewLikeCR.put("id", session.getAttribute("auth_id"));
+				reviewLikeCR.put("review_id", r.get("ID"));
+				reviewLikeCR.put("reviewC", false);
+			}
 		}
+		reviewLikeC.add(reviewLikeCR);*/
+		/*      */
 		
 		mav.addObject("reviewList", reviewList);
 		/*태영 고친 부분*/
 		mav.addObject("like", likeRR);
 		mav.addObject("likeResult", likeResult);
+			/*3-26*/
+		/*mav.addObject("reviewLikeC",reviewLikeC);*/
 		mav.addObject("shoppingR",shoppingR);
 		/*  */
 		map.put("img", tempList);

@@ -70,7 +70,7 @@ public class JoinController {
 	@RequestMapping("/naverJoin")
 	@ResponseBody
 	public String nvJoinHandler(@RequestParam Map map, HttpSession session,
-			/*@RequestParam(name = "keep", defaultValue = "off") String val,*/ HttpServletResponse response) {
+			@RequestParam(name = "keep", defaultValue = "off") String val, HttpServletResponse response) {
 		System.out.println(map);
 		String id = (String) map.get("email");
 		String birth2="2017-";
@@ -89,12 +89,12 @@ public class JoinController {
 		if (result == 1) {
 			session.setAttribute("auth_id", map.get("id"));
 			session.setAttribute("auth", "yes");
-			/*if (val.equals("on")) {
+			if (val.equals("on")) {
 				Cookie c = new Cookie("save", (String)map.get("id")); // 밸류에는 계정정보가 있어야 함.
 				c.setMaxAge(60 * 60 * 24 * 7);
 				c.setPath("/");
 				response.addCookie(c);
-			}*/
+			}
 			return "yes";
 		} else {
 			boolean membercheck = mdao.naverCheckMember(map);

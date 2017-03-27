@@ -17,8 +17,6 @@
 		select count(*) from user_detail where id=#{id}
 	</select>
 	
-	
-	
 	<insert id="normalDetail" parameterType="java.util.HashMap">
 		insert into user_detail values(#{id}, null, null, null, #{profile},null,null)
 	</insert>

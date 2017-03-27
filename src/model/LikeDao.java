@@ -117,7 +117,7 @@ public class LikeDao {
 		SqlSession session = factory.openSession();
 		int r = 0;
 		try{
-			r = session.insert("like.shoppingC",map);
+			r = session.selectOne("like.shoppingC",map);
 			System.out.println("shopping Dao"+r);
 			session.commit();
 		}catch(Exception e){
