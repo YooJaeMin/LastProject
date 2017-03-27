@@ -15,6 +15,11 @@
 	width: 40px;
 }
 
+.weather_div {
+	width: 40px;
+	background: white;
+}
+
 .starScore {
 	cursor: pointer;
 }
@@ -26,8 +31,11 @@
 	margin-top: 20px;
 }
 
-
-
+#modal-header {
+	padding: 10px 16px;
+	background-color: #5cb85c;
+	color: white;
+}
 </style>
 
 
@@ -44,28 +52,44 @@
 
 				<!-- Modal content-->
 				<div class="modal-content">
-					<div class="w3-container w3-yellow">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title" align="center">나의 후기 등록하기</h4>
+						<div class="jumbotron text-center">
+							<h3>My Review</h3>
+							<p>생생한 후기를 남겨주세요!</p>
+						</div>
 					</div>
-					</div>
+
 					<!-- 후기작성란+별점+날씨등록란 -->
 					<div class="modal-body">
 						<form action="/view/review/result" method="get">
 							<!-- hidden >> id+tel 넘김 -->
 							<input type="hidden" name="id" value="${sessionScope.auth_id }" />
-							<input type="hidden" name="tel" value="${store.tel }" />
+							<input type="hidden" name="tel" value="${store.tel }" /> <input
+								type="hidden" id="weather_status" name="weather"
+								value="${wStatus}" />
 							<p>
-								날씨가 어땠나요?<br /> <input type="radio" name="weather"
-									value="sunny">맑음 <img class="weather_box"
-									src="/img_weather/sunny.png" /> <input type="radio"
-									name="weather" value="cloudy">흐림 <img
-									class="weather_box" src="/img_weather/cloudy.png" /> <input
-									type="radio" name="weather" value="rainy">비 <img
-									class="weather_box" src="/img_weather/rainy.png" /> <input
-									type="radio" name="weather" value="snowy">눈 <img
+								날씨가 어땠나요?<br />
+							<div id="wb1" class="weather_div">
+								<a class="btn" onclick="wBox(1)"> <img class="weather_box"
+									src="/img_weather/sunny.png" />
+								</a>
+							</div>
+							<div id="wb2" class="weather_div">
+								<a class="btn weather_btn" onclick="wBox(2)"> <img
+									class="weather_box" src="/img_weather/cloudy.png" />
+								</a>
+							</div>
+							<div id="wb3" class="weather_div">
+								<a class="btn weather_btn" onclick="wBox(3)"> <img
+									class="weather_box" src="/img_weather/rainy.png" />
+								</a>
+							</div>
+							<div id="wb4" class="weather_div">
+								<a class="btn weather_btn" onclick="wBox(4)"> <img
 									class="weather_box" src="/img_weather/snowy.png" />
+								</a>
+							</div>
 							</p>
 							<p>
 								누구와 방문했나요?<br /> <input type="radio" name="type" value="single">혼자
@@ -153,24 +177,24 @@
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>
-									<br />
 								</div>
-								<br>
-								<div align="center">
-									<button type="button" class="btn btn-warning" value="hide" id="hbt">자세한 후기 작성하기</button>
+								<br /> <br />
+								<div class="btn-group-vertical btn-block">
 									<button type="submit" class="btn btn-primary">
 										등록하기 <span class="glyphicon glyphicon-pencil"></span>
 									</button>
+									<button type="button" class="btn btn-warning btn-block "
+										value="hide" id="hbt">자세한 후기 작성하기</button>
 									<button type="button" class="btn btn-danger"
 										data-dismiss="modal">취소</button>
 								</div>
 							</div>
-							
-							<br/><div class="review_detail" id="text1" style="display: none;">
+
+							<br />
+							<div class="review_detail" id="text1" style="display: none;">
 								<textarea placeholder="내용을 입력하세요."
-								style="width:565px;height:150px;"></textarea>
-							</div><br/>
-							
+									style="width: 565px; height: 150px;"></textarea>
+							</div>
 						</form>
 					</div>
 
@@ -212,8 +236,22 @@
 		}
 
 		$("#"+type+"_s").val(x);
-	}
+	};
 	
+	function wBox(weather){
+		for(var i = 1; i<=4; i++){
+			$("#wb"+i).each(function(){
+					if(i == weather){
+						console.log(i);
+						$(this).css("border", "2px solid #4CAF50");
+					} else {
+						$(this).css("border", "");
+					}
+			});
+			}
+		$("#wStatus").val("");
+		}
+
 
 
 </script>
