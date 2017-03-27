@@ -262,9 +262,20 @@ hr {
 				</button>
 			</div>
 			<div class="col-md-4">
-				<a href="#" id="shopping"><img
-					src="/views/search/images/black-bucket.png" id="shoppingR"
-					style="width: 40pt; height: 40pt;"></a>
+					<a href="#" id="shopping">
+				<c:choose>
+						<c:when test="${shoppingR eq true}">
+							<img class="btn-img" id=shoppingR
+								src="/views/search/images/color-bucket.png"
+								style="width: 40pt; height: 40pt;">
+						</c:when>
+						<c:otherwise>
+							<img class="btn-img" id="shoppingR"
+								src="/views/search/images/black-bucket.png"
+								style="width: 40pt; height: 40pt;">
+						</c:otherwise>
+				</c:choose>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -352,16 +363,13 @@ hr {
 		<!-- 숙소 -->
 
 		<div class="row font1" align="center">
-			<c:forEach items="${reviewList }" var="item" begin="1" end="5"
-				varStatus="vs">
+			<c:forEach items="${reviewList}" var="item" begin="1" end="5" varStatus="vs">
 				<div class="row font1 col-md-3">
 					<img class="profile_img" src="${item.PROFILE }">
 				</div>
 				<div class="row font1 col-md-9">
 					<div class="col-md-offset-1 col-md-5">${item.ID }</div>
 					<div class="col-md-3">${item.EAT_DATE }</div>
-					<!--  -->
-					<!--  -->
 					<div class="col-md-3">
 						<div
 							style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
@@ -829,15 +837,18 @@ hr {
 										function(rst) {
 											var printRst = rst;
 											console.log(rst)
-											if (rst == 1) {
-												window
-														.alert("장바구니에 추가 되었습니다.!")
+											if (rst =="ShopingS") {
+												window.alert("장바구니에 추가 되었습니다.!");
 												$("#shoppingR")
-														.attr("src",
-																"/views/search/images/color_bucket.png")
-											} else {
-												window
-														.alert("이미 선택된 장바구니 입니다.!")
+														.attr("src","/views/search/images/color_bucket.png");
+											} else if(rst=="ShopingF"){
+												window.alert("장바구니가 취소 되었습니다.!");
+												$("#shoppingR")
+														.attr("src","/views/search/images/black_bucket.png");
+											} 
+																
+											 else{
+												window.alert("장바구니가 등록에 실패하였습니다.!");
 											}
 
 										});
@@ -845,7 +856,6 @@ hr {
 </script>
 <!--리뷰 좋아요-->
 <script>
-	function goReviewHit(cnt, id, hit) {
 
 		$.ajax({
 			"url" : "/like/review?",

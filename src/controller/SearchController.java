@@ -152,8 +152,9 @@ public class SearchController {
 	public ModelAndView storeDetail(@RequestParam Map reqMap ,HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_detail");
 		/*태영 고친부분 */
-		
-		
+
+		/*태영 like*/
+
 		List<HashMap> like = likedao.getliekN(reqMap);
 		HashMap likeRR = like.get(0);
 		
@@ -163,9 +164,19 @@ public class SearchController {
 		if(likeR==1){
 			likeResult=true;
 		}
-	
-		/*태영 like*/
+		/*                    */
 		
+		
+		/* 태영 shopping 부분*/
+		int shoppingN = likedao.shoppingCheck(reqMap);
+		boolean shoppingR = false;
+		if(shoppingN==1){
+			shoppingR=true;
+		}
+		/*			*/
+		
+		
+	
 		
 		String tel = (String) reqMap.get("tel");
 		sd.insertStore(tel);
@@ -182,11 +193,22 @@ public class SearchController {
 			}
 		}
 		
+<<<<<<< HEAD
 		List<Map> reviewList = sd.reviewList(reqMap);
+=======
+		List reviewList = sd.reviewList(reqMap);
+		List reviewLikeC = new ArrayList<>();
+		for(Object m : reviewList){
+			HashMap r = (HashMap)m; 
+			r.get("ID");
+		}
+		
+>>>>>>> branch 'master' of https://github.com/YooJaeMin/LastProject.git
 		mav.addObject("reviewList", reviewList);
 		/*태영 고친 부분*/
 		mav.addObject("like", likeRR);
 		mav.addObject("likeResult", likeResult);
+		mav.addObject("shoppingR",shoppingR);
 		/*  */
 		map.put("img", tempList);
 		mav.addObject("store",map);
