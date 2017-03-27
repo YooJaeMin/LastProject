@@ -235,6 +235,7 @@
 			var printRst = '';
 			if (rst == 'yes') {
 				printRst = '<h4 class="modal-title">회원가입에 성공하였습니다.</h4>';
+				
 			} else if (rst == 'chOk') {
 				printRst = '<h4 class="modal-title">로그인에 성공하였습니다.</h4>';
 			} else {
@@ -263,8 +264,13 @@
 			var printRst = '';
 			if (rst == 'succed') {
 				printRst = '<h4 class="modal-title">회원가입에 성공하였습니다</h4>';
+				$("#id2").val("");
+				$("#name2").val("");
+				$("#pw2").val("");
 			} else {
 				printRst = '<h4 class="modal-title">회원가입에 실패하였습니다.</h4>';
+				$("#name2").val("");
+				$("#pw2").val("");
 			}
 			window.alert(printRst);
 		});

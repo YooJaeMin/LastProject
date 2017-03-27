@@ -5,15 +5,30 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style>
+hr {
+	border: solid 2px #F5ECCE;
+}
+
+body {
+	font-family: 'Hanna', sans-serif;
+}
+
 .item_container {
-	border-style: solid;
+	border-style: double;
 	border-color: #FE9A2E;
+	border-radius: 10px;
 	height: 230px;
 }
 
 #tags {
-	border-style: solid;
+	border-style: double;
 	border-color: #FE9A2E;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+a {
+	color: black;
 }
 
 .img-box {
@@ -27,14 +42,20 @@
 
 .btn-box {
 	background-color: black;
-	color: yellow;
+	color: #ffd700;
+}
+
+.now-box {
+	margin: 1px;
+	background-color: pink;
+	color: white;
 }
 </style>
-<div class="row col-md-offset-1 col-md-9" align="left">
+<div class="row col-md-offset-1 col-md-10" align="left">
 	<h3>'${selectedTag }'(으)로 검색 결과</h3>
 </div>
 
-<div id="tags" class="row col-md-offset-1 col-md-9">
+<div id="tags" class="row col-md-offset-1 col-md-10">
 	<c:forEach items="${tagsList }" var="item">
 		<form class="col-md-2" action="/search/tag">
 			<input type="hidden" name="type" value="basic" />
@@ -42,7 +63,7 @@
 		</form>
 	</c:forEach>
 </div>
-<div id="location-list" class="row col-md-offset-1 col-md-9">
+<div id="location-list" class="row col-md-offset-1 col-md-10">
 	<h2 align="center">태그 검색</h2>
 	<h3>${result.size() }개검색</h3>
 	<c:choose>
@@ -75,30 +96,47 @@
 		</c:otherwise>
 	</c:choose>
 </div>
-<div class="row col-md-offset-1 col-md-9 ">
+<div class="row col-md-offset-1 col-md-10 ">
 	<div align="center" class="number-box">
 		<div class="col-md-1">
 			<c:if test="${!(page le 10) }">
 
 				<a
-					href="/search/tag?selectedTag=${selectedTag }&type=all&page=${page%10 eq 0 ? page-10 : ((page/10)-1)*10 }">이전</a>
+					href="/search/tag?selectedTag=${selectedTag }&type=all&page=${page%10 eq 0 ? page-10 : page-page%10 }">이전</a>
 			</c:if>
 		</div>
 
-		<c:forEach begin="1"
-			end="${result.size() %10 eq 0 ? result.size()/10 : result.size()/10 +1  }"
-			varStatus="vs">
-			<form action="/search/tag">
-				<input type="hidden" name="selectedTag" value="${selectedTag }">
-				<input type="hidden" name="type" value="all">
-				<div class=" col-md-1">
-					<button name="page" class="btn button-box" value="${vs.count }">${vs.count }</button>
-				</div>
-			</form>
+		<c:forEach begin="${page%10 eq 0 ? page-9 : page-page%10+1 }"
+			end="${page%10 eq 0 ? page : page-page%10+10  }" varStatus="vs"
+			var="item">
+			<c:if test="${item le max }">
+				<c:choose>
+					<c:when test="${item eq page }">
+						<div class=" col-md-1">
+							<a class="btn now-box">${item }</a>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<form action="/search/tag">
+							<input type="hidden" name="selectedTag" value="${selectedTag }">
+							<input type="hidden" name="type" value="all">
+							<div class=" col-md-1">
+								<button name="page" class="btn btn-box" value="${item }">${item }</button>
+							</div>
+						</form>
+					</c:otherwise>
+				</c:choose>
+
+			</c:if>
 		</c:forEach>
 		<div class="col-md-1">
-			<a href="/search/tag?selectedTag=${selectedTag }&type=all">다음</a>
+			<c:if test="${result.size() gt 100 }">
+				<c:if test="${page le (max%10 eq 0 ? max-10 : max-max%10 ) }">
+					<a
+						href="/search/tag?selectedTag=${selectedTag }&type=all&page=${page%10 eq 0 ? page+1 : page-(page%10)+11 }">다음</a>
+				</c:if>
+			</c:if>
 		</div>
 	</div>
 </div>
-
+<div class="col-md-1"></div>

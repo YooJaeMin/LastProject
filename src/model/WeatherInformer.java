@@ -35,6 +35,7 @@ public class WeatherInformer {
 				rst.put("code", code);
 				rst.put("status", name);	
 				rst.put("temp", tc);	
+				System.out.println(rst.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

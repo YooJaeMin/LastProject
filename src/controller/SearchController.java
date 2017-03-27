@@ -95,7 +95,12 @@ public class SearchController {
 		list = sd.mongoWithSql(list);
 //		mav.addObject("result", list);
 		// 리뷰가 완성되면 진행할 예정
-
+		int size = list.size();
+		if(size % 10 ==0){
+			mav.addObject("max", size/10);
+		} else {
+			mav.addObject("max", (int)(size/10 +1));
+		}
 		 mav.addObject("result", sd.rankFilter(list));
 
 		// mav.addObject("titleResult",sd.rankFilter(list2));
@@ -129,8 +134,17 @@ public class SearchController {
 		mav.addObject("tagsList", foods);
 		List list = sd.tagSearch(selectedTag);
 		list = sd.mongoWithSql(list);
+		
 		mav.addObject("selectedTag", selectedTag);
-		mav.addObject("result", sd.rankFilter(list));
+		list = sd.rankFilter(list);
+		
+		mav.addObject("result", list);
+		int size = list.size();
+		if(size % 10 ==0){
+			mav.addObject("max", size/10);
+		} else {
+			mav.addObject("max", (int)(size/10 +1));
+		}
 		return mav;
 	}
 	
@@ -168,8 +182,7 @@ public class SearchController {
 			}
 		}
 		
-		List reviewList = sd.reviewList(reqMap);
-		
+		List<Map> reviewList = sd.reviewList(reqMap);
 		mav.addObject("reviewList", reviewList);
 		/*태영 고친 부분*/
 		mav.addObject("like", likeRR);

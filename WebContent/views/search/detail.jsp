@@ -6,7 +6,19 @@
 <link href="/lib/jquery.bxslider.css" rel="stylesheet">
 <style>
 .profile_img {
-	width: 300px;
+	width: 200px;
+}
+body {
+	font-family: 'Hanna', sans-serif;
+}
+.score {
+	font-family: impact;
+	font-size: 2.0em;
+	color: #FA5882;
+}
+
+hr {
+	border: solid 2px orange;
 }
 
 .weather {
@@ -69,7 +81,11 @@
 }
 
 .font3 {
-	font-size: 0.7em;
+	font-size: 1.1em;
+}
+
+.font4 {
+	font-size: 1.4em;
 }
 
 .profile {
@@ -193,13 +209,24 @@
 .rating a {
 	float: none
 }
+
+.arrow {
+	width: 80px;
+	padding: 10px;
+	cursor: pointer;
+}
 </style>
 
 <div
 	style="padding-top: 5%; margin: 0 250; padding-right: 25px; padding-left: 25px;">
+	<div class="row">
+		<div class="col-md-4">
+			<span class="title">${store.title } / </span><span class="score">
+				${store.avg } Score</span>
+		</div>
 
-	<span class="title">${store.title },${store.avg}</span> <br />
-
+	</div>
+	<br />
 	<div class="row">
 		<div class="col-md-8">
 			<div class="location">
@@ -209,11 +236,6 @@
 						</a>
 					</c:forEach>
 				</span>
-				<div class="point1">
-					<div class="point2">
-						<img src="/icon/star_on.png" width="160px" height="30px">
-					</div>
-				</div>
 			</div>
 		</div>
 		<div class="col-md-3">
@@ -241,12 +263,18 @@
 			</div>
 			<div class="col-md-4">
 				<a href="#" id="shopping"><img
-					src="/views/search/images/food bucket.png" id="shoppingR"
-					style="width: 40pt; height: 30pt"></a>
+					src="/views/search/images/black-bucket.png" id="shoppingR"
+					style="width: 40pt; height: 40pt;"></a>
 			</div>
 		</div>
 	</div>
-	<hr style="border: solid 2px red;" />
+
+	<div class="row font2">
+		<hr />
+		간단 정보
+		<hr />
+	</div>
+
 	<div class="row" align="center">
 		<div class="col-md-3">
 			<img src="/views/search/images/store_red.png" class="icon">
@@ -277,11 +305,12 @@
 			</c:forEach>
 		</div>
 	</div>
-	<hr style="border: solid 2px red;" />
+
 
 	<div class="row font2">
+		<hr />
 		사진
-		<hr style="border: solid 2px red;" />
+		<hr />
 	</div>
 
 	<div class="row">
@@ -310,16 +339,16 @@
 	</div>
 
 	<div class="row">
-		<div align="center">
-			<button id="myBtn1" class="btn">후기등록</button>
+		<div class="row font2">
+			<hr />
+			<div class="col-md-6">리뷰</div>
+			<div class="col-md-6" align="right">
+				<button id="myBtn1" class="btn">리뷰 등록</button>
+			</div>
+			<br/>
+			<hr />
 		</div>
-	</div>
-	<div class="row">
-		<hr style="border: solid 2px red;" />
-		<div class="row font2" align="left">
-			<b>리뷰</b>
-		</div>
-		<hr style="border: solid 2px red;" />
+
 		<!-- 숙소 -->
 
 		<div class="row font1" align="center">
@@ -331,16 +360,9 @@
 				<div class="row font1 col-md-9">
 					<div class="col-md-offset-1 col-md-5">${item.ID }</div>
 					<div class="col-md-3">${item.EAT_DATE }</div>
-					<div class="col-md-1">
-						좋아요<br /><div> ${item.HIT }</div><a id="${item.ID}"
-							onclick="goReviewHit(${vs.count },'${item.ID}',${item.HIT})"><img
-							id="img${vs.count }"
-							style="WIDTH: 15pt; HEIGHT: 15pt"
-							src="/img/SketchTalk201361917350.png"></a>
-					</div>
 					<!--  -->
 					<!--  -->
-					<div class="col-md-2">
+					<div class="col-md-3">
 						<div
 							style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
 							총점 / ${item.AVG_S }
@@ -352,11 +374,13 @@
 
 
 				</div>
-
+				<div class="row font1"></div>
 				<div class="row font1">
-					<div class="col-md-6">커플 : ${item.TYPE }</div>
 					<div class="col-md-6">
-						날씨 : ${item.WEATHER }
+						누구랑? <span style="background-color: orange; color: white;">${item.TYPE }</span>
+					</div>
+					<div class="col-md-6">
+						그날은...?
 						<c:choose>
 							<c:when test="${item.WEATHER eq 'cloudy' }">
 								<img class="weather" src="/img_weather/cloudy.png">
@@ -377,14 +401,17 @@
 					</div>
 				</div>
 				<div class="row font1">
+					<div class="col-md-1"></div>
 					<div class="col-md-2">청결도</div>
 					<div class="col-md-2">맛평가</div>
 					<div class="col-md-2">가격평가</div>
 					<div class="col-md-2">친절도</div>
 					<div class="col-md-2">접근성</div>
+					<div class="col-md-1"></div>
 				</div>
 				<div class="row font1">
-					<div class="col-md-2" style="color: #FF0015;">
+					<div class="col-md-1"></div>
+					<div class="col-md-2" style="color: orange;">
 						<!--  -->
 						<c:choose>
 							<c:when test="${item.CLEAN_S eq 1 }">
@@ -406,7 +433,7 @@
 					</div>
 
 					<!--  -->
-					<div class="col-md-2" style="color: #FF0015;">
+					<div class="col-md-2" style="color: orange;">
 						<!--  -->
 						<c:choose>
 							<c:when test="${item.TASTE_S eq 1 }">
@@ -426,7 +453,7 @@
 						</c:when>
 						</c:choose>
 					</div>
-					<div class="col-md-2" style="color: #FF0015;">
+					<div class="col-md-2" style="color: orange;">
 						<c:choose>
 							<c:when test="${item.PRICE_S eq 1 }">
 							★
@@ -445,7 +472,7 @@
 						</c:when>
 						</c:choose>
 					</div>
-					<div class="col-md-2" style="color: #FF0015;">
+					<div class="col-md-2" style="color: orange;">
 
 						<c:choose>
 							<c:when test="${item.GOOD_S eq 1 }">
@@ -465,7 +492,7 @@
 						</c:when>
 						</c:choose>
 					</div>
-					<div class="col-md-2" style="color: #FF0015;">
+					<div class="col-md-2" style="color: orange;">
 						<c:choose>
 							<c:when test="${item.LOCATION_S eq 1 }">
 							★
@@ -485,6 +512,7 @@
 						</c:choose>
 
 					</div>
+					<div class="col-md-1"></div>
 				</div>
 				<div class="row font1">
 					<div class="col-md-12" align="left">
@@ -494,65 +522,200 @@
 				<div class="row font1">
 					<div class="col-md-12" align="left">${item.CONTENT }</div>
 				</div>
-				<hr style="border: solid 2px red;" />
+				<hr />
 			</c:forEach>
 
 
 			<div class="row font1" align="right">
-				<button class="btn" onclick="listMore()">리스트 더보기</button>
+				<button class="btn" id="reviewMore">리뷰 더보기</button>
 			</div>
 
-			<div id="reviewList row font1" style="display: none">
+			<script>
+				$("#reviewMore").click(function() {
+					if ($(".reviewList").css("display") == 'block') {
+						$(".reviewList").css("display", "none");
+						$(this).html("리뷰 더보기");
+					} else {
+						$(".reviewList").css("display", "block");
+						$(this).html("리뷰 닫기");
+					}
+
+				});
+			</script>
+
+			<div id="row font1" class="reviewList" style="display: none">
+				<hr />
 				<c:forEach items="${reviewList }" var="item" varStatus="vs">
 					<c:if test="${vs.count ge 6  }">
-						<div class="row font1">
-							<div class="col-md-offset-1 col-md-3">${item.ID }</div>
+						<div class="row font1 col-md-3">
+							<img class="profile_img" src="${item.PROFILE }">
+						</div>
+						<div class="row font1 col-md-9">
+							<div class="col-md-offset-1 col-md-5">${item.ID }</div>
 							<div class="col-md-3">${item.EAT_DATE }</div>
-							<div class="col-md-1">${item.HIT }</div>
-							<div class="col-md-3">총점 / ${item.AVG_S }</div>
+							<!--  -->
+							<!--  -->
+							<div class="col-md-3">
+								<div
+									style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
+									총점 / ${item.AVG_S }
+									<p
+										style="WIDTH: ${item.AVG_S*20}%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(/img/icon_star.gif) 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;">
+									</p>
+								</div>
+							</div>
+
+
+						</div>
+						<div class="row font1"></div>
+						<div class="row font1">
+							<div class="col-md-6">
+								누구랑? <b>${item.TYPE }</b>
+							</div>
+							<div class="col-md-6">
+								그날은...?
+								<c:choose>
+									<c:when test="${item.WEATHER eq 'cloudy' }">
+										<img class="weather" src="/img_weather/cloudy.png">
+									</c:when>
+									<c:when test="${item.WEATHER eq 'rainy' }">
+										<img class="weather" src="/img_weather/rainy.png">
+									</c:when>
+									<c:when test="${item.WEATHER eq 'snowy' }">
+										<img class="weather" src="/img_weather/snowy.png">
+									</c:when>
+									<c:when test="${item.WEATHER eq 'sunny' }">
+										<img class="weather" src="/img_weather/sunny.png">
+									</c:when>
+									<c:when test="${item.WEATHER eq 'windy' }">
+										<img class="weather" src="/img_weather/windy.png">
+									</c:when>
+								</c:choose>
+							</div>
 						</div>
 						<div class="row font1">
-							<div class="col-md-6">${item.TYPE }</div>
-							<div class="col-md-6">${item.WEATHER }</div>
-						</div>
-						<div class="row font1">
+							<div class="col-md-1"></div>
 							<div class="col-md-2">청결도</div>
 							<div class="col-md-2">맛평가</div>
 							<div class="col-md-2">가격평가</div>
 							<div class="col-md-2">친절도</div>
 							<div class="col-md-2">접근성</div>
+							<div class="col-md-1"></div>
 						</div>
 						<div class="row font1">
-							<div class="col-md-2">${item.CLEAN_S}</div>
-							<div class="col-md-2">
+							<div class="col-md-1"></div>
+							<div class="col-md-2" style="color: #FF0015;">
+								<!--  -->
 								<c:choose>
-									<c:when test="${item.TASTE_S eq 1 }">
-								★
-								</c:when>
-									<c:when test="${item.TASTE_S eq 2 }">
-								★★
-								</c:when>
-									<c:when test="${item.TASTE_S eq 3 }">
+									<c:when test="${item.CLEAN_S eq 1 }">
+							★
+						</c:when>
+									<c:when test="${item.CLEAN_S eq 2 }">
+							★★
+						</c:when>
+									<c:when test="${item.CLEAN_S eq 3 }">
 								★★★
-								</c:when>
-									<c:when test="${item.TASTE_S eq 4 }">
+						</c:when>
+									<c:when test="${item.CLEAN_S eq 4 }">
 								★★★★
-								</c:when>
-									<c:when test="${item.TASTE_S eq 5 }">
+						</c:when>
+									<c:when test="${item.CLEAN_S eq 5 }">
 								★★★★★
-								</c:when>
+						</c:when>
 								</c:choose>
 							</div>
-							<div class="col-md-2">${item.PRICE_S }</div>
-							<div class="col-md-2">${item.GOOD_S }</div>
-							<div class="col-md-2">${item.LOCATION_S }</div>
+
+							<!--  -->
+							<div class="col-md-2" style="color: #FF0015;">
+								<!--  -->
+								<c:choose>
+									<c:when test="${item.TASTE_S eq 1 }">
+							★
+						</c:when>
+									<c:when test="${item.TASTE_S eq 2 }">
+							★★
+						</c:when>
+									<c:when test="${item.TASTE_S eq 3 }">
+								★★★
+						</c:when>
+									<c:when test="${item.TASTE_S eq 4 }">
+								★★★★
+						</c:when>
+									<c:when test="${item.TASTE_S eq 5 }">
+								★★★★★
+						</c:when>
+								</c:choose>
+							</div>
+							<div class="col-md-2" style="color: #FF0015;">
+								<c:choose>
+									<c:when test="${item.PRICE_S eq 1 }">
+							★
+						</c:when>
+									<c:when test="${item.PRICE_S eq 2 }">
+							★★
+						</c:when>
+									<c:when test="${item.PRICE_S eq 3 }">
+								★★★
+						</c:when>
+									<c:when test="${item.PRICE_S eq 4 }">
+								★★★★
+						</c:when>
+									<c:when test="${item.PRICE_S eq 5 }">
+								★★★★★
+						</c:when>
+								</c:choose>
+							</div>
+							<div class="col-md-2" style="color: #FF0015;">
+
+								<c:choose>
+									<c:when test="${item.GOOD_S eq 1 }">
+							★
+						</c:when>
+									<c:when test="${item.GOOD_S eq 2 }">
+							★★
+						</c:when>
+									<c:when test="${item.GOOD_S eq 3 }">
+								★★★
+						</c:when>
+									<c:when test="${item.GOOD_S eq 4 }">
+								★★★★
+						</c:when>
+									<c:when test="${item.GOOD_S eq 5 }">
+								★★★★★
+						</c:when>
+								</c:choose>
+							</div>
+							<div class="col-md-2" style="color: #FF0015;">
+								<c:choose>
+									<c:when test="${item.LOCATION_S eq 1 }">
+							★
+						</c:when>
+									<c:when test="${item.LOCATION_S eq 2 }">
+							★★
+						</c:when>
+									<c:when test="${item.LOCATION_S eq 3 }">
+								★★★
+						</c:when>
+									<c:when test="${item.LOCATION_S eq 4 }">
+								★★★★
+						</c:when>
+									<c:when test="${item.LOCATION_S eq 5 }">
+								★★★★★
+						</c:when>
+								</c:choose>
+
+							</div>
+							<div class="col-md-1"></div>
 						</div>
 						<div class="row font1">
-							<div class="col-md-12">평가</div>
+							<div class="col-md-12" align="left">
+								<b>평가</b>
+							</div>
 						</div>
 						<div class="row font1">
-							<div class="col-md-12">${item.CONTENT }</div>
+							<div class="col-md-12" align="left">${item.CONTENT }</div>
 						</div>
+						<hr />
 					</c:if>
 
 
@@ -565,60 +728,6 @@
 	</div>
 
 </div>
-
-<!-- 리뷰 -->
-<hr style="border: solid 2px red;" />
-<!-- <div class="row"> -->
-<!-- 	<div class="col-md-3"> -->
-<!-- 		<div class="font2"> -->
-<!-- 			후기 0개 <span class="font3">0.0점</span> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
-<!-- 	<div class="col-md-5" align="left"> -->
-
-<!-- 		<div class="point1"> -->
-<!-- 			<div class="point2"> -->
-<!-- 				<img src="/icon/star_on.png" width="120px" height="30px"> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
-
-
-
-<!-- </div> -->
-<hr style="border: solid 2px red;" />
-
-
-
-
-
-<!-- =============================== -->
-
-<!-- Trigger/Open The Modal -->
-
-<!-- The Modal -->
-<div id="myModal1" class="modal1">
-
-	<!-- Modal content -->
-	<div class="modal-content1">
-		<span class="close1">&times;</span>
-		<div align="center">
-			<h2>후기 등록</h2>
-			<br /> <br />
-			<form action="/view/review/result" method="get">
-				<textarea rows="5" cols="80" id="content" class="form-control"
-					placeholder="후기를 입력해주세요"></textarea>
-				<br /> <br />
-				<button type="submit"
-					style="background-color: white; border-style: solid; border-color: orange; border-width: 2px;">등록</button>
-			</form>
-		</div>
-	</div>
-
-</div>
-
-
-
 
 <script>
 	// Get the modal
@@ -725,7 +834,7 @@
 														.alert("장바구니에 추가 되었습니다.!")
 												$("#shoppingR")
 														.attr("src",
-																"/views/search/images/food_bucket_R.png")
+																"/views/search/images/color_bucket.png")
 											} else {
 												window
 														.alert("이미 선택된 장바구니 입니다.!")
@@ -736,74 +845,95 @@
 </script>
 <!--리뷰 좋아요-->
 <script>
-					function goReviewHit(cnt, id,hit) {
-						
-						$.ajax({
-									"url" : "/like/review?",
-									"method" : "post",
-									"data" : {
-										"id" : "${sessionScope.auth_id}",
-										"review_id" : id,
-										"good" : hit,
-										
-									}
-								}).done(function(rst) {
-											var printRst = rst;
-											console.log(rst)
-											if (rst == 1){
-												$("#img"+cnt)
-												.attr("src",
-																"/img/1414328714455_PicsArt_1389242401746.png")
-											} else {
-												$("#img"+cnt)
-												.attr("src",
-														"/img/SketchTalk201361917350.png")
-											}
+	function goReviewHit(cnt, id, hit) {
 
-										});
+		$.ajax({
+			"url" : "/like/review?",
+			"method" : "post",
+			"data" : {
+				"id" : "${sessionScope.auth_id}",
+				"review_id" : id,
+				"good" : hit,
+
+			}
+		}).done(
+				function(rst) {
+					var printRst = rst;
+					console.log(rst)
+					if (rst == 1) {
+						$("#img" + cnt).attr("src",
+								"/img/1414328714455_PicsArt_1389242401746.png")
+					} else {
+						$("#img" + cnt).attr("src",
+								"/img/SketchTalk201361917350.png")
 					}
+
+				});
+	}
 </script>
 
 
 
 <!--  -->
 
+<div
+	style="padding-top: 5%; margin: 0 250; padding-right: 25px; padding-left: 25px;">
+
+
+	<div class="row font2">
+		<img src="/views/search/images/n_blog.png" /> 검색 결과 총 ${blog.total }개
+		<hr />
+	</div>
+	<div id="blog-prev"
+		style="font-size: 2em; padding-right: 20%; color: green;"
+		align="center">
+		<img src="">
+	</div>
+	<div id="blogSlider">
+		<c:forEach items="${blog.itemList }" var="item" varStatus="vs">
+			<div>
+				<div class="row">
+					<div class="col-md-6 font4" align="left">
+						${vs.count }. <a href="${item.link }" style="color: green;">${item.title }</a>
+					</div>
+					<div class="col-md-6 font3" align="right">
+						<div class="col-md-6 ">
+							<span style="color: green;">post date.</span> ${item.postdate }
+						</div>
+						<div class="col-md-6 ">
+							<span style="color: green;">write by.</span> ${item.bloggername }
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 font3">${item.description }</div>
+				</div>
+				<hr />
+			</div>
+
+		</c:forEach>
+	</div>
+	<div id="blog-next"
+		style="font-size: 2em; padding-right: 20%; color: green;"
+		align="center"></div>
+
+</div>
 
 <script>
-	function listMore() {
-		var x = document.getElementById('reviewList');
-		if (x.style.display === 'none') {
-			x.style.display = 'block';
-			x.innerHTML = '리스트 닫기';
-		} else {
-			x.style.display = 'none';
-			x.innerHTML = '리스트 더보기';
-		}
-	}
-	
-</script>
+	$('#blogSlider')
+			.bxSlider(
+					{
+						nextSelector : '#blog-next',
+						prevSelector : '#blog-prev',
+						nextText : '<div ><img src="/views/search/images/down.png" class="arrow" ></div>',
+						prevText : '<div ><img src="/views/search/images/up.png" class="arrow" ></div>',
 
-<div class="row font2">
-	블로그 검색 결과 총 ${blog.total }개
-	<hr />
-</div>
-<c:forEach items="${blog.itemList }" var="item" varStatus="vs">
-	<div class="row">
-		<div class="col-md-6" align="left">
-			<a href="${item.link }">${item.title }</a>
-		</div>
-		<div class="col-md-6" align="right">
-			<div class="col-md-6">post date. ${item.postdate }</div>
-			<div class="col-md-6">write by. ${item.bloggername }</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">${item.description }</div>
-	</div>
-</c:forEach>
-<div class="row">
-	<c:forEach varStatus="vs" begin="1"
-		end="${blog.total % 10 eq 0 ? blog.total/10 : blog.total/10 +1 }">
-		${vs.count }
-	</c:forEach>
-</div>
+						minSlides : 5,
+						maxSlides : 5,
+						slideWidth : 1000,
+						slideMargin : 10,
+						mode : 'vertical',
+						captions : true,
+						pagerCustom : '#bx-pager'
+					});
+</script>

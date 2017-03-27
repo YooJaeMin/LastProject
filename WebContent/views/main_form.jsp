@@ -79,7 +79,7 @@
 			<ul>
 				<c:forEach items="${realRank}" var="item" varStatus="vs">
 					${vs.count }. <a
-						href="/search/keyword?keyword=${item._id }"><b style="font-size: 14pt">${item._id }</b></a>
+						href="/search/keyword?keyword=${item._id }"><font color="white">${item._id }</font></a>
 						<br/>
 				</c:forEach>
 			</ul>
