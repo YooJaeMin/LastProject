@@ -31,6 +31,9 @@
 	cursor: pointer;
 	font-size: 25px;
 }
+.star_rating{
+	font-size: 20px
+}
 .modal-content{
 	margin:40px;
 }
@@ -62,7 +65,7 @@
 
 					<!-- 후기작성란+별점+날씨등록란 -->
 					<div class="modal-body">
-						<form action="/view/review/result" method="get">
+						<form action="/view/review/result" method="post">
 							<!-- hidden >> id+tel 넘김 -->
 							<input type="hidden" name="id" value="${sessionScope.auth_id }" />
 							<input type="hidden" name="tel" value="${store.tel }" /> <input
@@ -98,6 +101,7 @@
 
 
 									<!-- 별점 평가란 -->
+									<div class=star_rating>
 								<h3>#3. 방문한 가게를 평가해 주세요! </h3>
 									청결도 : <input type="hidden" id="clean_s" name="clean_s"
 										value="1" />
@@ -156,7 +160,7 @@
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>
-									<br /> 가 격 : <input type="hidden" id="price_s" name="price_s"
+									<br /> 가 격　: <input type="hidden" id="price_s" name="price_s"
 										value="1" />
 									<c:forEach begin="1" end="5" varStatus="vs">
 										<c:choose>
@@ -170,6 +174,7 @@
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>
+									</div>
 								<br /> <br />
 								<div align="center">
 									<button type="button" class="btn btn-warning"
@@ -184,7 +189,7 @@
 
 							<br />
 							<div class="review_detail" id="text1" style="display: none;">
-								<textarea placeholder="내용을 입력하세요." name="content"
+								<textarea placeholder="내용을 입력하세요." name="content" 
 									></textarea>
 							</div>
 						</form>
