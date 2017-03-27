@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="weather">
+  	<select id="infoGet" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+  		<![CDATA[select * from (select rv.TEL,avg(rv.AVG_S) avgR from review rv where weather=#{wStatus} group by rv.tel order by avgR desc) where rownum<=5]]> 
+  	</select>
+  </mapper>
