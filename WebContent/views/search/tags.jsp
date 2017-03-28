@@ -84,7 +84,7 @@ a {
 		</c:otherwise>
 	</c:choose>
 	<c:if test="${result.size() ne 0 && result ne null}">
-		<div align="right">
+		<div align="right" style="font-size: 20px;">
 			<a href="/search/tag?selectedTag=${selectedTag }&type=all">리스트
 				더보기</a>
 		</div>
