@@ -940,8 +940,8 @@ hr {
 	$('.bxslider').bxSlider({
 		nextSelector : '#slider-next',
 		prevSelector : '#slider-prev',
-		nextText : '>',
-		prevText : '<',
+		nextText : '<img src="/img/next2.png" width=50px>',
+		prevText : '<img src="/img/back2.png" width=50px>',
 
 		minSlides : 3,
 		maxSlides : 3,
