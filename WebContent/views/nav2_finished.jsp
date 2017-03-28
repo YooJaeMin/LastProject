@@ -26,7 +26,7 @@
 </style>
 
 
-<div id="nav_body" data-spy="scroll" data-toggle=".navbar"
+<div  id="nav_body" data-spy="scroll" data-toggle=".navbar"
 	data-offset="50">
 
 	<nav class="navbar navbar-inverse ">

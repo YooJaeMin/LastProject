@@ -1,6 +1,8 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -88,10 +90,16 @@ public class infoDao {
 			List typeList = (List)mongoMap.get("type");
 			String type = (String)typeList.get(0);
 			innerMap.put("type", type);
+			String img = (String)((List)mongoMap.get("img")).get(0);
+			
+			
 			
 //			double avg = Double.parseDouble(String.format("%.2f",Double.parseDouble((String) innerMap.get("AVG"))));
 //			innerMap.put("AVG",avg);
-
+			innerMap.put("img", img);
+			String adress=(String) mongoMap.get("adress");
+			innerMap.put("adress", adress);
+			
 			list.set(i, innerMap);
 		}
 		return list;
@@ -122,6 +130,26 @@ public class infoDao {
 			Map mongoMap = template.findOne(query, Map.class, "food");
 			String title = (String) mongoMap.get("title");
 			innerMap.put("title", title);
+			
+			String weather = (String)innerMap.get("WEATHER");
+			if(weather.equals("sunny")) weather = "해가 쨍~ 한날";
+			else if(weather.equals("cloudy")) weather = "구름이 뭉게뭉게한 날";
+			else if(weather.equals("rainy")) weather = "비가 주륵주륵 오는 날";
+			else if(weather.equals("snowy")) weather = "눈이 펑펑오는 날";
+			innerMap.put("WEATHER", weather);
+
+			String type = (String)innerMap.get("TYPE");
+			if(type.equals("single")) type = "혼자서";
+			else if(type.equals("couple")) type = "연인과 함께";
+			else if(type.equals("family")) type = "가족과 함께";
+			else if(type.equals("together")) type = "회식으로";
+			else if(type.equals("friend")) type = "친구와 함께";
+			innerMap.put("TYPE", type);
+			SimpleDateFormat sdf = new SimpleDateFormat("yy년 MM월 dd일");
+			Date eat_date =  (Date)innerMap.get("EAT_DATE");
+			String date = sdf.format(eat_date);
+			innerMap.put("EAT_DATE", date);
+			
 			list.set(i, innerMap);
 		}
 		return list;
