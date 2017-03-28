@@ -20,7 +20,7 @@
 .main_view {
 	position: absolute;
 	top: 60%;
-	left: 35%;
+	left: 20%;
 	padding-bottom: 30px;
 	padding-top: 30px;
 }
@@ -73,10 +73,10 @@
 	<c:choose>
 		<c:when test="${sessionScope.auth ne  null }">
 			<div class="main_view row"
-				style="width: 35%; color: white; background-color: rgba(0, 0, 0, .5)"
+				style="width: 60%; color: white; background-color: rgba(0, 0, 0, .5)"
 				align="center">
 
-				<div class="input col-sm-4">
+				<div class="input col-sm-3">
 					<span style="font: italic bold; font-size: 16pt">실시간 검색어</span>
 					<ul>
 						<c:forEach items="${realRank}" var="item" varStatus="vs">
@@ -85,11 +85,8 @@
 							<br />
 						</c:forEach>
 					</ul>
-
-<<<<<<< HEAD
 				</div>
-=======
-		<div class="input col-sm-6">
+		<div class="input col-sm-3">
 			<span style="font: italic bold ; font-size: 16pt">실시간 검색어</span>
 			<ul>
 				<c:forEach items="${realRank}" var="item" varStatus="vs">
@@ -98,9 +95,8 @@
 						<br/>
 				</c:forEach>
 			</ul>
->>>>>>> branch 'master' of https://github.com/YooJaeMin/LastProject.git
-
-				<div class="input col-sm-4">
+		</div>
+				<div class="input col-sm-3">
 					<span style="font: italic bold; font-size: 16pt">오늘의 맛집</span>
 					<ul>
 						<c:forEach items="${todayRank}" var="item" varStatus="vs">
@@ -111,7 +107,7 @@
 					</ul>
 				</div>
 				<!--  -->
-				<div class="input col-sm-4">
+				<div class="input col-sm-3">
 					<span style="font: italic bold; font-size: 16pt">오늘의 날씨 맛집추천</span>
 					<ul>
 						<c:forEach items="${weather_ecommend}" var="item" varStatus="vs">
@@ -121,7 +117,7 @@
 						</c:forEach>
 					</ul>
 				</div>
-				<!--  -->
+			
 			</div>
 		</c:when>
 		<c:otherwise>
