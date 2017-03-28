@@ -840,11 +840,11 @@ hr {
 											if (rst =="ShopingS") {
 												window.alert("장바구니에 추가 되었습니다.!");
 												$("#shoppingR")
-														.attr("src","/views/search/images/color_bucket.png");
+														.attr("src","/views/search/images/color-bucket.png");
 											} else if(rst=="ShopingF"){
 												window.alert("장바구니가 취소 되었습니다.!");
 												$("#shoppingR")
-														.attr("src","/views/search/images/black_bucket.png");
+														.attr("src","/views/search/images/black-bucket.png");
 											} 
 																
 											 else{

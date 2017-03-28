@@ -194,7 +194,6 @@ public class SearchController {
 		
 
 		List<Map> reviewList = sd.reviewList(reqMap);
-
 		
 		mav.addObject("reviewList", reviewList);
 		/*태영 고친 부분*/
