@@ -38,134 +38,146 @@ public class RootController {
 
 	@Autowired
 	TestDao td;
-	
+
 	@Autowired
 	infoDao infodao;
-	
+
 	@Autowired
 	WeatherInformer winfo;
-	
+
 	@Autowired
 	RecommendDao recdao;
+
 	@RequestMapping({ "/", "/index" })
-	public ModelAndView indexHandle(@RequestParam Map map,HttpSession session) {
+	public ModelAndView indexHandle(@RequestParam Map map, HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_main");
 		List list1 = sd.realTimeRank();
 		mav.addObject("realRank", list1);
 		List list2 = sd.todayRank();
-		
-		if((session.getAttribute("auth")!=null)){
+		mav.addObject("todayRank", list2);
+
+		if ((session.getAttribute("auth") != null)) {
 			map.put("id", session.getAttribute("auth_id"));
-			List<HashMap>member1 = infodao.getInfo(map);
+			List<HashMap> member1 = infodao.getInfo(map);
 			HashMap memberGet = member1.get(0);
-			if(memberGet.get("NICK")!=null || memberGet.get("GENDER")!=null || 
-			   memberGet.get("BIRTH")!=null||memberGet.get("FAVOR")!=null||
-			   memberGet.get("MARRY")!=null)
-			{
-				String gender = (String)memberGet.get("GENDER");
-				Date birth = (Date)memberGet.get("BIRTH");
+			if (memberGet.get("NICK") != null || memberGet.get("GENDER") != null || memberGet.get("BIRTH") != null
+					|| memberGet.get("FAVOR") != null || memberGet.get("MARRY") != null) {
+				String gender = (String) memberGet.get("GENDER");
+				if (gender.equals("F"))
+					mav.addObject("gender", "여성");
+				else
+					mav.addObject("gender", "남성");
+
+				Date birth = (Date) memberGet.get("BIRTH");
 				int birthInt = birth.getYear();
-				String betweenY="";
-				String betweenYR="";
+				String betweenY = "";
+				String betweenYR = "";
 				String age = "";
-				if(birthInt>=98 && birthInt<=117){
-					betweenY="1998-01";
-					betweenYR="2017-12";
-					age="10대";
-				}else if(birthInt>=88 && birthInt<=97){
-					betweenY="1988-01";
-					betweenYR="1997-12";
-					age="20대";
-				}else if(birthInt>=78 && birthInt<=87){
-					betweenY="1978-01";
-					betweenYR="1987-12";
-					age="30대";
-				}else if(birthInt>=68 && birthInt<=77){
-					betweenY="1968-01";
-					betweenYR="1977-12";
-					age="40대";
-				}else if(birthInt>=58 && birthInt<=67){
-					betweenY="1958-01";
-					betweenYR="1967-12";
-				}else if(birthInt>=48 && birthInt<=57){
-					betweenY="1948-01";
-					betweenYR="1957-12";
-					age="50대";
-				}else{
-					betweenY="1938-01";
-					betweenYR="1947-12";
-					age="60대";
+				if (birthInt >= 98 && birthInt <= 117) {
+					betweenY = "1998-01";
+					betweenYR = "2017-12";
+					age = "10대";
+				} else if (birthInt >= 88 && birthInt <= 97) {
+					betweenY = "1988-01";
+					betweenYR = "1997-12";
+					age = "20대";
+				} else if (birthInt >= 78 && birthInt <= 87) {
+					betweenY = "1978-01";
+					betweenYR = "1987-12";
+					age = "30대";
+				} else if (birthInt >= 68 && birthInt <= 77) {
+					betweenY = "1968-01";
+					betweenYR = "1977-12";
+					age = "40대";
+				} else if (birthInt >= 58 && birthInt <= 67) {
+					betweenY = "1958-01";
+					betweenYR = "1967-12";
+				} else if (birthInt >= 48 && birthInt <= 57) {
+					betweenY = "1948-01";
+					betweenYR = "1957-12";
+					age = "50대";
+				} else {
+					betweenY = "1938-01";
+					betweenYR = "1947-12";
+					age = "60대";
 				}
 				map.put("birth", betweenY);
 				map.put("birthR", betweenYR);
-				map.put("gender",gender);
-				
-				
-				List<HashMap> listRecommend  = recdao.getRecommendInfo(map);
+				map.put("gender", gender);
+
+				List<HashMap> listRecommend = recdao.getRecommendInfo(map);
 				List<HashMap> listRecommendR = recdao.getTel(listRecommend);
 				Map weather = winfo.service();
 				System.out.println(weather);
 				Map weatherR = new HashMap<>();
-				// - SKY_A01: 맑음			sunny-
-				// - SKY_A02: 구름조금		cloudy
-				// - SKY_A03: 구름많음		cloudy
-				// - SKY_A04: 구름많고 비	rainy-	
-				// - SKY_A05: 구름많고 눈	snowy-
-				// - SKY_A06: 구름많고 비 또는 눈	snowy-
-				// - SKY_A07: 흐림			cloudy
-				// - SKY_A08: 흐리고 비		rainy-
-				// - SKY_A09: 흐리고 눈		cloudy
-				// - SKY_A10: 흐리고 비 또는 눈		rainy-
-				// - SKY_A11: 흐리고 낙뢰	rainy-
-				// - SKY_A12: 뇌우, 비		rainy-
-				// - SKY_A13: 뇌우, 눈		snowy-
-				// - SKY_A14: 뇌우, 비 또는 눈	snowy-
+				// - SKY_A01: 맑음 sunny-
+				// - SKY_A02: 구름조금 cloudy
+				// - SKY_A03: 구름많음 cloudy
+				// - SKY_A04: 구름많고 비 rainy-
+				// - SKY_A05: 구름많고 눈 snowy-
+				// - SKY_A06: 구름많고 비 또는 눈 snowy-
+				// - SKY_A07: 흐림 cloudy
+				// - SKY_A08: 흐리고 비 rainy-
+				// - SKY_A09: 흐리고 눈 cloudy
+				// - SKY_A10: 흐리고 비 또는 눈 rainy-
+				// - SKY_A11: 흐리고 낙뢰 rainy-
+				// - SKY_A12: 뇌우, 비 rainy-
+				// - SKY_A13: 뇌우, 눈 snowy-
+				// - SKY_A14: 뇌우, 비 또는 눈 snowy-
 
-				/*ModelAndView mav = new ModelAndView("/views/testing/weather.jsp");*/
+				/*
+				 * ModelAndView mav = new
+				 * ModelAndView("/views/testing/weather.jsp");
+				 */
 				String wStatus = "";
 				String wStatus2 = "";
 				System.out.println(weather.get("code"));
-				if (((String) weather.get("code")).equals("SKY_A01")) {
-					wStatus = "sunny";
-					wStatus2 = "맑음";
-					
-				} else if (((String) weather.get("code")).equals("SKY_A04")||equals("SKY_A08")||equals("SKY_A010")||equals("SKY_A011")||equals("SKY_A012")) {
-					wStatus= "rainy";
-					wStatus2 = "비오는중";
-				} else if (((String) weather.get("code")).equals("SKY_A05")||equals("SKY_A06")||equals("SKY_A13")||equals("SKY_A14")) {
-					wStatus= "snowy";
-					wStatus2 = "눈오는중";
-				} else {
-					wStatus= "cloudy";
-					wStatus2 = "우중충";
+				try {
+					if (((String) weather.get("code")).equals("SKY_A01")) {
+						wStatus = "sunny";
+						wStatus2 = "해가 쨍쨍한 날";
+
+					} else if (((String) weather.get("code")).equals("SKY_A04") || equals("SKY_A08")
+							|| equals("SKY_A010") || equals("SKY_A011") || equals("SKY_A012")) {
+						wStatus = "rainy";
+						wStatus2 = "비 주륵 오는 날";
+					} else if (((String) weather.get("code")).equals("SKY_A05") || equals("SKY_A06")
+							|| equals("SKY_A13") || equals("SKY_A14")) {
+						wStatus = "snowy";
+						wStatus2 = "눈이 펑펑오는 날";
+					} else {
+						wStatus = "cloudy";
+						wStatus2 = "구름 가득한 날";
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+					wStatus = "cloudy";
+					wStatus2 = "구름 가득한 날";
 				}
-				
-				
-				
+
 				weatherR.put("wStatus", wStatus);
 				List<HashMap> weatherR2 = winfo.getWeather(weatherR);
-				
+
 				List<HashMap> resultR = new ArrayList<>();
 				resultR = winfo.getTel(weatherR2);
 				map.put("id", session.getAttribute("auth_id"));
 				List<HashMap> result = infodao.getInfo(map);
-				mav.addObject("wStatus",wStatus2);
-				mav.addObject("age",age);
-				mav.addObject("listRecommendR",listRecommendR);
-				mav.addObject("member_info",result);
-				mav.addObject("weather_ecommend",resultR);
+				mav.addObject("wStatus", wStatus2);
+				mav.addObject("age", age);
+				mav.addObject("listRecommendR", listRecommendR);
+				mav.addObject("member_info", result);
+				mav.addObject("weather_ecommend", resultR);
 				return mav;
-			}else{
-				String infodetail="좀 더 정보를 입력해 주세요";
-				mav.addObject("infodetail",infodetail);
+			} else {
+				String infodetail = "좀 더 정보를 입력해 주세요";
+				mav.addObject("infodetail", infodetail);
 				return mav;
 			}
-			
+
 		}
 		return mav;
-	/*	mav.addObject("todayRank", list2);*/
-		
-		
+		/*	*/
+
 	}
 
 	@RequestMapping("/test/insert/member")
@@ -299,14 +311,14 @@ public class RootController {
 		List<Map> tempList = new ArrayList();
 		elementLoof: for (Map map : list) {
 			try {
-				
+
 				String[] adressArr = ((String) map.get("adress")).split("\\s");
 				String adress = "";
 				int ch = 0;
 				for (String chip : adressArr) {
 					if (ch >= 4)
 						break;
-					adress += chip+"+";
+					adress += chip + "+";
 					ch++;
 				}
 				String target = "https://maps.googleapis.com/maps/api/geocode/json?address=" + adress
@@ -390,7 +402,6 @@ public class RootController {
 				e.printStackTrace();
 				continue;
 			}
-
 
 		}
 		td.modifyFinal(list);

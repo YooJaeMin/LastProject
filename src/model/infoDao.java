@@ -1,6 +1,8 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,10 +41,15 @@ public class infoDao {
 	public int infoUpdate(Map map){
 		SqlSession session = factory.openSession();
 		int r=0;
-	
+		String favor ="";
 		List list = (List)map.get("favor");
-		map.put("favor", list.toString());
 		
+		for(int i=0;i<list.size();i++){
+			favor+=(" "+list.get(i));
+		}
+		favor=favor.substring(1, favor.length());
+		System.out.println(favor);
+		map.put("favor", favor);
 		try{
 			r=session.update("info.update",map);
 			session.commit();
@@ -138,6 +145,10 @@ public class infoDao {
 			else if(type.equals("together")) type = "회식으로";
 			else if(type.equals("friend")) type = "친구와 함께";
 			innerMap.put("TYPE", type);
+			SimpleDateFormat sdf = new SimpleDateFormat("yy년 MM월 dd일");
+			Date eat_date =  (Date)innerMap.get("EAT_DATE");
+			String date = sdf.format(eat_date);
+			innerMap.put("EAT_DATE", date);
 			
 			list.set(i, innerMap);
 		}
