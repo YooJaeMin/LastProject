@@ -83,10 +83,11 @@ public class infoDao {
 			List typeList = (List)mongoMap.get("type");
 			String type = (String)typeList.get(0);
 			innerMap.put("type", type);
+			String img = (String)((List)mongoMap.get("img")).get(0);
 			
 //			double avg = Double.parseDouble(String.format("%.2f",Double.parseDouble((String) innerMap.get("AVG"))));
 //			innerMap.put("AVG",avg);
-
+			innerMap.put("img", img);
 			list.set(i, innerMap);
 		}
 		return list;
