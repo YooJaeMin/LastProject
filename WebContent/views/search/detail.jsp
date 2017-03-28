@@ -21,7 +21,7 @@ body {
 }
 
 hr {
-	border: solid 2px orange;
+	border: solid 1.5px orange;
 }
 
 .weather {
@@ -72,6 +72,7 @@ hr {
 .icon {
 	width: 60px;
 	height: 60px;
+	margin-bottom: 10px;
 }
 
 .font1 {
@@ -136,11 +137,9 @@ hr {
 }
 
 .like {
-	border-style: soild;
-	border-width: 2px;
-	border-color: black;
-	background-color: white;
-	font-weight: bold;
+	border:none;
+	background:none;
+	font-size: 18px;
 }
 
 .img-box {
@@ -262,9 +261,9 @@ hr {
 <div
 	style="padding-top: 5%; margin: 0 250; padding-right: 25px; padding-left: 25px;">
 	<div class="row">
-		<div class="col-md-4">
-			<span class="title">${store.title } / </span><span class="score">
-				${store.avg } Score</span>
+		<div class="col-md-6">
+			<span class="title">${store.title } </span><span class="score">
+				 ${store.avg }</span><span style="font-size: 20px; font-family: impact;"> / 5.0</span> 
 		</div>
 
 	</div>
@@ -284,20 +283,20 @@ hr {
 			<!--  -->
 			<!--  -->
 			<div class="col-md-8">
-				<button type="button" id="like" class="btn like" value="true"
-					style="WIDTH: 80pt; HEIGHT: 30pt">
+				<button type="button" id="like" class="btn like" value="true" 
+					style="WIDTH: 100pt; ">
 					좋아요<span id="like_cnt">${like.CNT}</span>
 					<!--  -->
 					<c:choose>
 						<c:when test="${likeResult eq true}">
 							<img class="btn-img" id="likeR"
-								src="/img/1414328714455_PicsArt_1389242401746.png"
-								style="width: 15%; height: auto;">
+								src="/img/heart01.png"
+								style="width:25px">
 						</c:when>
 						<c:otherwise>
 							<img class="btn-img" id="likeR"
-								src="/img/SketchTalk201361917350.png"
-								style="width: 15%; height: auto;">
+								src="/img/heart02.png"
+								style="width: 18pt; height: auto;">
 						</c:otherwise>
 					</c:choose>
 					<!--  -->
@@ -329,16 +328,16 @@ hr {
 
 	<div class="row" align="center">
 		<div class="col-md-3">
-			<img src="/views/search/images/store_red.png" class="icon">
+			<img src="/views/search/images/store_r.png" class="icon">
 		</div>
 		<div class="col-md-3">
-			<img src="/views/search/images/food_red.png" class="icon">
+			<img src="/views/search/images/food_r.png" class="icon">
 		</div>
 		<div class="col-md-3">
-			<img src="/views/search/images/list_red.png" class="icon">
+			<img src="/views/search/images/list_r.png" class="icon">
 		</div>
 		<div class="col-md-3">
-			<img src="/views/search/images/clock_red.png" class="icon">
+			<img src="/views/search/images/clock_r.png" class="icon">
 		</div>
 	</div>
 
@@ -371,7 +370,7 @@ hr {
 				style="font-size: 2em; padding-right: 20%"></span>
 		</div>
 		<div class="col-md-10">
-			<ul class="bxslider">
+			<ul class="bxslider" style="border: white;">
 
 				<c:forEach items="${store.img }" var="img" varStatus="vs">
 
@@ -578,7 +577,7 @@ hr {
 
 
 			<div class="row font1" align="right">
-				<button class="btn" id="reviewMore">리뷰 더보기</button>
+				<button type="button" class="btn btn-info btn-lg" id="reviewMore">리뷰 더보기</button>
 			</div>
 
 			<script>
@@ -598,7 +597,7 @@ hr {
 				<hr />
 				<c:forEach items="${reviewList }" var="item" varStatus="vs">
 					<c:if test="${vs.count ge 6  }">
-						<div class="row font1 col-md-3">
+						<div class="row font1 col-md-3" id=${item.ID }>
 							<img class="profile_img" src="${item.PROFILE }">
 						</div>
 						<div class="row font1 col-md-9">
@@ -974,13 +973,13 @@ hr {
 											if (rst.like == 'like') {
 												$("#likeR")
 														.attr("src",
-																"/img/1414328714455_PicsArt_1389242401746.png")
+																"/img/heart01.png")
 												$("#like_cnt").html(rst.CNT)
 
 											} else if (rst.like == 'delete') {
 												$("#likeR")
 														.attr("src",
-																"/img/SketchTalk201361917350.png")
+																"/img/heart02.png")
 												$("#like_cnt").html(rst.CNT)
 											} else {
 
@@ -1048,10 +1047,10 @@ hr {
 				console.log(rst)
 				if (rst == 1) {
 					$("#img" + cnt).attr("src",
-							"/img/1414328714455_PicsArt_1389242401746.png")
+							"/img/heart01.png")
 				} else {
 					$("#img" + cnt).attr("src",
-							"/img/SketchTalk201361917350.png")
+							"/img/heart02.png")
 				}
 
 			});
@@ -1083,10 +1082,10 @@ hr {
 					</div>
 					<div class="col-md-6 font3" align="right">
 						<div class="col-md-6 ">
-							<span style="color: green;">post date.</span> ${item.postdate }
+							<span style="color: green;">posted date.</span> ${item.postdate }
 						</div>
 						<div class="col-md-6 ">
-							<span style="color: green;">write by.</span> ${item.bloggername }
+							<span style="color: green;">written by.</span> ${item.bloggername }
 						</div>
 					</div>
 				</div>

@@ -109,5 +109,24 @@ public class TestDao {
 		}
 
 	}
+	
+	public List adressGet(){
+		List<Map> list = new ArrayList<>();
+		list = template.find(new Query(), Map.class, "food");
+		
+		for(int index =0; index < list.size(); index++){
+			Map map = list.get(index);
+			String adress = (String)map.get("adress");
+			String[] adressAr = adress.split("\\s");
+			String temp ="";
+			for(int i = 0; i <adressAr.length; i++){
+				if(i==4) break;
+				temp += adressAr[i]+" ";
+			}
+			map.put("adress", temp);
+			list.set(index, map);
+		}
+		return list;
+	}
 
 }
