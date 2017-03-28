@@ -41,12 +41,17 @@ public class infoDao {
 	public int infoUpdate(Map map){
 		SqlSession session = factory.openSession();
 		int r=0;
-	
+		String favor ="";
 		List list = (List)map.get("favor");
-		map.put("favor", list.toString());
+		
+		for(int i=0;i<list.size();i++){
+			favor+=(" "+list.get(i));
+		}
+		System.out.println(favor);
+		map.put("favor", favor);
 		
 		try{
-			r=session.update("info.update",map);
+			/*r=session.update("info.update",map);*/
 			session.commit();
 		}catch(Exception e){
 			e.printStackTrace();
