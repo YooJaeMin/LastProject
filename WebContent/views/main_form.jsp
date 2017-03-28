@@ -17,13 +17,6 @@
 	font-size: 10pt;
 }
 
-.main_view {
-	position: absolute;
-	top: 60%;
-	left: 20%;
-	padding-bottom: 30px;
-	padding-top: 30px;
-}
 
 .main_search_area {
 	position: absolute;
@@ -68,12 +61,11 @@
 	</div>
 
 
-
 	<%-- <c:if test="${sessionScope.auth ne  null }"> --%>
 	<c:choose>
 		<c:when test="${sessionScope.auth ne  null }">
 			<div class="main_view row"
-				style="width: 60%; color: white; background-color: rgba(0, 0, 0, .5)"
+				style="position:absolute;top:60%;left:20%;padding-bottom:30px;padding-top:30px;  width: 60%; color: white; background-color: rgba(0, 0, 0, .5)"
 				align="center">
 
 				<div class="input col-sm-3">
@@ -121,8 +113,16 @@
 			</div>
 		</c:when>
 		<c:otherwise>
+
+<!-- /* .main_view {
+	position: absolute;
+	top: 60%;
+	left: 20%;
+	padding-bottom: 30px;
+	padding-top: 30px;
+} */ -->
 			<div class="main_view row"
-				style="width: 35%; color: white; background-color: rgba(0, 0, 0, .5)"
+				style="position: absolute;top: 60%;padding-bottom: 30px; padding-top: 30px;left: 33%;width: 35%; color: white; background-color: rgba(0, 0, 0, .5)"
 				align="center">
 
 				<div class="input col-sm-6">
