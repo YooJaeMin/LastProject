@@ -370,7 +370,7 @@ hr {
 				style="font-size: 2em; padding-right: 20%"></span>
 		</div>
 		<div class="col-md-10">
-			<ul class="bxslider">
+			<ul class="bxslider" style="border: white;">
 
 				<c:forEach items="${store.img }" var="img" varStatus="vs">
 
@@ -577,7 +577,7 @@ hr {
 
 
 			<div class="row font1" align="right">
-				<button class="btn" id="reviewMore">리뷰 더보기</button>
+				<button type="button" class="btn btn-info btn-lg" id="reviewMore">리뷰 더보기</button>
 			</div>
 
 			<script>
@@ -1082,10 +1082,10 @@ hr {
 					</div>
 					<div class="col-md-6 font3" align="right">
 						<div class="col-md-6 ">
-							<span style="color: green;">post date.</span> ${item.postdate }
+							<span style="color: green;">posted date.</span> ${item.postdate }
 						</div>
 						<div class="col-md-6 ">
-							<span style="color: green;">write by.</span> ${item.bloggername }
+							<span style="color: green;">written by.</span> ${item.bloggername }
 						</div>
 					</div>
 				</div>
