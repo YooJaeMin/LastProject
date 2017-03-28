@@ -299,7 +299,13 @@ public class SearchDao {
 			date = (Date) innerMap.get("EAT_DATE");
 			to = transFormat.format(date);
 			innerMap.put("EAT_DATE", to);
-			
+			String type = (String)innerMap.get("TYPE");
+			if(type.equals("single")) type = "혼자서";
+			else if (type.equals("family")) type = "가족들이랑";
+			else if (type.equals("couple")) type = "연인과";
+			else if (type.equals("friend")) type = "친구랑";
+			else if (type.equals("together")) type = "회식으로";
+			innerMap.put("TYPE", type);
 			try{
 				profileList = session.selectList("member.selectDetail",innerMap);
 				String profile = (String) profileList.get(0).get("PROFILE");
@@ -307,6 +313,7 @@ public class SearchDao {
 			} catch(Exception e2){
 				e2.printStackTrace();
 			} 
+			list.set(i, innerMap);
 			
 		}
 		session.close();

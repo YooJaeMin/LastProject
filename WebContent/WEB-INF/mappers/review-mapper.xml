@@ -26,7 +26,7 @@
 	</update>
 	<!-- 카테고리 검색 결과 -->
 	<select id="reviewResult" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-		select * from review where tel = #{tel} order by hit desc
+		select * from review where tel = #{tel} order by eat_date desc
 	</select>
 
 	<select id="avgResult" parameterType="java.util.HashMap" resultType="java.lang.Double">

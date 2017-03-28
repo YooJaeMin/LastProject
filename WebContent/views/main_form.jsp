@@ -86,7 +86,19 @@
 						</c:forEach>
 					</ul>
 
+<<<<<<< HEAD
 				</div>
+=======
+		<div class="input col-sm-6">
+			<span style="font: italic bold ; font-size: 16pt">실시간 검색어</span>
+			<ul>
+				<c:forEach items="${realRank}" var="item" varStatus="vs">
+					${vs.count }. <a
+						href="/search/keyword?keyword=${item._id }"><font color="white">${item._id }</font></a>
+						<br/>
+				</c:forEach>
+			</ul>
+>>>>>>> branch 'master' of https://github.com/YooJaeMin/LastProject.git
 
 				<div class="input col-sm-4">
 					<span style="font: italic bold; font-size: 16pt">오늘의 맛집</span>

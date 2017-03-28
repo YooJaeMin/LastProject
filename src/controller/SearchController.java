@@ -95,7 +95,12 @@ public class SearchController {
 		list = sd.mongoWithSql(list);
 //		mav.addObject("result", list);
 		// 리뷰가 완성되면 진행할 예정
-
+		int size = list.size();
+		if(size % 10 ==0){
+			mav.addObject("max", size/10);
+		} else {
+			mav.addObject("max", (int)(size/10 +1));
+		}
 		 mav.addObject("result", sd.rankFilter(list));
 
 		// mav.addObject("titleResult",sd.rankFilter(list2));
@@ -129,8 +134,17 @@ public class SearchController {
 		mav.addObject("tagsList", foods);
 		List list = sd.tagSearch(selectedTag);
 		list = sd.mongoWithSql(list);
+		
 		mav.addObject("selectedTag", selectedTag);
-		mav.addObject("result", sd.rankFilter(list));
+		list = sd.rankFilter(list);
+		
+		mav.addObject("result", list);
+		int size = list.size();
+		if(size % 10 ==0){
+			mav.addObject("max", size/10);
+		} else {
+			mav.addObject("max", (int)(size/10 +1));
+		}
 		return mav;
 	}
 	
@@ -178,28 +192,9 @@ public class SearchController {
 			}
 		}
 		
-		List reviewList = sd.reviewList(reqMap);
-		/*태영 리뷰 체크  3-26*/
-		/*List reviewLikeC = new ArrayList<>();
-		Map reviewLikeCR = new HashMap<>();
-		for(Object m : reviewList){
-			HashMap r = (HashMap)m;
-			r.put("auth_id", session.getAttribute("auth_id"));
-			int reviewC = likedao.reviewCheck(r);
-			if(reviewC==1)
-			{
-				reviewLikeCR.put("id", session.getAttribute("auth_id"));
-				reviewLikeCR.put("review_id", r.get("ID"));
-				reviewLikeCR.put("reviewC", true);
-				
-			}else{
-				reviewLikeCR.put("id", session.getAttribute("auth_id"));
-				reviewLikeCR.put("review_id", r.get("ID"));
-				reviewLikeCR.put("reviewC", false);
-			}
-		}
-		reviewLikeC.add(reviewLikeCR);*/
-		/*      */
+
+		List<Map> reviewList = sd.reviewList(reqMap);
+
 		
 		mav.addObject("reviewList", reviewList);
 		/*태영 고친 부분*/

@@ -9,39 +9,25 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/earlyaccess/hanna.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link href='//fonts.googleapis.com/css?family=Coming Soon' rel='stylesheet'>
 </head>
-
-<style>
-.jumbotron {
-    color: #ffffff;
-    font-family: 'Lobster';
-    background-color: #ff9400;
-    margin-top: 0;
-    padding: 20px 20px 20px 40px;
+  <style>
+  
+ 
+.body {
+    font-family: 'Coming Soon';
 }
 .weather_box{
-	width : 50px;
-	height : 50px;
+	width : 40px;
 }
 .starScore {
 	cursor: pointer;
-	font-size: 25px;
-}
-.star_rating{
-	font-size: 20px
 }
 .modal-content{
 	margin:40px;
 }
 .modal-body{
-	margin-left:25px;
-	margin-right:25px;
-	font-family: 'Hanna', sans-serif;
-	
+	margin:20px;
 }
 </style>
 
@@ -59,20 +45,21 @@
 
 				<!-- Modal content-->
 				<div class="modal-content">
-						<div class="jumbotron" align="center" style="margin-bottom: 0px">
-							<h1>My Review</h1>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<div class="jumbotron text-center">
+							<h3>My Review</h3>
 						</div>
 
 					<!-- 후기작성란+별점+날씨등록란 -->
 					<div class="modal-body">
-						<form action="/view/review/result" method="post">
+						<form action="/view/review/result" method="get">
 							<!-- hidden >> id+tel 넘김 -->
 							<input type="hidden" name="id" value="${sessionScope.auth_id }" />
 							<input type="hidden" name="tel" value="${store.tel }" /> <input
 								type="hidden" id="wStatus" name="weather" value="${weather.status}" />
 							<input type="hidden" id="type" name="type" value="single"/> 
 
-							　<h3 style="margin-top: 0px">#1. 날씨가 어땠나요?<br></h3>
+							날씨가 어땠나요?<br>
 							<a class="btn btn-lg"
 								id="wb1" onclick="wBox(1, 'sunny')"> <img class="weather_box"
 								src="/img_weather/sunny.png" />
@@ -82,10 +69,9 @@
 								class="weather_box" src="/img_weather/rainy.png" />
 							</a> <a class="btn btn-lg" id="wb4" onclick="wBox(4,'snowy')"> <img
 								class="weather_box" src="/img_weather/snowy.png" />
-							</a>
+							</a><br />
 							
-							<br /> 
-							<h3>#2. 누구와 방문했나요? <br></h3>
+							<br /> 누구와 방문했나요? <br>
 							<a class="btn btn-lg" id="t1" onclick="tBox(1,'single')">
 								<img class="weather_box" src="/img_weather/single.png" />
 							</a> <a class="btn btn-lg" id="t2" onclick="tBox(2,'couple')"> <img
@@ -100,20 +86,21 @@
 
 
 
+							<div class="row">
+								<div class="container">
 									<!-- 별점 평가란 -->
-									<div class=star_rating>
-								<h3>#3. 방문한 가게를 평가해 주세요! </h3>
 									청결도 : <input type="hidden" id="clean_s" name="clean_s"
 										value="1" />
 									<c:forEach begin="1" end="5" varStatus="vs">
 										<c:choose>
 											<c:when test="${!vs.first }">
 												<a class="starScore" id="star_clean${vs.count }"
-													onclick="star(${vs.count},'clean')">♡</a>
+													onclick="star(${vs.count},'clean')">☆</a>
 											</c:when>
 											<c:otherwise>
 												<a class="starScore" id="star_clean${vs.count }"
-													onclick="star(${vs.count},'clean')" style="color: pink;">♥</a>
+													onclick="star(${vs.count},'clean')" style="color: orange;">
+													<img src="/img_weather/star2.png"/></a>
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>
@@ -123,11 +110,12 @@
 										<c:choose>
 											<c:when test="${!vs.first }">
 												<a class="starScore" id="star_taste${vs.count }"
-													onclick="star(${vs.count},'taste')">♡</a>
+													onclick="star(${vs.count},'taste')">☆</a>
 											</c:when>
 											<c:otherwise>
 												<a class="starScore" id="star_taste${vs.count }"
-													onclick="star(${vs.count},'taste')" style="color: pink;">♥</a>
+													onclick="star(${vs.count},'taste')" style="color: orange;">
+												<img src="/img_weather/star2.png"/></a>
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>
@@ -137,11 +125,11 @@
 										<c:choose>
 											<c:when test="${!vs.first }">
 												<a class="starScore" id="star_good${vs.count }"
-													onclick="star(${vs.count},'good')">♡</a>
+													onclick="star(${vs.count},'good')">☆</a>
 											</c:when>
 											<c:otherwise>
 												<a class="starScore" id="star_good${vs.count }"
-													onclick="star(${vs.count},'good')" style="color: pink;">♥</a>
+													onclick="star(${vs.count},'good')" style="color: orange;">★</a>
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>
@@ -151,30 +139,31 @@
 										<c:choose>
 											<c:when test="${!vs.first }">
 												<a class="starScore" id="star_location${vs.count }"
-													onclick="star(${vs.count},'location')">♡</a>
+													onclick="star(${vs.count},'location')">☆</a>
 											</c:when>
 											<c:otherwise>
 												<a class="starScore" id="star_location${vs.count }"
 													onclick="star(${vs.count},'location')"
-													style="color: pink;">♥</a>
+													style="color: orange;">
+													<img src="/img_weather/star2.png"/></a>
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>
-									<br /> 가 격　: <input type="hidden" id="price_s" name="price_s"
+									<br /> 가 격 : <input type="hidden" id="price_s" name="price_s"
 										value="1" />
 									<c:forEach begin="1" end="5" varStatus="vs">
 										<c:choose>
 											<c:when test="${!vs.first }">
 												<a class="starScore" id="star_price${vs.count }"
-													onclick="star(${vs.count},'price')">♡</a>
+													onclick="star(${vs.count},'price')">☆</a>
 											</c:when>
 											<c:otherwise>
 												<a class="starScore" id="star_price${vs.count }"
-													onclick="star(${vs.count},'price')" style="color: pink;">♥</a>
+													onclick="star(${vs.count},'price')" style="color: orange;">★</a>
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>
-									</div>
+								</div>
 								<br /> <br />
 								<div align="center">
 									<button type="button" class="btn btn-warning"
@@ -185,19 +174,18 @@
 									<button type="button" class="btn btn-danger"
 										data-dismiss="modal">취소</button>
 								</div>
-								
+							</div>
 
 							<br />
 							<div class="review_detail" id="text1" style="display: none;">
-								<textarea placeholder="내용을 입력하세요." name="content" 
-									></textarea>
+								<textarea placeholder="내용을 입력하세요." name="content"
+									style="width: 565px; height: 150px;"></textarea>
 							</div>
 						</form>
 					</div>
 
 
 
-				
 				</div>
 			</div>
 		</div>
@@ -211,13 +199,13 @@
 	
 	function star(x,type){
 		
-		if($("#star_"+type+x).html()=="♡"){
+		if($("#star_"+type+x).html()=="☆"){
 			for(var i =1; i<=x; i++){
 				$("#star_"+type+i).each(function(){
 					//class name이 chk인 개체들을 모두 체크되게함
 						// this.checked =true;
-							$(this).html("♥");
-							$(this).css("color","pink");
+							$(this).html(img src="/img_weather/star2.png"/);
+							$(this).css("color","orange");
 
 					});
 			}
@@ -226,7 +214,7 @@
 				$("#star_"+type+i).each(function(){
 					//class name이 chk인 개체들을 모두 체크되게함
 						// this.checked =true;
-							$(this).html("♡");
+							$(this).html("☆");
 							$(this).css("color","black");
 
 					});
@@ -241,7 +229,7 @@
 			$("#wb"+i).each(function(){
 					if(i == weather){
 						console.log(i);
-						$(this).css("border", "2px solid #ff9400");
+						$(this).css("border", "2px solid gray");
 					} else {
 						$(this).css("border", "");
 					}
@@ -255,7 +243,7 @@
 			$("#t"+i).each(function(){
 					if(i == type){
 						console.log(i);
-						$(this).css("border", "2px solid #ff9400");
+						$(this).css("border", "2px solid gray");
 					} else {
 						$(this).css("border", "");
 					}

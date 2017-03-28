@@ -7,6 +7,8 @@
 <!-- getAsString 출력용 -->
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/earlyaccess/hanna.css"
+	rel="stylesheet" type="text/css">
 <body>
 	<div>
 		<tiles:insertAttribute name="nav" />

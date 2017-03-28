@@ -5,15 +5,27 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style>
+body {
+	font-family: 'Hanna', sans-serif;
+}
+
 .item_container {
-	border-style: solid;
+	border-style: double;
+	border-radius: 10px;
 	border-color: #FE9A2E;
 	height: 230px;
+	border-color: #FE9A2E;
 }
 
 #tags {
-	border-style: solid;
+	border-style: double;
+	border-radius: 10px;
 	border-color: #FE9A2E;
+	padding: 10px;
+}
+
+a {
+	color: black;
 }
 
 .img-box {
@@ -24,6 +36,15 @@
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
 		rgba(0, 0, 0, 0.19);
 }
+
+.btn-box {
+	background-color: black;
+	color: #ffd700;
+}
+
+.score-box {
+	
+}
 </style>
 <div class="row col-md-offset-1 col-md-9" align="left">
 	<h3>'${keyword }'(으)로 검색 결과</h3>
@@ -33,7 +54,8 @@
 	<c:forEach items="${tagsList }" var="item">
 		<form class="col-md-2" action="/search/tag?type=basic">
 			<input type="hidden" name="type" value="basic" />
-			<button class="btn" name="selectedTag" value="${item }">${item }</button>
+			<button class="btn btn-box" name="selectedTag" value="${item }">#${item
+				}</button>
 		</form>
 	</c:forEach>
 </div>
@@ -60,8 +82,9 @@
 					</div>
 					<div class="col-md-6">
 						<h3>
-							
-							<a href="/search/detail?tel=${item.tel }">${vs.count}. ${item.title }</a>
+
+							<a href="/search/detail?tel=${item.tel }">${vs.count}.
+								${item.title }</a>
 						</h3>
 						<br />
 						<c:forEach items="${item.tag }" var="tag" varStatus="vs">
@@ -100,7 +123,8 @@
 					</div>
 					<div class="col-md-6">
 						<h3>
-							<a href="/search/detail?tel=${item.tel }">${vs.count}. ${item.title }</a>
+							<a href="/search/detail?tel=${item.tel }">${vs.count}.
+								${item.title }</a>
 						</h3>
 						<br />
 						<c:forEach items="${item.tag }" var="tag" varStatus="vs">

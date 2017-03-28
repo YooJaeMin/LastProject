@@ -65,7 +65,7 @@
 // 			"icon": image
 		});
 		var contentString${vs.index} = 
-			'<span style="font-size: 15pt;">${vs.index}.</span>'+
+			'<span style="font-size: 15pt;">${vs.count}.</span>'+
 			'<a href="/search/detail?tel=${item.tel }"style="font-size: 15pt; bold;">${item.title }</a><br/>'+
 			'${item.adress }<br/>'+
 			'☏ ${item.tel }<br/>'+
@@ -80,7 +80,7 @@
 		});
 		</c:if>
 		</c:forEach>
-	}
+	};
 </script>
 
 

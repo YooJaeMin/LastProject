@@ -1,19 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>    
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <style>
 .item_container {
-	border-style: solid;
+	border-style: double;
 	border-color: #FE9A2E;
+	border-radius: 10px;
 	height: 230px;
 }
 
+body {
+	font-family: 'Hanna', sans-serif;
+}
+
 #tags {
-	border-style: solid;
+	border-style: double;
 	border-color: #FE9A2E;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+a {
+	color: black;
 }
 
 .img-box {
@@ -24,9 +33,10 @@
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
 		rgba(0, 0, 0, 0.19);
 }
+
 .btn-box {
 	background-color: black;
-	color: yellow;
+	color: #ffd700;
 }
 </style>
 <div class="row col-md-offset-1 col-md-9" align="left">
@@ -36,7 +46,7 @@
 <div id="tags" class="row col-md-offset-1 col-md-9">
 	<c:forEach items="${tagsList }" var="item">
 		<form class="col-md-2" action="/search/tag">
-				<input type="hidden" name="type" value="basic"/>
+			<input type="hidden" name="type" value="basic" />
 			<button class="btn btn-box" name="selectedTag" value="${item }">${item }</button>
 		</form>
 	</c:forEach>
@@ -60,7 +70,8 @@
 					</div>
 					<div class="col-md-6">
 						<h3>
-							<a href="/search/detail?tel=${item.tel }">${vs.count}. ${item.title }</a>
+							<a href="/search/detail?tel=${item.tel }">${vs.count}.
+								${item.title }</a>
 						</h3>
 						<br />
 						<c:forEach items="${item.tag }" var="tag" varStatus="vs">
@@ -73,8 +84,9 @@
 		</c:otherwise>
 	</c:choose>
 	<c:if test="${result.size() ne 0 && result ne null}">
-	<div align="right">
-		<a href="/search/tag?selectedTag=${selectedTag }&type=all">리스트 더보기</a>
-	</div>
+		<div align="right">
+			<a href="/search/tag?selectedTag=${selectedTag }&type=all">리스트
+				더보기</a>
+		</div>
 	</c:if>
 </div>

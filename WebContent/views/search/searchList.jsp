@@ -5,15 +5,30 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style>
+hr {
+	border: solid 2px #Ff9400;
+}
+
+body {
+	font-family: 'Hanna', sans-serif;
+}
+
 .item_container {
-	border-style: solid;
+	border-style: double;
 	border-color: #FE9A2E;
+	border-radius: 10px;
 	height: 230px;
 }
 
 #tags {
-	border-style: solid;
+	border-style: double;
 	border-color: #FE9A2E;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+a {
+	color: black;
 }
 
 .img-box {
@@ -29,10 +44,16 @@
 	margin: 20px;
 }
 
-.button-box {
+.btn-box {
 	margin: 1px;
 	background-color: black;
 	color: yellow;
+}
+
+.now-box {
+	margin: 1px;
+	background-color: pink;
+	color: white;
 }
 </style>
 
@@ -45,7 +66,7 @@
 	<c:forEach items="${tagsList }" var="item">
 		<form class="col-md-2" action="/search/tag">
 			<input type="hidden" name="type" value="basic" />
-			<button class="btn button-box" name="selectedTag" value="${item }">${item }</button>
+			<button class="btn btn-box" name="selectedTag" value="${item }">${item }</button>
 		</form>
 	</c:forEach>
 </div>
@@ -70,7 +91,8 @@
 						</div>
 						<div class="col-md-6">
 							<h3>
-								<a href="/search/detail?tel=${item.tel }">${vs.count}. ${item.title }</a>
+								<a href="/search/detail?tel=${item.tel }">${vs.count}.
+									${item.title }</a>
 							</h3>
 							<br />
 							<c:forEach items="${item.tag }" var="tag" varStatus="vs">
@@ -85,19 +107,66 @@
 	</c:choose>
 
 </div>
-<div class="row col-md-offset-1 col-md-9">
+<!-- <div class="row col-md-offset-1 col-md-9"> -->
+<!-- 	<div align="center" class="number-box"> -->
+<%-- 		<c:forEach begin="1" --%>
+<%-- 			end="${result.size() %10 eq 0 ? result.size()/10 : result.size()/10 +1  }" --%>
+<%-- 			varStatus="vs"> --%>
+<!-- 			<form action="/search/list"> -->
+<%-- 				<input type="hidden" name="keyword" value="${keyword }"> <input --%>
+<!-- 					type="hidden" name="type" -->
+<%-- 					value="${type eq '상호' ? 'title' : type eq '위치' ? 'location' : ''}"> --%>
+<!-- 					<div class=" col-md-1"> -->
+<%-- 				<button name="page" class="btn button-box" value="${vs.count }">${vs.count }</button> --%>
+<!-- 				</div> -->
+<!-- 			</form> -->
+<%-- 		</c:forEach> --%>
+<!-- 	</div> -->
+<!-- </div> -->
+
+<div class="row col-md-offset-1 col-md-9 ">
 	<div align="center" class="number-box">
-		<c:forEach begin="1"
-			end="${result.size() %10 eq 0 ? result.size()/10 : result.size()/10 +1  }"
-			varStatus="vs">
-			<form action="/search/list">
-				<input type="hidden" name="keyword" value="${keyword }"> <input
-					type="hidden" name="type"
-					value="${type eq '상호' ? 'title' : type eq '위치' ? 'location' : ''}">
-					<div class=" col-md-1">
-				<button name="page" class="btn button-box" value="${vs.count }">${vs.count }</button>
-				</div>
-			</form>
+		<div class="col-md-1">
+			<c:if test="${!(page le 10) }">
+
+				<a
+					href="/search/list?keyword=${selectedTag }&type=${type eq '상호' ? 'title' : type eq '위치' ? 'location' : ''}&page=${page%10 eq 0 ? page-10 : page-page%10 }">이전</a>
+			</c:if>
+		</div>
+
+		<c:forEach begin="${page%10 eq 0 ? page-9 : page-page%10+1 }"
+			end="${page%10 eq 0 ? page : page-page%10+10  }" varStatus="vs"
+			var="item">
+			<c:if test="${item le max }">
+				<c:choose>
+					<c:when test="${item eq page }">
+						<div class=" col-md-1">
+							<a class="btn now-box">${item }</a>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<form action="/search/list">
+							<input type="hidden" name="keyword" value="${keyword }">
+							<input type="hidden" name="type"
+								value="${type eq '상호' ? 'title' : type eq '위치' ? 'location' : ''}">
+							<div class=" col-md-1">
+								<button name="page" class="btn btn-box" value="${item }">${item }</button>
+							</div>
+						</form>
+					</c:otherwise>
+				</c:choose>
+
+
+			</c:if>
 		</c:forEach>
+
+		<div class="col-md-1">
+			<c:if test="${result.size() gt 100 }">
+				<c:if test="${page le (max%10 eq 0 ? max-10 : max-max%10 )}">
+					<a
+						href="/search/list?keyword=${keyword }&type=${type eq '상호' ? 'title' : type eq '위치' ? 'location' : ''}&page=${page%10 eq 0 ? page+1 : page-(page%10)+11 }">다음</a>
+				</c:if>
+			</c:if>
+		</div>
 	</div>
 </div>

@@ -27,21 +27,18 @@ import model.WeatherInformer;
 import model.infoDao;
 
 @Controller
-public class TestController {
+public class RootController {
 	@Autowired
 	SearchDao sd;
 
 	@Autowired
 	TestDao td;
 	
-	
-	@Autowired
-	WeatherInformer winfo;
-	
 	@Autowired
 	infoDao infodao;
 	
-	
+	@Autowired
+	WeatherInformer winfo;
 
 	@RequestMapping({ "/", "/index" })
 	public ModelAndView indexHandle(@RequestParam Map map,HttpSession session) {
