@@ -8,9 +8,11 @@
 .profile_img {
 	width: 200px;
 }
+
 body {
 	font-family: 'Hanna', sans-serif;
 }
+
 .score {
 	font-family: impact;
 	font-size: 2.0em;
@@ -216,6 +218,45 @@ hr {
 	cursor: pointer;
 }
 </style>
+<!-- 리뷰 모달 스타일 시작 -->
+<style>
+.jumbotron {
+    color: #ffffff;
+    font-family: 'Lobster';
+    background-color: #ff9400;
+    margin-top: 0;
+    padding: 20px 20px 20px 40px;
+}
+.weather_box{
+	width : 50px;
+	height : 50px;
+}
+.starScore {
+	cursor: pointer;
+	font-size: 25px;
+}
+.star_rating{
+	font-size: 20px
+}
+.modal-content{
+	margin:40px;
+}
+.modal-body{
+	margin-left:25px;
+	margin-right:25px;
+	font-family: 'Hanna', sans-serif;
+	
+}
+.rating{
+	font-size:18px;
+	width :5.5cm;
+	float: left;
+}
+
+
+</style>
+
+<!-- 리뷰 모달 스타일 끝 -->
 
 <div
 	style="padding-top: 5%; margin: 0 250; padding-right: 25px; padding-left: 25px;">
@@ -262,8 +303,7 @@ hr {
 				</button>
 			</div>
 			<div class="col-md-4">
-					<a href="#" id="shopping">
-				<c:choose>
+				<a href="#" id="shopping"> <c:choose>
 						<c:when test="${shoppingR eq true}">
 							<img class="btn-img" id=shoppingR
 								src="/views/search/images/color-bucket.png"
@@ -274,7 +314,7 @@ hr {
 								src="/views/search/images/black-bucket.png"
 								style="width: 40pt; height: 40pt;">
 						</c:otherwise>
-				</c:choose>
+					</c:choose>
 				</a>
 			</div>
 		</div>
@@ -354,16 +394,18 @@ hr {
 			<hr />
 			<div class="col-md-6">리뷰</div>
 			<div class="col-md-6" align="right">
-				<button id="myBtn1" class="btn">리뷰 등록</button>
+				<button type="button" class="btn btn-info btn-lg"
+					data-toggle="modal" data-target="#reviewModal">후기등록</button>
 			</div>
-			<br/>
+			<br />
 			<hr />
 		</div>
 
 		<!-- 숙소 -->
 
 		<div class="row font1" align="center">
-			<c:forEach items="${reviewList}" var="item" begin="1" end="5" varStatus="vs">
+			<c:forEach items="${reviewList}" var="item" begin="1" end="5"
+				varStatus="vs">
 				<div class="row font1 col-md-3">
 					<img class="profile_img" src="${item.PROFILE }">
 				</div>
@@ -736,34 +778,163 @@ hr {
 	</div>
 
 </div>
+<!-- 여기서부터 리뷰 모달 -->
+		<!-- Modal -->
+		<div class="modal fade" id="reviewModal" role="dialog">
+			<div class="modal-dialog">
 
-<script>
-	// Get the modal
-	var modal1 = document.getElementById('myModal1');
+				<!-- Modal content-->
+				<div class="modal-content">
+						<div class="jumbotron" align="center" style="margin-bottom: 0px">
+							<h1>My Review</h1>
+						</div>
 
-	// Get the button that opens the modal
-	var btn1 = document.getElementById("myBtn1");
+					<!-- 후기작성란+별점+날씨등록란 -->
+					<div class="modal-body">
+						<form action="/view/review/result" method="post">
+							<!-- hidden >> id+tel 넘김 -->
+							<input type="hidden" name="id" value="${sessionScope.auth_id }" />
+							<input type="hidden" name="tel" value="${store.tel }" /> <input
+								type="hidden" id="wStatus" name="weather" value="${weather.status}" />
+							<input type="hidden" id="type" name="type" value="single"/> 
 
-	// Get the <span> element that closes the modal
-	var span1 = document.getElementsByClassName("close1")[0];
+							　<h3 style="margin-top: 0px">#1. 날씨가 어땠나요?<br></h3>
+							<div align="center">
+							<a class="btn btn-lg"
+								id="wb1" onclick="wBox(1, 'sunny')"> <img class="weather_box"
+								src="/img_weather/sunny.png" />
+							</a> <a class="btn btn-lg" id="wb2" onclick="wBox(2, 'cloudy')"> <img
+								class="weather_box" src="/img_weather/cloudy.png" />
+							</a> <a class="btn btn-lg" id="wb3" onclick="wBox(3,'rainy')"> <img
+								class="weather_box" src="/img_weather/rainy.png" />
+							</a> <a class="btn btn-lg" id="wb4" onclick="wBox(4,'snowy')"> <img
+								class="weather_box" src="/img_weather/snowy.png" />
+							</a>
+							</div>
+							
+							<h3>#2. 누구와 방문했나요? <br></h3>
+							<a class="btn btn-lg" id="t1" onclick="tBox(1,'single')">
+								<img class="weather_box" src="/img_weather/single.png" />
+							</a> <a class="btn btn-lg" id="t2" onclick="tBox(2,'couple')"> <img
+								class="weather_box" src="/img_weather/couple.png" />
+							</a> <a class="btn btn-lg" id="t3" onclick="tBox(3,'friend')"> <img
+								class="weather_box" src="/img_weather/friends.png" />
+							</a> <a class="btn btn-lg" id="t4" onclick="tBox(4,'together')"> <img
+								class="weather_box" src="/img_weather/gettogether.png" />
+							</a> <a class="btn btn-lg" id="t5" onclick="tBox(5,'family')"> <img
+								class="weather_box" src="/img_weather/family.png" />
+							</a>
 
-	// When the user clicks the button, open the modal 
-	btn1.onclick = function() {
-		modal1.style.display = "block";
-	}
+									<!-- 별점 평가란 -->
+								<h3>#3. 방문한 가게를 평가해 주세요! </h3>
+									<div class="container">
+									<div class="rating">
+									청결도 : <input type="hidden" id="clean_s" name="clean_s"
+										value="1" />
+									<c:forEach begin="1" end="5" varStatus="vs">
+										<c:choose>
+											<c:when test="${!vs.first }">
+												<a class="starScore" id="star_clean${vs.count }"
+													onclick="star(${vs.count},'clean')">♡</a>
+											</c:when>
+											<c:otherwise>
+												<a class="starScore" id="star_clean${vs.count }"
+													onclick="star(${vs.count},'clean')" style="color: pink;">♥</a>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+									<br /> 맛평가 : <input type="hidden" id="taste_s" name="taste_s"
+										value="1" />
+									<c:forEach begin="1" end="5" varStatus="vs">
+										<c:choose>
+											<c:when test="${!vs.first }">
+												<a class="starScore" id="star_taste${vs.count }"
+													onclick="star(${vs.count},'taste')">♡</a>
+											</c:when>
+											<c:otherwise>
+												<a class="starScore" id="star_taste${vs.count }"
+													onclick="star(${vs.count},'taste')" style="color: pink;">♥</a>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+									<br/>
+									친절도 : <input type="hidden" id="good_s" name="good_s"
+										value="1" />
+									<c:forEach begin="1" end="5" varStatus="vs">
+										<c:choose>
+											<c:when test="${!vs.first }">
+												<a class="starScore" id="star_good${vs.count }"
+													onclick="star(${vs.count},'good')">♡</a>
+											</c:when>
+											<c:otherwise>
+												<a class="starScore" id="star_good${vs.count }"
+													onclick="star(${vs.count},'good')" style="color: pink;">♥</a>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+									</div>
+									<div class="rating">
+									접근성 : <input type="hidden" id="location_s"
+										name="location_s" value="1" />
+									<c:forEach begin="1" end="5" varStatus="vs">
+										<c:choose>
+											<c:when test="${!vs.first }">
+												<a class="starScore" id="star_location${vs.count }"
+													onclick="star(${vs.count},'location')">♡</a>
+											</c:when>
+											<c:otherwise>
+												<a class="starScore" id="star_location${vs.count }"
+													onclick="star(${vs.count},'location')"
+													style="color: pink;">♥</a>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+									<br /> 
+									가　격 : <input type="hidden" id="price_s" name="price_s"
+										value="1" />
+									<c:forEach begin="1" end="5" varStatus="vs">
+										<c:choose>
+											<c:when test="${!vs.first }">
+												<a class="starScore" id="star_price${vs.count }"
+													onclick="star(${vs.count},'price')">♡</a>
+											</c:when>
+											<c:otherwise>
+												<a class="starScore" id="star_price${vs.count }"
+													onclick="star(${vs.count},'price')" style="color: pink;">♥</a>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+									</div>
+								</div>
+									
+									
+								<br /> <br />
+								<div align="center">
+									<button type="button" class="btn btn-warning"
+										value="hide" id="hbt">자세한 후기 작성하기</button>
+									<button type="submit" class="btn btn-primary">
+										등록하기 <span class="glyphicon glyphicon-pencil"></span>
+									</button>
+									<button type="button" class="btn btn-danger"
+										data-dismiss="modal">취소</button>
+								</div>
+								
 
-	// When the user clicks on <span> (x), close the modal
-	span1.onclick = function() {
-		modal1.style.display = "none";
-	}
+							<br />
+							<div class="review_detail">
+								<textarea placeholder="내용을 입력하세요." name="content" draggable="false" cols="46" rows="6" style="resize:none"
+									></textarea>
+							</div>
+						</form>
+					</div>
 
-	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-		if (event.target == modal1) {
-			modal1.style.display = "none";
-		}
-	}
-</script>
+
+
+				
+				</div>
+			</div>
+		</div>
+<!-- 여기까지 리뷰 모달 -->
 
 <script>
 	$('.bxslider').bxSlider({
@@ -837,18 +1008,23 @@ hr {
 										function(rst) {
 											var printRst = rst;
 											console.log(rst)
-											if (rst =="ShopingS") {
-												window.alert("장바구니에 추가 되었습니다.!");
+											if (rst == "ShopingS") {
+												window
+														.alert("장바구니에 추가 되었습니다.!");
 												$("#shoppingR")
-														.attr("src","/views/search/images/color-bucket.png");
-											} else if(rst=="ShopingF"){
-												window.alert("장바구니가 취소 되었습니다.!");
+														.attr("src",
+																"/views/search/images/color-bucket.png");
+											} else if (rst == "ShopingF") {
+												window
+														.alert("장바구니가 취소 되었습니다.!");
 												$("#shoppingR")
-														.attr("src","/views/search/images/black-bucket.png");
-											} 
-																
-											 else{
-												window.alert("장바구니가 등록에 실패하였습니다.!");
+														.attr("src",
+																"/views/search/images/black-bucket.png");
+											}
+
+											else {
+												window
+														.alert("장바구니가 등록에 실패하였습니다.!");
 											}
 
 										});
@@ -856,30 +1032,28 @@ hr {
 </script>
 <!--리뷰 좋아요-->
 <script>
+	$.ajax({
+		"url" : "/like/review?",
+		"method" : "post",
+		"data" : {
+			"id" : "${sessionScope.auth_id}",
+			"review_id" : id,
+			"good" : hit,
 
-		$.ajax({
-			"url" : "/like/review?",
-			"method" : "post",
-			"data" : {
-				"id" : "${sessionScope.auth_id}",
-				"review_id" : id,
-				"good" : hit,
+		}
+	}).done(
+			function(rst) {
+				var printRst = rst;
+				console.log(rst)
+				if (rst == 1) {
+					$("#img" + cnt).attr("src",
+							"/img/1414328714455_PicsArt_1389242401746.png")
+				} else {
+					$("#img" + cnt).attr("src",
+							"/img/SketchTalk201361917350.png")
+				}
 
-			}
-		}).done(
-				function(rst) {
-					var printRst = rst;
-					console.log(rst)
-					if (rst == 1) {
-						$("#img" + cnt).attr("src",
-								"/img/1414328714455_PicsArt_1389242401746.png")
-					} else {
-						$("#img" + cnt).attr("src",
-								"/img/SketchTalk201361917350.png")
-					}
-
-				});
-
+			});
 </script>
 
 
@@ -946,4 +1120,67 @@ hr {
 						captions : true,
 						pagerCustom : '#bx-pager'
 					});
+</script>
+
+<script>
+	$("#hbt").click(function(){
+		$("#text1").toggle();
+	});
+	
+	function star(x,type){
+		
+		if($("#star_"+type+x).html()=="♡"){
+			for(var i =1; i<=x; i++){
+				$("#star_"+type+i).each(function(){
+					//class name이 chk인 개체들을 모두 체크되게함
+						// this.checked =true;
+							$(this).html("♥");
+							$(this).css("color","pink");
+
+					});
+			}
+		} else{
+			for(var i =x+1; i<=5; i++){
+				$("#star_"+type+i).each(function(){
+					//class name이 chk인 개체들을 모두 체크되게함
+						// this.checked =true;
+							$(this).html("♡");
+							$(this).css("color","black");
+
+					});
+			}
+		}
+
+		$("#"+type+"_s").val(x);
+	};
+	
+	function wBox(weather, wStat){
+		for(var i = 1; i<=4; i++){
+			$("#wb"+i).each(function(){
+					if(i == weather){
+						console.log(i);
+						$(this).css("border", "2px solid #ff9400");
+					} else {
+						$(this).css("border", "");
+					}
+			});
+			}
+		$("#wStatus").val(wStat);
+		}
+	
+	function tBox(type,d_type){
+		for(var i = 1; i<=5; i++){
+			$("#t"+i).each(function(){
+					if(i == type){
+						console.log(i);
+						$(this).css("border", "2px solid #ff9400");
+					} else {
+						$(this).css("border", "");
+					}
+			});
+			}
+		$("#type").val(d_type);
+		}
+
+
 </script>
