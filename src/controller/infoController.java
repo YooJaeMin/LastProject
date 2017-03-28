@@ -54,22 +54,17 @@ public class infoController {
 		
 		Map m= result.get(0);
 		System.out.println("m"+m);
-		String[] ar = ((String)m.get("FAVOR")).replaceAll("\\s", "").substring(1, ((String)m.get("FAVOR")).lastIndexOf("]")-1).split(",");
-		HashMap<String,String> favorR = new HashMap<String,String>();
+		/*String[] ar = ((String)m.get("FAVOR")).replaceAll("\\s", "").substring(1, ((String)m.get("FAVOR")).lastIndexOf("]")-1).split(",");*/
+		/*HashMap<String,String> favorR = new HashMap<String,String>();
 		for(String m3: ar){
 			System.out.println(m3);
 			favorR.put(m3, m3);
 		}
-		String DateR = mapper.writeValueAsString(favorR);
-	
-		
-
-		
-		
+		String DateR = mapper.writeValueAsString(favorR);*/
 		ModelAndView mav = new ModelAndView("t_mypage");
 		mav.addObject("taglist", taglist);
 		mav.addObject("InfoR", result);
-		mav.addObject("DateR",DateR);
+		/*mav.addObject("DateR",DateR);*/
 		
 		return mav;
 	}
@@ -108,19 +103,19 @@ public class infoController {
 	@RequestMapping("/infoUpdate")
 	public ModelAndView infoUpdate(@RequestParam Map param, @RequestParam(name="preferency") String[] result) {
 		System.out.println(result);
-		
-		
 		List<String> list = new ArrayList<>();
 		param.remove("preferency");
+		
+		
 		String birthL = (String)param.get("birth");
 		String[] birthR = birthL.split("\\s");
 		String birth = birthR[0];
-		
-		
-		
 		System.out.println(birth);
 		param.remove(birth);
+		
+		
 		param.put("birth", birth);
+		
 		for(String m : result){
 			list.add(m);
 		}

@@ -89,11 +89,11 @@ input[type=checkbox] {
 					<b>food preferency</b><br />
 					<b>${map.FAVOR}</b>
 				<hr />
+				<p>
 				<c:forEach var="tg" items="${taglist}" varStatus="vs">
-					<input type="checkbox" name="${tg}" id="opta" class="check${vs.count}" value="${tg}" />
+					<input type="checkbox" name="preferency" id="${tg}" value="${tg}" />
 					<span class="checkboxtext">${tg} &nbsp;&nbsp; </span>
 				</c:forEach>
-
 				</p>
 				<br />
 				<p>
@@ -109,35 +109,35 @@ input[type=checkbox] {
 var x = ${DateR}
 for(var xr in x){
 	if(xr=='한식'){
-		$("input:checkbox[name='한식']").prop("checked", true);
+		$("input:checkbox[id='한식']").prop("checked", true);
 	}else if(xr=='중식'){
-		$("input:checkbox[name='중식']").prop("checked", true);
+		$("input:checkbox[id='중식']").prop("checked", true);
 	}else if(xr=='일식'){
-		$("input:checkbox[name='일식']").prop("checked", true);
+		$("input:checkbox[id='일식']").prop("checked", true);
 	}else if(xr=='카페'){
-		$("input:checkbox[name='카페']").prop("checked", true);
+		$("input:checkbox[id='카페']").prop("checked", true);
 	}else if(xr=='술집'){
-		$("input:checkbox[name='술집']").prop("checked", true);
+		$("input:checkbox[id='술집']").prop("checked", true);
 	}else if(xr=='고기집 '){
-		$("input:checkbox[name='고기집']").prop("checked", true);
+		$("input:checkbox[id='고기집']").prop("checked", true);
 	}else if(xr=='횟집'){
-		$("input:checkbox[name='횟집']").prop("checked", true);
+		$("input:checkbox[id='횟집']").prop("checked", true);
 	}else if(xr=='밥집'){
-		$("input:checkbox[name='밥집']").prop("checked", true);
+		$("input:checkbox[id='밥집']").prop("checked", true);
 	}else if(xr=='분식'){
-		$("input:checkbox[name='분식']").prop("checked", true);
+		$("input:checkbox[id='분식']").prop("checked", true);
 	}else if(xr=='뷔페'){
-		$("input:checkbox[name='뷔페']").prop("checked", true);
+		$("input:checkbox[id='뷔페']").prop("checked", true);
 	}else if(xr=='국물요리'){
-		$("input:checkbox[name='국물요리']").prop("checked", true);
+		$("input:checkbox[id='국물요리']").prop("checked", true);
 	}else if(xr=='이탈리안'){
-		$("input:checkbox[name='이탈리안']").prop("checked", true);
+		$("input:checkbox[id='이탈리안']").prop("checked", true);
 	}else if(xr=='멕시칸'){
-		$("input:checkbox[name='멕시칸']").prop("checked", true);
+		$("input:checkbox[id='멕시칸']").prop("checked", true);
 	}else if(xr=='프렌치'){
-		$("input:checkbox[name='프렌치']").prop("checked", true);
+		$("input:checkbox[id='프렌치']").prop("checked", true);
 	}else{
-		$("input:checkbox[name='아시안']").prop("checked", true);
+		$("input:checkbox[id='아시안']").prop("checked", true);
 	}
 }
 
