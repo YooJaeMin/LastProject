@@ -215,6 +215,8 @@ hr {
 .arrow {
 	width: 80px;
 	padding: 10px;
+	margin-bottom: 10px;
+    margin-left: 100;
 	cursor: pointer;
 }
 </style>
@@ -406,7 +408,7 @@ hr {
 		<div class="row font1" align="center">
 			<c:forEach items="${reviewList}" var="item" begin="1" end="5"
 				varStatus="vs">
-				<div class="row font1 col-md-3">
+				<div class="row font1 col-md-1">
 					<img class="profile_img" src="${item.PROFILE }">
 				</div>
 				<div class="row font1 col-md-9">
@@ -1024,7 +1026,7 @@ hr {
 
 											else {
 												window
-														.alert("장바구니가 등록에 실패하였습니다.!");
+														.alert("로그인 후에 사용해주세요.");
 											}
 
 										});
@@ -1109,8 +1111,8 @@ hr {
 					{
 						nextSelector : '#blog-next',
 						prevSelector : '#blog-prev',
-						nextText : '<div ><img src="/views/search/images/down.png" class="arrow" ></div>',
-						prevText : '<div ><img src="/views/search/images/up.png" class="arrow" ></div>',
+						nextText : '<div ><img src="/img/down.png" class="arrow" ></div>',
+						prevText : '<div ><img src="/img/up.png" class="arrow" ></div>',
 
 						minSlides : 5,
 						maxSlides : 5,
