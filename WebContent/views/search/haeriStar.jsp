@@ -43,18 +43,24 @@
 	font-family: 'Hanna', sans-serif;
 	
 }
+.rating{
+	font-size:18px;
+	width :5.5cm;
+	float: left;
+}
+
+
 </style>
 
 
 <body>
-
 	<div class="container">
 		<!-- Trigger the modal with a button -->
 		<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-			data-target="#myModal">후기등록</button>
+			data-target="#reviewModal">후기등록</button>
 
 		<!-- Modal -->
-		<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal fade" id="reviewModal" role="dialog">
 			<div class="modal-dialog">
 
 				<!-- Modal content-->
@@ -73,6 +79,7 @@
 							<input type="hidden" id="type" name="type" value="single"/> 
 
 							　<h3 style="margin-top: 0px">#1. 날씨가 어땠나요?<br></h3>
+							<div align="center">
 							<a class="btn btn-lg"
 								id="wb1" onclick="wBox(1, 'sunny')"> <img class="weather_box"
 								src="/img_weather/sunny.png" />
@@ -83,8 +90,8 @@
 							</a> <a class="btn btn-lg" id="wb4" onclick="wBox(4,'snowy')"> <img
 								class="weather_box" src="/img_weather/snowy.png" />
 							</a>
+							</div>
 							
-							<br /> 
 							<h3>#2. 누구와 방문했나요? <br></h3>
 							<a class="btn btn-lg" id="t1" onclick="tBox(1,'single')">
 								<img class="weather_box" src="/img_weather/single.png" />
@@ -96,13 +103,12 @@
 								class="weather_box" src="/img_weather/gettogether.png" />
 							</a> <a class="btn btn-lg" id="t5" onclick="tBox(5,'family')"> <img
 								class="weather_box" src="/img_weather/family.png" />
-							</a><br />
-
-
+							</a>
 
 									<!-- 별점 평가란 -->
-									<div class=star_rating>
 								<h3>#3. 방문한 가게를 평가해 주세요! </h3>
+									<div class="container">
+									<div class="rating">
 									청결도 : <input type="hidden" id="clean_s" name="clean_s"
 										value="1" />
 									<c:forEach begin="1" end="5" varStatus="vs">
@@ -131,7 +137,8 @@
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>
-									<br /> 친절도 : <input type="hidden" id="good_s" name="good_s"
+									<br/>
+									친절도 : <input type="hidden" id="good_s" name="good_s"
 										value="1" />
 									<c:forEach begin="1" end="5" varStatus="vs">
 										<c:choose>
@@ -145,7 +152,9 @@
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>
-									<br /> 접근성 : <input type="hidden" id="location_s"
+									</div>
+									<div class="rating">
+									접근성 : <input type="hidden" id="location_s"
 										name="location_s" value="1" />
 									<c:forEach begin="1" end="5" varStatus="vs">
 										<c:choose>
@@ -160,7 +169,8 @@
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>
-									<br /> 가 격　: <input type="hidden" id="price_s" name="price_s"
+									<br /> 
+									가　격 : <input type="hidden" id="price_s" name="price_s"
 										value="1" />
 									<c:forEach begin="1" end="5" varStatus="vs">
 										<c:choose>
@@ -175,6 +185,9 @@
 										</c:choose>
 									</c:forEach>
 									</div>
+								</div>
+									
+									
 								<br /> <br />
 								<div align="center">
 									<button type="button" class="btn btn-warning"
@@ -188,8 +201,8 @@
 								
 
 							<br />
-							<div class="review_detail" id="text1" style="display: none;">
-								<textarea placeholder="내용을 입력하세요." name="content" 
+							<div class="review_detail">
+								<textarea placeholder="내용을 입력하세요." name="content" draggable="false" cols="46" rows="6" style="resize:none"
 									></textarea>
 							</div>
 						</form>
