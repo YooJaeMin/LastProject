@@ -17,7 +17,6 @@
 	font-size: 10pt;
 }
 
-
 .main_search_area {
 	position: absolute;
 	bottom: 0%;
@@ -65,29 +64,29 @@
 	<c:choose>
 		<c:when test="${sessionScope.auth ne  null }">
 			<div class="main_view row"
-				style="position:absolute;top:60%;left:20%;padding-bottom:30px;padding-top:30px;  width: 60%; color: white; background-color: rgba(0, 0, 0, .5)"
+				style="position: absolute; top: 60%; left: 20%; padding-bottom: 30px; padding-top: 30px; width: 60%; color: white; background-color: rgba(0, 0, 0, .5)"
 				align="center">
 
 				<div class="input col-sm-3">
-					<span style="font: italic bold; font-size: 16pt">실시간 검색어</span>
+					<span style="font: italic bold; font-size: 16pt">${age}맛집 추천</span>
 					<ul>
-						<c:forEach items="${realRank}" var="item" varStatus="vs">
-					${vs.count }. <a href="/search/keyword?keyword=${item._id }"><b
-								style="font-size: 14pt">${item._id }</b></a>
+						<c:forEach items="${listRecommendR}" var="item" varStatus="vs">
+						${vs.count }. <a href="/search/keyword?keyword=${item.TEL }"><b
+								style="font-size: 14pt">${item.title }</b></a>
 							<br />
 						</c:forEach>
 					</ul>
 				</div>
-		<div class="input col-sm-3">
-			<span style="font: italic bold ; font-size: 16pt">실시간 검색어</span>
-			<ul>
-				<c:forEach items="${realRank}" var="item" varStatus="vs">
-					${vs.count }. <a
-						href="/search/keyword?keyword=${item._id }"><font color="white">${item._id }</font></a>
-						<br/>
-				</c:forEach>
-			</ul>
-		</div>
+				<div class="input col-sm-3">
+					<span style="font: italic bold; font-size: 16pt">실시간 검색어</span>
+					<ul>
+						<c:forEach items="${realRank}" var="item" varStatus="vs">
+					${vs.count }. <a href="/search/keyword?keyword=${item._id }"><font
+								color="white">${item._id }</font></a>
+							<br />
+						</c:forEach>
+					</ul>
+				</div>
 				<div class="input col-sm-3">
 					<span style="font: italic bold; font-size: 16pt">오늘의 맛집</span>
 					<ul>
@@ -100,7 +99,7 @@
 				</div>
 				<!--  -->
 				<div class="input col-sm-3">
-					<span style="font: italic bold; font-size: 16pt">오늘의 날씨 맛집추천</span>
+					<span style="font: italic bold; font-size: 16pt">현재 날씨 맛집추천 :${wStatus}</span>
 					<ul>
 						<c:forEach items="${weather_ecommend}" var="item" varStatus="vs">
 					${vs.count }. <a href="/search/detail?tel=${item.TEL }"><b
@@ -109,12 +108,12 @@
 						</c:forEach>
 					</ul>
 				</div>
-			
+
 			</div>
 		</c:when>
 		<c:otherwise>
 
-<!-- /* .main_view {
+			<!-- /* .main_view {
 	position: absolute;
 	top: 60%;
 	left: 20%;
@@ -122,7 +121,7 @@
 	padding-top: 30px;
 } */ -->
 			<div class="main_view row"
-				style="position: absolute;top: 60%;padding-bottom: 30px; padding-top: 30px;left: 33%;width: 35%; color: white; background-color: rgba(0, 0, 0, .5)"
+				style="position: absolute; top: 60%; padding-bottom: 30px; padding-top: 30px; left: 33%; width: 35%; color: white; background-color: rgba(0, 0, 0, .5)"
 				align="center">
 
 				<div class="input col-sm-6">

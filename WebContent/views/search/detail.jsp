@@ -4,6 +4,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script src="/js/jquery.bxslider.min.js"></script>
 <link href="/lib/jquery.bxslider.css" rel="stylesheet">
+
 <style>
 .profile_img {
 	width: 200px;
@@ -134,7 +135,7 @@ hr {
 	cursor: pointer;
 }
 
-.btn {
+.like {
 	border-style: soild;
 	border-width: 2px;
 	border-color: black;
@@ -247,7 +248,7 @@ hr {
 	font-family: 'Hanna', sans-serif;
 	
 }
-.rating{
+.heart{
 	font-size:18px;
 	width :5.5cm;
 	float: left;
@@ -283,7 +284,7 @@ hr {
 			<!--  -->
 			<!--  -->
 			<div class="col-md-8">
-				<button type="button" id="like" class="btn" value="true"
+				<button type="button" id="like" class="btn like" value="true"
 					style="WIDTH: 80pt; HEIGHT: 30pt">
 					좋아요<span id="like_cnt">${like.CNT}</span>
 					<!--  -->
@@ -395,7 +396,7 @@ hr {
 			<div class="col-md-6">리뷰</div>
 			<div class="col-md-6" align="right">
 				<button type="button" class="btn btn-info btn-lg"
-					data-toggle="modal" data-target="#reviewModal">후기등록</button>
+					data-toggle="modal" data-target="#reviewModal">리뷰 등록</button>
 			</div>
 			<br />
 			<hr />
@@ -785,7 +786,7 @@ hr {
 
 				<!-- Modal content-->
 				<div class="modal-content">
-						<div class="jumbotron" align="center" style="margin-bottom: 0px">
+						<div class="jumbotron" align="center" style="margin-bottom: 0px; font-family: 'Lobster';">
 							<h1>My Review</h1>
 						</div>
 
@@ -828,7 +829,7 @@ hr {
 									<!-- 별점 평가란 -->
 								<h3>#3. 방문한 가게를 평가해 주세요! </h3>
 									<div class="container">
-									<div class="rating">
+									<div class="heart">
 									청결도 : <input type="hidden" id="clean_s" name="clean_s"
 										value="1" />
 									<c:forEach begin="1" end="5" varStatus="vs">
@@ -873,7 +874,7 @@ hr {
 										</c:choose>
 									</c:forEach>
 									</div>
-									<div class="rating">
+									<div class="heart">
 									접근성 : <input type="hidden" id="location_s"
 										name="location_s" value="1" />
 									<c:forEach begin="1" end="5" varStatus="vs">
@@ -909,8 +910,8 @@ hr {
 									
 									
 								<br /> <br />
-								<div align="center">
-									<button type="button" class="btn btn-warning"
+								<div align="center" >
+									<button  type="button" class="btn btn-warning"
 										value="hide" id="hbt">자세한 후기 작성하기</button>
 									<button type="submit" class="btn btn-primary">
 										등록하기 <span class="glyphicon glyphicon-pencil"></span>
@@ -921,7 +922,7 @@ hr {
 								
 
 							<br />
-							<div class="review_detail">
+							<div class="review_detail" id="text1" style="display: none;">
 								<textarea placeholder="내용을 입력하세요." name="content" draggable="false" cols="46" rows="6" style="resize:none"
 									></textarea>
 							</div>

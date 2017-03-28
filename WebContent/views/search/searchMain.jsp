@@ -138,7 +138,7 @@ a {
 		</c:otherwise>
 	</c:choose>
 	<c:if test="${titleResult.size() ne 0 && titleResult ne null}">
-		<div align="right">
+		<div align="right" style="font-size: 20px;">
 			<a href="/search/list?keyword=${keyword }&type=title">리스트 더보기</a>
 		</div>
 	</c:if>
