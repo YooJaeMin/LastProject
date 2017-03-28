@@ -6,11 +6,15 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.*;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -25,6 +29,7 @@ import model.SearchDao;
 import model.TestDao;
 import model.WeatherInformer;
 import model.infoDao;
+import model.RecommendDao;
 
 @Controller
 public class RootController {
@@ -39,7 +44,9 @@ public class RootController {
 	
 	@Autowired
 	WeatherInformer winfo;
-
+	
+	@Autowired
+	RecommendDao recdao;
 	@RequestMapping({ "/", "/index" })
 	public ModelAndView indexHandle(@RequestParam Map map,HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_main");
@@ -48,6 +55,50 @@ public class RootController {
 		List list2 = sd.todayRank();
 		
 		if((session.getAttribute("auth")!=null)){
+			map.put("id", session.getAttribute("auth_id"));
+			List<HashMap>member1 = infodao.getInfo(map);
+			HashMap memberGet = member1.get(0);
+			String gender = (String)memberGet.get("GENDER");
+			Date birth = (Date)memberGet.get("BIRTH");
+			int birthInt = birth.getYear();
+			String betweenY="";
+			String betweenYR="";
+			String age = "";
+			if(birthInt>=98 && birthInt<=117){
+				betweenY="1998-01";
+				betweenYR="2017-12";
+				age="10대";
+			}else if(birthInt>=88 && birthInt<=97){
+				betweenY="1988-01";
+				betweenYR="1997-12";
+				age="20대";
+			}else if(birthInt>=78 && birthInt<=87){
+				betweenY="1978-01";
+				betweenYR="1987-12";
+				age="30대";
+			}else if(birthInt>=68 && birthInt<=77){
+				betweenY="1968-01";
+				betweenYR="1977-12";
+				age="40대";
+			}else if(birthInt>=58 && birthInt<=67){
+				betweenY="1958-01";
+				betweenYR="1967-12";
+			}else if(birthInt>=48 && birthInt<=57){
+				betweenY="1948-01";
+				betweenYR="1957-12";
+				age="50대";
+			}else{
+				betweenY="1938-01";
+				betweenYR="1947-12";
+				age="60대";
+			}
+			map.put("birth", betweenY);
+			map.put("birthR", betweenYR);
+			map.put("gender",gender);
+			
+			
+			List<HashMap> listRecommend  = recdao.getRecommendInfo(map);
+			List<HashMap> listRecommendR = recdao.getTel(listRecommend);
 			Map weather = winfo.service();
 			System.out.println(weather);
 			Map weatherR = new HashMap<>();
@@ -68,16 +119,25 @@ public class RootController {
 
 			/*ModelAndView mav = new ModelAndView("/views/testing/weather.jsp");*/
 			String wStatus = "";
+			String wStatus2 = "";
 			System.out.println(weather.get("code"));
 			if (((String) weather.get("code")).equals("SKY_A01")) {
 				wStatus = "sunny";
+				wStatus2 = "맑음";
+				
 			} else if (((String) weather.get("code")).equals("SKY_A04")||equals("SKY_A08")||equals("SKY_A010")||equals("SKY_A011")||equals("SKY_A012")) {
 				wStatus= "rainy";
+				wStatus2 = "비오는중";
 			} else if (((String) weather.get("code")).equals("SKY_A05")||equals("SKY_A06")||equals("SKY_A13")||equals("SKY_A14")) {
 				wStatus= "snowy";
+				wStatus2 = "눈오는중";
 			} else {
 				wStatus= "cloudy";
+				wStatus2 = "우중충";
 			}
+			
+			
+			
 			weatherR.put("wStatus", wStatus);
 			List<HashMap> weatherR2 = winfo.getWeather(weatherR);
 			
@@ -85,12 +145,11 @@ public class RootController {
 			resultR = winfo.getTel(weatherR2);
 			map.put("id", session.getAttribute("auth_id"));
 			List<HashMap> result = infodao.getInfo(map);
-			
-			System.out.println("!!"+result);
-			/*winfo.getWeather(weatherR);*/
+			mav.addObject("wStatus",wStatus2);
+			mav.addObject("age",age);
+			mav.addObject("listRecommendR",listRecommendR);
 			mav.addObject("member_info",result);
 			mav.addObject("weather_ecommend",resultR);
-			
 		}
 		return mav;
 	/*	mav.addObject("todayRank", list2);*/
