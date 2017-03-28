@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import model.FileUpLoadDao;
 import model.LikeDao;
@@ -37,17 +41,36 @@ public class infoController {
 	LikeDao likedao;
 	
 	@RequestMapping("/info")
-	public ModelAndView infoHandle(@RequestParam Map map, HttpSession session, HttpServletResponse response) {
+	public ModelAndView infoHandle(@RequestParam Map map, HttpSession session, HttpServletResponse response) throws JsonProcessingException {
+		
+		ObjectMapper mapper = new ObjectMapper();
 		System.out.println(session.getAttribute("auth_id"));
 		map.put("id", session.getAttribute("auth_id"));
 		System.out.println("map의 값" + map);
 		List<HashMap> result = infoDao.getInfo(map);
+		System.out.println(result);
 		String[] taglist = { "한식", "중식", "일식", "카페", "술집", "고기집", "횟집", "해산물", "밥집", "분식", "파스타", "뷔페", "국물요리", "면요리",
 				"이탈리안", "멕시칸", "프렌치", "아시안" };
+		
+		Map m= result.get(0);
+		System.out.println("m"+m);
+		String[] ar = ((String)m.get("FAVOR")).replaceAll("\\s", "").substring(1, ((String)m.get("FAVOR")).lastIndexOf("]")-1).split(",");
+		HashMap<String,String> favorR = new HashMap<String,String>();
+		for(String m3: ar){
+			System.out.println(m3);
+			favorR.put(m3, m3);
+		}
+		String DateR = mapper.writeValueAsString(favorR);
+	
+		
+
+		
 		
 		ModelAndView mav = new ModelAndView("t_mypage");
 		mav.addObject("taglist", taglist);
 		mav.addObject("InfoR", result);
+		mav.addObject("DateR",DateR);
+		
 		return mav;
 	}
 	@RequestMapping("/logout")

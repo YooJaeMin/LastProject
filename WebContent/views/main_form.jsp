@@ -13,7 +13,6 @@
 
 <style type="text/css">
 .input {
-	font-family: '나눔고딕';
 	font-size: 10pt;
 }
 
@@ -30,6 +29,7 @@
 	height: 281px;
 	width: 450px;
 	margin: 0 auto;
+	font-family: 'Hanna', sans-serif;
 }
 
 #main_visual img {
@@ -68,27 +68,40 @@
 				align="center">
 
 				<div class="input col-sm-3">
-					<span style="font: italic bold; font-size: 16pt">${age}맛집 추천</span>
-					<ul>
+					<span style=" font-size: 16pt">${age}맛집 추천</span>
+					<!--  -->
+						<c:choose>
+						<c:when test="${infodetail eq null}">
+						<ul>
 						<c:forEach items="${listRecommendR}" var="item" varStatus="vs">
-						${vs.count }. <a href="/search/keyword?keyword=${item.TEL }"><b
+						${vs.count }. <a href="/search/detail?tel=${item.TEL }"><b
 								style="font-size: 14pt">${item.title }</b></a>
 							<br />
 						</c:forEach>
-					</ul>
+						</ul>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${infodetail}" var="item" varStatus="vs"><br/>
+								${vs.count }. <a href="/Mypage/info"><b
+								style="font-size: 14pt;">${item}</b></a>
+							<br />
+						</c:forEach>
+						</c:otherwise>
+						
+					</c:choose>
 				</div>
 				<div class="input col-sm-3">
-					<span style="font: italic bold; font-size: 16pt">실시간 검색어</span>
+					<span style="font-size: 16pt">실시간 검색어</span>
 					<ul>
 						<c:forEach items="${realRank}" var="item" varStatus="vs">
-					${vs.count }. <a href="/search/keyword?keyword=${item._id }"><font
-								color="white">${item._id }</font></a>
+					${vs.count }. <a href="/search/keyword?keyword=${item._id }">
+					<font color="white"> <b style="font-size: 14pt;">${item._id }</b></font></a>
 							<br />
 						</c:forEach>
 					</ul>
 				</div>
 				<div class="input col-sm-3">
-					<span style="font: italic bold; font-size: 16pt">오늘의 맛집</span>
+					<span style="font-size: 16pt">오늘의 맛집</span>
 					<ul>
 						<c:forEach items="${todayRank}" var="item" varStatus="vs">
 					${vs.count }. <a href="/search/detail?tel=${item._id }"><b
@@ -99,14 +112,28 @@
 				</div>
 				<!--  -->
 				<div class="input col-sm-3">
-					<span style="font: italic bold; font-size: 16pt">현재 날씨 맛집추천 :${wStatus}</span>
-					<ul>
+					<span style="font-size: 16pt">현재 날씨 맛집추천 :${wStatus}</span>
+					
+					<c:choose>
+						<c:when test="${infodetail eq null}">
+						<ul>
 						<c:forEach items="${weather_ecommend}" var="item" varStatus="vs">
-					${vs.count }. <a href="/search/detail?tel=${item.TEL }"><b
+						${vs.count }. <a href="/search/detail?tel=${item.TEL }"><b
 								style="font-size: 14pt;">${item.title }</b></a>
 							<br />
 						</c:forEach>
-					</ul>
+						</ul>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${infodetail}" var="item" varStatus="vs"><br/>
+								${vs.count }. <a href="/Mypage/info"><b
+								style="font-size: 14pt;">${item}</b></a>
+							<br />
+						</c:forEach>
+						</c:otherwise>
+						
+					</c:choose>
+					
 				</div>
 
 			</div>
@@ -125,7 +152,7 @@
 				align="center">
 
 				<div class="input col-sm-6">
-					<span style="font: italic bold; font-size: 16pt">실시간 검색어</span>
+					<span style="font-size: 16pt">실시간 검색어</span>
 					<ul>
 						<c:forEach items="${realRank}" var="item" varStatus="vs">
 					${vs.count }. <a href="/search/keyword?keyword=${item._id }"><b
@@ -137,7 +164,7 @@
 				</div>
 
 				<div class="input col-sm-6">
-					<span style="font: italic bold; font-size: 16pt">오늘의 맛집</span>
+					<span style="font-size: 16pt">오늘의 맛집</span>
 					<ul>
 						<c:forEach items="${todayRank}" var="item" varStatus="vs">
 					${vs.count }. <a href="/search/detail?tel=${item._id }"><b
