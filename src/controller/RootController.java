@@ -53,6 +53,7 @@ public class RootController {
 		List list1 = sd.realTimeRank();
 		mav.addObject("realRank", list1);
 		List list2 = sd.todayRank();
+		mav.addObject("todayRank", list2);
 		
 		if((session.getAttribute("auth")!=null)){
 			map.put("id", session.getAttribute("auth_id"));
@@ -163,7 +164,7 @@ public class RootController {
 			
 		}
 		return mav;
-	/*	mav.addObject("todayRank", list2);*/
+	/*	*/
 		
 		
 	}
