@@ -115,5 +115,17 @@ public class infoController {
 		}
 	
 	}
+	
+	@RequestMapping("/bucket")
+	public ModelAndView myBucket(HttpSession session){
+		ModelAndView mav = new ModelAndView("t_bucket");
+		String id = (String)session.getAttribute("auth_id");
+		System.out.println(id);
+		List bucketList = infoDao.bucketList(id);
+		mav.addObject("bucketList",bucketList);
+		List reviewList = infoDao.reviewList(id);
+		mav.addObject("reviewList",reviewList);
+		return mav;
+	}
 
 }

@@ -41,6 +41,10 @@
 		<put-attribute name="main" value="/views/info/update_form.jsp"/>
 	</definition>
 	
+	<definition name="t_bucket" extends="base">
+		<put-attribute name="main" value="/views/info/bucket.jsp"/>
+	</definition>
+	
 	<definition name="t_searchMain" extends="base">
 		<put-attribute name="main" value="/views/search/searchMain.jsp"/>
 	</definition>
