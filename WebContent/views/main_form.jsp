@@ -20,8 +20,8 @@
 	position: absolute;
 	bottom: 0%;
 	background-color: rgba(0, 0, 0, .5);
-	padding-bottom: 16px;
-	padding-top: 30px;
+	padding-bottom: 15px;
+	padding-top: 15px;
 }
 
 #main_visual {
@@ -48,14 +48,17 @@
 	animation-duration: 10s;
 	animation-direction: alternate;
 }
+.main_view {
+	font-family: "hanna";
+}
 </style>
 
 <div class="main_visual"
 	style="width: 100%; height: 100%; overflow: hidden; Opacity: 0.9; background-image: url(&amp;quot;./img/result.jpg&amp;quot;); background-size: cover;">
 	<!--  -->
 
-	<div align="center" style="color: white;">
-		<img src="/img/spooncompass.png" width="50%" height="60%" />
+	<div style="margin-buttom: 5cm;" align="center" style="color: white;">
+		<img src="/img/spooncompass.png" width="45%" height="55%" />
 
 	</div>
 
@@ -64,26 +67,26 @@
 	<c:choose>
 		<c:when test="${sessionScope.auth ne  null }">
 			<div class="main_view row"
-				style="position: absolute; top: 60%; left: 20%; padding-bottom: 30px; padding-top: 30px; width: 60%; color: white; background-color: rgba(0, 0, 0, .5)"
-				align="center">
+				style="position: absolute; top: 60%; left: 20%; margin-bottom: 250px; margin-top: 10px;padding-top: 30px; width: 60%; color: white; background-color: rgba(0, 0, 0, .5)"
+				align="left">
 
 				<div class="input col-sm-3">
-					<span style=" font-size: 16pt">${age}맛집 추천</span>
+					<div align="center"><span style=" font-size: 16pt">${age} ${gender } 추천</span></div>
 					<!--  -->
 						<c:choose>
 						<c:when test="${infodetail eq null}">
 						<ul>
 						<c:forEach items="${listRecommendR}" var="item" varStatus="vs">
-						${vs.count }. <a href="/search/detail?tel=${item.TEL }"><b
-								style="font-size: 14pt">${item.title }</b></a>
+						${vs.count }위 <a href="/search/detail?tel=${item.TEL }"><font color="#ff9400"><span
+								style="font-size: 14pt">${item.title }</span></font></a>
 							<br />
 						</c:forEach>
 						</ul>
 						</c:when>
 						<c:otherwise>
 							<c:forEach items="${infodetail}" var="item" varStatus="vs"><br/>
-								${vs.count }. <a href="/Mypage/info"><b
-								style="font-size: 14pt;">${item}</b></a>
+								${vs.count }위 <a href="/Mypage/info"><font color="#ff9400"><span
+								style="font-size: 14pt;">${item}</span></font></a>
 							<br />
 						</c:forEach>
 						</c:otherwise>
@@ -91,43 +94,43 @@
 					</c:choose>
 				</div>
 				<div class="input col-sm-3">
-					<span style="font-size: 16pt">실시간 검색어</span>
+					<div align="center"><span style="font-size: 16pt">실시간 검색어</span></div>
 					<ul>
 						<c:forEach items="${realRank}" var="item" varStatus="vs">
-					${vs.count }. <a href="/search/keyword?keyword=${item._id }">
-					<font color="white"> <b style="font-size: 14pt;">${item._id }</b></font></a>
+					${vs.count }위 <a href="/search/keyword?keyword=${item._id }">
+					<font color="#ff9400"> <span style="font-size: 14pt;">${item._id }</span></font></a>
 							<br />
 						</c:forEach>
 					</ul>
 				</div>
 				<div class="input col-sm-3">
-					<span style="font-size: 16pt">오늘의 맛집</span>
+					<div align="center"><span style="font-size: 16pt">오늘의 맛집</span></div>
 					<ul>
 						<c:forEach items="${todayRank}" var="item" varStatus="vs">
-					${vs.count }. <a href="/search/detail?tel=${item._id }"><b
-								style="font-size: 14pt;">${item.title }</b></a>
+					${vs.count }위 <a href="/search/detail?tel=${item._id }"><font color="#ff9400"><span
+								style="font-size: 14pt;">${item.title }</span></font></a>
 							<br />
 						</c:forEach>
 					</ul>
 				</div>
 				<!--  -->
 				<div class="input col-sm-3">
-					<span style="font-size: 16pt">현재 날씨 맛집추천 :${wStatus}</span>
+					<div align="center"><span style="font-size: 16pt">${wStatus}</span></div>
 					
 					<c:choose>
 						<c:when test="${infodetail eq null}">
 						<ul>
 						<c:forEach items="${weather_ecommend}" var="item" varStatus="vs">
-						${vs.count }. <a href="/search/detail?tel=${item.TEL }"><b
-								style="font-size: 14pt;">${item.title }</b></a>
+						${vs.count }위 <a href="/search/detail?tel=${item.TEL }"><font color="#ff9400"><span
+								style="font-size: 14pt;">${item.title }</span></font></a>
 							<br />
 						</c:forEach>
 						</ul>
 						</c:when>
 						<c:otherwise>
 							<c:forEach items="${infodetail}" var="item" varStatus="vs"><br/>
-								${vs.count }. <a href="/Mypage/info"><b
-								style="font-size: 14pt;">${item}</b></a>
+								${vs.count }위 <a href="/Mypage/info"><font color="#ff9400"><span
+								style="font-size: 14pt;">${item}</span></font></a>
 							<br />
 						</c:forEach>
 						</c:otherwise>
@@ -148,15 +151,15 @@
 	padding-top: 30px;
 } */ -->
 			<div class="main_view row"
-				style="position: absolute; top: 60%; padding-bottom: 30px; padding-top: 30px; left: 33%; width: 35%; color: white; background-color: rgba(0, 0, 0, .5)"
-				align="center">
+				style="position: absolute; top: 60%; margin-bottom: 250px; padding-top: 30px; left: 33%; width: 35%; color: white; background-color: rgba(0, 0, 0, .5)"
+				align="left">
 
 				<div class="input col-sm-6">
-					<span style="font-size: 16pt">실시간 검색어</span>
+					<div align="center"><span style="font-size: 16pt">실시간 검색어</span></div>
 					<ul>
 						<c:forEach items="${realRank}" var="item" varStatus="vs">
-					${vs.count }. <a href="/search/keyword?keyword=${item._id }"><b
-								style="font-size: 14pt">${item._id }</b></a>
+					${vs.count }위 <a href="/search/keyword?keyword=${item._id }"><font color="#ff9400"><span
+								style="font-size: 14pt">${item._id }</span></font></a>
 							<br />
 						</c:forEach>
 					</ul>
@@ -164,11 +167,11 @@
 				</div>
 
 				<div class="input col-sm-6">
-					<span style="font-size: 16pt">오늘의 맛집</span>
+					<div align="center"><span style="font-size: 16pt">오늘의 맛집</span></div>
 					<ul>
 						<c:forEach items="${todayRank}" var="item" varStatus="vs">
-					${vs.count }. <a href="/search/detail?tel=${item._id }"><b
-								style="font-size: 14pt;">${item.title }</b></a>
+					${vs.count }위 <a href="/search/detail?tel=${item._id }"><font color="#ff9400"><span
+								style="font-size: 14pt;">${item.title }</span></font></a>
 							<br />
 						</c:forEach>
 					</ul>
@@ -189,7 +192,7 @@
 				<div class="input-group-btn col-md-2">
 					<button class="btn btn-default" type="submit"
 						style="height: 55px; width: 120px; font-size: 18px; border: 4px solid; border-color: #FFD700; background-color: #FFD700; color: white;">
-						<b>←</b>
+						<span>←</span>
 					</button>
 				</div>
 			</form>
