@@ -281,22 +281,14 @@
 			if (rst == 'succed') {
 
 				printRst = '<h4 class="modal-title">회원가입에 성공하였습니다</h4>';
-<<<<<<< HEAD
-
-=======
 				$("#id2").val("");
 				$("#name2").val("");
 				$("#pw2").val("");
->>>>>>> branch 'master' of https://github.com/YooJaeMin/LastProject.git
 			} else {
 
 				printRst = '<h4 class="modal-title">회원가입에 실패하였습니다.</h4>';
-<<<<<<< HEAD
-
-=======
 				$("#name2").val("");
 				$("#pw2").val("");
->>>>>>> branch 'master' of https://github.com/YooJaeMin/LastProject.git
 			}
 			window.alert(printRst);
 			location.href = '/';
