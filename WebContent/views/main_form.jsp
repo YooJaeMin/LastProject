@@ -86,9 +86,7 @@
 						</c:forEach>
 					</ul>
 
-<<<<<<< HEAD
 				</div>
-=======
 		<div class="input col-sm-6">
 			<span style="font: italic bold ; font-size: 16pt">실시간 검색어</span>
 			<ul>
