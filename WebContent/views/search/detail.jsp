@@ -597,7 +597,7 @@ hr {
 				<hr />
 				<c:forEach items="${reviewList }" var="item" varStatus="vs">
 					<c:if test="${vs.count ge 6  }">
-						<div class="row font1 col-md-3">
+						<div class="row font1 col-md-3" id=${item.ID }>
 							<img class="profile_img" src="${item.PROFILE }">
 						</div>
 						<div class="row font1 col-md-9">
