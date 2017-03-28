@@ -193,17 +193,13 @@ public class SearchController {
 			}
 		}
 		
-<<<<<<< HEAD
 		List<Map> reviewList = sd.reviewList(reqMap);
-=======
-		List reviewList = sd.reviewList(reqMap);
 		List reviewLikeC = new ArrayList<>();
 		for(Object m : reviewList){
 			HashMap r = (HashMap)m; 
 			r.get("ID");
 		}
 		
->>>>>>> branch 'master' of https://github.com/YooJaeMin/LastProject.git
 		mav.addObject("reviewList", reviewList);
 		/*태영 고친 부분*/
 		mav.addObject("like", likeRR);
