@@ -21,7 +21,7 @@ body {
 }
 
 hr {
-	border: solid 2px orange;
+	border: solid 1.5px orange;
 }
 
 .weather {
@@ -72,6 +72,7 @@ hr {
 .icon {
 	width: 60px;
 	height: 60px;
+	margin-bottom: 10px;
 }
 
 .font1 {
@@ -136,11 +137,9 @@ hr {
 }
 
 .like {
-	border-style: soild;
-	border-width: 2px;
-	border-color: black;
-	background-color: white;
-	font-weight: bold;
+	border:none;
+	background:none;
+	font-size: 18px;
 }
 
 .img-box {
@@ -262,9 +261,9 @@ hr {
 <div
 	style="padding-top: 5%; margin: 0 250; padding-right: 25px; padding-left: 25px;">
 	<div class="row">
-		<div class="col-md-4">
-			<span class="title">${store.title } / </span><span class="score">
-				${store.avg } Score</span>
+		<div class="col-md-6">
+			<span class="title">${store.title } </span><span class="score">
+				 ${store.avg }</span><span style="font-size: 20px; font-family: impact;"> / 5.0</span> 
 		</div>
 
 	</div>
@@ -284,20 +283,20 @@ hr {
 			<!--  -->
 			<!--  -->
 			<div class="col-md-8">
-				<button type="button" id="like" class="btn like" value="true"
-					style="WIDTH: 100pt">
+				<button type="button" id="like" class="btn like" value="true" 
+					style="WIDTH: 100pt; ">
 					좋아요<span id="like_cnt">${like.CNT}</span>
 					<!--  -->
 					<c:choose>
 						<c:when test="${likeResult eq true}">
 							<img class="btn-img" id="likeR"
 								src="/img/heart01.png"
-								style="height:18px; height:auto">
+								style="width:25px">
 						</c:when>
 						<c:otherwise>
 							<img class="btn-img" id="likeR"
 								src="/img/heart02.png"
-								style="width: 18px; height: auto;">
+								style="width: 18pt; height: auto;">
 						</c:otherwise>
 					</c:choose>
 					<!--  -->
@@ -329,16 +328,16 @@ hr {
 
 	<div class="row" align="center">
 		<div class="col-md-3">
-			<img src="/views/search/images/store_red.png" class="icon">
+			<img src="/views/search/images/store_r.png" class="icon">
 		</div>
 		<div class="col-md-3">
-			<img src="/views/search/images/food_red.png" class="icon">
+			<img src="/views/search/images/food_r.png" class="icon">
 		</div>
 		<div class="col-md-3">
-			<img src="/views/search/images/list_red.png" class="icon">
+			<img src="/views/search/images/list_r.png" class="icon">
 		</div>
 		<div class="col-md-3">
-			<img src="/views/search/images/clock_red.png" class="icon">
+			<img src="/views/search/images/clock_r.png" class="icon">
 		</div>
 	</div>
 
