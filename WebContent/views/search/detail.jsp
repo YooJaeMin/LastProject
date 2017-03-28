@@ -285,19 +285,19 @@ hr {
 			<!--  -->
 			<div class="col-md-8">
 				<button type="button" id="like" class="btn like" value="true"
-					style="WIDTH: 80pt; HEIGHT: 30pt">
+					style="WIDTH: 100pt">
 					좋아요<span id="like_cnt">${like.CNT}</span>
 					<!--  -->
 					<c:choose>
 						<c:when test="${likeResult eq true}">
 							<img class="btn-img" id="likeR"
-								src="/img/1414328714455_PicsArt_1389242401746.png"
-								style="width: 15%; height: auto;">
+								src="/img/heart01.png"
+								style="height:18px; height:auto">
 						</c:when>
 						<c:otherwise>
 							<img class="btn-img" id="likeR"
-								src="/img/SketchTalk201361917350.png"
-								style="width: 15%; height: auto;">
+								src="/img/heart02.png"
+								style="width: 18px; height: auto;">
 						</c:otherwise>
 					</c:choose>
 					<!--  -->
@@ -974,13 +974,13 @@ hr {
 											if (rst.like == 'like') {
 												$("#likeR")
 														.attr("src",
-																"/img/1414328714455_PicsArt_1389242401746.png")
+																"/img/heart01.png")
 												$("#like_cnt").html(rst.CNT)
 
 											} else if (rst.like == 'delete') {
 												$("#likeR")
 														.attr("src",
-																"/img/SketchTalk201361917350.png")
+																"/img/heart02.png")
 												$("#like_cnt").html(rst.CNT)
 											} else {
 
@@ -1048,10 +1048,10 @@ hr {
 				console.log(rst)
 				if (rst == 1) {
 					$("#img" + cnt).attr("src",
-							"/img/1414328714455_PicsArt_1389242401746.png")
+							"/img/heart01.png")
 				} else {
 					$("#img" + cnt).attr("src",
-							"/img/SketchTalk201361917350.png")
+							"/img/heart02.png")
 				}
 
 			});
