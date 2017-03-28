@@ -39,7 +39,7 @@
 	</delete>
 	
 	<select id="reviewC" parameterType="java.util.HashMap" resultType="java.lang.Integer">
-		select count(*) from review_hit where tel=#{review_id} and id=#{id}
+		select count(*) from review_hit where review_id=#{ID} and id=#{auth_id}
 	</select>
 	
 	

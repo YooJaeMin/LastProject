@@ -26,49 +26,58 @@
 </style>
 
 
-<div id="nav_body" data-spy="scroll" data-toggle=".navbar" data-offset="50">
+<div id="nav_body" data-spy="scroll" data-toggle=".navbar"
+	data-offset="50">
 
 	<nav class="navbar navbar-inverse ">
 		<div class="container-fluid ">
-			
+
 			<ul class="nav navbar-nav">
-				<li><a href="/"><span style="color: #ffd700;"><b>Spoon
+				<li><a href="/" id="refresh"><span style="color: #ffd700;"><b>Spoon
 								Compass</b></span></a></li>
-				<li class="active">
-					<a href="#" data-toggle="tooltip" data-placement="bottom"title="홈">
-					<b>HOME</b></a></li>
-				<li><a href="#about" data-toggle="tooltip" data-placement="bottom"title="스푼컴파스 소개">
-					<b>ABOUT</b></a></li>
-				<li><a href="#contact" data-toggle="tooltip" data-placement="bottom" title="연락하기"><b>CONTACT</b></a>
-				
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><b>MORE</b>
-					<span class="caret"></span></a>
+				<li class="active"><a href="#" data-toggle="tooltip"
+					data-placement="bottom" title="홈"> <b>HOME</b></a></li>
+				<li><a href="#about" data-toggle="tooltip"
+					data-placement="bottom" title="스푼컴파스 소개"> <b>ABOUT</b></a></li>
+				<li><a href="#contact" data-toggle="tooltip"
+					data-placement="bottom" title="연락하기"><b>CONTACT</b></a>
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#"><b>MORE</b> <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="/spoon_board/listAll" data-toggle="tooltip" data-placement="bottom"title="공지사항"><b>NOTICE</b></a></li>
-						<li><a href="#" data-toggle="tooltip" data-placement="bottom"title="자주묻는 질문들"><b>FAQ</b></a></li>
-						<li><a href="#" data-toggle="tooltip" data-placement="bottom"title="질문하기"><b>QnA</b></a></li>
-					</ul>
-				</li> 
-				
+						<li><a href="/spoon_board/listAll" data-toggle="tooltip"
+							data-placement="bottom" title="공지사항"><b>NOTICE</b></a></li>
+						<li><a href="#" data-toggle="tooltip" data-placement="bottom"
+							title="자주묻는 질문들"><b>FAQ</b></a></li>
+						<li><a href="#" data-toggle="tooltip" data-placement="bottom"
+							title="질문하기"><b>QnA</b></a></li>
+					</ul></li>
+
 				<c:if test="${sessionScope.auth ne  null }">
 					<li><a href="#"><b>My List</b></a></li>
 				</c:if>
 			</ul>
-
-			<ul class="nav navbar-nav navbar-right">
-				<li class="pull-right" data-toggle="tooltip" data-placement="bottom" title="로그인">
-					<a class="glyphicon glyphicon-log-in"
-					data-toggle="modal" data-target="#myModal"> 
-					<c:if test="${sessionScope.auth ne  null }">
+			
+			<c:choose>
+				<c:when test="${sessionScope.auth ne null}">
+					<ul class="nav navbar-nav navbar-right">
+							<c:forEach items="${member_info}" var="item">
+							<li><img src="${item.PROFILE}" class="img-circle" alt="Cinque Terre" width="50" height="50"></li>
+							</c:forEach>
 							<li><a href="/Mypage/info"><b>${sessionScope.auth_id}</b></a></li>
-						</c:if>
-				</a></li>
-
-				<!-- Trigger the modal with a button -->
-				<!-- Modal -->
-
+							<li><a href="/Mypage/info"><b>logOut</b></a></li>
+							</ul>
+				</c:when>
+				<c:otherwise>
+				<ul class="nav navbar-nav navbar-right">
+						<li class="pull-right" data-toggle="tooltip"
+							data-placement="bottom" title="로그인"><a
+							class="glyphicon glyphicon-log-in" data-toggle="modal"
+							data-target="#myModal"> </a></li>
+							
+				
 			</ul>
+			</c:otherwise>
+			</c:choose>
 			<div class="modal fade" id="myModal" role="dialog">
 				<div class="modal-dialog">
 
@@ -102,7 +111,7 @@
 												placeholder="비밀번호">
 
 											<div class="checkbox">
-												<label><input type="checkbox" value="" checked>로그인상태
+												<label><input type="checkbox" name="keep" checked>로그인상태
 													유지 </label> <a href="#" class="pull-right">비밀번호찾기</a>
 											</div>
 
@@ -140,8 +149,9 @@
 
 										<p>
 											가입과 함께 Spoon Compass의 <a href=policy_service.jsp
-												class="underline">서비스약관</a>과 <a href="/WEB-INF/views/policy_privacy.jsp"
-												class="underline">개인정보수집이용</a>에 동의하시게 됩니다.
+												class="underline">서비스약관</a>과 <a
+												href="/WEB-INF/views/policy_privacy.jsp" class="underline">개인정보수집이용</a>에
+											동의하시게 됩니다.
 										</p>
 									</form>
 									<div align="center">
@@ -234,14 +244,20 @@
 			console.log(rst);
 			var printRst = '';
 			if (rst == 'yes') {
+
 				printRst = '<h4 class="modal-title">회원가입에 성공하였습니다.</h4>';
-				
+
 			} else if (rst == 'chOk') {
+
 				printRst = '<h4 class="modal-title">로그인에 성공하였습니다.</h4>';
+
 			} else {
+
 				printRst = '<h4 class="modal-title">로그인에 실패하였습니다.</h4>';
+
 			}
 			window.alert(printRst);
+			location.href = '/';
 		});
 
 	}
@@ -263,16 +279,27 @@
 		}).done(function(rst) {
 			var printRst = '';
 			if (rst == 'succed') {
+
 				printRst = '<h4 class="modal-title">회원가입에 성공하였습니다</h4>';
+<<<<<<< HEAD
+
+=======
 				$("#id2").val("");
 				$("#name2").val("");
 				$("#pw2").val("");
+>>>>>>> branch 'master' of https://github.com/YooJaeMin/LastProject.git
 			} else {
+
 				printRst = '<h4 class="modal-title">회원가입에 실패하였습니다.</h4>';
+<<<<<<< HEAD
+
+=======
 				$("#name2").val("");
 				$("#pw2").val("");
+>>>>>>> branch 'master' of https://github.com/YooJaeMin/LastProject.git
 			}
 			window.alert(printRst);
+			location.href = '/';
 		});
 
 	});
@@ -290,14 +317,20 @@
 				"pw" : pw,
 			}
 		}).done(function(rst) {
+
 			var printRst = '';
 			console.log(rst);
 			if (rst == 'succed') {
+
 				printRst = '<h4 class="modal-title">로그인에 성공하였습니다</h4>';
+
 			} else {
+
 				printRst = '<h4 class="modal-title">로그인에 실패하였습니다.</h4>';
+
 			}
 			window.alert(printRst);
+			location.href = '/';
 		});
 	});
 

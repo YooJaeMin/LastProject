@@ -8,6 +8,8 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.*;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -16,10 +18,13 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import model.SearchDao;
 import model.TestDao;
+import model.WeatherInformer;
+import model.infoDao;
 
 @Controller
 public class RootController {
@@ -28,31 +33,69 @@ public class RootController {
 
 	@Autowired
 	TestDao td;
+	
+	@Autowired
+	infoDao infodao;
+	
+	@Autowired
+	WeatherInformer winfo;
 
 	@RequestMapping({ "/", "/index" })
-	public ModelAndView indexHandle() {
+	public ModelAndView indexHandle(@RequestParam Map map,HttpSession session) {
 		ModelAndView mav = new ModelAndView("t_main");
 		List list1 = sd.realTimeRank();
 		mav.addObject("realRank", list1);
 		List list2 = sd.todayRank();
-		mav.addObject("todayRank", list2);
-		// - SKY_A01: 맑음			sunny-
-		// - SKY_A02: 구름조금		cloudy
-		// - SKY_A03: 구름많음		cloudy
-		// - SKY_A04: 구름많고 비	rainy-	
-		// - SKY_A05: 구름많고 눈	snowy-
-		// - SKY_A06: 구름많고 비 또는 눈	snowy-
-		// - SKY_A07: 흐림			cloudy
-		// - SKY_A08: 흐리고 비		rainy-
-		// - SKY_A09: 흐리고 눈		cloudy
-		// - SKY_A10: 흐리고 비 또는 눈		rainy-
-		// - SKY_A11: 흐리고 낙뢰	rainy-
-		// - SKY_A12: 뇌우, 비		rainy-
-		// - SKY_A13: 뇌우, 눈		snowy-
-		// - SKY_A14: 뇌우, 비 또는 눈	snowy-
 		
-		
+		if((session.getAttribute("auth")!=null)){
+			Map weather = winfo.service();
+			System.out.println(weather);
+			Map weatherR = new HashMap<>();
+			// - SKY_A01: 맑음			sunny-
+			// - SKY_A02: 구름조금		cloudy
+			// - SKY_A03: 구름많음		cloudy
+			// - SKY_A04: 구름많고 비	rainy-	
+			// - SKY_A05: 구름많고 눈	snowy-
+			// - SKY_A06: 구름많고 비 또는 눈	snowy-
+			// - SKY_A07: 흐림			cloudy
+			// - SKY_A08: 흐리고 비		rainy-
+			// - SKY_A09: 흐리고 눈		cloudy
+			// - SKY_A10: 흐리고 비 또는 눈		rainy-
+			// - SKY_A11: 흐리고 낙뢰	rainy-
+			// - SKY_A12: 뇌우, 비		rainy-
+			// - SKY_A13: 뇌우, 눈		snowy-
+			// - SKY_A14: 뇌우, 비 또는 눈	snowy-
+
+			/*ModelAndView mav = new ModelAndView("/views/testing/weather.jsp");*/
+			String wStatus = "";
+			System.out.println(weather.get("code"));
+			if (((String) weather.get("code")).equals("SKY_A01")) {
+				wStatus = "sunny";
+			} else if (((String) weather.get("code")).equals("SKY_A04")||equals("SKY_A08")||equals("SKY_A010")||equals("SKY_A011")||equals("SKY_A012")) {
+				wStatus= "rainy";
+			} else if (((String) weather.get("code")).equals("SKY_A05")||equals("SKY_A06")||equals("SKY_A13")||equals("SKY_A14")) {
+				wStatus= "snowy";
+			} else {
+				wStatus= "cloudy";
+			}
+			weatherR.put("wStatus", wStatus);
+			List<HashMap> weatherR2 = winfo.getWeather(weatherR);
+			
+			List<HashMap> resultR = new ArrayList<>();
+			resultR = winfo.getTel(weatherR2);
+			map.put("id", session.getAttribute("auth_id"));
+			List<HashMap> result = infodao.getInfo(map);
+			
+			System.out.println("!!"+result);
+			/*winfo.getWeather(weatherR);*/
+			mav.addObject("member_info",result);
+			mav.addObject("weather_ecommend",resultR);
+			
+		}
 		return mav;
+	/*	mav.addObject("todayRank", list2);*/
+		
+		
 	}
 
 	@RequestMapping("/test/insert/member")

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -47,6 +48,18 @@ public class infoController {
 		ModelAndView mav = new ModelAndView("t_mypage");
 		mav.addObject("taglist", taglist);
 		mav.addObject("InfoR", result);
+		return mav;
+	}
+	@RequestMapping("/logout")
+	public ModelAndView logoutHandle(HttpSession session,@RequestParam(name = "keep", defaultValue = "off") String val,HttpServletResponse response){
+		session.removeAttribute("auth");
+		session.removeAttribute("fail");
+		session.removeAttribute("auth_id");
+		Cookie kc = new Cookie("save", null) ;
+		    kc.setMaxAge(0) ;
+		    kc.setPath("/");
+		    response.addCookie(kc) ;
+		ModelAndView mav = new ModelAndView("redirect:/");   
 		return mav;
 	}
 
