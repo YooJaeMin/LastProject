@@ -10,7 +10,7 @@
 
 .bucketCon {
 	
-	height : 250px;
+	height : 350px;
 	border: 5px #ff9400;
 	border-style: double;
 	font-family: hanna;
@@ -51,8 +51,8 @@
 .img-box {
 
 	margin-top : 10px;
-	width: 150px;
-	height: 150px;
+	width: 200px;
+	height: 200px;
 	overflow: hidden;
 	border-radius: 8px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
@@ -92,6 +92,7 @@
 				<li>
 					<div class="bucketCon" align="center">
 						<a href="/search/detail?tel=${item.TEL }" class="title-font">${item.title }</a>
+						<br /> <span class="info-font">${item.adress}</span>
 						<br /> <span class="info-font">${item.type } / ${item.AVG }
 							Score</span><br /> <a href="/search/detail?tel=${item.TEL }"><img class="img-box" src="${item.img }" /></a>
 					</div>
@@ -126,7 +127,7 @@
 						<div class="reviewCon">
 							<a href="/search/detail?tel=${item.TEL }#${item.ID}"
 								class="title-font">${item.title }</a> <br /> <span
-								class="info-font">${item.WEATHER } /${item.TYPE } /
+								class="info-font">${item.WEATHER } ${item.TYPE } /
 								${item.AVG_S }점 / ${item.EAT_DATE }</span> <br /> <span
 								class="content-font">${item.CONTENT }</span>
 						</div>
@@ -152,8 +153,8 @@
 						nextText : '<div ><img src="/img/next2.png" class="arrow" ></div>',
 						prevText : '<div ><img src="/img/back2.png" class="arrow" ></div>',
 
-						minSlides : 5,
-						maxSlides : 5,
+						minSlides : 4,
+						maxSlides : 4,
 						slideWidth : 1000,
 						slideMargin : 10,
 						mode : 'horizontal',
