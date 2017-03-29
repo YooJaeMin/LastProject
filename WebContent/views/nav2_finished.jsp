@@ -22,18 +22,20 @@
 #nav_body {
 	font-family: 'Coming Soon';
 	font-size: 20px;
+	
 }
+
 </style>
 
 
 <div  id="nav_body" data-spy="scroll" data-toggle=".navbar"
 	data-offset="50">
 
-	<nav class="navbar navbar-inverse ">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid ">
 
 			<ul class="nav navbar-nav">
-				<li><a href="/" id="refresh"><span style="color: #ffd700;"><b>Spoon
+				<li><a href="/" id="refresh"><span style="color: orange;"><b>Spoon
 								Compass</b></span></a></li>
 				<li class="active"><a href="#" data-toggle="tooltip"
 					data-placement="bottom" title="홈"> <b>HOME</b></a></li>
