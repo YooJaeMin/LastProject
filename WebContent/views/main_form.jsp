@@ -54,7 +54,8 @@
 </style>
 
 <div class="main_visual"
-	style="width: 100%; height: 100%; overflow: hidden; Opacity: 0.9; background-image: url(&amp;quot;./img/result.jpg&amp;quot;); background-size: cover;">
+	style="width: 100%; height: 100%; overflow: hidden; Opacity: 0.9; background-image: url(&amp;quot;./img/result.jpg&amp;quot;); 
+	background-size: cover;">
 	<!--  -->
 
 	<div style="margin-buttom: 5cm;" align="center" style="color: white;">
@@ -151,7 +152,8 @@
 	padding-top: 30px;
 } */ -->
 			<div class="main_view row"
-				style="position: absolute; top: 60%; margin-bottom: 250px; padding-top: 30px; left: 33%; width: 35%; color: white; background-color: rgba(0, 0, 0, .5)"
+				style="position: absolute; top: 60%; margin-bottom: 250px; padding-top: 30px; left: 33%; width: 35%; color: white; 
+				background-color: rgba(0, 0, 0, .5);"
 				align="left">
 
 				<div class="input col-sm-6">
@@ -215,7 +217,7 @@
 
 	}
 	setInterval(nextBackground, 7000);
-
+	
 	header.css('background-image', backgrounds[0]);
 </script>
 
