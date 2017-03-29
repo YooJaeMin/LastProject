@@ -64,7 +64,7 @@
 		});
 		
 		var contentString${vs.index} =
-			'<span style="font-family: Hanna, sans-serif, black;"><a href="/search/detail?tel=${item.tel }"style="font-size: 17pt; bold;">${item.title }</a><br/>'+
+			'<span style="font-family: Hanna, sans-serif, black;"><span style="font-size: 17pt; bold;">${item.title }</span><br/>'+
 			'${item.adress }<br/>'+
 			'☏ ${item.tel }<br/></span>'+
 			'<div style="font-family: Hanna, sans-serif; color : #FA5882;" align="right">${item.avg } Score</div>';
