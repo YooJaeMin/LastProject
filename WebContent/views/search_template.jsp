@@ -9,8 +9,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link href="https://fonts.googleapis.com/earlyaccess/hanna.css"
 	rel="stylesheet" type="text/css">
-	<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script
@@ -21,16 +19,16 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <body>
-	<div  style="min-height: 5%">
+	<div style="height: 1.4cm;">
 		<tiles:insertAttribute name="nav" />
 	</div>
-	<div  style="min-height: 20%">
+	<div  style="min-height: 25%;">
 		<tiles:insertAttribute name="map" />
 	</div>
 	<div style="min-height: 70%;">
 		<tiles:insertAttribute name="main" />
 	</div>
-	<div style="min-height: 4%">
+	<div style="min-height: 5%;">
 		<tiles:insertAttribute name="footer" />
 	</div>
 </body>

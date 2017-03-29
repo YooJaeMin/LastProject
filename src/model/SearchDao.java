@@ -135,16 +135,29 @@ public class SearchDao {
 		list = template.findAll(Map.class, "food");
 		List newList = new ArrayList();
 		try {
-			newList = lc.calDistance((double) map.get("lat"), (double) map.get("lng"), list);
+			newList = lc.calDistance((double) map.get("lat"), (double) map.get("lng"), list, 1);
 		} catch (Exception e) {
 			System.out.println("double터짐");
 			try {
-				newList = lc.calDistance((int) map.get("lat"), (int) map.get("lng"), list);
+				newList = lc.calDistance(37.528719, 126.981559, list, 20);
 			} catch (Exception e2) {
 				System.out.println("int터짐");
 			}
 		}
-		List filterList = doFilter(newList, map);
+		String[] keyword = ((String) map.get("keyword")).split("\\s");
+		List filterList = null;
+		if(keyword.length == 1){
+			try {
+				double set = (double) map.get("lat");
+				filterList = newList;
+			} catch(Exception e3){
+				e3.printStackTrace();
+				filterList = doFilter(newList, map);
+			}
+		} else {
+			filterList = doFilter(newList, map);
+		}
+		
 
 		return filterList;
 	}
@@ -152,7 +165,7 @@ public class SearchDao {
 	public List doFilter(List list, Map map) {
 		String[] keyword = ((String) map.get("keyword")).split("\\s");
 		List filterList = new ArrayList();
-		if (keyword.length != 1) {
+		if (keyword.length != 0) {
 			outterLoof: for (int i = 0; i < list.size(); i++) {
 				Map innerMap = (Map) list.get(i);
 

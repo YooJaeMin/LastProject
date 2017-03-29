@@ -12,9 +12,8 @@ body {
 .item_container {
 	border-style: double;
 	border-radius: 10px;
-	border-color: #FE9A2E;
 	height: 230px;
-	border-color: #FE9A2E;
+	border-color: white;
 }
 
 #tags {

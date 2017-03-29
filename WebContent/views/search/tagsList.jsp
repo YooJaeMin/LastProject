@@ -15,7 +15,7 @@ body {
 
 .item_container {
 	border-style: double;
-	border-color: #FE9A2E;
+	border-color: white;
 	border-radius: 10px;
 	height: 230px;
 }
@@ -47,7 +47,7 @@ a {
 
 .now-box {
 	margin: 1px;
-	background-color: pink;
+	background-color: #FE9A2E;
 	color: white;
 }
 </style>
@@ -117,7 +117,7 @@ a {
 					<c:if test="${!(page le 10) }">
 
 						<a
-							href="/search/tag?selectedTag=${selectedTag }&type=all&page=${page%10 eq 0 ? page-10 : page-page%10 }">이전</a>
+							href="/search/tag?selectedTag=${selectedTag }&type=all&page=${page%10 eq 0 ? page-10 : page-page%10 }"style="font-size: 20px;">PREV</a>
 					</c:if>
 				</div>
 
@@ -148,7 +148,7 @@ a {
 					<c:if test="${result.size() gt 100 }">
 						<c:if test="${page le (max%10 eq 0 ? max-10 : max-max%10 ) }">
 							<a
-								href="/search/tag?selectedTag=${selectedTag }&type=all&page=${page%10 eq 0 ? page+1 : page-(page%10)+11 }">다음</a>
+								href="/search/tag?selectedTag=${selectedTag }&type=all&page=${page%10 eq 0 ? page+1 : page-(page%10)+11 }"style="font-size: 20px;">NEXT</a>
 						</c:if>
 					</c:if>
 				</div>
