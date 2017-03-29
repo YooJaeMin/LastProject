@@ -89,18 +89,29 @@ public class JoinController {
 		if (result == 1) {
 			session.setAttribute("auth_id", map.get("id"));
 			session.setAttribute("auth", "yes");
-			if (val.equals("on")) {
+			System.out.println("val값 뭐임?"+map.get("cookie"));
+			if (map.get("cookie").equals("on")) {
 				Cookie c = new Cookie("save", (String)map.get("id")); // 밸류에는 계정정보가 있어야 함.
 				c.setMaxAge(60 * 60 * 24 * 7);
-				c.setPath("/");
 				response.addCookie(c);
+			}else{
+				Cookie c = new Cookie("save", "");
 			}
+				
 			return "yes";
 		} else {
 			boolean membercheck = mdao.naverCheckMember(map);
 			if (membercheck == true) {
 				session.setAttribute("auth_id", map.get("id"));
 				session.setAttribute("auth", "yes");
+				System.out.println("val값 뭐임?"+map.get("cookie"));
+				if (map.get("cookie").equals("on")) {
+					Cookie c = new Cookie("save", (String)map.get("id")); // 밸류에는 계정정보가 있어야 함.
+					c.setMaxAge(60 * 60 * 24 * 7);
+					response.addCookie(c);
+				}else{
+					Cookie c = new Cookie("save", "");
+				}
 				return "chOk";
 			} else {
 				return "fail";

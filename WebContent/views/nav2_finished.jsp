@@ -64,7 +64,7 @@
 							<li><img src="${item.PROFILE}" class="img-circle" alt="Cinque Terre" width="50" height="50"></li>
 							</c:forEach>
 							<li><a href="/Mypage/info"><b>${sessionScope.auth_id}</b></a></li>
-							<li><a href="/Mypage/info"><b>logOut</b></a></li>
+							<li><a href="/Mypage/logout"><b>logOut</b></a></li>
 							</ul>
 				</c:when>
 				<c:otherwise>
@@ -226,6 +226,7 @@
 		var gender = naver_id_login.getProfileData('gender');//M||F로 나옴
 		var birth = naver_id_login.getProfileData('birthday'); //단, 월-일까지만 나옴 임의로 년도는 2017년 정도를 붙여서 넣어놔야 할듯
 		var profile = naver_id_login.getProfileData('profile_image'); //프로필 이미지가 저장된 src 출력됨
+		
 		console.log(email);
 
 		$.ajax({
@@ -242,19 +243,20 @@
 
 		}).done(function(rst) {
 			console.log(rst);
+			console.log(123214);
 			var printRst = '';
 			if (rst == 'yes') {
 
 				printRst = '<h4 class="modal-title">회원가입에 성공하였습니다.</h4>';
-				location.href = '/';
+				
 			} else if (rst == 'chOk') {
 
 				printRst = '<h4 class="modal-title">로그인에 성공하였습니다.</h4>';
-				location.href = '/';
+				
 			} else {
 
 				printRst = '<h4 class="modal-title">로그인에 실패하였습니다.</h4>';
-				location.href = '/';
+				
 			}
 			window.alert(printRst);
 			location.href = '/';

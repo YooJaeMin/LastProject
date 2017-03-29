@@ -123,7 +123,7 @@ for(var xr in x){
 		$("input:checkbox[id='카페']").prop("checked", true);
 	}else if(xr=='술집'){
 		$("input:checkbox[id='술집']").prop("checked", true);
-	}else if(xr=='고기집 '){
+	}else if(xr=='고기집'){
 		$("input:checkbox[id='고기집']").prop("checked", true);
 	}else if(xr=='횟집'){
 		$("input:checkbox[id='횟집']").prop("checked", true);
