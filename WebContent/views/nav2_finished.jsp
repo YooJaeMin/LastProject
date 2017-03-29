@@ -118,14 +118,13 @@
 										</div>
 
 										<div align="center">
-											<button type="button" id="member_id_login"
-												class="btn btn-warning btn-block">
+											<button type="button" id="member_id_login" class="btn btn-warning btn-block">
 												<span class="glyphicon glyphicon-off"></span>로그인
 											</button>
 										</div>
 										<br>
 									</form>
-									<button id="naver_id_login" type="button"
+									<button id="naver_id_login" type="submit"
 										style="background: none; border: 0px;"></button><!--  -->
 									<p>아직 회원이 아니신가요? 지금 회원가입을 하시면 맛있는 프리미엄 기능이 제공됩니다.</p>
 								</div>
