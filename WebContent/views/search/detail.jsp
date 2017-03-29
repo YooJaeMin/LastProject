@@ -406,9 +406,9 @@ hr {
 		<!-- 숙소 -->
 
 		<div class="row font1" align="center">
-			<c:forEach items="${reviewList}" var="item" begin="1" end="5"
+			<c:forEach items="${reviewList}" var="item" begin="0" end="4"
 				varStatus="vs">
-				<div class="row font1 col-md-1">
+				<div class="row font1 col-md-1" id="${item.ID }">
 					<img class="profile_img" src="${item.PROFILE }">
 				</div>
 				<div class="row font1 col-md-9">
@@ -599,7 +599,7 @@ hr {
 				<hr />
 				<c:forEach items="${reviewList }" var="item" varStatus="vs">
 					<c:if test="${vs.count ge 6  }">
-						<div class="row font1 col-md-3" id=${item.ID }>
+						<div class="row font1 col-md-3" id="${item.ID }">
 							<img class="profile_img" src="${item.PROFILE }">
 						</div>
 						<div class="row font1 col-md-9">
