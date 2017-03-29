@@ -54,11 +54,11 @@
 </style>
 
 <div class="main_visual"
-	style="width: 100%; height: 100%; overflow: hidden; Opacity: 0.9; background-image: url(&amp;quot;./img/result.jpg&amp;quot;); background-size: cover;">
+	style="width: 100%; height: 83%; overflow: hidden; Opacity: 0.9; background-image: url(&amp;quot;./img/result.jpg&amp;quot;); background-size: cover;">
 	<!--  -->
 
-	<div style="margin-buttom: 5cm;" align="center" style="color: white;">
-		<img src="/img/spooncompass.png" width="45%" height="55%" />
+	<div style="margin: 0.3cm;" align="center" style="color: white;">
+		<img src="/img/spoon2.png" width="250px" />
 
 	</div>
 
