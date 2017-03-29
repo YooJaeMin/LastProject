@@ -63,23 +63,32 @@ public class infoController {
 			String newDate = sdf.format(date);
 			m.put("BIRTH", newDate);
 		}
+		HashMap<String,String> favorR = new HashMap<String,String>();
+		String DateR ="";
+	
 		if(m.get("FAVOR")!=null){
 			String arBasic = (String)m.get("FAVOR");
 			String ar = ((String)m.get("FAVOR"));
 			String []arResult = ar.split("\\s");
-			HashMap<String,String> favorR = new HashMap<String,String>();
 			for(String arR : arResult){
 				System.out.println(arR);
 				favorR.put(arR, arR);
 			}
-			String DateR = mapper.writeValueAsString(favorR);
+			DateR = mapper.writeValueAsString(favorR);
 			System.out.println(DateR);
 			mav.addObject("DateR",DateR);
 			mav.addObject("taglist", taglist);
 			mav.addObject("InfoR", result);
+			
 		}else{
+			String arBasic = (String)m.get("FAVOR");
+			favorR.put("favor", arBasic);
+			DateR = mapper.writeValueAsString(favorR);
+			mav.addObject("DateR",DateR);
 			mav.addObject("taglist", taglist);
+			
 			mav.addObject("InfoR", result);
+		
 		}
 		/*String[] ar = ((String)m.get("FAVOR")).replaceAll("\\s", "").substring(1, ((String)m.get("FAVOR")).lastIndexOf("]")-1).split(",");*/
 		/*HashMap<String,String> favorR = new HashMap<String,String>();
@@ -127,7 +136,7 @@ public class infoController {
 	}
 
 	@RequestMapping("/infoUpdate")
-	public ModelAndView infoUpdate(@RequestParam Map param, @RequestParam(name="preferency") String[] result) {
+	public ModelAndView infoUpdate(@RequestParam Map param, @RequestParam(name="preferency", required=false) String[] result){
 		System.out.println(result);
 		List<String> list = new ArrayList<>();
 		
@@ -140,6 +149,8 @@ public class infoController {
 			System.out.println(birth);
 			param.remove(birth);
 			param.put("birth", birth);
+		}else{
+			
 		}
 		if(result!=null){
 			param.remove("preferency");
@@ -154,11 +165,19 @@ public class infoController {
 		}
 		
 		int rst = infoDao.infoUpdate(param);
-		if (rst == 1)
-			return new ModelAndView("redirect:/Mypage/info");
-		else {
-			ModelAndView mav = new ModelAndView("redirect:/Mypage/info");
-				mav.addObject("errinfo", "업데이트 처리중에 문제가 발생하였습니다");
+		ModelAndView mav = new ModelAndView("/views/alert.jsp");
+		String infoR = "";
+		if (rst == 1){
+			String info = "변경 완료!";
+			mav.addObject("errinfo", info);
+			return mav;
+		}else if(rst ==12){
+			String info = "체크 박스좀 체크해 주세요!";
+			mav.addObject("errinfo", info);
+			return mav;
+		}else{
+			String info = "업데이트 처리중에 문제가 발생하였습니다";
+			mav.addObject("errinfo", info);
 			return mav;
 		}
 	

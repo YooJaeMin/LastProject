@@ -60,8 +60,8 @@ public class RootController {
 			map.put("id", session.getAttribute("auth_id"));
 			List<HashMap> member1 = infodao.getInfo(map);
 			HashMap memberGet = member1.get(0);
-			if (memberGet.get("NICK") != null || memberGet.get("GENDER") != null || memberGet.get("BIRTH") != null
-					|| memberGet.get("FAVOR") != null || memberGet.get("MARRY") != null) {
+			if (memberGet.get("NICK") != null && memberGet.get("GENDER") != null && memberGet.get("BIRTH") != null
+					&& memberGet.get("FAVOR") != null && memberGet.get("MARRY") != null) {
 				String gender = (String) memberGet.get("GENDER");
 				if (gender.equals("F"))
 					mav.addObject("gender", "여성");

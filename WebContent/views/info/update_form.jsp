@@ -92,7 +92,7 @@ input[type=checkbox] {
 				<hr />
 				<p>
 					<c:forEach var="tg" items="${taglist}" varStatus="vs">
-						<input type="checkbox" name="preferency" id="${tg}" value="${tg}" />
+						<input onclick="checkCHK()" type="checkbox" name="preferency" id="${tg}" value="${tg}" />
 						<span class="checkboxtext">${tg} &nbsp;&nbsp; </span>
 					</c:forEach>
 				</p>
@@ -107,10 +107,11 @@ input[type=checkbox] {
 </div>
 
 <script>
-var x = "default";
-	x = ${DateR}
+
+var x = ${DateR};
+
 console.log(x);
-if(x != "default"){
+if(x != null){
 for(var xr in x){
 	if(xr=='한식'){
 		$("input:checkbox[id='한식']").prop("checked", true);
@@ -146,7 +147,7 @@ for(var xr in x){
 		$("input:checkbox[id='멕시칸']").prop("checked", true);
 	}else if(xr=='프렌치'){
 		$("input:checkbox[id='프렌치']").prop("checked", true);
-	}else{
+	}else if(xr=='아시안'){
 		$("input:checkbox[id='아시안']").prop("checked", true);
 	}
 }
@@ -173,6 +174,10 @@ for(var xr in x){
 					yearSuffix : '년'
 				});
 	});
+	
+	function checkCHK() {
+		
+	}
 	
 </script>
 
