@@ -3,7 +3,8 @@
 <%@ page import="java.util.HashMap"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <style type="text/css">
@@ -67,7 +68,8 @@ input[type=checkbox] {
 
 				<p>
 				<div>
-					<b>BIRTH</b> <input type="text" class="form-control" name=birth id="datepicker1" value="${map.BIRTH}"/>
+					<b>BIRTH</b> <input type="text" class="form-control" name=birth
+						id="datepicker1" value="${map.BIRTH}" />
 				</div>
 
 				</p>
@@ -86,14 +88,13 @@ input[type=checkbox] {
 				</p>
 
 				<p>
-					<b>food preferency</b><br />
-					<b>${map.FAVOR}</b>
+					<b>food preferency</b><br /> <b>${map.FAVOR}</b>
 				<hr />
 				<p>
-				<c:forEach var="tg" items="${taglist}" varStatus="vs">
-					<input type="checkbox" name="preferency" id="${tg}" value="${tg}" />
-					<span class="checkboxtext">${tg} &nbsp;&nbsp; </span>
-				</c:forEach>
+					<c:forEach var="tg" items="${taglist}" varStatus="vs">
+						<input type="checkbox" name="preferency" id="${tg}" value="${tg}" />
+						<span class="checkboxtext">${tg} &nbsp;&nbsp; </span>
+					</c:forEach>
 				</p>
 				<br />
 				<p>
@@ -106,7 +107,10 @@ input[type=checkbox] {
 </div>
 
 <script>
-var x = ${DateR}
+var x = "default";
+	x = ${DateR}
+console.log(x);
+if(x != "default"){
 for(var xr in x){
 	if(xr=='한식'){
 		$("input:checkbox[id='한식']").prop("checked", true);
@@ -146,11 +150,13 @@ for(var xr in x){
 		$("input:checkbox[id='아시안']").prop("checked", true);
 	}
 }
+}
 
 
 	$(function() {
 		$("#datepicker1").datepicker(
 				{
+					yearRange: "-100:+0",
 					dateFormat : 'yy-mm-dd',
 					prevText : '이전 달',
 					nextText : '다음 달',
