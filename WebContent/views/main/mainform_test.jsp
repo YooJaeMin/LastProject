@@ -219,4 +219,3 @@
 	header.css('background-image', backgrounds[0]);
 </script>
 
-
