@@ -54,6 +54,25 @@ public class infoController {
 		
 		Map m= result.get(0);
 		System.out.println("m"+m);
+		ModelAndView mav = new ModelAndView("t_mypage");
+		if(m.get("FAVOR")!=null){
+			String arBasic = (String)m.get("FAVOR");
+			String ar = ((String)m.get("FAVOR"));
+			String []arResult = ar.split("\\s");
+			HashMap<String,String> favorR = new HashMap<String,String>();
+			for(String arR : arResult){
+				System.out.println(arR);
+				favorR.put(arR, arR);
+			}
+			String DateR = mapper.writeValueAsString(favorR);
+			System.out.println(DateR);
+			mav.addObject("DateR",DateR);
+			mav.addObject("taglist", taglist);
+			mav.addObject("InfoR", result);
+		}else{
+			mav.addObject("taglist", taglist);
+			mav.addObject("InfoR", result);
+		}
 		/*String[] ar = ((String)m.get("FAVOR")).replaceAll("\\s", "").substring(1, ((String)m.get("FAVOR")).lastIndexOf("]")-1).split(",");*/
 		/*HashMap<String,String> favorR = new HashMap<String,String>();
 		for(String m3: ar){
@@ -61,10 +80,9 @@ public class infoController {
 			favorR.put(m3, m3);
 		}
 		String DateR = mapper.writeValueAsString(favorR);*/
-		ModelAndView mav = new ModelAndView("t_mypage");
-		mav.addObject("taglist", taglist);
-		mav.addObject("InfoR", result);
-		/*mav.addObject("DateR",DateR);*/
+		
+	
+		/**/
 		
 		return mav;
 	}
@@ -119,6 +137,7 @@ public class infoController {
 		for(String m : result){
 			list.add(m);
 		}
+		
 		System.out.println(list);
 		param.put("favor", list);
 		System.out.println(param);

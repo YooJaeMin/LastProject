@@ -47,11 +47,11 @@ public class infoDao {
 		for(int i=0;i<list.size();i++){
 			favor+=(" "+list.get(i));
 		}
+		favor=favor.substring(1, favor.length());
 		System.out.println(favor);
 		map.put("favor", favor);
-		
 		try{
-			/*r=session.update("info.update",map);*/
+			r=session.update("info.update",map);
 			session.commit();
 		}catch(Exception e){
 			e.printStackTrace();
