@@ -118,14 +118,14 @@
 										</div>
 
 										<div align="center">
-											<button type="submit" id="member_id_login"
+											<button type="button" id="member_id_login"
 												class="btn btn-warning btn-block">
 												<span class="glyphicon glyphicon-off"></span>로그인
 											</button>
 										</div>
 										<br>
 									</form>
-									<button id="naver_id_login" type="submit"
+									<button id="naver_id_login" type="button"
 										style="background: none; border: 0px;"></button>
 									<p>아직 회원이 아니신가요? 지금 회원가입을 하시면 맛있는 프리미엄 기능이 제공됩니다.</p>
 								</div>
@@ -155,7 +155,7 @@
 										</p>
 									</form>
 									<div align="center">
-										<button type="submit" class="btn btn-warning btn-block"
+										<button type="button" class="btn btn-warning btn-block"
 											id="join_btn">가입하기</button>
 									</div>
 								</div>
@@ -246,15 +246,15 @@
 			if (rst == 'yes') {
 
 				printRst = '<h4 class="modal-title">회원가입에 성공하였습니다.</h4>';
-
+				location.href = '/';
 			} else if (rst == 'chOk') {
 
 				printRst = '<h4 class="modal-title">로그인에 성공하였습니다.</h4>';
-
+				location.href = '/';
 			} else {
 
 				printRst = '<h4 class="modal-title">로그인에 실패하였습니다.</h4>';
-
+				location.href = '/';
 			}
 			window.alert(printRst);
 			location.href = '/';
@@ -279,19 +279,20 @@
 		}).done(function(rst) {
 			var printRst = '';
 			if (rst == 'succed') {
-
 				printRst = '<h4 class="modal-title">회원가입에 성공하였습니다</h4>';
 				$("#id2").val("");
 				$("#name2").val("");
 				$("#pw2").val("");
+				
 			} else {
 
 				printRst = '<h4 class="modal-title">회원가입에 실패하였습니다.</h4>';
 				$("#name2").val("");
 				$("#pw2").val("");
+				
 			}
 			window.alert(printRst);
-			location.href = '/';
+			
 		});
 
 	});
@@ -309,17 +310,15 @@
 				"pw" : pw,
 			}
 		}).done(function(rst) {
-
 			var printRst = '';
 			console.log(rst);
 			if (rst == 'succed') {
-
 				printRst = '<h4 class="modal-title">로그인에 성공하였습니다</h4>';
-
+				location.href = '/';
 			} else {
 
 				printRst = '<h4 class="modal-title">로그인에 실패하였습니다.</h4>';
-
+				location.href = '/';
 			}
 			window.alert(printRst);
 			location.href = '/';

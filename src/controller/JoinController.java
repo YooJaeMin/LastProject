@@ -124,8 +124,8 @@ public class JoinController {
 	
 	@RequestMapping("/memberCheck")//로그인 체크
 	@ResponseBody
-	public String memberCehck(@RequestParam Map map, HttpSession session,
-			/*@RequestParam(name = "keep", defaultValue = "off") String val,*/ HttpServletResponse response) {
+	public String memberCehck(@RequestParam Map map, HttpSession session
+			/*@RequestParam(name = "keep", defaultValue = "off") String val,*/) {
 		System.out.println(map);
 		boolean result = false;
 		result = mdao.checkMember(map);
