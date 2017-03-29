@@ -26,7 +26,7 @@
 <link rel="stylesheet"
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <body>
-	<div style="height: 1.4cm;">
+	<div style="height: 1.3cm;">
 		<tiles:insertAttribute name="nav" />
 	</div>
 	<div id="bg-all" style="style=width: 100%; height: 94%; overflow: hidden; Opacity: 0.9; background-size: cover;">

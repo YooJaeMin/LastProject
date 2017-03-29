@@ -48,7 +48,30 @@ public class WeatherInformer {
 					String tc =(String)temperature.get("tc");
 				rst.put("code", code);
 				rst.put("status", name);	
-				rst.put("temp", tc);	
+				rst.put("temp", tc);
+				/**/
+				String wStatus="";
+				String wStatus2="";
+				if (name.equals("SKY_A01")) {
+					wStatus = "sunny";
+					wStatus2 = "해가 쨍쨍한 날";
+
+				} else if ((name).equals("SKY_A04") || equals("SKY_A08")
+						|| equals("SKY_A010") || equals("SKY_A011") || equals("SKY_A012")) {
+					wStatus = "rainy";
+					wStatus2 = "비 주륵 오는 날";
+				} else if ((name).equals("SKY_A05") || equals("SKY_A06")
+						|| equals("SKY_A13") || equals("SKY_A14")) {
+					wStatus = "snowy";
+					wStatus2 = "눈이 펑펑오는 날";
+				} else {
+					wStatus = "cloudy";
+					wStatus2 = "구름 가득한 날";
+				}
+				rst.put("wStatus", wStatus);
+				rst.put("wStatus2", wStatus2);
+				/**/
+				
 				System.out.println(rst.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
