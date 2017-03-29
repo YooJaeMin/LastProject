@@ -442,7 +442,7 @@ hr {
 					</div>
 					<div>
 						<br/>
-						<h3><p>${item.CONTENT }</p></h3>
+						<h3>${item.CONTENT }</h3>
 					</div>
 				</div>
 				<div class="col-md-4">
@@ -578,7 +578,7 @@ hr {
 					</div>
 					<div>
 					<br/>
-						<h4><p>${item.CONTENT }</p></h4>
+						<h3>${item.CONTENT }</h3>
 					</div>
 				</div>
 				<div class="col-md-4">
