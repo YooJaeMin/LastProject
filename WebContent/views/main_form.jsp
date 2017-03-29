@@ -202,8 +202,8 @@
 <script>
 	var header = $('.main_visual');
 
-	var backgrounds = new Array('url(./img/main3.jpg)',
-			'url(./img/main1.jpg)', 'url(./img/main2.jpg)', 'url(./img/main4.jpg)');
+	var backgrounds = new Array('url(/img/main33.jpg)',
+			'url(/img/main11.jpg)', 'url(/img/main22.jpg)', 'url(/img/main44.jpg)');
 
 	var current = 0;
 
