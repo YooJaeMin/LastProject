@@ -16,7 +16,6 @@
       -webkit-filter: grayscale(90%);
       filter: grayscale(70%); /* make all photos black and white */ 
       width: 100%; /* Set width to 100% */
-      height:25px;
       margin: auto;
   }
   .carousel-caption h3 {
@@ -52,26 +51,26 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="/img/main11.jpg" alt="img1" width="1200" height="700">
+        <img src="/img/main11.jpg" alt="img1" width="1200" height="250">
         <div class="carousel-caption">
           <h3>Spoon Compass와 함께 맛있는 여행을 떠나요.</h3>
-          <p>The atmosphere in New York is lorem ipsum.</p>
+          <p>Delicious journey with Spoon Compass.</p>
         </div>      
       </div>
 
       <div class="item">
-        <img src="/img/main16.jpg" alt="img2" width="1200" height="700">
+        <img src="/img/main16.jpg" alt="img2" width="1200" height="250">
         <div class="carousel-caption">
-          <h3>Chicago</h3>
-          <p>Thank you, Chicago - A night we won't forget.</p>
+          <h3>Spoon Compass와 함께 맛있는 여행을 떠나요.</h3>
+          <p>Delicious journey with Spoon Compass.</p>
         </div>      
       </div>
     
       <div class="item">
-        <img src="/img/main4.png" alt="img3" width="1200" height="700">
+        <img src="/img/main4.png" alt="img3" width="1200" height="250">
         <div class="carousel-caption">
-          <h3>LA</h3>
-          <p>Even though the traffic was a mess, we had the best time playing at Venice Beach!</p>
+         <h3>Spoon Compass와 함께 맛있는 여행을 떠나요.</h3>
+          <p>Delicious journey with Spoon Compass.</p>
         </div>      
       </div>
     </div>
