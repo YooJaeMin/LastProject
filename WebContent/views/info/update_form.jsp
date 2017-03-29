@@ -31,6 +31,7 @@ input[type=checkbox] {
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }
+
 </style>
 
 
@@ -40,7 +41,7 @@ input[type=checkbox] {
 <br />
 <br />
 <div class="well row"
-	style="size: 80px; margin: 0 250; padding: 0px 25px;">
+	style="size: 100px; margin: 0 250; padding: 0px ;">
 
 
 	<c:forEach var="pic" items="${InfoR}">
@@ -102,7 +103,7 @@ input[type=checkbox] {
 				</p>
 				<br />
 				<p>
-					<button type="submit" class="btn">변경하기</button>
+					<button type="submit" class="btn btn-success">변경하기</button>
 				</p>
 			</form>
 
