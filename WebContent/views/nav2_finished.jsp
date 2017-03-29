@@ -126,7 +126,7 @@
 										<br>
 									</form>
 									<button id="naver_id_login" type="button"
-										style="background: none; border: 0px;"></button>
+										style="background: none; border: 0px;"></button><!--  -->
 									<p>아직 회원이 아니신가요? 지금 회원가입을 하시면 맛있는 프리미엄 기능이 제공됩니다.</p>
 								</div>
 							</div>
