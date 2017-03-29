@@ -8,6 +8,7 @@
 #map {
 	width: 100%;
 	height: 30%;
+	
 }
 </style>
 <div id="map"></div>
@@ -65,11 +66,11 @@
 // 			"icon": image
 		});
 		var contentString${vs.index} = 
-			'<span style="font-size: 15pt;">${vs.count}.</span>'+
-			'<a href="/search/detail?tel=${item.tel }"style="font-size: 15pt; bold;">${item.title }</a><br/>'+
+			'<span style="font-family: Hanna, sans-serif;"><span style="font-size: 17pt;">${vs.count}.</span>'+
+			'<a href="/search/detail?tel=${item.tel }"style="font-size: 17pt; bold;">${item.title }</a><br/>'+
 			'${item.adress }<br/>'+
-			'☏ ${item.tel }<br/>'+
-			'평점 : ${item.avg }';
+			'☏ ${item.tel }<br/></span>'+
+			'<div style="font-family: Hanna, sans-serif; color : #FA5882;" align="right">${item.avg } Score</div>';
 		
 		var infowindow${vs.index} = new google.maps.InfoWindow({
 			'content' : contentString${vs.index},

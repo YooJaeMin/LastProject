@@ -8,6 +8,7 @@
 #map {
 	width: 100%;
 	height: 30%;
+	font-family: 'Hanna', sans-serif;
 }
 </style>
 <div id="map"></div>
@@ -63,10 +64,10 @@
 		});
 		
 		var contentString${vs.index} =
-			'<a href="/search/detail?tel=${item.tel }"style="font-size: 15pt; bold;">${item.title }</a><br/>'+
+			'<span style="font-family: Hanna, sans-serif, black;"><a href="/search/detail?tel=${item.tel }"style="font-size: 17pt; bold;">${item.title }</a><br/>'+
 			'${item.adress }<br/>'+
-			'☏ ${item.tel }<br/>'+
-			'평점 : ${item.avg }';
+			'☏ ${item.tel }<br/></span>'+
+			'<div style="font-family: Hanna, sans-serif; color : #FA5882;" align="right">${item.avg } Score</div>';
 			
 		var infowindow${vs.index} = new google.maps.InfoWindow({
 			'content' : contentString${vs.index},
@@ -78,7 +79,6 @@
 		</c:forEach>
 	}
 </script>
-
 
 
 
