@@ -42,20 +42,26 @@ public class infoDao {
 		SqlSession session = factory.openSession();
 		int r=0;
 		String favor ="";
-		List list = (List)map.get("favor");
-		
-		for(int i=0;i<list.size();i++){
-			favor+=(" "+list.get(i));
+		if(map.get("favor") != null){
+			List list = (List)map.get("favor");
+			for(int i=0;i<list.size();i++){
+				favor+=(" "+list.get(i));
+			}
+			favor=favor.substring(1, favor.length());
+			System.out.println(favor);
+			map.put("favor", favor);
+		}else{
+			map.put("favor", null);
 		}
-		favor=favor.substring(1, favor.length());
-		System.out.println(favor);
-		map.put("favor", favor);
+		
 		try{
 			r=session.update("info.update",map);
 			session.commit();
 		}catch(Exception e){
 			e.printStackTrace();
-			
+			r=12;
+			return r;
+
 		}finally{
 			session.close();
 		}

@@ -19,18 +19,19 @@ public class LocationCalculator {
 		return list;
 	}
 
-	public List getLocation(double lat1, double lng1) {
-		List list = template.findAll(Map.class);
-		System.out.println(list.toString());
-		list = calDistance(lat1, lng1, list);
-		return list;
-	}
+//	public List getLocation(double lat1, double lng1) {
+//		List list = template.findAll(Map.class);
+//		System.out.println(list.toString());
+//		list = calDistance(lat1, lng1, list);
+//		return list;
+//	}
 
-	public List calDistance(double lat1, double lng1, List list) {
+	public List calDistance(double lat1, double lng1, List list, int checker) {
 
 		double theta, dist;
 		double lat2;
 		double lng2;
+		System.out.println(lat1+" / "+ lng1);
 		List newList = new ArrayList();
 		for (int i = 0; i < list.size(); i++) {
 
@@ -53,7 +54,7 @@ public class LocationCalculator {
 			dist = dist * 60 * 1.1515;
 			dist = dist * 1.609344; // 단위 mile 에서 km 변환.
 			dist = dist * 1000.0; // 단위 km 에서 m 로 변환
-			if (dist <= 1000){
+			if (dist <= 1000 * checker){
 				newList.add(map);
 //				System.out.println(map.toString());
 			}

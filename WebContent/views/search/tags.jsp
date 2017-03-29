@@ -5,7 +5,7 @@
 <style>
 .item_container {
 	border-style: double;
-	border-color: #FE9A2E;
+	border-color: white;
 	border-radius: 10px;
 	height: 230px;
 }

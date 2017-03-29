@@ -289,10 +289,10 @@
 				printRst = '<h4 class="modal-title">회원가입에 실패하였습니다.</h4>';
 				$("#name2").val("");
 				$("#pw2").val("");
-				
+		
 			}
 			window.alert(printRst);
-			
+			location.href = '/';
 		});
 
 	});
@@ -314,11 +314,11 @@
 			console.log(rst);
 			if (rst == 'succed') {
 				printRst = '<h4 class="modal-title">로그인에 성공하였습니다</h4>';
-				location.href = '/';
+				
 			} else {
 
 				printRst = '<h4 class="modal-title">로그인에 실패하였습니다.</h4>';
-				location.href = '/';
+				
 			}
 			window.alert(printRst);
 			location.href = '/';
