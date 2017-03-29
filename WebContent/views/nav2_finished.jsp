@@ -22,35 +22,37 @@
 #nav_body {
 	font-family: 'Coming Soon';
 	font-size: 20px;
+	
 }
+
 </style>
 
 
 <div  id="nav_body" data-spy="scroll" data-toggle=".navbar"
 	data-offset="50">
 
-	<nav class="navbar navbar-inverse ">
+	<nav class="navbar navbar-inverse">
 		<div class="container-fluid ">
 
 			<ul class="nav navbar-nav">
-				<li><a href="/" id="refresh"><span style="color: #ffd700;"><b>Spoon
+				<li><a href="/" id="refresh"><span style="color: orange;"><b>Spoon
 								Compass</b></span></a></li>
 				<li class="active"><a href="#" data-toggle="tooltip"
 					data-placement="bottom" title="홈"> <b>HOME</b></a></li>
 				<li><a href="#about" data-toggle="tooltip"
 					data-placement="bottom" title="스푼컴파스 소개"> <b>ABOUT</b></a></li>
 				<li><a href="#contact" data-toggle="tooltip"
-					data-placement="bottom" title="연락하기"><b>CONTACT</b></a>
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#"><b>MORE</b> <span class="caret"></span></a>
-					<ul class="dropdown-menu">
+					data-placement="bottom" title="연락하기"><b>CONTACT</b></a></li>
 						<li><a href="/spoon_board/listAll" data-toggle="tooltip"
 							data-placement="bottom" title="공지사항"><b>NOTICE</b></a></li>
 						<li><a href="#" data-toggle="tooltip" data-placement="bottom"
 							title="자주묻는 질문들"><b>FAQ</b></a></li>
 						<li><a href="#" data-toggle="tooltip" data-placement="bottom"
 							title="질문하기"><b>QnA</b></a></li>
-					</ul></li>
+					
+					
+					
+				
 
 				<c:if test="${sessionScope.auth ne  null }">
 					<li><a href="#"><b>My List</b></a></li>
@@ -61,7 +63,7 @@
 				<c:when test="${sessionScope.auth ne null}">
 					<ul class="nav navbar-nav navbar-right">
 							<c:forEach items="${member_info}" var="item">
-							<li><img src="${item.PROFILE}" class="img-circle" alt="Cinque Terre" width="50" height="50"></li>
+							<li><img src="${item.PROFILE}" class="img-circle" alt="Cinque Terre" width="45" height="45"></li>
 							</c:forEach>
 							<li><a href="/Mypage/info"><b>${sessionScope.auth_id}</b></a></li>
 							<li><a href="/Mypage/logout"><b>logOut</b></a></li>
@@ -71,8 +73,8 @@
 				<ul class="nav navbar-nav navbar-right">
 						<li class="pull-right" data-toggle="tooltip"
 							data-placement="bottom" title="로그인"><a
-							class="glyphicon glyphicon-log-in" data-toggle="modal"
-							data-target="#myModal"> </a></li>
+							class="glyphicon glyphicon-log-in " data-toggle="modal"
+							data-target="#myModal" ></a></li>
 							
 				
 			</ul>

@@ -23,21 +23,25 @@ input[type=checkbox] {
 	font-size: 110%;
 	display: inline;
 }
+
+.jumbotron {
+    color: #ffffff;
+    font-family: 'Lobster';
+    background-color: #ff9400;
+    margin-top: 0;
+    padding: 20px 20px 20px 40px;
+}
+
 </style>
 
 
-<br />
-<br />
-<br />
-<div align="center">
-	<h2>
-		<span>회원정보</span>
-	</h2>
+<div class="jumbotron" align="center" style="margin-bottom: 0px">
+	<h1>My Account</h1>
 </div>
 <br />
 <br />
 <div class="well row"
-	style="size: 80px; margin: 0 250; padding: 0px 25px;">
+	style="size: 100px; margin: 0 250; padding: 0px ;">
 
 
 	<c:forEach var="pic" items="${InfoR}">
@@ -92,13 +96,14 @@ input[type=checkbox] {
 				<hr />
 				<p>
 					<c:forEach var="tg" items="${taglist}" varStatus="vs">
-						<input onclick="checkCHK()" type="checkbox" name="preferency" id="${tg}" value="${tg}" />
+						<input onclick="checkCHK()" type="checkbox" name="preferency"
+							id="${tg}" value="${tg}" />
 						<span class="checkboxtext">${tg} &nbsp;&nbsp; </span>
 					</c:forEach>
 				</p>
 				<br />
 				<p>
-					<button type="submit" class="btn">변경하기</button>
+					<button type="submit" class="btn btn-success">변경하기</button>
 				</p>
 			</form>
 
@@ -107,57 +112,58 @@ input[type=checkbox] {
 </div>
 
 <script>
+	var x = $
+	{
+		DateR
+	};
 
-var x = ${DateR};
-
-console.log(x);
-if(x != null){
-for(var xr in x){
-	if(xr=='한식'){
-		$("input:checkbox[id='한식']").prop("checked", true);
-	}else if(xr=='중식'){
-		$("input:checkbox[id='중식']").prop("checked", true);
-	}else if(xr=='일식'){
-		$("input:checkbox[id='일식']").prop("checked", true);
-	}else if(xr=='카페'){
-		$("input:checkbox[id='카페']").prop("checked", true);
-	}else if(xr=='술집'){
-		$("input:checkbox[id='술집']").prop("checked", true);
-	}else if(xr=='고기집'){
-		$("input:checkbox[id='고기집']").prop("checked", true);
-	}else if(xr=='횟집'){
-		$("input:checkbox[id='횟집']").prop("checked", true);
-	}else if(xr=='해산물'){
-		$("input:checkbox[id='해산물']").prop("checked", true);
-	}else if(xr=='밥집'){
-		$("input:checkbox[id='밥집']").prop("checked", true);
-	}else if(xr=='분식'){
-		$("input:checkbox[id='분식']").prop("checked", true);
-	}else if(xr=='파스타'){
-		$("input:checkbox[id='파스타']").prop("checked", true);
-	}else if(xr=='뷔페'){
-		$("input:checkbox[id='뷔페']").prop("checked", true);
-	}else if(xr=='국물요리'){
-		$("input:checkbox[id='국물요리']").prop("checked", true);
-	}else if(xr=='면요리'){
-		$("input:checkbox[id='면요리']").prop("checked", true);
-	}else if(xr=='이탈리안'){
-		$("input:checkbox[id='이탈리안']").prop("checked", true);
-	}else if(xr=='멕시칸'){
-		$("input:checkbox[id='멕시칸']").prop("checked", true);
-	}else if(xr=='프렌치'){
-		$("input:checkbox[id='프렌치']").prop("checked", true);
-	}else if(xr=='아시안'){
-		$("input:checkbox[id='아시안']").prop("checked", true);
+	console.log(x);
+	if (x != null) {
+		for ( var xr in x) {
+			if (xr == '한식') {
+				$("input:checkbox[id='한식']").prop("checked", true);
+			} else if (xr == '중식') {
+				$("input:checkbox[id='중식']").prop("checked", true);
+			} else if (xr == '일식') {
+				$("input:checkbox[id='일식']").prop("checked", true);
+			} else if (xr == '카페') {
+				$("input:checkbox[id='카페']").prop("checked", true);
+			} else if (xr == '술집') {
+				$("input:checkbox[id='술집']").prop("checked", true);
+			} else if (xr == '고기집') {
+				$("input:checkbox[id='고기집']").prop("checked", true);
+			} else if (xr == '횟집') {
+				$("input:checkbox[id='횟집']").prop("checked", true);
+			} else if (xr == '해산물') {
+				$("input:checkbox[id='해산물']").prop("checked", true);
+			} else if (xr == '밥집') {
+				$("input:checkbox[id='밥집']").prop("checked", true);
+			} else if (xr == '분식') {
+				$("input:checkbox[id='분식']").prop("checked", true);
+			} else if (xr == '파스타') {
+				$("input:checkbox[id='파스타']").prop("checked", true);
+			} else if (xr == '뷔페') {
+				$("input:checkbox[id='뷔페']").prop("checked", true);
+			} else if (xr == '국물요리') {
+				$("input:checkbox[id='국물요리']").prop("checked", true);
+			} else if (xr == '면요리') {
+				$("input:checkbox[id='면요리']").prop("checked", true);
+			} else if (xr == '이탈리안') {
+				$("input:checkbox[id='이탈리안']").prop("checked", true);
+			} else if (xr == '멕시칸') {
+				$("input:checkbox[id='멕시칸']").prop("checked", true);
+			} else if (xr == '프렌치') {
+				$("input:checkbox[id='프렌치']").prop("checked", true);
+			} else if (xr == '아시안') {
+				$("input:checkbox[id='아시안']").prop("checked", true);
+			}
+		}
 	}
-}
-}
-
 
 	$(function() {
 		$("#datepicker1").datepicker(
 				{
-					yearRange: "-100:+0",
+					yearRange : "-100:+0",
 					dateFormat : 'yy-mm-dd',
 					prevText : '이전 달',
 					nextText : '다음 달',
@@ -174,10 +180,9 @@ for(var xr in x){
 					yearSuffix : '년'
 				});
 	});
-	
+
 	function checkCHK() {
-		
+
 	}
-	
 </script>
 
