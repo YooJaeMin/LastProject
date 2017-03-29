@@ -3,6 +3,7 @@ package controller;
 import java.util.*;
 
 import javax.servlet.http.HttpSession;
+import javax.swing.plaf.synth.SynthSplitPaneUI;
 import javax.tools.DocumentationTool.Location;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -157,8 +158,10 @@ public class SearchController {
 		/*태영 고친부분 */
 
 		/*태영 like*/
+		System.out.println("!!!"+reqMap);
 		List<HashMap> like = likedao.getliekN(reqMap);
 		HashMap likeRR = like.get(0);
+		System.out.println(likeRR);
 		
 		reqMap.put("id", session.getAttribute("auth_id"));
 		int likeR = likedao.Check(reqMap);
@@ -177,7 +180,7 @@ public class SearchController {
 		}
 		/*			*/
 		Map weather = wi.service();
-		
+		String Wstatus = (String)weather.get("wStatus");
 		
 	
 		
@@ -198,7 +201,7 @@ public class SearchController {
 		
 
 		List<Map> reviewList = sd.reviewList(reqMap);
-		
+		mav.addObject("Wstatus",Wstatus);
 		mav.addObject("reviewList", reviewList);
 		/*태영 고친 부분*/
 		mav.addObject("like", likeRR);

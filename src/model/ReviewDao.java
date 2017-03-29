@@ -15,7 +15,8 @@ public class ReviewDao {
 	public boolean insertBasic(Map map) {
 		SqlSession session = factory.openSession();
 		try {
-			int i = session.insert("review.insertBasic", map);
+			int i = session.insert("review.insertDetails", map);
+			session.commit();
 			if (i == 1) {
 				return true;
 			}

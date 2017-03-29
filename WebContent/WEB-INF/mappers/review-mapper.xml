@@ -6,12 +6,12 @@
 	<!-- 별점+많은 정보 등록 -->
 	<insert id="insertBasic" parameterType="java.util.HashMap">
 		insert into review
-		values( #{tel},#{id},#{clean_s}, #{taste_s}, #{price_s}, #{good_s}, #{location_s}, #{avg_s}, 0 #{weather},#{type}, null, null, sysdate )
+		values( #{tel},#{id},#{clean_s}, #{taste_s}, #{price_s}, #{good_s}, #{location_s}, #{avg_s},0,#{weather},#{type}, null, null, sysdate )
 	</insert>
 	
 	<insert id="insertDetails" parameterType="java.util.HashMap">
 		insert into review
-		values( #{tel},#{id},#{clean_s}, #{taste_s}, #{price_s}, #{good_s}, #{location_s}, #{avg_s}, 0 #{weather},#{type}, #{content}, #{img}, sysdate )
+		values( #{tel},#{id},#{clean_s}, #{taste_s}, #{price_s}, #{good_s}, #{location_s}, #{avg_s},0,#{weather},#{type}, #{content}, null, sysdate )
 	</insert>
 	
 	<!-- 이미 등록된 경우 -->
@@ -22,7 +22,7 @@
 	
 	<update id="updateDetails" parameterType="java.util.HashMap">
 		update review set clean_s = #{clean_s}, taste_s = #{taste_s}, price_s = #{price_s}, good_s = #{good_s}, location_s = #{location_s},
-		 avg_s = #{avg_s},hit = 0, weather = #{weather}, type = #{type}, content = #{content}, img = #{img} where tel = #{tel} and id = #{id}
+		 avg_s = #{avg_s},hit = 0, weather = #{weather}, type = #{type}, content = #{content}, img = null where tel = #{tel} and id = #{id}
 	</update>
 	<!-- 카테고리 검색 결과 -->
 	<select id="reviewResult" parameterType="java.util.HashMap" resultType="java.util.HashMap">

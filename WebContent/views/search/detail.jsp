@@ -677,20 +677,21 @@ hr {
 
 			<!-- 후기작성란+별점+날씨등록란 -->
 			<div class="modal-body">
-				<form action="/view/review/result" method="post">
+				<form action="/review/basic" method="post">
 					<!-- hidden >> id+tel 넘김 -->
 					<input type="hidden" name="id" value="${sessionScope.auth_id }" />
+					<input type="hidden" name="like" value="${like}" />
 					<input type="hidden" name="tel" value="${store.tel }" /> <input
 						type="hidden" id="wStatus" name="weather"
-						value="${weather.status}" /> <input type="hidden" id="type"
+						value="${Wstatus}" /> <input type="hidden" id="type"
 						name="type" value="single" />
 
 					<h3 style="margin-top: 0px">
-						#1. 날씨가 어땠나요?${weather.status}<br>
+						#1. 날씨가 어땠나요?<br>
 					</h3>
 					<div align="center">
 					<c:choose>
-						<c:when test="${weather.status eq 'sunny'}">
+						<c:when test="${Wstatus eq 'sunny'}">
 						<a class="btn btn-lg" id="wb1" onclick="wBox(1, 'sunny')" style="border: 2px solid #ff9400;"> <img
 							class="weather_box" src="/img_weather/sunny.png" />
 						</a> <a class="btn btn-lg" id="wb2" onclick="wBox(2, 'cloudy')"> <img
@@ -701,10 +702,10 @@ hr {
 							class="weather_box" src="/img_weather/snowy.png" />
 						</a>
 						</c:when>
-						<c:when test="${weather.status eq 'cloudy'}">
-						<a class="btn btn-lg" id="wb1" onclick="wBox(1, 'sunny')" style="border: 2px solid #ff9400;"> <img
+						<c:when test="${Wstatus eq 'cloudy'}">
+						<a class="btn btn-lg" id="wb1" onclick="wBox(1, 'sunny')"> <img
 							class="weather_box" src="/img_weather/sunny.png" />
-						</a> <a class="btn btn-lg" id="wb2" onclick="wBox(2, 'cloudy')"> <img
+						</a> <a class="btn btn-lg" id="wb2" onclick="wBox(2, 'cloudy')"  style="border: 2px solid #ff9400;"> <img
 							class="weather_box" src="/img_weather/cloudy.png" />
 						</a> <a class="btn btn-lg" id="wb3" onclick="wBox(3,'rainy')"> <img
 							class="weather_box" src="/img_weather/rainy.png" />
@@ -712,25 +713,25 @@ hr {
 							class="weather_box" src="/img_weather/snowy.png" />
 						</a>
 						</c:when>
-						<c:when test="${weather.status eq 'rainy'}">
+						<c:when test="${Wstatus eq 'rainy'}">
 						<a class="btn btn-lg" id="wb1" onclick="wBox(1, 'sunny')" > <img
 							class="weather_box" src="/img_weather/sunny.png" />
-						</a> <a class="btn btn-lg" id="wb2" onclick="wBox(2, 'cloudy')" style="border: 2px solid #ff9400;"> <img
-							class="weather_box" src="/img_weather/cloudy.png" />
-						</a> <a class="btn btn-lg" id="wb3" onclick="wBox(3,'rainy')"> <img
-							class="weather_box" src="/img_weather/rainy.png" />
-						</a> <a class="btn btn-lg" id="wb4" onclick="wBox(4,'snowy')"> <img
-							class="weather_box" src="/img_weather/snowy.png" />
-						</a>
-						</c:when>
-						<c:when test="${weather.status eq 'snowy'}">
-							<a class="btn btn-lg" id="wb1" onclick="wBox(1, 'sunny')"> <img
-							class="weather_box" src="/img_weather/sunny.png" />
-						</a> <a class="btn btn-lg" id="wb2" onclick="wBox(2, 'cloudy')"> <img
+						</a> <a class="btn btn-lg" id="wb2" onclick="wBox(2, 'cloudy')" > <img
 							class="weather_box" src="/img_weather/cloudy.png" />
 						</a> <a class="btn btn-lg" id="wb3" onclick="wBox(3,'rainy')" style="border: 2px solid #ff9400;"> <img
 							class="weather_box" src="/img_weather/rainy.png" />
 						</a> <a class="btn btn-lg" id="wb4" onclick="wBox(4,'snowy')"> <img
+							class="weather_box" src="/img_weather/snowy.png" />
+						</a>
+						</c:when>
+						<c:when test="${Wstatus eq 'snowy'}">
+							<a class="btn btn-lg" id="wb1" onclick="wBox(1, 'sunny')"> <img
+							class="weather_box" src="/img_weather/sunny.png" />
+						</a> <a class="btn btn-lg" id="wb2" onclick="wBox(2, 'cloudy')"> <img
+							class="weather_box" src="/img_weather/cloudy.png" />
+						</a> <a class="btn btn-lg" id="wb3" onclick="wBox(3,'rainy')" > <img
+							class="weather_box" src="/img_weather/rainy.png" />
+						</a> <a class="btn btn-lg" id="wb4" onclick="wBox(4,'snowy')" style="border: 2px solid #ff9400;"> <img
 							class="weather_box" src="/img_weather/snowy.png" />
 						</a>
 						</c:when>
@@ -1104,3 +1105,4 @@ hr {
 
 
 </script>
+<!--review modal-->
