@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <body>
-	<div style="height: 1.4cm;">
+	<div style="height: 1.3cm;">
 		<tiles:insertAttribute name="nav" />
 	</div>
 	<div class="main_body" style="min-height: 90%;" >
