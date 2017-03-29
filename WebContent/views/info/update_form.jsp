@@ -122,14 +122,20 @@ for(var xr in x){
 		$("input:checkbox[id='고기집']").prop("checked", true);
 	}else if(xr=='횟집'){
 		$("input:checkbox[id='횟집']").prop("checked", true);
+	}else if(xr=='해산물'){
+		$("input:checkbox[id='해산물']").prop("checked", true);
 	}else if(xr=='밥집'){
 		$("input:checkbox[id='밥집']").prop("checked", true);
 	}else if(xr=='분식'){
 		$("input:checkbox[id='분식']").prop("checked", true);
+	}else if(xr=='파스타'){
+		$("input:checkbox[id='파스타']").prop("checked", true);
 	}else if(xr=='뷔페'){
 		$("input:checkbox[id='뷔페']").prop("checked", true);
 	}else if(xr=='국물요리'){
 		$("input:checkbox[id='국물요리']").prop("checked", true);
+	}else if(xr=='면요리'){
+		$("input:checkbox[id='면요리']").prop("checked", true);
 	}else if(xr=='이탈리안'){
 		$("input:checkbox[id='이탈리안']").prop("checked", true);
 	}else if(xr=='멕시칸'){
