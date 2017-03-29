@@ -104,7 +104,7 @@ public class infoController {
 		return mav;
 	}
 	@RequestMapping("/logout")
-	public ModelAndView logoutHandle(HttpSession session,@RequestParam(name = "keep", defaultValue = "off") String val,HttpServletResponse response){
+	public ModelAndView logoutHandle(HttpSession session,/*@RequestParam(name = "keep", defaultValue = "off") String val,*/HttpServletResponse response){
 		session.removeAttribute("auth");
 		session.removeAttribute("fail");
 		session.removeAttribute("auth_id");
