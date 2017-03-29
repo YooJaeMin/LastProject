@@ -155,7 +155,7 @@
 										</p>
 									</form>
 									<div align="center">
-										<button type="submit" class="btn btn-warning btn-block"
+										<button type="button" class="btn btn-warning btn-block"
 											id="join_btn">가입하기</button>
 									</div>
 								</div>
@@ -283,16 +283,16 @@
 				$("#id2").val("");
 				$("#name2").val("");
 				$("#pw2").val("");
-				location.href = '/';
+				
 			} else {
 
 				printRst = '<h4 class="modal-title">회원가입에 실패하였습니다.</h4>';
 				$("#name2").val("");
 				$("#pw2").val("");
-				location.href = '/';
+				
 			}
 			window.alert(printRst);
-			location.href = '/';
+			
 		});
 
 	});
