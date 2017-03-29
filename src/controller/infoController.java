@@ -1,7 +1,9 @@
 package controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,6 +57,10 @@ public class infoController {
 		Map m= result.get(0);
 		System.out.println("m"+m);
 		ModelAndView mav = new ModelAndView("t_mypage");
+		Date date = (Date)m.get("BIRTH");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String newDate = sdf.format(date);
+		m.put("BIRTH", newDate);
 		if(m.get("FAVOR")!=null){
 			String arBasic = (String)m.get("FAVOR");
 			String ar = ((String)m.get("FAVOR"));
