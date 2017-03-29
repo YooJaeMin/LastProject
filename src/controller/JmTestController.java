@@ -38,4 +38,11 @@ public class JmTestController {
 		mav.addObject("result", list);
 		return mav;
 	}
+	
+	@RequestMapping("/mongo")
+	public ModelAndView testMongo(){
+		ModelAndView mav = new ModelAndView("/views/bucket/chart.jsp");
+		td.insertMongo();
+		return mav;
+	}
 }
