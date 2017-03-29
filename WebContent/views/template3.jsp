@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
-<html style="overflow: hidden;">
+<html>
 <title><tiles:getAsString name="title" /></title>
 <!-- getAsString 출력용 -->
 <head>
@@ -29,34 +29,12 @@
 	<div style="height: 1.4cm;">
 		<tiles:insertAttribute name="nav" />
 	</div>
-	<div id="bg-all" style="style=width: 100%; height: 94%; overflow: hidden; Opacity: 0.9; background-size: cover;">
+
 		<div class="main_body" style="min-height: 90%;">
 			<tiles:insertAttribute name="main" />
 		</div>
 		<div style="min-height: 3%">
 			<tiles:insertAttribute name="footer" />
 		</div>
-	</div>
-	<script>
-		var header = $('#bg-all');
-
-		var backgrounds = new Array('url(/img/main33.jpg)',
-				'url(/img/main111.jpg)', 'url(/img/main22.jpg)',
-				'url(/img/main44.jpg)');
-
-		var current = 0;
-		header.css('background-image', backgrounds[0]);
-		function nextBackground() {
-			current++;
-			current = current % backgrounds.length;
-
-			header.css('background-image', backgrounds[current]);
-
-		}
-		setInterval(nextBackground, 7000);
-
-
-	</script>
-
 </body>
 </html>

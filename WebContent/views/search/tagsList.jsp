@@ -100,7 +100,7 @@ a {
 									<c:forEach items="${item.tag }" var="tag" varStatus="vs">
 										<a href="/search/tag?selectedTag=${tag }">${tag}</a>
 									</c:forEach>
-									<div>Like : ${item.hitCnt } / AVG : ${item.avg }</div>
+									<div><span style="color: pink;">♥</span> ${item.hitCnt }  &  <span style="color: #FA5882">${item.avg } Score</span></div>
 								</div>
 							</div>
 						</c:if>

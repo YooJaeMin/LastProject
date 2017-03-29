@@ -10,7 +10,7 @@
 		<put-attribute name="footer" value="/views/footer.jsp" />
 	</definition>
 	
-	<definition name="base2" template="/views/template2.jsp">
+	<definition name="base2" template="/views/template3.jsp">
 		<put-attribute name="title" value="spoon member" />
 		<put-attribute name="header" value="/views/header.jsp" />
 		<put-attribute name="nav" value="/views/nav2_finished.jsp" />
@@ -45,7 +45,7 @@
 		<put-attribute name="main" value="/views/info/bucket.jsp"/>
 	</definition>
 	
-	<definition name="t_searchMain" extends="base">
+	<definition name="t_searchMain" extends="base2">
 		<put-attribute name="main" value="/views/search/searchMain.jsp"/>
 	</definition>
 	
@@ -53,7 +53,7 @@
 		<put-attribute name="main" value="/views/search/searchList.jsp"/>
 	</definition>
 	
-	<definition name="t_tagSearch" extends="base">
+	<definition name="t_tagSearch" extends="base2">
 		<put-attribute name="main" value="/views/search/tags.jsp"/>
 	</definition>
 	

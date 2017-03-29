@@ -106,7 +106,7 @@ a {
 									<c:forEach items="${item.tag }" var="tag" varStatus="vs">
 										<a href="/search/tag?selectedTag=${tag }">${tag}</a>
 									</c:forEach>
-									<div>Like : ${item.hitCnt } / AVG : ${item.avg }</div>
+									<div><span style="color: pink;">♥</span> ${item.hitCnt }  &  <span style="color: #FA5882">${item.avg } Score</span></div>
 								</div>
 							</div>
 						</c:if>
@@ -117,22 +117,7 @@ a {
 		</div>
 		<div class="col-md-1"></div>
 	</div>
-	<!-- <div class="row col-md-offset-1 col-md-9"> -->
-	<!-- 	<div align="center" class="number-box"> -->
-	<%-- 		<c:forEach begin="1" --%>
-	<%-- 			end="${result.size() %10 eq 0 ? result.size()/10 : result.size()/10 +1  }" --%>
-	<%-- 			varStatus="vs"> --%>
-	<!-- 			<form action="/search/list"> -->
-	<%-- 				<input type="hidden" name="keyword" value="${keyword }"> <input --%>
-	<!-- 					type="hidden" name="type" -->
-	<%-- 					value="${type eq '상호' ? 'title' : type eq '위치' ? 'location' : ''}"> --%>
-	<!-- 					<div class=" col-md-1"> -->
-	<%-- 				<button name="page" class="btn button-box" value="${vs.count }">${vs.count }</button> --%>
-	<!-- 				</div> -->
-	<!-- 			</form> -->
-	<%-- 		</c:forEach> --%>
-	<!-- 	</div> -->
-	<!-- </div> -->
+
 	<div class="row" style="padding: 30px;">
 		<div class="col-md-offset-1 col-md-10 ">
 			<div align="center" class="number-box">
@@ -140,7 +125,7 @@ a {
 					<c:if test="${!(page le 10) }">
 
 						<a
-							href="/search/list?keyword=${selectedTag }&type=${type eq '상호' ? 'title' : type eq '위치' ? 'location' : ''}&page=${page%10 eq 0 ? page-10 : page-page%10 }" style="font-size: 20px;">PREV</a>
+							href="/search/list?keyword=${keyword }&type=${type eq '상호' ? 'title' : type eq '위치' ? 'location' : ''}&page=${page%10 eq 0 ? page-10 : page-page%10 }" style="font-size: 20px;">PREV</a>
 					</c:if>
 				</div>
 

@@ -17,8 +17,6 @@
 }
 
 .main_search_area {
-	position: absolute;
-	bottom: 0%;
 	background-color: rgba(0, 0, 0, .5);
 	padding-bottom: 15px;
 	padding-top: 15px;
@@ -53,11 +51,11 @@
 }
 </style>
 
-<div class="main_visual"
-	style="width: 100%; height: 83%; overflow: hidden; Opacity: 0.9; background-image: url(&amp;quot;./img/result.jpg&amp;quot;); background-size: cover;">
+<!-- <div class="main_visual" -->
+<!-- 	style="width: 100%; height: 83%; overflow: hidden; Opacity: 0.9; background-image: url(&amp;quot;./img/result.jpg&amp;quot;); background-size: cover;"> -->
 	<!--  -->
-
-	<div style="margin: 0.3cm;" align="center" style="color: white;">
+<div class="main_visual">
+	<div style="margin: 0.3cm;" align="center">
 		<img src="/img/spoon2.png" width="250px" />
 
 	</div>
@@ -67,7 +65,7 @@
 	<c:choose>
 		<c:when test="${sessionScope.auth ne  null }">
 			<div class="main_view row"
-				style="position: absolute; top: 60%; left: 20%; margin-bottom: 250px; margin-top: 10px;padding-top: 30px; width: 60%; color: white; background-color: rgba(0, 0, 0, .5)"
+				style="position: absolute; top: 50%; left: 20%; margin-bottom: 250px; margin-top: 10px;padding-top: 30px; width: 60%; color: white; background-color: rgba(0, 0, 0, .5)"
 				align="left">
 
 				<div class="input col-sm-3">
@@ -151,7 +149,7 @@
 	padding-top: 30px;
 } */ -->
 			<div class="main_view row"
-				style="position: absolute; top: 60%; margin-bottom: 250px; padding-top: 30px; left: 33%; width: 35%; color: white; background-color: rgba(0, 0, 0, .5)"
+				style="position: absolute; top: 50%; margin-bottom: 250px; padding-top: 30px; left: 33%; width: 35%; color: white; background-color: rgba(0, 0, 0, .5)"
 				align="left">
 
 				<div class="input col-sm-6">
@@ -181,7 +179,7 @@
 		</c:otherwise>
 	</c:choose>
 
-	<div class="main_search_area row col-md-offset-2 col-md-8">
+	<div class="main_search_area row col-md-offset-2 col-md-8" style="position: absolute; top: 78%;">
 		<div class="input-group" style="width: 100%;">
 			<form action="/search/keyword" method="get">
 				<div class="col-md-10">
@@ -199,24 +197,6 @@
 		</div>
 	</div>
 </div>
-<script>
-	var header = $('.main_visual');
 
-	var backgrounds = new Array('url(/img/main33.jpg)',
-			'url(/img/main111.jpg)', 'url(/img/main22.jpg)', 'url(/img/main44.jpg)');
-
-	var current = 0;
-
-	function nextBackground() {
-		current++;
-		current = current % backgrounds.length;
-
-		header.css('background-image', backgrounds[current]);
-
-	}
-	setInterval(nextBackground, 7000);
-
-	header.css('background-image', backgrounds[0]);
-</script>
 
 
