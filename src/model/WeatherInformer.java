@@ -52,6 +52,11 @@ public class WeatherInformer {
 				System.out.println(rst.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("날씨 api 다씀");
+			rst.put("code", "SKY_O07");
+			rst.put("status", "흐림");
+			rst.put("wStatus", "cloudy");
+			rst.put("temp", 25);	
 		}
 		return rst;
 	}

@@ -58,8 +58,8 @@
 	background-size: cover;">
 	<!--  -->
 
-	<div style="margin-buttom: 5cm;" align="center" style="color: white;">
-		<img src="/img/spooncompass.png" width="45%" height="55%" />
+	<div style="margin: 0.3cm;" align="center" style="color: white;">
+		<img src="/img/spoon2.png" width="250px" />
 
 	</div>
 

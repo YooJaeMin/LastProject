@@ -686,10 +686,12 @@ hr {
 						name="type" value="single" />
 
 					<h3 style="margin-top: 0px">
-						#1. 날씨가 어땠나요?<br>
+						#1. 날씨가 어땠나요?${weather.status}<br>
 					</h3>
 					<div align="center">
-						<a class="btn btn-lg" id="wb1" onclick="wBox(1, 'sunny')"> <img
+					<c:choose>
+						<c:when test="${weather.status eq 'sunny'}">
+						<a class="btn btn-lg" id="wb1" onclick="wBox(1, 'sunny')" style="border: 2px solid #ff9400;"> <img
 							class="weather_box" src="/img_weather/sunny.png" />
 						</a> <a class="btn btn-lg" id="wb2" onclick="wBox(2, 'cloudy')"> <img
 							class="weather_box" src="/img_weather/cloudy.png" />
@@ -698,12 +700,47 @@ hr {
 						</a> <a class="btn btn-lg" id="wb4" onclick="wBox(4,'snowy')"> <img
 							class="weather_box" src="/img_weather/snowy.png" />
 						</a>
+						</c:when>
+						<c:when test="${weather.status eq 'cloudy'}">
+						<a class="btn btn-lg" id="wb1" onclick="wBox(1, 'sunny')" style="border: 2px solid #ff9400;"> <img
+							class="weather_box" src="/img_weather/sunny.png" />
+						</a> <a class="btn btn-lg" id="wb2" onclick="wBox(2, 'cloudy')"> <img
+							class="weather_box" src="/img_weather/cloudy.png" />
+						</a> <a class="btn btn-lg" id="wb3" onclick="wBox(3,'rainy')"> <img
+							class="weather_box" src="/img_weather/rainy.png" />
+						</a> <a class="btn btn-lg" id="wb4" onclick="wBox(4,'snowy')"> <img
+							class="weather_box" src="/img_weather/snowy.png" />
+						</a>
+						</c:when>
+						<c:when test="${weather.status eq 'rainy'}">
+						<a class="btn btn-lg" id="wb1" onclick="wBox(1, 'sunny')" > <img
+							class="weather_box" src="/img_weather/sunny.png" />
+						</a> <a class="btn btn-lg" id="wb2" onclick="wBox(2, 'cloudy')" style="border: 2px solid #ff9400;"> <img
+							class="weather_box" src="/img_weather/cloudy.png" />
+						</a> <a class="btn btn-lg" id="wb3" onclick="wBox(3,'rainy')"> <img
+							class="weather_box" src="/img_weather/rainy.png" />
+						</a> <a class="btn btn-lg" id="wb4" onclick="wBox(4,'snowy')"> <img
+							class="weather_box" src="/img_weather/snowy.png" />
+						</a>
+						</c:when>
+						<c:when test="${weather.status eq 'snowy'}">
+							<a class="btn btn-lg" id="wb1" onclick="wBox(1, 'sunny')"> <img
+							class="weather_box" src="/img_weather/sunny.png" />
+						</a> <a class="btn btn-lg" id="wb2" onclick="wBox(2, 'cloudy')"> <img
+							class="weather_box" src="/img_weather/cloudy.png" />
+						</a> <a class="btn btn-lg" id="wb3" onclick="wBox(3,'rainy')" style="border: 2px solid #ff9400;"> <img
+							class="weather_box" src="/img_weather/rainy.png" />
+						</a> <a class="btn btn-lg" id="wb4" onclick="wBox(4,'snowy')"> <img
+							class="weather_box" src="/img_weather/snowy.png" />
+						</a>
+						</c:when>
+					</c:choose>
 					</div>
 
 					<h3>
 						#2. 누구와 방문했나요? <br>
 					</h3>
-					<a class="btn btn-lg" id="t1" onclick="tBox(1,'single')"> <img
+					<a class="btn btn-lg" id="t1" onclick="tBox(1,'single')" style="border: 2px solid #ff9400;"> <img
 						class="weather_box" src="/img_weather/single.png" />
 					</a> <a class="btn btn-lg" id="t2" onclick="tBox(2,'couple')"> <img
 						class="weather_box" src="/img_weather/couple.png" />
@@ -792,8 +829,6 @@ hr {
 							</c:forEach>
 						</div>
 					</div>
-
-
 					<br /> <br />
 					<div align="center">
 						<button type="button" class="btn btn-warning" value="hide"
