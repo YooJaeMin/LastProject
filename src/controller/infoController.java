@@ -130,25 +130,28 @@ public class infoController {
 	public ModelAndView infoUpdate(@RequestParam Map param, @RequestParam(name="preferency") String[] result) {
 		System.out.println(result);
 		List<String> list = new ArrayList<>();
-		param.remove("preferency");
 		
 		
-		String birthL = (String)param.get("birth");
-		String[] birthR = birthL.split("\\s");
-		String birth = birthR[0];
-		System.out.println(birth);
-		param.remove(birth);
-		
-		
-		param.put("birth", birth);
-		
-		for(String m : result){
-			list.add(m);
+		if(param.get("birth") != null){
+			
+			String birthL = (String)param.get("birth");
+			String[] birthR = birthL.split("\\s");
+			String birth = birthR[0];
+			System.out.println(birth);
+			param.remove(birth);
+			param.put("birth", birth);
 		}
-		
-		System.out.println(list);
-		param.put("favor", list);
-		System.out.println(param);
+		if(result!=null){
+			param.remove("preferency");
+			for(String m : result){
+				list.add(m);
+			}
+			
+			System.out.println(list);
+			param.put("favor", list);
+		}else{
+			param.put("favor",null);
+		}
 		
 		int rst = infoDao.infoUpdate(param);
 		if (rst == 1)
