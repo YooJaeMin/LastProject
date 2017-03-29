@@ -15,6 +15,7 @@ import model.LikeDao;
 import model.LocationDao;
 import model.NaverBlogDao;
 import model.SearchDao;
+import model.WeatherInformer;
 
 @Controller
 @RequestMapping("/search")
@@ -27,6 +28,8 @@ public class SearchController {
 	LikeDao likedao;
 	@Autowired
 	NaverBlogDao nbd;
+	@Autowired
+	WeatherInformer wi;
 	
 	@RequestMapping("/keyword")
 	public ModelAndView searchBar(@RequestParam Map reqMap) {
@@ -173,6 +176,7 @@ public class SearchController {
 			shoppingR=true;
 		}
 		/*			*/
+		Map weather = wi.service();
 		
 		
 	
