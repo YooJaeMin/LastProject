@@ -21,7 +21,7 @@ body {
 }
 
 hr {
-	border: solid 1.5px orange;
+	border: solid 1.5px pink;
 }
 
 .weather {
@@ -137,8 +137,8 @@ hr {
 }
 
 .like {
-	border:none;
-	background:none;
+	border: none;
+	background: none;
 	font-size: 18px;
 }
 
@@ -200,7 +200,7 @@ hr {
 .rating label:hover ~ label, .rating input:focus ~ label, .rating label:hover,
 	.rating a:hover, .rating a:hover ~ a, .rating a:focus, .rating a:focus 
 	 ~ a {
-	color: orange;
+	color: pink;
 	cursor: pointer;
 }
 
@@ -216,46 +216,49 @@ hr {
 	width: 80px;
 	padding: 10px;
 	margin-bottom: 10px;
-    margin-left: 100;
+	margin-left: 100;
 	cursor: pointer;
 }
 </style>
 <!-- 리뷰 모달 스타일 시작 -->
 <style>
 .jumbotron {
-    color: #ffffff;
-    font-family: 'Lobster';
-    background-color: #ff9400;
-    margin-top: 0;
-    padding: 20px 20px 20px 40px;
+	color: #ffffff;
+	font-family: 'Lobster';
+	background-color: #ff9400;
+	margin-top: 0;
+	padding: 20px 20px 20px 40px;
 }
-.weather_box{
-	width : 50px;
-	height : 50px;
+
+.weather_box {
+	width: 50px;
+	height: 50px;
 }
+
 .starScore {
 	cursor: pointer;
 	font-size: 25px;
 }
-.star_rating{
+
+.star_rating {
 	font-size: 20px
 }
-.modal-content{
-	margin:40px;
+
+.modal-content {
+	margin: 40px;
 }
-.modal-body{
-	margin-left:25px;
-	margin-right:25px;
+
+.modal-body {
+	margin-left: 25px;
+	margin-right: 25px;
 	font-family: 'Hanna', sans-serif;
-	
 }
-.heart{
-	font-size:18px;
-	width :5.5cm;
+
+.heart {
+	font-size: 18px;
+	width: 5.5cm;
 	float: left;
 }
-
-
 </style>
 
 <!-- 리뷰 모달 스타일 끝 -->
@@ -265,7 +268,8 @@ hr {
 	<div class="row">
 		<div class="col-md-6">
 			<span class="title">${store.title } </span><span class="score">
-				 ${store.avg }</span><span style="font-size: 20px; font-family: impact;"> / 5.0</span> 
+				${store.avg }</span><span style="font-size: 20px; font-family: impact;">
+				/ 5.0</span>
 		</div>
 
 	</div>
@@ -285,19 +289,17 @@ hr {
 			<!--  -->
 			<!--  -->
 			<div class="col-md-8">
-				<button type="button" id="like" class="btn like" value="true" 
-					style="WIDTH: 100pt; ">
+				<button type="button" id="like" class="btn like" value="true"
+					style="WIDTH: 100pt;">
 					좋아요<span id="like_cnt">${like.CNT}</span>
 					<!--  -->
 					<c:choose>
 						<c:when test="${likeResult eq true}">
-							<img class="btn-img" id="likeR"
-								src="/img/heart01.png"
-								style="width:25px">
+							<img class="btn-img" id="likeR" src="/img/heart01.png"
+								style="width: 25px">
 						</c:when>
 						<c:otherwise>
-							<img class="btn-img" id="likeR"
-								src="/img/heart02.png"
+							<img class="btn-img" id="likeR" src="/img/heart02.png"
 								style="width: 18pt; height: auto;">
 						</c:otherwise>
 					</c:choose>
@@ -405,537 +407,419 @@ hr {
 
 		<!-- 숙소 -->
 
-		<div class="row font1" align="center">
-			<c:forEach items="${reviewList}" var="item" begin="0" end="4"
-				varStatus="vs">
-				<div class="row font1 col-md-1" id="${item.ID }">
-					<img class="profile_img" src="${item.PROFILE }">
+		<c:forEach items="${reviewList}" var="item" begin="0" end="4"
+			varStatus="vs">
+			<div class="row" >
+				<div class="col-md-2" id="${item.ID }">
+					<img style="width:130px;" src="${item.PROFILE }">
 				</div>
-				<div class="row font1 col-md-9">
-					<div class="col-md-offset-1 col-md-5">${item.ID }</div>
-					<div class="col-md-3">${item.EAT_DATE }</div>
-					<div class="col-md-3">
-						<div
-							style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
+				<div class="col-md-6">
+					<div>
+						<b>${item.ID }</b> <i>${item.EAT_DATE }</i>
+					</div>
+										<div>
+<h4>
+						<span style="color: black;">
+							<span style="color:red;">"</span>${item.TYPE }<span style="color:red;">"</span>
+							</span>
+						<c:choose>
+							<c:when test="${item.WEATHER eq 'cloudy' }">
+								구름낀 날 다녀왔어요!　<img class="weather" src="/img_weather/cloudy.png"> 
+							</c:when>
+							<c:when test="${item.WEATHER eq 'rainy' }">
+								비오는 날 다녀왔어요!　<img class="weather" src="/img_weather/rainy.png">
+							</c:when>
+							<c:when test="${item.WEATHER eq 'snowy' }">
+								눈오는 날 다녀왔어요!　<img class="weather" src="/img_weather/snowy.png">
+							</c:when>
+							<c:when test="${item.WEATHER eq 'sunny' }">
+								화창한 날 다녀왔어요!　<img class="weather" src="/img_weather/sunny.png">
+							</c:when>
+							<c:when test="${item.WEATHER eq 'windy' }">
+								화창한 날 다녀왔어요!　<img class="weather" src="/img_weather/windy.png">바람부는 날 다녀왔어요! 
+							</c:when>
+						</c:choose>
+	</h4>
+					</div>
+					<div>
+						<br/>
+						<h3><p>${item.CONTENT }</p></h3>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="row" align="center">
+						<div class="col-md-4">
 							총점 / ${item.AVG_S }
 							<p
 								style="WIDTH: ${item.AVG_S*20}%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(/img/icon_star.gif) 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;">
 							</p>
 						</div>
+						<div class="col-md-4">
+							청결도
+							<p style="color: pink;">
+								<c:choose>
+									<c:when test="${item.CLEAN_S eq 1 }">♥</c:when>
+									<c:when test="${item.CLEAN_S eq 2 }">♥♥</c:when>
+									<c:when test="${item.CLEAN_S eq 3 }">♥♥♥</c:when>
+									<c:when test="${item.CLEAN_S eq 4 }">♥♥♥♥</c:when>
+									<c:when test="${item.CLEAN_S eq 5 }">♥♥♥♥♥</c:when>
+								</c:choose>
+							</p>
+						</div>
+						<div class="col-md-4">
+							맛평가
+							<p style="color: pink;">
+								<c:choose>
+									<c:when test="${item.TASTE_S eq 1 }">♥</c:when>
+									<c:when test="${item.TASTE_S eq 2 }">♥♥</c:when>
+									<c:when test="${item.TASTE_S eq 3 }">♥♥♥</c:when>
+									<c:when test="${item.TASTE_S eq 4 }">♥♥♥♥</c:when>
+									<c:when test="${item.TASTE_S eq 5 }">♥♥♥♥♥</c:when>
+								</c:choose>
+							</p>
+						</div>
 					</div>
-
-
-				</div>
-				<div class="row font1"></div>
-				<div class="row font1">
-					<div class="col-md-6">
-						누구랑? <span style="background-color: orange; color: white;">${item.TYPE }</span>
-					</div>
-					<div class="col-md-6">
-						그날은...?
-						<c:choose>
-							<c:when test="${item.WEATHER eq 'cloudy' }">
-								<img class="weather" src="/img_weather/cloudy.png">
-							</c:when>
-							<c:when test="${item.WEATHER eq 'rainy' }">
-								<img class="weather" src="/img_weather/rainy.png">
-							</c:when>
-							<c:when test="${item.WEATHER eq 'snowy' }">
-								<img class="weather" src="/img_weather/snowy.png">
-							</c:when>
-							<c:when test="${item.WEATHER eq 'sunny' }">
-								<img class="weather" src="/img_weather/sunny.png">
-							</c:when>
-							<c:when test="${item.WEATHER eq 'windy' }">
-								<img class="weather" src="/img_weather/windy.png">
-							</c:when>
-						</c:choose>
-					</div>
-				</div>
-				<div class="row font1">
-					<div class="col-md-1"></div>
-					<div class="col-md-2">청결도</div>
-					<div class="col-md-2">맛평가</div>
-					<div class="col-md-2">가격평가</div>
-					<div class="col-md-2">친절도</div>
-					<div class="col-md-2">접근성</div>
-					<div class="col-md-1"></div>
-				</div>
-				<div class="row font1">
-					<div class="col-md-1"></div>
-					<div class="col-md-2" style="color: orange;">
-						<!--  -->
-						<c:choose>
-							<c:when test="${item.CLEAN_S eq 1 }">
-							★
-						</c:when>
-							<c:when test="${item.CLEAN_S eq 2 }">
-							★★
-						</c:when>
-							<c:when test="${item.CLEAN_S eq 3 }">
-								★★★
-						</c:when>
-							<c:when test="${item.CLEAN_S eq 4 }">
-								★★★★
-						</c:when>
-							<c:when test="${item.CLEAN_S eq 5 }">
-								★★★★★
-						</c:when>
-						</c:choose>
-					</div>
-
-					<!--  -->
-					<div class="col-md-2" style="color: orange;">
-						<!--  -->
-						<c:choose>
-							<c:when test="${item.TASTE_S eq 1 }">
-							★
-						</c:when>
-							<c:when test="${item.TASTE_S eq 2 }">
-							★★
-						</c:when>
-							<c:when test="${item.TASTE_S eq 3 }">
-								★★★
-						</c:when>
-							<c:when test="${item.TASTE_S eq 4 }">
-								★★★★
-						</c:when>
-							<c:when test="${item.TASTE_S eq 5 }">
-								★★★★★
-						</c:when>
-						</c:choose>
-					</div>
-					<div class="col-md-2" style="color: orange;">
-						<c:choose>
-							<c:when test="${item.PRICE_S eq 1 }">
-							★
-						</c:when>
-							<c:when test="${item.PRICE_S eq 2 }">
-							★★
-						</c:when>
-							<c:when test="${item.PRICE_S eq 3 }">
-								★★★
-						</c:when>
-							<c:when test="${item.PRICE_S eq 4 }">
-								★★★★
-						</c:when>
-							<c:when test="${item.PRICE_S eq 5 }">
-								★★★★★
-						</c:when>
-						</c:choose>
-					</div>
-					<div class="col-md-2" style="color: orange;">
-
-						<c:choose>
-							<c:when test="${item.GOOD_S eq 1 }">
-							★
-						</c:when>
-							<c:when test="${item.GOOD_S eq 2 }">
-							★★
-						</c:when>
-							<c:when test="${item.GOOD_S eq 3 }">
-								★★★
-						</c:when>
-							<c:when test="${item.GOOD_S eq 4 }">
-								★★★★
-						</c:when>
-							<c:when test="${item.GOOD_S eq 5 }">
-								★★★★★
-						</c:when>
-						</c:choose>
-					</div>
-					<div class="col-md-2" style="color: orange;">
-						<c:choose>
-							<c:when test="${item.LOCATION_S eq 1 }">
-							★
-						</c:when>
-							<c:when test="${item.LOCATION_S eq 2 }">
-							★★
-						</c:when>
-							<c:when test="${item.LOCATION_S eq 3 }">
-								★★★
-						</c:when>
-							<c:when test="${item.LOCATION_S eq 4 }">
-								★★★★
-						</c:when>
-							<c:when test="${item.LOCATION_S eq 5 }">
-								★★★★★
-						</c:when>
-						</c:choose>
-
-					</div>
-					<div class="col-md-1"></div>
-				</div>
-				<div class="row font1">
-					<div class="col-md-12" align="left">
-						<b>평가</b>
+					<div class="row" align="center">
+						<div class="col-md-4">
+							가격평가
+							<p style="color: pink;">
+								<c:choose>
+									<c:when test="${item.PRICE_S eq 1 }">♥</c:when>
+									<c:when test="${item.PRICE_S eq 2 }">♥♥</c:when>
+									<c:when test="${item.PRICE_S eq 3 }">♥♥♥</c:when>
+									<c:when test="${item.PRICE_S eq 4 }">♥♥♥♥</c:when>
+									<c:when test="${item.PRICE_S eq 5 }">♥♥♥♥♥</c:when>
+								</c:choose>
+							</p>
+						</div>
+						<div class="col-md-4">
+							친절도
+							<p style="color: pink;">
+								<c:choose>
+									<c:when test="${item.GOOD_S eq 1 }">♥</c:when>
+									<c:when test="${item.GOOD_S eq 2 }">♥♥</c:when>
+									<c:when test="${item.GOOD_S eq 3 }">♥♥♥</c:when>
+									<c:when test="${item.GOOD_S eq 4 }">♥♥♥♥</c:when>
+									<c:when test="${item.GOOD_S eq 5 }">♥♥♥♥♥</c:when>
+								</c:choose>
+							</p>
+						</div>
+						<div class="col-md-4">
+							접근성
+							<p style="color: pink;">
+								<c:choose>
+									<c:when test="${item.LOCATION_S eq 1 }">♥</c:when>
+									<c:when test="${item.LOCATION_S eq 2 }">♥♥</c:when>
+									<c:when test="${item.LOCATION_S eq 3 }">♥♥♥</c:when>
+									<c:when test="${item.LOCATION_S eq 4 }">♥♥♥♥</c:when>
+									<c:when test="${item.LOCATION_S eq 5 }">♥♥♥♥♥</c:when>
+								</c:choose>
+							</p>
+						</div>
 					</div>
 				</div>
-				<div class="row font1">
-					<div class="col-md-12" align="left">${item.CONTENT }</div>
-				</div>
-				<hr />
-			</c:forEach>
-
-
-			<div class="row font1" align="right">
-				<button type="button" class="btn btn-info btn-lg" id="reviewMore">리뷰 더보기</button>
 			</div>
+			<hr />
+		</c:forEach>
 
-			<script>
+<!-- ------------------------------------------------------------------------------------------------------- -->
+		<div class="row font1" align="right">
+			<button type="button" class="btn btn-warning btn-lg" id="reviewMore">리뷰
+				더보기</button>
+		</div>
+
+		<script>
 				$("#reviewMore").click(function() {
 					if ($(".reviewList").css("display") == 'block') {
 						$(".reviewList").css("display", "none");
 						$(this).html("리뷰 더보기");
 					} else {
 						$(".reviewList").css("display", "block");
-						$(this).html("리뷰 닫기");
+						$(this).html("더보기 닫기");
 					}
 
 				});
 			</script>
 
-			<div id="row font1" class="reviewList" style="display: none">
-				<hr />
-				<c:forEach items="${reviewList }" var="item" varStatus="vs">
-					<c:if test="${vs.count ge 6  }">
-						<div class="row font1 col-md-3" id="${item.ID }">
-							<img class="profile_img" src="${item.PROFILE }">
+		<div id="row font1" class="reviewList" style="display: none">
+			<hr />
+			<c:forEach items="${reviewList}" var="item" begin="0" end="4"
+			varStatus="vs">
+			<div class="row" >
+				<div class="col-md-2" id="${item.ID }">
+					<img style="width:130px;" src="${item.PROFILE }">
+				</div>
+				<div class="col-md-6">
+					<div>
+						<b>${item.ID }</b> <i>${item.EAT_DATE }</i>
+					</div>
+					<div>
+						<h4>
+						<span style="color: black;">
+							<span style="color:red;">"</span>${item.TYPE }<span style="color:red;">"</span>
+							</span>
+						<c:choose>
+							<c:when test="${item.WEATHER eq 'cloudy' }">
+								구름낀 날 다녀왔어요!　<img class="weather" src="/img_weather/cloudy.png"> 
+							</c:when>
+							<c:when test="${item.WEATHER eq 'rainy' }">
+								비오는 날 다녀왔어요!　<img class="weather" src="/img_weather/rainy.png">
+							</c:when>
+							<c:when test="${item.WEATHER eq 'snowy' }">
+								눈오는 날 다녀왔어요!　<img class="weather" src="/img_weather/snowy.png">
+							</c:when>
+							<c:when test="${item.WEATHER eq 'sunny' }">
+								화창한 날 다녀왔어요!　<img class="weather" src="/img_weather/sunny.png">
+							</c:when>
+							<c:when test="${item.WEATHER eq 'windy' }">
+								화창한 날 다녀왔어요!　<img class="weather" src="/img_weather/windy.png">바람부는 날 다녀왔어요! 
+							</c:when>
+						</c:choose>
+						</h4>
+					</div>
+					<div>
+					<br/>
+						<h4><p>${item.CONTENT }</p></h4>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="row" align="center">
+						<div class="col-md-4">
+							총점 / ${item.AVG_S }
+							<p
+								style="WIDTH: ${item.AVG_S*20}%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(/img/icon_star.gif) 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;">
+							</p>
 						</div>
-						<div class="row font1 col-md-9">
-							<div class="col-md-offset-1 col-md-5">${item.ID }</div>
-							<div class="col-md-3">${item.EAT_DATE }</div>
-							<!--  -->
-							<!--  -->
-							<div class="col-md-3">
-								<div
-									style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
-									총점 / ${item.AVG_S }
-									<p
-										style="WIDTH: ${item.AVG_S*20}%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(/img/icon_star.gif) 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;">
-									</p>
-								</div>
-							</div>
-
-
-						</div>
-						<div class="row font1"></div>
-						<div class="row font1">
-							<div class="col-md-6">
-								누구랑? <b>${item.TYPE }</b>
-							</div>
-							<div class="col-md-6">
-								그날은...?
+						<div class="col-md-4">
+							청결도
+							<p style="color: pink;">
 								<c:choose>
-									<c:when test="${item.WEATHER eq 'cloudy' }">
-										<img class="weather" src="/img_weather/cloudy.png">
-									</c:when>
-									<c:when test="${item.WEATHER eq 'rainy' }">
-										<img class="weather" src="/img_weather/rainy.png">
-									</c:when>
-									<c:when test="${item.WEATHER eq 'snowy' }">
-										<img class="weather" src="/img_weather/snowy.png">
-									</c:when>
-									<c:when test="${item.WEATHER eq 'sunny' }">
-										<img class="weather" src="/img_weather/sunny.png">
-									</c:when>
-									<c:when test="${item.WEATHER eq 'windy' }">
-										<img class="weather" src="/img_weather/windy.png">
-									</c:when>
+									<c:when test="${item.CLEAN_S eq 1 }">♥</c:when>
+									<c:when test="${item.CLEAN_S eq 2 }">♥♥</c:when>
+									<c:when test="${item.CLEAN_S eq 3 }">♥♥♥</c:when>
+									<c:when test="${item.CLEAN_S eq 4 }">♥♥♥♥</c:when>
+									<c:when test="${item.CLEAN_S eq 5 }">♥♥♥♥♥</c:when>
 								</c:choose>
-							</div>
+							</p>
 						</div>
-						<div class="row font1">
-							<div class="col-md-1"></div>
-							<div class="col-md-2">청결도</div>
-							<div class="col-md-2">맛평가</div>
-							<div class="col-md-2">가격평가</div>
-							<div class="col-md-2">친절도</div>
-							<div class="col-md-2">접근성</div>
-							<div class="col-md-1"></div>
+						<div class="col-md-4">
+							맛평가
+							<p style="color: pink;">
+								<c:choose>
+									<c:when test="${item.TASTE_S eq 1 }">♥</c:when>
+									<c:when test="${item.TASTE_S eq 2 }">♥♥</c:when>
+									<c:when test="${item.TASTE_S eq 3 }">♥♥♥</c:when>
+									<c:when test="${item.TASTE_S eq 4 }">♥♥♥♥</c:when>
+									<c:when test="${item.TASTE_S eq 5 }">♥♥♥♥♥</c:when>
+								</c:choose>
+							</p>
 						</div>
-						<div class="row font1">
-							<div class="col-md-1"></div>
-							<div class="col-md-2" style="color: #FF0015;">
-								<!--  -->
+					</div>
+					<div class="row" align="center">
+						<div class="col-md-4">
+							가격평가
+							<p style="color: pink;">
 								<c:choose>
-									<c:when test="${item.CLEAN_S eq 1 }">
-							★
-						</c:when>
-									<c:when test="${item.CLEAN_S eq 2 }">
-							★★
-						</c:when>
-									<c:when test="${item.CLEAN_S eq 3 }">
-								★★★
-						</c:when>
-									<c:when test="${item.CLEAN_S eq 4 }">
-								★★★★
-						</c:when>
-									<c:when test="${item.CLEAN_S eq 5 }">
-								★★★★★
-						</c:when>
+									<c:when test="${item.PRICE_S eq 1 }">♥</c:when>
+									<c:when test="${item.PRICE_S eq 2 }">♥♥</c:when>
+									<c:when test="${item.PRICE_S eq 3 }">♥♥♥</c:when>
+									<c:when test="${item.PRICE_S eq 4 }">♥♥♥♥</c:when>
+									<c:when test="${item.PRICE_S eq 5 }">♥♥♥♥♥</c:when>
 								</c:choose>
-							</div>
-
-							<!--  -->
-							<div class="col-md-2" style="color: #FF0015;">
-								<!--  -->
-								<c:choose>
-									<c:when test="${item.TASTE_S eq 1 }">
-							★
-						</c:when>
-									<c:when test="${item.TASTE_S eq 2 }">
-							★★
-						</c:when>
-									<c:when test="${item.TASTE_S eq 3 }">
-								★★★
-						</c:when>
-									<c:when test="${item.TASTE_S eq 4 }">
-								★★★★
-						</c:when>
-									<c:when test="${item.TASTE_S eq 5 }">
-								★★★★★
-						</c:when>
-								</c:choose>
-							</div>
-							<div class="col-md-2" style="color: #FF0015;">
-								<c:choose>
-									<c:when test="${item.PRICE_S eq 1 }">
-							★
-						</c:when>
-									<c:when test="${item.PRICE_S eq 2 }">
-							★★
-						</c:when>
-									<c:when test="${item.PRICE_S eq 3 }">
-								★★★
-						</c:when>
-									<c:when test="${item.PRICE_S eq 4 }">
-								★★★★
-						</c:when>
-									<c:when test="${item.PRICE_S eq 5 }">
-								★★★★★
-						</c:when>
-								</c:choose>
-							</div>
-							<div class="col-md-2" style="color: #FF0015;">
-
-								<c:choose>
-									<c:when test="${item.GOOD_S eq 1 }">
-							★
-						</c:when>
-									<c:when test="${item.GOOD_S eq 2 }">
-							★★
-						</c:when>
-									<c:when test="${item.GOOD_S eq 3 }">
-								★★★
-						</c:when>
-									<c:when test="${item.GOOD_S eq 4 }">
-								★★★★
-						</c:when>
-									<c:when test="${item.GOOD_S eq 5 }">
-								★★★★★
-						</c:when>
-								</c:choose>
-							</div>
-							<div class="col-md-2" style="color: #FF0015;">
-								<c:choose>
-									<c:when test="${item.LOCATION_S eq 1 }">
-							★
-						</c:when>
-									<c:when test="${item.LOCATION_S eq 2 }">
-							★★
-						</c:when>
-									<c:when test="${item.LOCATION_S eq 3 }">
-								★★★
-						</c:when>
-									<c:when test="${item.LOCATION_S eq 4 }">
-								★★★★
-						</c:when>
-									<c:when test="${item.LOCATION_S eq 5 }">
-								★★★★★
-						</c:when>
-								</c:choose>
-
-							</div>
-							<div class="col-md-1"></div>
+							</p>
 						</div>
-						<div class="row font1">
-							<div class="col-md-12" align="left">
-								<b>평가</b>
-							</div>
+						<div class="col-md-4">
+							친절도
+							<p style="color: pink;">
+								<c:choose>
+									<c:when test="${item.GOOD_S eq 1 }">♥</c:when>
+									<c:when test="${item.GOOD_S eq 2 }">♥♥</c:when>
+									<c:when test="${item.GOOD_S eq 3 }">♥♥♥</c:when>
+									<c:when test="${item.GOOD_S eq 4 }">♥♥♥♥</c:when>
+									<c:when test="${item.GOOD_S eq 5 }">♥♥♥♥♥</c:when>
+								</c:choose>
+							</p>
 						</div>
-						<div class="row font1">
-							<div class="col-md-12" align="left">${item.CONTENT }</div>
+						<div class="col-md-4">
+							접근성
+							<p style="color: pink;">
+								<c:choose>
+									<c:when test="${item.LOCATION_S eq 1 }">♥</c:when>
+									<c:when test="${item.LOCATION_S eq 2 }">♥♥</c:when>
+									<c:when test="${item.LOCATION_S eq 3 }">♥♥♥</c:when>
+									<c:when test="${item.LOCATION_S eq 4 }">♥♥♥♥</c:when>
+									<c:when test="${item.LOCATION_S eq 5 }">♥♥♥♥♥</c:when>
+								</c:choose>
+							</p>
 						</div>
-						<hr />
-					</c:if>
-
-
-				</c:forEach>
+					</div>
+				</div>
 			</div>
-
+			<hr />
+		</c:forEach>
 		</div>
-
 
 	</div>
 
+
 </div>
+
 <!-- 여기서부터 리뷰 모달 -->
-		<!-- Modal -->
-		<div class="modal fade" id="reviewModal" role="dialog">
-			<div class="modal-dialog">
+<!-- Modal -->
+<div class="modal fade" id="reviewModal" role="dialog">
+	<div class="modal-dialog">
 
-				<!-- Modal content-->
-				<div class="modal-content">
-						<div class="jumbotron" align="center" style="margin-bottom: 0px; font-family: 'Lobster';">
-							<h1>My Review</h1>
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="jumbotron" align="center"
+				style="margin-bottom: 0px; font-family: 'Lobster';">
+				<h1>My Review</h1>
+			</div>
+
+			<!-- 후기작성란+별점+날씨등록란 -->
+			<div class="modal-body">
+				<form action="/view/review/result" method="post">
+					<!-- hidden >> id+tel 넘김 -->
+					<input type="hidden" name="id" value="${sessionScope.auth_id }" />
+					<input type="hidden" name="tel" value="${store.tel }" /> <input
+						type="hidden" id="wStatus" name="weather"
+						value="${weather.status}" /> <input type="hidden" id="type"
+						name="type" value="single" />
+
+					<h3 style="margin-top: 0px">
+						#1. 날씨가 어땠나요?<br>
+					</h3>
+					<div align="center">
+						<a class="btn btn-lg" id="wb1" onclick="wBox(1, 'sunny')"> <img
+							class="weather_box" src="/img_weather/sunny.png" />
+						</a> <a class="btn btn-lg" id="wb2" onclick="wBox(2, 'cloudy')"> <img
+							class="weather_box" src="/img_weather/cloudy.png" />
+						</a> <a class="btn btn-lg" id="wb3" onclick="wBox(3,'rainy')"> <img
+							class="weather_box" src="/img_weather/rainy.png" />
+						</a> <a class="btn btn-lg" id="wb4" onclick="wBox(4,'snowy')"> <img
+							class="weather_box" src="/img_weather/snowy.png" />
+						</a>
+					</div>
+
+					<h3>
+						#2. 누구와 방문했나요? <br>
+					</h3>
+					<a class="btn btn-lg" id="t1" onclick="tBox(1,'single')"> <img
+						class="weather_box" src="/img_weather/single.png" />
+					</a> <a class="btn btn-lg" id="t2" onclick="tBox(2,'couple')"> <img
+						class="weather_box" src="/img_weather/couple.png" />
+					</a> <a class="btn btn-lg" id="t3" onclick="tBox(3,'friend')"> <img
+						class="weather_box" src="/img_weather/friends.png" />
+					</a> <a class="btn btn-lg" id="t4" onclick="tBox(4,'together')"> <img
+						class="weather_box" src="/img_weather/gettogether.png" />
+					</a> <a class="btn btn-lg" id="t5" onclick="tBox(5,'family')"> <img
+						class="weather_box" src="/img_weather/family.png" />
+					</a>
+
+					<!-- 별점 평가란 -->
+					<h3>#3. 방문한 가게를 평가해 주세요!</h3>
+					<div class="container">
+						<div class="heart">
+							청결도 : <input type="hidden" id="clean_s" name="clean_s" value="1" />
+							<c:forEach begin="1" end="5" varStatus="vs">
+								<c:choose>
+									<c:when test="${!vs.first }">
+										<a class="starScore" id="star_clean${vs.count }"
+											onclick="star(${vs.count},'clean')">♡</a>
+									</c:when>
+									<c:otherwise>
+										<a class="starScore" id="star_clean${vs.count }"
+											onclick="star(${vs.count},'clean')" style="color: pink;">♥</a>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<br /> 맛평가 : <input type="hidden" id="taste_s" name="taste_s"
+								value="1" />
+							<c:forEach begin="1" end="5" varStatus="vs">
+								<c:choose>
+									<c:when test="${!vs.first }">
+										<a class="starScore" id="star_taste${vs.count }"
+											onclick="star(${vs.count},'taste')">♡</a>
+									</c:when>
+									<c:otherwise>
+										<a class="starScore" id="star_taste${vs.count }"
+											onclick="star(${vs.count},'taste')" style="color: pink;">♥</a>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<br /> 친절도 : <input type="hidden" id="good_s" name="good_s"
+								value="1" />
+							<c:forEach begin="1" end="5" varStatus="vs">
+								<c:choose>
+									<c:when test="${!vs.first }">
+										<a class="starScore" id="star_good${vs.count }"
+											onclick="star(${vs.count},'good')">♡</a>
+									</c:when>
+									<c:otherwise>
+										<a class="starScore" id="star_good${vs.count }"
+											onclick="star(${vs.count},'good')" style="color: pink;">♥</a>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
 						</div>
-
-					<!-- 후기작성란+별점+날씨등록란 -->
-					<div class="modal-body">
-						<form action="/view/review/result" method="post">
-							<!-- hidden >> id+tel 넘김 -->
-							<input type="hidden" name="id" value="${sessionScope.auth_id }" />
-							<input type="hidden" name="tel" value="${store.tel }" /> <input
-								type="hidden" id="wStatus" name="weather" value="${weather.status}" />
-							<input type="hidden" id="type" name="type" value="single"/> 
-
-							　<h3 style="margin-top: 0px">#1. 날씨가 어땠나요?<br></h3>
-							<div align="center">
-							<a class="btn btn-lg"
-								id="wb1" onclick="wBox(1, 'sunny')"> <img class="weather_box"
-								src="/img_weather/sunny.png" />
-							</a> <a class="btn btn-lg" id="wb2" onclick="wBox(2, 'cloudy')"> <img
-								class="weather_box" src="/img_weather/cloudy.png" />
-							</a> <a class="btn btn-lg" id="wb3" onclick="wBox(3,'rainy')"> <img
-								class="weather_box" src="/img_weather/rainy.png" />
-							</a> <a class="btn btn-lg" id="wb4" onclick="wBox(4,'snowy')"> <img
-								class="weather_box" src="/img_weather/snowy.png" />
-							</a>
-							</div>
-							
-							<h3>#2. 누구와 방문했나요? <br></h3>
-							<a class="btn btn-lg" id="t1" onclick="tBox(1,'single')">
-								<img class="weather_box" src="/img_weather/single.png" />
-							</a> <a class="btn btn-lg" id="t2" onclick="tBox(2,'couple')"> <img
-								class="weather_box" src="/img_weather/couple.png" />
-							</a> <a class="btn btn-lg" id="t3" onclick="tBox(3,'friend')"> <img
-								class="weather_box" src="/img_weather/friends.png" />
-							</a> <a class="btn btn-lg" id="t4" onclick="tBox(4,'together')"> <img
-								class="weather_box" src="/img_weather/gettogether.png" />
-							</a> <a class="btn btn-lg" id="t5" onclick="tBox(5,'family')"> <img
-								class="weather_box" src="/img_weather/family.png" />
-							</a>
-
-									<!-- 별점 평가란 -->
-								<h3>#3. 방문한 가게를 평가해 주세요! </h3>
-									<div class="container">
-									<div class="heart">
-									청결도 : <input type="hidden" id="clean_s" name="clean_s"
-										value="1" />
-									<c:forEach begin="1" end="5" varStatus="vs">
-										<c:choose>
-											<c:when test="${!vs.first }">
-												<a class="starScore" id="star_clean${vs.count }"
-													onclick="star(${vs.count},'clean')">♡</a>
-											</c:when>
-											<c:otherwise>
-												<a class="starScore" id="star_clean${vs.count }"
-													onclick="star(${vs.count},'clean')" style="color: pink;">♥</a>
-											</c:otherwise>
-										</c:choose>
-									</c:forEach>
-									<br /> 맛평가 : <input type="hidden" id="taste_s" name="taste_s"
-										value="1" />
-									<c:forEach begin="1" end="5" varStatus="vs">
-										<c:choose>
-											<c:when test="${!vs.first }">
-												<a class="starScore" id="star_taste${vs.count }"
-													onclick="star(${vs.count},'taste')">♡</a>
-											</c:when>
-											<c:otherwise>
-												<a class="starScore" id="star_taste${vs.count }"
-													onclick="star(${vs.count},'taste')" style="color: pink;">♥</a>
-											</c:otherwise>
-										</c:choose>
-									</c:forEach>
-									<br/>
-									친절도 : <input type="hidden" id="good_s" name="good_s"
-										value="1" />
-									<c:forEach begin="1" end="5" varStatus="vs">
-										<c:choose>
-											<c:when test="${!vs.first }">
-												<a class="starScore" id="star_good${vs.count }"
-													onclick="star(${vs.count},'good')">♡</a>
-											</c:when>
-											<c:otherwise>
-												<a class="starScore" id="star_good${vs.count }"
-													onclick="star(${vs.count},'good')" style="color: pink;">♥</a>
-											</c:otherwise>
-										</c:choose>
-									</c:forEach>
-									</div>
-									<div class="heart">
-									접근성 : <input type="hidden" id="location_s"
-										name="location_s" value="1" />
-									<c:forEach begin="1" end="5" varStatus="vs">
-										<c:choose>
-											<c:when test="${!vs.first }">
-												<a class="starScore" id="star_location${vs.count }"
-													onclick="star(${vs.count},'location')">♡</a>
-											</c:when>
-											<c:otherwise>
-												<a class="starScore" id="star_location${vs.count }"
-													onclick="star(${vs.count},'location')"
-													style="color: pink;">♥</a>
-											</c:otherwise>
-										</c:choose>
-									</c:forEach>
-									<br /> 
-									가　격 : <input type="hidden" id="price_s" name="price_s"
-										value="1" />
-									<c:forEach begin="1" end="5" varStatus="vs">
-										<c:choose>
-											<c:when test="${!vs.first }">
-												<a class="starScore" id="star_price${vs.count }"
-													onclick="star(${vs.count},'price')">♡</a>
-											</c:when>
-											<c:otherwise>
-												<a class="starScore" id="star_price${vs.count }"
-													onclick="star(${vs.count},'price')" style="color: pink;">♥</a>
-											</c:otherwise>
-										</c:choose>
-									</c:forEach>
-									</div>
-								</div>
-									
-									
-								<br /> <br />
-								<div align="center" >
-									<button  type="button" class="btn btn-warning"
-										value="hide" id="hbt">자세한 후기 작성하기</button>
-									<button type="submit" class="btn btn-primary">
-										등록하기 <span class="glyphicon glyphicon-pencil"></span>
-									</button>
-									<button type="button" class="btn btn-danger"
-										data-dismiss="modal">취소</button>
-								</div>
-								
-
-							<br />
-							<div class="review_detail" id="text1" style="display: none;">
-								<textarea placeholder="내용을 입력하세요." name="content" draggable="false" cols="46" rows="6" style="resize:none"
-									></textarea>
-							</div>
-						</form>
+						<div class="heart">
+							접근성 : <input type="hidden" id="location_s" name="location_s"
+								value="1" />
+							<c:forEach begin="1" end="5" varStatus="vs">
+								<c:choose>
+									<c:when test="${!vs.first }">
+										<a class="starScore" id="star_location${vs.count }"
+											onclick="star(${vs.count},'location')">♡</a>
+									</c:when>
+									<c:otherwise>
+										<a class="starScore" id="star_location${vs.count }"
+											onclick="star(${vs.count},'location')" style="color: pink;">♥</a>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<br /> 가 격 : <input type="hidden" id="price_s" name="price_s"
+								value="1" />
+							<c:forEach begin="1" end="5" varStatus="vs">
+								<c:choose>
+									<c:when test="${!vs.first }">
+										<a class="starScore" id="star_price${vs.count }"
+											onclick="star(${vs.count},'price')">♡</a>
+									</c:when>
+									<c:otherwise>
+										<a class="starScore" id="star_price${vs.count }"
+											onclick="star(${vs.count},'price')" style="color: pink;">♥</a>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</div>
 					</div>
 
 
+					<br /> <br />
+					<div align="center">
+						<button type="button" class="btn btn-warning" value="hide"
+							id="hbt">자세한 후기 작성하기</button>
+						<button type="submit" class="btn btn-primary">
+							등록하기 <span class="glyphicon glyphicon-pencil"></span>
+						</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+					</div>
 
-				
-				</div>
+
+					<br />
+					<div class="review_detail" id="text1" style="display: none;">
+						<textarea placeholder="내용을 입력하세요." name="content"
+							draggable="false" cols="46" rows="6" style="resize: none"></textarea>
+					</div>
+				</form>
 			</div>
+
+
+
+
 		</div>
+	</div>
+</div>
 <!-- 여기까지 리뷰 모달 -->
 
 <script>
