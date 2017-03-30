@@ -40,13 +40,15 @@ public class SearchController {
 		String keyword = (String) reqMap.get("keyword");
 		mav.addObject("tagsList", foods);
 //		System.out.println(keyword);
-		if (keyword == null)
-			return mav;
+		if (keyword == null) return mav;
 		sd.insertSearch(keyword);
+		
+		//구글에 검색어를 던져서 위치 파악함...
 		Map map = ld.googleLocation(keyword);
 		map.put("keyword", keyword);
 		mav.addObject("keyword", keyword);
-
+		
+		//파악된 위치 주변 1km 검색 or 구글에서 찾지 못할 경우에는 용산 기준 반경 20km (서울 맛집) 검색 
 		List list = sd.doSearch(map);
 
 		// 리뷰가 완성되면 진행할 예정

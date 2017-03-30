@@ -165,6 +165,7 @@ public class SearchDao {
 	public List doFilter(List list, Map map) {
 		String[] keyword = ((String) map.get("keyword")).split("\\s");
 		List filterList = new ArrayList();
+		
 		if (keyword.length != 0) {
 			outterLoof: for (int i = 0; i < list.size(); i++) {
 				Map innerMap = (Map) list.get(i);
@@ -174,6 +175,7 @@ public class SearchDao {
 					for (int j = 0; j < typeList.size(); j++) {
 						String type = (String) typeList.get(j);
 						for (String key : keyword) {
+							System.out.println(key);
 							if (key.equals(type)) {
 								filterList.add(innerMap);
 								continue outterLoof;
