@@ -669,7 +669,7 @@ hr {
 	<div class="modal-dialog">
 
 		<!-- Modal content-->
-		<div class="modal-content">
+		<div class="modal-content" style="width:90%;">
 			<div class="jumbotron" align="center"
 				style="margin-bottom: 0px; font-family: 'Lobster';">
 				<h1>My Review</h1>

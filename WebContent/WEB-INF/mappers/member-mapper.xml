@@ -18,7 +18,7 @@
 	</select>
 	
 	<insert id="normalDetail" parameterType="java.util.HashMap">
-		insert into user_detail values(#{id}, null, null, null, #{profile},null,null)
+		insert into user_detail values(#{id}, #{nick}, null, null, '/views/memberImg/default2.png',null,null)
 	</insert>
 	
 	<insert id="naverDetail" parameterType="java.util.HashMap">
