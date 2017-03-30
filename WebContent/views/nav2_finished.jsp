@@ -49,24 +49,36 @@
 								Compass</b></span></a></li>
 				<li class="active"><a href="/" data-toggle="tooltip"
 					data-placement="bottom" title="홈"> <b>HOME</b></a></li>
-				<li><a href="about" data-toggle="tooltip"
+				<li><a href="/about" data-toggle="tooltip"
 					data-placement="bottom" title="스푼컴파스 소개"> <b>ABOUT</b></a></li>
 				<li><a href="/spoon_board/listAll" data-toggle="tooltip"
 					data-placement="bottom" title="공지사항"><b>NOTICE</b></a></li>
 				<!-- Search Box  -->
 				<li>
-				<form>
- 			 		<input type="text" name="search" placeholder="Search..">
- 			 	</form>
+					<form action="/search/keyword">
+						<div style="padding: 5px; padding-left: 3cm;">
+							<button id="s_btn" style="display: none;" type="submit"></button>
+							<input
+								onkeypress="if(event.keyCode==13) {$('#s_btn').trigger('click');}"
+								name="keyword" style="font-family: hanna; width: 12cm;"
+								type="text" name="search" placeholder="검색어 입력! 예)가산 일식">
+							<img src="/img/search_icon.png" id="icon_search"
+								style="width: 25px; cursor: pointer;">
+						</div>
+					</form>
 				</li>
 				<!-- Search Box -->
-
+<script>
+$('#icon_search').click(function(){
+	$('#s_btn').trigger('click');
+});
+</script>
 
 
 
 
 				<c:if test="${sessionScope.auth ne  null }">
-					<li><a href="#"><b>My List</b></a></li>
+					<li style="padding-left: 1cm;"><a href="/Mypage/info#bucket-box"><span style="font-family: 'hanna'">My 먹킷 </span> <img style="width: 27px;" src="/views/search/images/color-bucket.png"></a></li>
 				</c:if>
 			</ul>
 
@@ -82,12 +94,10 @@
 				<c:otherwise>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="pull-right" data-toggle="tooltip"
-							data-placement="bottom" title="로그인"><a
+							data-placement="bottom" title="로그인"><a style="cursor: pointer;"
 							class="glyphicon glyphicon-log-in " data-toggle="modal"
-							data-target="#myModal"></a></li>
-
-
-					</ul>
+							data-target="#myModal">&nbsp;<span style="color: white; font-family: 'Coming Soon'"><b>Login</b></span></a></li>
+					</ul> 
 				</c:otherwise>
 			</c:choose>
 			<div class="modal fade" id="myModal" role="dialog" style="left: 5cm;">
@@ -208,6 +218,9 @@
 			$("#myModal").modal();
 		});
 	});
+	
+
+	
 </script>
 
 <!-- 네이버아디디로로그인 초기화 Script -->
