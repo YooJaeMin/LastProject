@@ -36,7 +36,7 @@ hr {
 .title {
 	font-weight: bold;
 	font-size: 2.2em;
-	font-family: 나눔고딕;
+	font-family: 'Hanna', sans-serif;
 	line-height: 1.3em;
 }
 
@@ -278,7 +278,7 @@ hr {
 			<div class="location">
 				${store.adress } <span style="font-size: 0.8em;"> <br /> <c:forEach
 						items="${store.tag }" var="tag">
-						<a href="/search/tag?type=basic&selectedTag=${tag }">#${tag }
+						<a href="/search/tag?type=basic&selectedTag=${tag }" style="color:black;">#${tag }
 						</a>
 					</c:forEach>
 				</span>
@@ -379,7 +379,7 @@ hr {
 
 					<li><a href="#" data-toggle="modal"
 						data-target=".pop-up-${vs.index }"><img class="img-box"
-							src="${img }"></a></li>
+							src="${img }" onerror="this.src='/views/memberImg/default2.png'"></a></li>
 
 				</c:forEach>
 			</ul>
