@@ -4,19 +4,13 @@
 
 
 <div >
-	<h3><span class=main_title>NOTICE</span></h3>
+	<h3><span class=main_title>스푼 공지사항</span></h3>
 <!-- 총 ${cnt} 개의 글이 존재합니다. -->	
 </div>
 <hr/>
-<span class=main_content>공지사항을 확인해 주세요 ~!!</span>
-${sessionScope.auth_id}
 <c:forEach var="one" items="${list }">
 	<div class="main_content">
 		<h4><a href="/spoon_board/detail?num=${one.NUM }">${one.TITLE}</a></h4>
-		<p style="color: gray;">
-			${one.get('CATEGORY')} ｜작성자 : ${one.WRITER} |
-		</p>
-
 	</div>
 </c:forEach>
 <c:if test="${sessionScope.auth_id eq'spoon@spoon.com'}">

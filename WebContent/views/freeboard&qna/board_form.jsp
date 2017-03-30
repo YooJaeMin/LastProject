@@ -17,7 +17,7 @@ div {
 </div>
 <div> 
 	<form action="/spoon_board/add" method="post">
-		<input type="hidden" name="writer" value="harry"/>
+		<input type="hidden" name="writer" value="관리자"/>
 		<p>
 			<b>TITLE</b><br /> <input type="text" class="form-control"
 				name="title" required/>
