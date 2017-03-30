@@ -121,11 +121,14 @@ public class JoinController {
 
 	@RequestMapping("/memberJoin")
 	@ResponseBody
-	public String mbJoinHandler(@RequestParam Map map) {
+	public String mbJoinHandler(@RequestParam Map map,HttpSession session) {
 		System.out.println(map);
 		String result = "";
+		boolean resultCh = false;
 		result = mdao.Mamber(map);
 		if (result == "succed") {
+			session.setAttribute("auth_id", map.get("id"));
+			session.setAttribute("auth", "yes");
 			return "succed";
 		} else {
 			return "fail";

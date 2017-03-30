@@ -24,6 +24,11 @@
 	font-size: 20px;
 	
 }
+#myModal{
+	font-family: 'hanna';
+	font-size: 20px;
+	
+}
 
 </style>
 
@@ -34,7 +39,7 @@
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid ">
 
-			<ul class="nav navbar-nav">
+			<ul class="nav navbar-nav" id=nav_body>
 				<li><a href="/" id="refresh"><span style="color: orange;"><b>Spoon
 								Compass</b></span></a></li>
 				<li class="active"><a href="#" data-toggle="tooltip"
@@ -113,8 +118,7 @@
 												placeholder="비밀번호">
 
 											<div class="checkbox">
-												<label><input type="checkbox" name="keep" checked>로그인상태
-													유지 </label> <a href="#" class="pull-right">비밀번호찾기</a>
+												 <a href="#" class="pull-right">비밀번호찾기</a>
 											</div>
 
 										</div>
@@ -288,7 +292,6 @@
 				$("#pw2").val("");
 				
 			} else {
-
 				printRst = '<h4 class="modal-title">회원가입에 실패하였습니다.</h4>';
 				$("#name2").val("");
 				$("#pw2").val("");
