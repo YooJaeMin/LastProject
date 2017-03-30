@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
@@ -87,8 +87,15 @@ $('#icon_search').click(function(){
 					<ul class="nav navbar-nav navbar-right">
 						<li><img src="${sessionScope.PROFILE}" class="img-circle"
 							alt="Cinque Terre" width="45" height="45"></li>
-						<li><a href="/Mypage/info"><b>${sessionScope.auth_id}</b></a></li>
-						<li><a href="/Mypage/logout"><b>logOut</b></a></li>
+						<li><a href="/Mypage/info"><b>
+						<c:choose>
+							<c:when test="${fn:length(sessionScope.auth_id) gt 15 }">
+								${fn:substring(sessionScope.auth_id, 0, 10)}...
+							</c:when>
+							<c:otherwise>${sessionScope.auth_id}</c:otherwise>
+						</c:choose>
+						</b></a></li>
+						<li><a href="/Mypage/logout"><b>Logout</b></a></li>
 					</ul>
 				</c:when>
 				<c:otherwise>
@@ -130,7 +137,7 @@ $('#icon_search').click(function(){
 											<label for="pw"><span
 												class="glyphicon glyphicon-eye-open"></span> 비밀번호</label> <input
 												type="password" class="form-control" id="pw1"
-												placeholder="비밀번호">
+												placeholder="비밀번호" onkeypress="if(event.keyCode==13) {$('#member_id_login').trigger('click');}">
 
 											<div>
 												<a href="#" class="pull-right">비밀번호찾기</a>
@@ -166,7 +173,7 @@ $('#icon_search').click(function(){
 												class="glyphicon glyphicon-user"></span>이메일로 가입하기</label> <input
 												type="text" class="form-control" id="id2" name="id"
 												placeholder="이메일 주소"><br /> <input type="text"
-												class="form-control" id="name2" name="name"
+												class="form-control" id="name2" name="nick"
 												placeholder="이름(별명)"><br> <input
 												type="password" class="form-control" id="pw2" name="pw"
 												placeholder="비밀번호">
@@ -297,14 +304,14 @@ $('#icon_search').click(function(){
 		var pw = $('#pw2').val();
 		console.log(id);
 		console.log(pw);
-		var name = $('#name2').val();
+		var nick = $('#name2').val();
 		$.ajax({
 			"url" : "/join/memberJoin?",
 			"method" : "post",
 			"data" : {
 				"id" : id,
 				"pw" : pw,
-				"name" : name
+				"nick" : nick
 			}
 		}).done(function(rst) {
 			var printRst = '';
