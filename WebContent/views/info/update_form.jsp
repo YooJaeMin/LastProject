@@ -28,11 +28,19 @@ body {
 <style>
 .arrow {
 	width: 50px;
+	margin-top: 50px;
 }
-
+.downArrow {
+	width: 50px;
+	margin-top: -40px;
+}
+.upArrow {
+	width: 50px;
+	margin-bottom: -20px;
+}
 .bucketCon {
 	
-	height : 350px;
+	height : 320px;
 	border: 5px #ff9400;
 	border-style: double;
 	font-family: hanna;
@@ -42,7 +50,7 @@ body {
 	padding : 20px 20px 20px 20px;
 	border: 5px #ff9400;
 	border-style: double;
-	max-width: 33cm;
+	max-width: 23.5cm;
 	min-height: 3.5cm;
 	font-family: hanna;
 }
@@ -84,7 +92,6 @@ body {
 	margin-left: 3.5cm; 
 	margin-top: 1cm; 
 	margin-right : 1cm;
-	padding:20;
 }
 
 #review-box {
@@ -105,30 +112,32 @@ body {
 </div>
 <br />
 <br />
-<div class="well row"
-	style="size: 100px; margin: 0 250; padding: 0px ;">
+<div class="container"
+	style="size: 100px; margin: 0 250; padding: 0px; width:1000px;">
 
-
+		<div class="col-md-1"></div>
 	<c:forEach var="pic" items="${InfoR}">
 		<!-- 12등분  -->
-		<div class="col-md-3" align="center">
+
+		
+		<div class="col-md-4" align="center" style="margin-top: 1cm;">
 			<form action="/Mypage/pictureR" method="post"
 				enctype="multipart/form-data" >
 				<br /> <img src="${pic.PROFILE}" width="200"
 					height="200" style="border-radius: 100px;" />
-				<hr />
+				<br />	<br />	
 				<input type="file" class="form-control" name="pic" /> <br />
-				<div align="right" style="margin-top: -54; margin-left: -60">
-				<button type="submit" class="btn btn-default" style="border: none; height: 30px; length: 45px;">사진변경</button>
+				<div align="right" style="margin-top: -55.5;">
+				<button type="submit" class="btn btn-default">사진변경</button>
 				</div>
 			</form>
 		</div>
 	</c:forEach>
 
 	<c:forEach var="map" items="${InfoR}">
-		<div class="col-md-5">
+		<div class="col-md-7">
 			<form action="/Mypage/infoUpdate" method="post">
-					<span style="font-family: Lobster;font-size: 30px;">${map.ID}<input type="hidden" name="id" value="${map.ID }"></span>
+					<span style="font-family: Lobster;font-size: 30px;">Hello "${map.ID}".<input type="hidden" name="id" value="${map.ID }"></span>
 					<br/><br/>
 					
 				<p>
@@ -158,7 +167,7 @@ body {
 				</p>
 				<br />
 				<div align="right">
-					<button type="submit" class="btn btn-info">변경하기</button>
+					<button type="submit" class="btn btn-success btn-lg">변경하기</button>
 				</div>
 			</form>
 
@@ -207,7 +216,7 @@ body {
 <div class="row" id="reviewList">
 	<div class="col-md-1" align="center"></div>
 	<div class="col-md-10">
-		<div class="row" align="center" style="padding-bottom: 1cm;">
+		<div class="row" align="center" style="padding-bottom: 1cm; padding">
 			<span id="review-up" ></span>
 		</div>
 		<div class="row">
@@ -215,7 +224,7 @@ body {
 
 				<c:forEach items="${reviewList}" var="item" varStatus="vs">
 
-					<li>
+					<li style="width: 300px;">
 						<div class="reviewCon">
 							<a href="/search/detail?tel=${item.TEL }#${item.ID}"
 								class="title-font">${item.title }</a> <br /> <span
@@ -289,13 +298,14 @@ body {
 					{
 						nextSelector : '#review-down',
 						prevSelector : '#review-up',
-						nextText : '<div ><img src="/img/down.png" class="arrow" ></div>',
-						prevText : '<div ><img src="/img/up.png" class="arrow" ></div>',
-
+						nextText : '<div ><img src="/img/down.png" class="downArrow" ></div>',
+						prevText : '<div ><img src="/img/up.png" class="upArrow" ></div>',
+						
 						minSlides : 3,
 						maxSlides : 3,
-						slideWidth : 1600,
+						slideWidth : 1000,
 						slideMargin : 10,
+						
 						mode : 'vertical',
 						captions : true,
 						pagerCustom : '#bx-pager'
