@@ -5,7 +5,7 @@
 <mapper namespace="info">
 
 	<update id="update" parameterType="java.util.HashMap">
-		update user_detail set  nick=#{nick}, gender=#{gender},favor=#{favor}, marry=#{marry}, birth=#{birth}  where  id=#{id}
+		update user_detail set  nick=#{nick}, gender=#{gender}, marry=#{marry}, birth=#{birth}  where  id=#{id}
 	</update>	
 	<select id="review" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		select * from review where id = #{id} order by eat_date desc

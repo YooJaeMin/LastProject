@@ -58,10 +58,14 @@ public class RootController {
 
 		if ((session.getAttribute("auth") != null)) {
 			map.put("id", session.getAttribute("auth_id"));
+			List<HashMap> result = infodao.getInfo(map);
+			HashMap profile = result.get(0);
+			String profileR = (String)profile.get("PROFILE");
+			session.setAttribute("PROFILE", profileR);
 			List<HashMap> member1 = infodao.getInfo(map);
+			
 			HashMap memberGet = member1.get(0);
-			if (memberGet.get("NICK") != null && memberGet.get("GENDER") != null && memberGet.get("BIRTH") != null
-					&& memberGet.get("FAVOR") != null && memberGet.get("MARRY") != null) {
+			if (memberGet.get("GENDER") != null || memberGet.get("BIRTH") != null) {
 				String gender = (String) memberGet.get("GENDER");
 				if (gender.equals("F"))
 					mav.addObject("gender", "여성");
@@ -105,87 +109,58 @@ public class RootController {
 				map.put("birthR", betweenYR);
 				map.put("gender", gender);
 
+
+				//
 				List<HashMap> listRecommend = recdao.getRecommendInfo(map);
 				List<HashMap> listRecommendR = recdao.getTel(listRecommend);
-				Map weather = winfo.service();
-				System.out.println(weather);
-				Map weatherR = new HashMap<>();
-				// - SKY_A01: 맑음 sunny-
-				// - SKY_A02: 구름조금 cloudy
-				// - SKY_A03: 구름많음 cloudy
-				// - SKY_A04: 구름많고 비 rainy-
-				// - SKY_A05: 구름많고 눈 snowy-
-				// - SKY_A06: 구름많고 비 또는 눈 snowy-
-				// - SKY_A07: 흐림 cloudy
-				// - SKY_A08: 흐리고 비 rainy-
-				// - SKY_A09: 흐리고 눈 cloudy
-				// - SKY_A10: 흐리고 비 또는 눈 rainy-
-				// - SKY_A11: 흐리고 낙뢰 rainy-
-				// - SKY_A12: 뇌우, 비 rainy-
-				// - SKY_A13: 뇌우, 눈 snowy-
-				// - SKY_A14: 뇌우, 비 또는 눈 snowy-
-
-				/*
-				 * ModelAndView mav = new
-				 * ModelAndView("/views/testing/weather.jsp");
-				 */
-				String wStatus = "";
-				String wStatus2 = "";
-				System.out.println(weather.get("code"));
-				try {
-					if (((String) weather.get("code")).equals("SKY_A01")) {
-						wStatus = "sunny";
-						wStatus2 = "해가 쨍쨍한 날";
-
-					} else if (((String) weather.get("code")).equals("SKY_A04") || equals("SKY_A08")
-							|| equals("SKY_A010") || equals("SKY_A011") || equals("SKY_A012")) {
-						wStatus = "rainy";
-						wStatus2 = "비 주륵 오는 날";
-					} else if (((String) weather.get("code")).equals("SKY_A05") || equals("SKY_A06")
-							|| equals("SKY_A13") || equals("SKY_A14")) {
-						wStatus = "snowy";
-						wStatus2 = "눈이 펑펑오는 날";
-					} else {
-						wStatus = "cloudy";
-						wStatus2 = "구름 가득한 날";
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-					wStatus = "cloudy";
-					wStatus2 = "구름 가득한 날";
-				}
-
-				weatherR.put("wStatus", wStatus);
-				List<HashMap> weatherR2 = winfo.getWeather(weatherR);
-
-				List<HashMap> resultR = new ArrayList<>();
-				resultR = winfo.getTel(weatherR2);
-				map.put("id", session.getAttribute("auth_id"));
-				List<HashMap> result = infodao.getInfo(map);
-				//
-				HashMap profile = result.get(0);
-				String profileR = (String)profile.get("PROFILE");
-				session.setAttribute("PROFILE", profileR);
-				//
-				mav.addObject("wStatus", wStatus2);
-				mav.addObject("age", age);
 				mav.addObject("listRecommendR", listRecommendR);
+				mav.addObject("age", age);
+
 				mav.addObject("member_info", result);
-				mav.addObject("weather_ecommend", resultR);
-				return mav;
+
 			} else {
-				List<HashMap> result = infodao.getInfo(map);
-				//
-				HashMap profile = result.get(0);
-				String profileR = (String)profile.get("PROFILE");
-				session.setAttribute("PROFILE", profileR);
-				//
 				String infodetail = "좀 더 정보를 입력해 주세요";
 				mav.addObject("infodetail", infodetail);
-				return mav;
 			}
-
 		}
+		
+		Map weather = winfo.service();
+		System.out.println(weather);
+		Map weatherR = new HashMap<>();
+		String wStatus = "";
+		String wStatus2 = "";
+		System.out.println(weather.get("code"));
+		try {
+			if (((String) weather.get("code")).equals("SKY_A01")) {
+				wStatus = "sunny";
+				wStatus2 = "해가 쨍쨍한 날";
+
+			} else if (((String) weather.get("code")).equals("SKY_A04") || equals("SKY_A08")
+					|| equals("SKY_A010") || equals("SKY_A011") || equals("SKY_A012")) {
+				wStatus = "rainy";
+				wStatus2 = "비 주륵 오는 날";
+			} else if (((String) weather.get("code")).equals("SKY_A05") || equals("SKY_A06")
+					|| equals("SKY_A13") || equals("SKY_A14")) {
+				wStatus = "snowy";
+				wStatus2 = "눈이 펑펑오는 날";
+			} else {
+				wStatus = "cloudy";
+				wStatus2 = "구름 가득한 날";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			wStatus = "cloudy";
+			wStatus2 = "구름 가득한 날";
+		}
+
+		weatherR.put("wStatus", wStatus);
+		List<HashMap> weatherR2 = winfo.getWeather(weatherR);
+
+		List<HashMap> resultR = new ArrayList<>();
+		resultR = winfo.getTel(weatherR2);
+		mav.addObject("wStatus", wStatus2);
+
+		mav.addObject("weather_ecommend", resultR);
 		return mav;
 		/*	*/
 
