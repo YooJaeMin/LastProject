@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
     
 <span class="main_title">개인정보 취급 방침</span><br />
 <span class="main_small_title">본 방침은부터 2014년 11월 5일부터 적용됩니다.</span><br />
