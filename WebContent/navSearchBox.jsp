@@ -47,7 +47,7 @@ body {
       </li>
       <!-- Search Box  -->
      <li><input type="text" class="w3-bar-item w3-input w3-white w3-mobile" name="search" placeholder="Search.."></li>
-    <li><button class="w3-bar-item w3-button w3-mobile">Go</button></li>
+   	 <li><button class="w3-bar-item w3-button w3-mobile">Go</button></li>
       <!-- Search Box -->
     </ul>
     
@@ -232,7 +232,4 @@ body {
 	
 }
 var inner_profileParams = {};
-		
-		
-		
 </script>

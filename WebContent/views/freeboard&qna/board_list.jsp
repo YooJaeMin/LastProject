@@ -41,7 +41,7 @@
 <!-- 페이지 뷰 -->
 	
 </div>
-<c:if test="${SesseionScope.auth_id eq'spoon@spoon'}">
+<c:if test="${SesseionScope.auth_id eq'spoon@spoon.com'}">
 	<div align="right">
 		<a href="/spoon_board/write" data-toggle="tooltip" title="글쓰기" ><button type="button" class="btn">write</button></a>
 	</div>

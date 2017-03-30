@@ -22,18 +22,24 @@
 #nav_body {
 	font-family: 'Coming Soon';
 	font-size: 20px;
-	
 }
-#myModal{
+
+#myModal {
 	font-family: 'hanna';
 	font-size: 20px;
-	
+}
+
+.modal-content {
+	text-align: center;
+	width: 60%;
+	padding: 0 !important;
 }
 
 </style>
 
 
-<div  id="nav_body" data-spy="scroll" data-toggle=".navbar"
+
+<div id="nav_body" data-spy="scroll" data-toggle=".navbar"
 	data-offset="50">
 
 	<nav class="navbar navbar-inverse">
@@ -42,48 +48,50 @@
 			<ul class="nav navbar-nav" id=nav_body>
 				<li><a href="/" id="refresh"><span style="color: orange;"><b>Spoon
 								Compass</b></span></a></li>
-				<li class="active"><a href="#" data-toggle="tooltip"
+				<li class="active"><a href="/" data-toggle="tooltip"
 					data-placement="bottom" title="홈"> <b>HOME</b></a></li>
-				<li><a href="#about" data-toggle="tooltip"
+				<li><a href="about" data-toggle="tooltip"
 					data-placement="bottom" title="스푼컴파스 소개"> <b>ABOUT</b></a></li>
-				<li><a href="#contact" data-toggle="tooltip"
-					data-placement="bottom" title="연락하기"><b>CONTACT</b></a></li>
-						<li><a href="/spoon_board/listAll" data-toggle="tooltip"
-							data-placement="bottom" title="공지사항"><b>NOTICE</b></a></li>
-						<li><a href="#" data-toggle="tooltip" data-placement="bottom"
-							title="자주묻는 질문들"><b>FAQ</b></a></li>
-						<li><a href="#" data-toggle="tooltip" data-placement="bottom"
-							title="질문하기"><b>QnA</b></a></li>
-					
-					
-					
-				
+				<li><a href="/spoon_board/listAll" data-toggle="tooltip"
+					data-placement="bottom" title="공지사항"><b>NOTICE</b></a></li>
+				<!-- Search Box  -->
+				<li>
+				<form>
+ 			 		<input type="text" name="search" placeholder="Search..">
+ 			 	</form>
+				</li>
+				<!-- Search Box -->
+
+
+
+
 
 				<c:if test="${sessionScope.auth ne  null }">
 					<li><a href="#"><b>My List</b></a></li>
 				</c:if>
 			</ul>
-			
+
 			<c:choose>
 				<c:when test="${sessionScope.auth ne null}">
 					<ul class="nav navbar-nav navbar-right">
-							<li><img src="${sessionScope.PROFILE}" class="img-circle" alt="Cinque Terre" width="45" height="45"></li>
-							<li><a href="/Mypage/info"><b>${sessionScope.auth_id}</b></a></li>
-							<li><a href="/Mypage/logout"><b>logOut</b></a></li>
-							</ul>
+						<li><img src="${sessionScope.PROFILE}" class="img-circle"
+							alt="Cinque Terre" width="45" height="45"></li>
+						<li><a href="/Mypage/info"><b>${sessionScope.auth_id}</b></a></li>
+						<li><a href="/Mypage/logout"><b>logOut</b></a></li>
+					</ul>
 				</c:when>
 				<c:otherwise>
-				<ul class="nav navbar-nav navbar-right">
+					<ul class="nav navbar-nav navbar-right">
 						<li class="pull-right" data-toggle="tooltip"
 							data-placement="bottom" title="로그인"><a
 							class="glyphicon glyphicon-log-in " data-toggle="modal"
-							data-target="#myModal" ></a></li>
-							
-				
-			</ul>
-			</c:otherwise>
+							data-target="#myModal"></a></li>
+
+
+					</ul>
+				</c:otherwise>
 			</c:choose>
-			<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal fade" id="myModal" role="dialog" style="left: 5cm;">
 				<div class="modal-dialog">
 
 					<!-- Modal content-->
@@ -102,7 +110,7 @@
 								<div class="modal-body">
 
 
-									<form role="form" method="post">
+									<form role="form" method="post" Style="padding-bottom: 0%;">
 										<div class="form-group">
 											<label for="id"><span
 												class="glyphicon glyphicon-user"></span> 이메일로 로그인하기</label> <input
@@ -115,21 +123,26 @@
 												type="password" class="form-control" id="pw1"
 												placeholder="비밀번호">
 
-											<div class="checkbox">
-												 <a href="#" class="pull-right">비밀번호찾기</a>
+											<div>
+												<a href="#" class="pull-right">비밀번호찾기</a>
 											</div>
 
 										</div>
 
 										<div align="center">
-											<button type="button" id="member_id_login" class="btn btn-warning btn-block">
+											<button type="button" id="member_id_login"
+												class="btn btn-warning btn-block">
 												<span class="glyphicon glyphicon-off"></span>로그인
 											</button>
 										</div>
-										<br>
 									</form>
-									<button id="naver_id_login" type="submit"
-										style="background: none; border: 0px;"></button><!--  -->
+									<!--네이버 로그인-->
+									<div align="center" style="padding-bottom: 10%;">
+
+										<button id="naver_id_login" type="submit"
+											style="background: none; border: 0px;"></button>
+										<!--  -->
+									</div>
 									<p>아직 회원이 아니신가요? 지금 회원가입을 하시면 맛있는 프리미엄 기능이 제공됩니다.</p>
 								</div>
 							</div>
@@ -229,7 +242,7 @@
 		var gender = naver_id_login.getProfileData('gender');//M||F로 나옴
 		var birth = naver_id_login.getProfileData('birthday'); //단, 월-일까지만 나옴 임의로 년도는 2017년 정도를 붙여서 넣어놔야 할듯
 		var profile = naver_id_login.getProfileData('profile_image'); //프로필 이미지가 저장된 src 출력됨
-		
+
 		console.log(email);
 
 		$.ajax({
@@ -251,15 +264,15 @@
 			if (rst == 'yes') {
 
 				printRst = '<h4 class="modal-title">회원가입에 성공하였습니다.</h4>';
-				
+
 			} else if (rst == 'chOk') {
 
 				printRst = '<h4 class="modal-title">로그인에 성공하였습니다.</h4>';
-				
+
 			} else {
 
 				printRst = '<h4 class="modal-title">로그인에 실패하였습니다.</h4>';
-				
+
 			}
 			window.alert(printRst);
 			location.href = '/';
@@ -288,12 +301,12 @@
 				$("#id2").val("");
 				$("#name2").val("");
 				$("#pw2").val("");
-				
+
 			} else {
 				printRst = '<h4 class="modal-title">회원가입에 실패하였습니다.</h4>';
 				$("#name2").val("");
 				$("#pw2").val("");
-		
+
 			}
 			window.alert(printRst);
 			location.href = '/';
@@ -318,11 +331,11 @@
 			console.log(rst);
 			if (rst == 'succed') {
 				printRst = '<h4 class="modal-title">로그인에 성공하였습니다</h4>';
-				
+
 			} else {
 
 				printRst = '<h4 class="modal-title">로그인에 실패하였습니다.</h4>';
-				
+
 			}
 			window.alert(printRst);
 			location.href = '/';
