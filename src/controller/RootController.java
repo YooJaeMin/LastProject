@@ -405,4 +405,9 @@ public class RootController {
 		ModelAndView mav = new ModelAndView("t_contact policy_service");
 		return mav;
 	}
+	@RequestMapping("/about")
+	public ModelAndView about(){
+		ModelAndView mav = new ModelAndView("t_contact about");
+		return mav;
+	}
 }

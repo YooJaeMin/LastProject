@@ -14,7 +14,7 @@
 </style>
 <div align="center">
 	<div id="footer_text">
-		© 2017 SpoonCompass · <a href="intro">스푼컴파스소개</a> · <a href="/policy">이용약관</a>
+		© 2017 SpoonCompass · <a href="/about">스푼컴파스소개</a> · <a href="/policy">이용약관</a>
 		· <a href="/policy_private">개인정보취급방침</a> · <a href="/contact">문의</a>
 	</div>
 </div>
