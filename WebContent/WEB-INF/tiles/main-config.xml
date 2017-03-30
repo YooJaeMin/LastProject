@@ -37,7 +37,7 @@
 	</definition>
 
 
-	<definition name="t_mypage" extends="base">
+	<definition name="t_mypage" extends="base2">
 		<put-attribute name="main" value="/views/info/update_form.jsp"/>
 	</definition>
 	
