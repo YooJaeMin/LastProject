@@ -208,7 +208,7 @@ body {
 							<br /> <span class="info-font">${item.adress}</span> <br /> <span
 								class="info-font">${item.type } / ${item.AVG } Score</span><br />
 							<a href="/search/detail?tel=${item.TEL }"><img
-								class="img-box" src="${item.img }" /></a>
+								class="img-box" src="${item.img }" onerror="this.src='/views/memberImg/default2.png'" /></a>
 						</div>
 					</li>
 
