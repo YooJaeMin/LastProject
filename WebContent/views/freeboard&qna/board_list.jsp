@@ -9,6 +9,7 @@
 </div>
 <hr/>
 <span class=main_content>공지사항을 확인해 주세요 ~!!</span>
+${sessionScope.auth_id}
 <c:forEach var="one" items="${list }">
 	<div class="main_content">
 		<h4><a href="/spoon_board/detail?num=${one.NUM }">${one.TITLE}</a></h4>
@@ -18,7 +19,11 @@
 
 	</div>
 </c:forEach>
-
+<c:if test="${sessionScope.auth_id eq'spoon@spoon.com'}">
+	<div align="right">
+		<a href="/spoon_board/write" data-toggle="tooltip" title="글쓰기" ><button type="button" class="btn">write</button></a>
+	</div>
+</c:if>
 <!-- 페이지 뷰 -->
 <div align="center" class="main_content">
 	<c:if test="${page ne 1 }">
@@ -41,8 +46,3 @@
 <!-- 페이지 뷰 -->
 	
 </div>
-<c:if test="${SesseionScope.auth_id eq'spoon@spoon.com'}">
-	<div align="right">
-		<a href="/spoon_board/write" data-toggle="tooltip" title="글쓰기" ><button type="button" class="btn">write</button></a>
-	</div>
-</c:if>

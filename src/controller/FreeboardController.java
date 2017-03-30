@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,8 +32,9 @@ public class FreeboardController {
 	}
 		
 	@RequestMapping("/list")
-	public ModelAndView getSomeHandler(@RequestParam Map map){
+	public ModelAndView getSomeHandler(@RequestParam Map map, HttpSession session){
 		ModelAndView mav = new ModelAndView("t_board freeboard&qna/board_list");
+		System.out.println("session"+session);
 		return mav; 
 	}
 	
@@ -49,7 +51,7 @@ public class FreeboardController {
 	
 	
 	@RequestMapping("/detail")
-	public ModelAndView getOneInDetailHandler(@RequestParam Map map ){
+	public ModelAndView getOneInDetailHandler(@RequestParam Map map,HttpSession session ){
 		ModelAndView mav = new ModelAndView("t_board freeboard&qna/board_detail"); 
 		List<HashMap> detail = fdao.getOneInDetail(map);
 		System.out.println(detail);
