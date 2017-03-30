@@ -124,10 +124,10 @@ body {
 
 		<div class="col-md-4" align="center" style="margin-top: 1cm;">
 			<form action="/Mypage/pictureR" method="post"
-				enctype="multipart/form-data">
+				enctype="multipart/form-data" >
 				<br /> <img src="${pic.PROFILE}" width="200" height="200"
-					style="border-radius: 100px;" /> <br /> <br /> <input
-					type="file" class="form-control" name="pic" /> <br />
+					style="border-radius: 100px;" /> <br /> <br /> 
+					<input type="file" class="form-control" name="pic" value="${pic.PROFILE}" /> <br />
 				<div align="right" style="margin-top: -55.5;">
 					<button type="submit" class="btn btn-default">사진변경</button>
 				</div>
