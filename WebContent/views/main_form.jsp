@@ -205,12 +205,12 @@
 		<div class="input-group" style="width: 100%;">
 			<form action="/search/keyword" method="get">
 				<div class="col-md-10">
-					<input type="text" name="keyword" class="form-control"
+					<input onkeypress="if(event.keyCode==13) {$('#main_s_btn').trigger(‘click’);}" type="text" name="keyword" class="form-control"
 						style="height: 45px; font-size: 16px; border: 4px solid; border-color: #ff9400;"
 						placeholder="검색어 입력! 예) 강남역 수요미식회">
 				</div>
 				<div class="input-group-btn col-md-2">
-					<button class="btn btn-default" type="submit"
+					<button class="btn btn-default" type="submit" id="main_s_btn"
 						style="height: 45px; width: 100px; font-size: 18px; border: 4px solid; border-color: #ff9400; background-color: #ff9400; color: white;">
 						<span>Search</span>
 					</button>
