@@ -1,30 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.*"%>
-<%@ page import="java.util.*"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!--  <style>
-
-	 .main_title {
-      font-family: hanna;
-      font-size: 2em;
-      padding: 5px;
-      background-color: #ff9400;
-      color: white;
-   }
-   .main_small_title {
-      font-family: hanna;
-      font-size: 1.5em;
-      padding: 3px;
-      background-color: #ff9400;
-      color: white;
-   }
-   .main_content {
-      font-family: hanna;
-      font-size: 1.2em;
-   
-} -->
-<!-- </style> -->
 
 <c:forEach items="${detail}" var="detail">
 <div>
