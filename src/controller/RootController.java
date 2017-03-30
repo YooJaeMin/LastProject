@@ -162,6 +162,11 @@ public class RootController {
 				resultR = winfo.getTel(weatherR2);
 				map.put("id", session.getAttribute("auth_id"));
 				List<HashMap> result = infodao.getInfo(map);
+				//
+				HashMap profile = result.get(0);
+				String profileR = (String)profile.get("PROFILE");
+				session.setAttribute("PROFILE", profileR);
+				//
 				mav.addObject("wStatus", wStatus2);
 				mav.addObject("age", age);
 				mav.addObject("listRecommendR", listRecommendR);
@@ -169,6 +174,12 @@ public class RootController {
 				mav.addObject("weather_ecommend", resultR);
 				return mav;
 			} else {
+				List<HashMap> result = infodao.getInfo(map);
+				//
+				HashMap profile = result.get(0);
+				String profileR = (String)profile.get("PROFILE");
+				session.setAttribute("PROFILE", profileR);
+				//
 				String infodetail = "좀 더 정보를 입력해 주세요";
 				mav.addObject("infodetail", infodetail);
 				return mav;
