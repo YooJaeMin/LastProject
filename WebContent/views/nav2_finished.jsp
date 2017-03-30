@@ -34,7 +34,6 @@
 	width: 60%;
 	padding: 0 !important;
 }
-
 </style>
 
 

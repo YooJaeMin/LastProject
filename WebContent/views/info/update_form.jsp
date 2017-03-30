@@ -144,7 +144,7 @@ body {
 				<br />
 
 				<p>
-					별명<br /> <input type="text" class="form-control" name="nick"
+					별명<br /> <input type="email" class="form-control" name="nick"
 						value="${map.NICK}" />
 				</p>
 
