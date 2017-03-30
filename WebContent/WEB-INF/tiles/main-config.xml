@@ -75,9 +75,11 @@
 
 	
 	<!-- freeBoard -->
-	<definition name="t_board */*" extends="base2">
+	<definition name="t_board */*" extends="base5">
 		<put-attribute name="main" value="/views/{1}/{2}.jsp"/>
 	</definition>
+	
+	
 	<!-- weather -->
 	<definition name="/byHaeri" extends="base2">
 		<put-attribute name="main" value="/views/testing/weather.jsp"/>
@@ -87,7 +89,7 @@
 		<put-attribute name="main" value="/views/testing/about.jsp"/>
 	</definition>
 	<!-- review -->
-	<definition name="t_contact" extends="base">
-		<put-attribute name="main" value="/views/policy_privacy.jsp"/>
+	<definition name="t_contact *" extends="base5">
+		<put-attribute name="main" value="/views/{1}.jsp"/>
 	</definition>
 </tiles-definitions>

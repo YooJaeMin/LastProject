@@ -62,12 +62,12 @@ public class FreeBoardDao {
 		return rst;
 	}
 
-	@SuppressWarnings("rawtypes")
-	public List<HashMap> listAll(Map map) {
+	
+	public List<HashMap> listAll() {
 		SqlSession session = factory.openSession();
 		List<HashMap> list = new ArrayList<>();
 		try {
-			list = session.selectList("freeboard.listAll",map);
+			list = session.selectList("freeboard.listAll");
 			session.commit();	
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -77,16 +77,20 @@ public class FreeBoardDao {
 		return list;
 	}
 
-	public HashMap getOneInDetail(Map map) {
+	public List<HashMap> getOneInDetail(Map map) {
 		SqlSession session = factory.openSession();
-		HashMap one = null;
+		List<HashMap> list = new ArrayList<>();
+		System.out.println("넘버가 몇이니?"+map);
+		int num = Integer.parseInt((String)map.get("num"));
+		System.out.println(num);
 		try {
-			one = (HashMap)session.selectOne("freeboard.getOneInDetail",(int)map.get("num"));
-			}catch(Exception e){
+			list = session.selectList("freeboard.getOneInDetail",map);
+			System.out.println("넘버가 몇이니2?"+list);
+		}catch(Exception e){
 				e.printStackTrace();
 			}finally{
 				session.close();
 		}
-		return one;
+		return list;
 	}
 }

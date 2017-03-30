@@ -393,4 +393,16 @@ public class RootController {
 		td.modifyFinal(list);
 		return mav;
 	}
+	
+	@RequestMapping("/policy_private")
+	public ModelAndView policy(){
+		ModelAndView mav = new ModelAndView("t_contact policy_privacy");
+		
+		return mav;
+	}
+	@RequestMapping("/policy")
+	public ModelAndView service(){
+		ModelAndView mav = new ModelAndView("t_contact policy_service");
+		return mav;
+	}
 }
