@@ -542,7 +542,7 @@ hr {
 
 		<div id="row font1" class="reviewList" style="display: none">
 			<hr />
-			<c:forEach items="${reviewList}" var="item" begin="0" end="4"
+			<c:forEach items="${reviewList}" var="item" begin="5"
 			varStatus="vs">
 			<div class="row" >
 				<div class="col-md-2" id="${item.ID }">

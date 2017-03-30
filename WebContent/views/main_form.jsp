@@ -53,7 +53,7 @@
 }
 </style>
 
-<div class="main_visual">
+<div class="main_visual contain">
 	<div style="margin: 0.3cm;" align="center">
 		<img src="/img/spoon2.png" width="250px" />
 
