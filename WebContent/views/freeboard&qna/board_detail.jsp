@@ -11,7 +11,7 @@
 <div class="main_content" align="center">
  <form action="/spoon_board/listAll" method="post">
      <div align="left">
-    	<span style="font-size:">No.${detail.NUM} [${detail.CATEGORY}]</span> <br/>
+    	<br/>
     	작성자:${detail.WRITER}　update: ${detail.UPDATEDATE}　<br/>
     <b>	${detail.TITLE}</b>
     <hr/>

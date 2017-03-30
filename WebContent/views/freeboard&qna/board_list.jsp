@@ -13,8 +13,7 @@
 	<div class="main_content">
 		<h4><a href="/spoon_board/detail?num=${one.NUM }">${one.TITLE}</a></h4>
 		<p style="color: gray;">
-			${one.get('CATEGORY')} ｜작성자 : ${one.WRITER} | 조회수:${one.VIEWCOUNT}
-			(추천:<span style="color: red;">${one.HITCOUNT}</span>)
+			${one.get('CATEGORY')} ｜작성자 : ${one.WRITER} |
 		</p>
 
 	</div>
