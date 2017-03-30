@@ -67,9 +67,7 @@
 			<c:choose>
 				<c:when test="${sessionScope.auth ne null}">
 					<ul class="nav navbar-nav navbar-right">
-							<c:forEach items="${member_info}" var="item">
-							<li><img src="${item.PROFILE}" class="img-circle" alt="Cinque Terre" width="45" height="45"></li>
-							</c:forEach>
+							<li><img src="${sessionScope.PROFILE}" class="img-circle" alt="Cinque Terre" width="45" height="45"></li>
 							<li><a href="/Mypage/info"><b>${sessionScope.auth_id}</b></a></li>
 							<li><a href="/Mypage/logout"><b>logOut</b></a></li>
 							</ul>
