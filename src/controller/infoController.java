@@ -126,11 +126,14 @@ public class infoController {
 	@RequestMapping("pictureR")
 	public ModelAndView pictR(@RequestParam Map param, HttpSession session, HttpServletResponse response,
 			@RequestParam(name = "pic") MultipartFile file) throws Exception {
-		System.out.println(param);
+		
 		Map map = upload.execute(file);
+		
+		String PROFILE= (String)map.get("filelink");
+		session.setAttribute("PROFILE", PROFILE);
 		param.putAll(map);
 		param.put("id", session.getAttribute("auth_id"));
-		System.out.println(param);
+		
 		int rst = upload.picSave(param);
 		
 		if (rst == 1)
@@ -143,34 +146,23 @@ public class infoController {
 	}
 
 	@RequestMapping("/infoUpdate")
-	public ModelAndView infoUpdate(@RequestParam Map param, @RequestParam(name="preferency", required=false) String[] result){
-		System.out.println(result);
+	public ModelAndView infoUpdate(@RequestParam Map param, HttpSession session){
 		List<String> list = new ArrayList<>();
 		
 		
 		if(param.get("birth") != null){
-			
 			String birthL = (String)param.get("birth");
 			String[] birthR = birthL.split("\\s");
 			String birth = birthR[0];
 			System.out.println(birth);
 			param.remove(birth);
 			param.put("birth", birth);
-		}else{
-			
 		}
-		if(result!=null){
-			param.remove("preferency");
-			for(String m : result){
-				list.add(m);
-			}
-			
-			System.out.println(list);
-			param.put("favor", list);
-		}else{
-			param.put("favor",null);
-		}
+	
+	
 		
+		/**/
+		System.out.println("바람값은>>"+param);
 		int rst = infoDao.infoUpdate(param);
 		ModelAndView mav = new ModelAndView("/views/alert.jsp");
 		String infoR = "";
@@ -179,7 +171,7 @@ public class infoController {
 			mav.addObject("errinfo", info);
 			return mav;
 		}else{
-			String info = "업데이트 처리중에 문제가 발생하였습니다";
+			String info = "성별 혹은 결혼여부를 체크해 주세요!";
 			mav.addObject("errinfo", info);
 			return mav;
 		}
