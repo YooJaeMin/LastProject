@@ -76,6 +76,7 @@
 }
 </style>
 
+<div class="container" id="myBucket">
 <div class="row" id="bucket-box">
 	<img src="/views/search/images/color-bucket.png" class="bucket-img">
 	&nbsp;&nbsp;&nbsp;<span class="bucket-font">나의 먹킷 리스트</span>
@@ -143,6 +144,7 @@
 		</div>
 	</div>
 	<div class="col-md-1" align="center"></div>
+</div>
 </div>
 <script>
 	$('.bucket-slider')
