@@ -53,7 +53,7 @@
 	<div class="row" style="padding-top:1cm ; padding-left: 6cm; padding-right: 6cm; padding-bottom: 1cm;">
 		<tiles:insertAttribute name="main" />
 	</div>
-	<div class="row" style="bottom: 0%">
+	<div class="row" style="bottom: 0%; position: absolute;">
 		<tiles:insertAttribute name="footer" />
 	</div>
 </body>
