@@ -74,7 +74,7 @@ a {
 					varStatus="vs">
 					<div class="item_container col-md-6">
 						<div class="col-md-6">
-							<img class="img-box" src="${item.img[0] }">
+							<img class="img-box" src="${item.img[0] }"onerror="this.src='/views/memberImg/default2.png'">>
 						</div>
 						<div class="col-md-6">
 							<h3>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div style="background-image: url(/views/memberImg/default.png);  background-repeat:no-repeat; background-position: right ; background-size: 500px;">
+<div style="background-image: url(/views/memberImg/default2.png);  background-repeat:no-repeat; background-position: right ; background-size: 500px;">
 <span class="main_title">빅데이터 맛집검색, 스푼컴파스</span><br/><br/>
 
 <span class="main_small_title">빅데이터로 더욱 공정하게</span><br/>
@@ -34,7 +34,7 @@
 
 <span class="main_small_title">블로그</span>
 <span class="main_content">
-맛집 블로그 내용의 우수성, 블로거의 평판보, 블로그에대한 다른 사용자의 긍정적/부정적 반응 등 다양한 요소로 판단이 됩니다. 
+맛집 블로그 내용의 우수성, 블로거의 평판보, 블로그에 대한 다른 사용자의 긍정적/부정적 반응 등 다양한 요소로 판단이 됩니다. 
 </span><br/><br/>
 
 
