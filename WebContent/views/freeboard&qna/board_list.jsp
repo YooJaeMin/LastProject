@@ -1,43 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="model.*"%>
-<%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<link rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<head>
-<link href='//fonts.googleapis.com/css?family=Coming Soon'
-	rel='stylesheet'>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
 
- <!-- <style>
 
-	 .main_title {
-      font-family: hanna;
-      font-size: 2em;
-      padding: 5px;
-      background-color: #ff9400;
-      color: white;
-   }
-   .main_small_title {
-      font-family: hanna;
-      font-size: 1.5em;
-      padding: 3px;
-      background-color: #ff9400;
-      color: white;
-   }
-   .main_content {
-      font-family: hanna;
-      font-size: 1.2em;
-   
-}
-</style>  -->
-
-<div align="left">
+<div >
 	<h3><span class=main_title>NOTICE</span></h3>
 <!-- 총 ${cnt} 개의 글이 존재합니다. -->	
 </div>

@@ -50,10 +50,10 @@
 		<tiles:insertAttribute name="nav" />
 	</div>
 
-	<div class="row" style="padding-top:1cm ; padding-left: 6cm; padding-right: 6cm; padding-bottom: 1cm;">
+	<div class="row" style="min-height: 90%; padding-top:1cm ; padding-left: 6cm; padding-right: 6cm; padding-bottom: 1cm;">
 		<tiles:insertAttribute name="main" />
 	</div>
-	<div class="row" style="bottom: 0%; position: absolute;">
+	<div class="row" style=" bottom: 0%;">
 		<tiles:insertAttribute name="footer" />
 	</div>
 </body>
