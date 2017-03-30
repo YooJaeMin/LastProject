@@ -4,13 +4,14 @@
 
 
 <div >
-	<h3><span class=main_title>스푼 공지사항</span></h3>
+	<h3><span class=main_title>스푼 공지사항<img src="/views/memberImg/default2.png" width="60px" style="margin-bottom: 2px"></span></h3>
 <!-- 총 ${cnt} 개의 글이 존재합니다. -->	
 </div>
 <hr/>
 <c:forEach var="one" items="${list }">
 	<div class="main_content">
-		<h4><a href="/spoon_board/detail?num=${one.NUM }">${one.TITLE}</a></h4>
+		<span style="font-size: x-large;"><a href="/spoon_board/detail?num=${one.NUM }">"${one.TITLE}"</a></span>
+		<span style="font-style: italic;font-size: small;color: graytext;">${one.UPDATEDATE }</span><hr>
 	</div>
 </c:forEach>
 <c:if test="${sessionScope.auth_id eq'spoon@spoon.com'}">
