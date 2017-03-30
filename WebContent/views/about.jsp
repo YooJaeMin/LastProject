@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div style="background-image: url(/views/memberImg/default.png);  background-repeat:no-repeat; background-position: center ; background-size: 1000px;">
+<div style="background-image: url(/views/memberImg/default.png);  background-repeat:no-repeat; background-position: right ; background-size: 500px;">
 <span class="main_title">빅데이터 맛집검색, 스푼컴파스</span><br/><br/>
 
 <span class="main_small_title">빅데이터로 더욱 공정하게</span><br/>
