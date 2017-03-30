@@ -37,22 +37,23 @@ public class FreeboardController {
 	}
 	
 	@RequestMapping("/listAll")
-	public ModelAndView listAllHandler(@RequestParam Map map){
+	public ModelAndView listAllHandler(){
 		ModelAndView mav = new ModelAndView("t_board freeboard&qna/board_list"); 
-		List list = fdao.listAll(map);
+		List list = fdao.listAll();
 		mav.addObject("list", list);
 		int all = fdao.cntAll();
 		mav.addObject("cnt", all);
+		System.out.println("해리해리"+list+"/"+all);
 		return mav;
 	}
 	
 	
 	@RequestMapping("/detail")
 	public ModelAndView getOneInDetailHandler(@RequestParam Map map ){
-		ModelAndView mav = new ModelAndView("t_board freeboard&qna/board_list"); 
-		HashMap detail = fdao.getOneInDetail(map);
+		ModelAndView mav = new ModelAndView("t_board freeboard&qna/board_detail"); 
+		List<HashMap> detail = fdao.getOneInDetail(map);
+		System.out.println(detail);
 		mav.addObject("detail", detail);
-		
 		return mav;
 	}
 	@RequestMapping("/write")

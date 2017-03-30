@@ -22,8 +22,8 @@
   			select * from freeboard order by num desc
   		</select>
   		<!-- 하나의 데이터 추출 -->
-  		<select id="getOneInDetail" parameterType="java.lang.Integer" resultType="java.util.HashMap">
-  			select * from freeboard where num=%d
+  		<select id="getOneInDetail" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+  			select * from freeboard where num=#{num}
   		</select>
   		
   		<!-- 데이터 등록 -->

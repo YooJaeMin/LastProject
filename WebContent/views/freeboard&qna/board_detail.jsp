@@ -3,29 +3,44 @@
 <%@ page import="model.*"%>
 <%@ page import="java.util.*"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<head>
-<link href='//fonts.googleapis.com/css?family=Coming Soon'
-	rel='stylesheet'>
-</head>
-<style>
-div {
-	font-family: 'Coming Soon';
-}
-</style>
+
+<!--  <style>
+
+	 .main_title {
+      font-family: hanna;
+      font-size: 2em;
+      padding: 5px;
+      background-color: #ff9400;
+      color: white;
+   }
+   .main_small_title {
+      font-family: hanna;
+      font-size: 1.5em;
+      padding: 3px;
+      background-color: #ff9400;
+      color: white;
+   }
+   .main_content {
+      font-family: hanna;
+      font-size: 1.2em;
+   
+} -->
+<!-- </style> -->
+
+<c:forEach items="${detail}" var="detail">
 <div>
-    <h3>NOTICE</h3><br/>
-    <h2>${detail.TITLE }</h2>
+    <span class="main_title">NOTICE</span><br/>
+    <span class="main_small_title">${detail.TITLE }</span>
 </div>
-<div class="well" align="center">
+
+<div class="main_content" align="center">
  <form action="/spoon_board/listAll" method="post">
      <div align="left">
- 
-    No.${detail.NUM} [${detail.CATEGORY}] <br/>
-    작성자:${detail.WRITER}　update: ${detail.UPDATEDATE}　조회수:${detail.VIEWCOUNT}<br/>
-    <b>${detail.TITLE}</b>
+    	<span style="font-size:">No.${detail.NUM} [${detail.CATEGORY}]</span> <br/>
+    	작성자:${detail.WRITER}　update: ${detail.UPDATEDATE}　<br/>
+    <b>	${detail.TITLE}</b>
     <hr/>
-    ${detail.CONTENT}    
+    	${detail.CONTENT}    
     <hr/>
  
      <div align="right">
@@ -41,3 +56,5 @@ div {
      </div>
  </form>
 </div>
+</c:forEach>
+

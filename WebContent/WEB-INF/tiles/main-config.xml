@@ -78,6 +78,8 @@
 	<definition name="t_board */*" extends="base5">
 		<put-attribute name="main" value="/views/{1}/{2}.jsp"/>
 	</definition>
+	
+	
 	<!-- weather -->
 	<definition name="/byHaeri" extends="base2">
 		<put-attribute name="main" value="/views/testing/weather.jsp"/>
