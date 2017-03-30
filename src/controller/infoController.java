@@ -44,6 +44,7 @@ public class infoController {
 	
 	@RequestMapping("/info")
 	public ModelAndView infoHandle(@RequestParam Map map, HttpSession session, HttpServletResponse response) throws JsonProcessingException {
+
 		
 		ObjectMapper mapper = new ObjectMapper();
 		System.out.println(session.getAttribute("auth_id"));
@@ -57,6 +58,12 @@ public class infoController {
 		Map m= result.get(0);
 		System.out.println("m"+m);
 		ModelAndView mav = new ModelAndView("t_mypage");
+		String id = (String)session.getAttribute("auth_id");
+		System.out.println(id);
+		List bucketList = infoDao.bucketList(id);
+		mav.addObject("bucketList",bucketList);
+		List reviewList = infoDao.reviewList(id);
+		mav.addObject("reviewList",reviewList);
 		if(m.get("BIRTH")!= null){
 			Date date = (Date)m.get("BIRTH");
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -169,10 +176,6 @@ public class infoController {
 		String infoR = "";
 		if (rst == 1){
 			String info = "변경 완료!";
-			mav.addObject("errinfo", info);
-			return mav;
-		}else if(rst ==12){
-			String info = "체크 박스좀 체크해 주세요!";
 			mav.addObject("errinfo", info);
 			return mav;
 		}else{
