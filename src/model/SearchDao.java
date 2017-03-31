@@ -1,5 +1,6 @@
 package model;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,11 +39,11 @@ public class SearchDao {
 
 //				List sqlList = session.selectList("review.reviewResult", map);
 				int hitCnt = session.selectOne("store.hitCnt", map);
-				double avg = session.selectOne("review.avgResult", map);
+				Map avgMap = session.selectOne("review.avgResult", map);
 //				map.put("sqlInfo", sqlList);
-				avg = Double.parseDouble(String.format("%.2f",avg));
-
-
+				BigDecimal avg_b = (BigDecimal) avgMap.get("AVG_S");
+				double avg = Double.parseDouble(avg_b.toString());
+				map.put("scoreMap",avgMap);
 				map.put("avg", avg);
 				map.put("hitCnt", hitCnt);
 				tempList.add(map);
