@@ -77,6 +77,7 @@ $('#icon_search').click(function(){
 
 
 
+
 				<c:if test="${sessionScope.auth ne  null }">
 					<li style="padding-left: 1cm;"><a href="/Mypage/info#bucket-box"><span style="font-family: 'hanna'">My 먹킷 </span> <img style="width: 27px;" src="/views/search/images/color-bucket.png"></a></li>
 				</c:if>

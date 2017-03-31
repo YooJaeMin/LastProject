@@ -29,7 +29,7 @@
 		select * from review where tel = #{tel} order by eat_date desc
 	</select>
 
-	<select id="avgResult" parameterType="java.util.HashMap" resultType="java.lang.Double">
-		select avg(avg_s) from REVIEW where tel = #{tel}
+	<select id="avgResult" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select ROUND(avg(avg_s),2) avg_s, ROUND(avg(good_s),2) good_s, ROUND(avg(location_s),2) location_s, ROUND(avg(price_s),2) price_s, ROUND(avg(clean_s),2) clean_s, ROUND(avg(taste_s),2) taste_s from REVIEW where tel = #{tel}
 	</select>
 </mapper>

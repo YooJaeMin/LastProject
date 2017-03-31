@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="/js/jquery.bxslider.min.js"></script>
 <link href="/lib/jquery.bxslider.css" rel="stylesheet">
-
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"></script>
 <style>
 .profile_img {
 	width: 200px;
@@ -265,63 +266,112 @@ hr {
 <div
 	style="padding-top: 5%; margin: 0 250; padding-right: 25px; padding-left: 25px;">
 	<div class="row">
-		<div class="col-md-6">
-			<span class="title">${store.title } </span><span class="score">
-				${store.avg }</span><span style="font-size: 20px; font-family: impact;">
-				/ 5.0</span>
-		</div>
 
-	</div>
-	<br />
-	<div class="row">
-		<div class="col-md-8">
-			<div class="location">
+		<div class="col-md-4" align="left" style="padding-top: 1.5cm;">
+			<div class="row">
+				<span class="title">${store.title } </span><span class="score">
+					${store.avg }</span><span style="font-size: 20px; font-family: impact;">
+					/ 5.0</span>
+			</div>
+			<div class="location row">
 				${store.adress } <span style="font-size: 0.8em;"> <br /> <c:forEach
 						items="${store.tag }" var="tag">
-						<a href="/search/tag?type=basic&selectedTag=${tag }" style="color:black;">#${tag }
-						</a>
+						<a href="/search/tag?type=basic&selectedTag=${tag }"
+							style="color: black;">#${tag } </a>
 					</c:forEach>
 				</span>
 			</div>
 		</div>
-		<div class="col-md-3">
-			<!--  -->
-			<!--  -->
-			<div class="col-md-8">
-				<button type="button" id="like" class="btn like" value="true"
-					style="WIDTH: 100pt;">
-					좋아요<span id="like_cnt">${like.CNT}</span>
-					<!--  -->
-					<c:choose>
-						<c:when test="${likeResult eq true}">
-							<img class="btn-img" id="likeR" src="/img/heart01.png"
-								style="width: 25px">
-						</c:when>
-						<c:otherwise>
-							<img class="btn-img" id="likeR" src="/img/heart02.png"
-								style="width: 18pt; height: auto;">
-						</c:otherwise>
-					</c:choose>
-					<!--  -->
-				</button>
+		<div class="col-md-4" id="canvas1" style="font-family: hanna;">
+			<div style="width: 6cm">
+				<canvas id="myRadar" width="300"></canvas>
 			</div>
-			<div class="col-md-4">
-				<a href="#" id="shopping"> <c:choose>
-						<c:when test="${shoppingR eq true}">
-							<img class="btn-img" id=shoppingR
-								src="/views/search/images/color-bucket.png"
-								style="width: 40pt; height: 40pt;">
-						</c:when>
-						<c:otherwise>
-							<img class="btn-img" id="shoppingR"
-								src="/views/search/images/black-bucket.png"
-								style="width: 40pt; height: 40pt;">
-						</c:otherwise>
-					</c:choose>
-				</a>
-			</div>
+
 		</div>
+		<div class="col-md-4" align="left" style="padding-top: 3cm;">
+			<button type="button" id="like" class="btn like" value="true"
+				style="WIDTH: 100pt;">
+				좋아요<span id="like_cnt">${like.CNT}</span>
+				<!--  -->
+				<c:choose>
+					<c:when test="${likeResult eq true}">
+						<img class="btn-img" id="likeR" src="/img/heart01.png"
+							style="width: 25px">
+					</c:when>
+					<c:otherwise>
+						<img class="btn-img" id="likeR" src="/img/heart02.png"
+							style="width: 18pt; height: auto;">
+					</c:otherwise>
+				</c:choose>
+				<!--  -->
+
+			</button>
+			<a href="#" id="shopping"> <c:choose>
+					<c:when test="${shoppingR eq true}">
+						<img class="btn-img" id=shoppingR
+							src="/views/search/images/color-bucket.png"
+							style="width: 40pt; height: 40pt;">
+					</c:when>
+					<c:otherwise>
+						<img class="btn-img" id="shoppingR"
+							src="/views/search/images/black-bucket.png"
+							style="width: 40pt; height: 40pt;">
+					</c:otherwise>
+				</c:choose>
+			</a>
+		</div>
+
 	</div>
+	<br />
+	<!-- 	<div class="row"> -->
+	<!-- 		<div class="col-md-8"> -->
+	<!-- 			<div class="location"> -->
+	<%-- 				${store.adress } <span style="font-size: 0.8em;"> <br /> <c:forEach --%>
+	<%-- 						items="${store.tag }" var="tag"> --%>
+	<%-- 						<a href="/search/tag?type=basic&selectedTag=${tag }" --%>
+	<!-- 							style="color: black;">#${tag } </a> -->
+	<%-- 					</c:forEach> --%>
+	<!-- 				</span> -->
+	<!-- 			</div> -->
+	<!-- 		</div> -->
+	<!-- 		<div class="col-md-3"> -->
+	<!--  -->
+	<!--  -->
+	<!-- 			<div class="col-md-8"> -->
+	<!-- 				<button type="button" id="like" class="btn like" value="true" -->
+	<!-- 					style="WIDTH: 100pt;"> -->
+	<%-- 					좋아요<span id="like_cnt">${like.CNT}</span> --%>
+	<!-- 					 -->
+	<%-- 					<c:choose> --%>
+	<%-- 						<c:when test="${likeResult eq true}"> --%>
+	<!-- 							<img class="btn-img" id="likeR" src="/img/heart01.png" -->
+	<!-- 								style="width: 25px"> -->
+	<%-- 						</c:when> --%>
+	<%-- 						<c:otherwise> --%>
+	<!-- 							<img class="btn-img" id="likeR" src="/img/heart02.png" -->
+	<!-- 								style="width: 18pt; height: auto;"> -->
+	<%-- 						</c:otherwise> --%>
+	<%-- 					</c:choose> --%>
+	<!-- 					 -->
+	<!-- 				</button> -->
+	<!-- 			</div> -->
+	<!-- 			<div class="col-md-4"> -->
+	<%-- 				<a href="#" id="shopping"> <c:choose> --%>
+	<%-- 						<c:when test="${shoppingR eq true}"> --%>
+	<!-- 							<img class="btn-img" id=shoppingR -->
+	<!-- 								src="/views/search/images/color-bucket.png" -->
+	<!-- 								style="width: 40pt; height: 40pt;"> -->
+	<%-- 						</c:when> --%>
+	<%-- 						<c:otherwise> --%>
+	<!-- 							<img class="btn-img" id="shoppingR" -->
+	<!-- 								src="/views/search/images/black-bucket.png" -->
+	<!-- 								style="width: 40pt; height: 40pt;"> -->
+	<%-- 						</c:otherwise> --%>
+	<%-- 					</c:choose> --%>
+	<!-- 				</a> -->
+	<!-- 			</div> -->
+	<!-- 		</div> -->
+	<!-- 	</div> -->
 
 	<div class="row font2">
 		<hr />
@@ -408,40 +458,40 @@ hr {
 
 		<c:forEach items="${reviewList}" var="item" begin="0" end="4"
 			varStatus="vs">
-			<div class="row" >
+			<div class="row">
 				<div class="col-md-2" id="${item.ID }">
-					<img style="width:130px;" src="${item.PROFILE }">
+					<img style="width: 130px;" src="${item.PROFILE }">
 				</div>
 				<div class="col-md-6">
 					<div>
 						<b>${item.ID }</b> <i>${item.EAT_DATE }</i>
 					</div>
-										<div>
-<h4>
-						<span style="color: black;">
-							<span style="color:red;">"</span>${item.TYPE }<span style="color:red;">"</span>
+					<div>
+						<h4>
+							<span style="color: black;"> <span style="color: red;">"</span>${item.TYPE }<span
+								style="color: red;">"</span>
 							</span>
-						<c:choose>
-							<c:when test="${item.WEATHER eq 'cloudy' }">
-								구름낀 날 다녀왔어요!　<img class="weather" src="/img_weather/cloudy.png"> 
-							</c:when>
-							<c:when test="${item.WEATHER eq 'rainy' }">
+							<c:choose>
+								<c:when test="${item.WEATHER eq 'cloudy' }">
+								구름낀 날 다녀왔어요!　<img class="weather" src="/img_weather/cloudy.png">
+								</c:when>
+								<c:when test="${item.WEATHER eq 'rainy' }">
 								비오는 날 다녀왔어요!　<img class="weather" src="/img_weather/rainy.png">
-							</c:when>
-							<c:when test="${item.WEATHER eq 'snowy' }">
+								</c:when>
+								<c:when test="${item.WEATHER eq 'snowy' }">
 								눈오는 날 다녀왔어요!　<img class="weather" src="/img_weather/snowy.png">
-							</c:when>
-							<c:when test="${item.WEATHER eq 'sunny' }">
+								</c:when>
+								<c:when test="${item.WEATHER eq 'sunny' }">
 								화창한 날 다녀왔어요!　<img class="weather" src="/img_weather/sunny.png">
-							</c:when>
-							<c:when test="${item.WEATHER eq 'windy' }">
+								</c:when>
+								<c:when test="${item.WEATHER eq 'windy' }">
 								화창한 날 다녀왔어요!　<img class="weather" src="/img_weather/windy.png">바람부는 날 다녀왔어요! 
 							</c:when>
-						</c:choose>
-	</h4>
+							</c:choose>
+						</h4>
 					</div>
 					<div>
-						<br/>
+						<br />
 						<h3>${item.CONTENT }</h3>
 					</div>
 				</div>
@@ -521,7 +571,7 @@ hr {
 			<hr />
 		</c:forEach>
 
-<!-- ------------------------------------------------------------------------------------------------------- -->
+		<!-- ------------------------------------------------------------------------------------------------------- -->
 		<div class="row font1" align="right">
 			<button type="button" class="btn btn-warning btn-lg" id="reviewMore">리뷰
 				더보기</button>
@@ -542,120 +592,119 @@ hr {
 
 		<div id="row font1" class="reviewList" style="display: none">
 			<hr />
-			<c:forEach items="${reviewList}" var="item" begin="5"
-			varStatus="vs">
-			<div class="row" >
-				<div class="col-md-2" id="${item.ID }">
-					<img style="width:130px;" src="${item.PROFILE }">
-				</div>
-				<div class="col-md-6">
-					<div>
-						<b>${item.ID }</b> <i>${item.EAT_DATE }</i>
+			<c:forEach items="${reviewList}" var="item" begin="5" varStatus="vs">
+				<div class="row">
+					<div class="col-md-2" id="${item.ID }">
+						<img style="width: 130px;" src="${item.PROFILE }">
 					</div>
-					<div>
-						<h4>
-						<span style="color: black;">
-							<span style="color:red;">"</span>${item.TYPE }<span style="color:red;">"</span>
-							</span>
-						<c:choose>
-							<c:when test="${item.WEATHER eq 'cloudy' }">
-								구름낀 날 다녀왔어요!　<img class="weather" src="/img_weather/cloudy.png"> 
-							</c:when>
-							<c:when test="${item.WEATHER eq 'rainy' }">
+					<div class="col-md-6">
+						<div>
+							<b>${item.ID }</b> <i>${item.EAT_DATE }</i>
+						</div>
+						<div>
+							<h4>
+								<span style="color: black;"> <span style="color: red;">"</span>${item.TYPE }<span
+									style="color: red;">"</span>
+								</span>
+								<c:choose>
+									<c:when test="${item.WEATHER eq 'cloudy' }">
+								구름낀 날 다녀왔어요!　<img class="weather" src="/img_weather/cloudy.png">
+									</c:when>
+									<c:when test="${item.WEATHER eq 'rainy' }">
 								비오는 날 다녀왔어요!　<img class="weather" src="/img_weather/rainy.png">
-							</c:when>
-							<c:when test="${item.WEATHER eq 'snowy' }">
+									</c:when>
+									<c:when test="${item.WEATHER eq 'snowy' }">
 								눈오는 날 다녀왔어요!　<img class="weather" src="/img_weather/snowy.png">
-							</c:when>
-							<c:when test="${item.WEATHER eq 'sunny' }">
+									</c:when>
+									<c:when test="${item.WEATHER eq 'sunny' }">
 								화창한 날 다녀왔어요!　<img class="weather" src="/img_weather/sunny.png">
-							</c:when>
-							<c:when test="${item.WEATHER eq 'windy' }">
+									</c:when>
+									<c:when test="${item.WEATHER eq 'windy' }">
 								화창한 날 다녀왔어요!　<img class="weather" src="/img_weather/windy.png">바람부는 날 다녀왔어요! 
 							</c:when>
-						</c:choose>
-						</h4>
+								</c:choose>
+							</h4>
+						</div>
+						<div>
+							<br />
+							<h3>${item.CONTENT }</h3>
+						</div>
 					</div>
-					<div>
-					<br/>
-						<h3>${item.CONTENT }</h3>
+					<div class="col-md-4">
+						<div class="row" align="center">
+							<div class="col-md-4">
+								총점 / ${item.AVG_S }
+								<p
+									style="WIDTH: ${item.AVG_S*20}%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(/img/icon_star.gif) 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;">
+								</p>
+							</div>
+							<div class="col-md-4">
+								청결도
+								<p style="color: pink;">
+									<c:choose>
+										<c:when test="${item.CLEAN_S eq 1 }">♥</c:when>
+										<c:when test="${item.CLEAN_S eq 2 }">♥♥</c:when>
+										<c:when test="${item.CLEAN_S eq 3 }">♥♥♥</c:when>
+										<c:when test="${item.CLEAN_S eq 4 }">♥♥♥♥</c:when>
+										<c:when test="${item.CLEAN_S eq 5 }">♥♥♥♥♥</c:when>
+									</c:choose>
+								</p>
+							</div>
+							<div class="col-md-4">
+								맛평가
+								<p style="color: pink;">
+									<c:choose>
+										<c:when test="${item.TASTE_S eq 1 }">♥</c:when>
+										<c:when test="${item.TASTE_S eq 2 }">♥♥</c:when>
+										<c:when test="${item.TASTE_S eq 3 }">♥♥♥</c:when>
+										<c:when test="${item.TASTE_S eq 4 }">♥♥♥♥</c:when>
+										<c:when test="${item.TASTE_S eq 5 }">♥♥♥♥♥</c:when>
+									</c:choose>
+								</p>
+							</div>
+						</div>
+						<div class="row" align="center">
+							<div class="col-md-4">
+								가격평가
+								<p style="color: pink;">
+									<c:choose>
+										<c:when test="${item.PRICE_S eq 1 }">♥</c:when>
+										<c:when test="${item.PRICE_S eq 2 }">♥♥</c:when>
+										<c:when test="${item.PRICE_S eq 3 }">♥♥♥</c:when>
+										<c:when test="${item.PRICE_S eq 4 }">♥♥♥♥</c:when>
+										<c:when test="${item.PRICE_S eq 5 }">♥♥♥♥♥</c:when>
+									</c:choose>
+								</p>
+							</div>
+							<div class="col-md-4">
+								친절도
+								<p style="color: pink;">
+									<c:choose>
+										<c:when test="${item.GOOD_S eq 1 }">♥</c:when>
+										<c:when test="${item.GOOD_S eq 2 }">♥♥</c:when>
+										<c:when test="${item.GOOD_S eq 3 }">♥♥♥</c:when>
+										<c:when test="${item.GOOD_S eq 4 }">♥♥♥♥</c:when>
+										<c:when test="${item.GOOD_S eq 5 }">♥♥♥♥♥</c:when>
+									</c:choose>
+								</p>
+							</div>
+							<div class="col-md-4">
+								접근성
+								<p style="color: pink;">
+									<c:choose>
+										<c:when test="${item.LOCATION_S eq 1 }">♥</c:when>
+										<c:when test="${item.LOCATION_S eq 2 }">♥♥</c:when>
+										<c:when test="${item.LOCATION_S eq 3 }">♥♥♥</c:when>
+										<c:when test="${item.LOCATION_S eq 4 }">♥♥♥♥</c:when>
+										<c:when test="${item.LOCATION_S eq 5 }">♥♥♥♥♥</c:when>
+									</c:choose>
+								</p>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="col-md-4">
-					<div class="row" align="center">
-						<div class="col-md-4">
-							총점 / ${item.AVG_S }
-							<p
-								style="WIDTH: ${item.AVG_S*20}%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(/img/icon_star.gif) 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;">
-							</p>
-						</div>
-						<div class="col-md-4">
-							청결도
-							<p style="color: pink;">
-								<c:choose>
-									<c:when test="${item.CLEAN_S eq 1 }">♥</c:when>
-									<c:when test="${item.CLEAN_S eq 2 }">♥♥</c:when>
-									<c:when test="${item.CLEAN_S eq 3 }">♥♥♥</c:when>
-									<c:when test="${item.CLEAN_S eq 4 }">♥♥♥♥</c:when>
-									<c:when test="${item.CLEAN_S eq 5 }">♥♥♥♥♥</c:when>
-								</c:choose>
-							</p>
-						</div>
-						<div class="col-md-4">
-							맛평가
-							<p style="color: pink;">
-								<c:choose>
-									<c:when test="${item.TASTE_S eq 1 }">♥</c:when>
-									<c:when test="${item.TASTE_S eq 2 }">♥♥</c:when>
-									<c:when test="${item.TASTE_S eq 3 }">♥♥♥</c:when>
-									<c:when test="${item.TASTE_S eq 4 }">♥♥♥♥</c:when>
-									<c:when test="${item.TASTE_S eq 5 }">♥♥♥♥♥</c:when>
-								</c:choose>
-							</p>
-						</div>
-					</div>
-					<div class="row" align="center">
-						<div class="col-md-4">
-							가격평가
-							<p style="color: pink;">
-								<c:choose>
-									<c:when test="${item.PRICE_S eq 1 }">♥</c:when>
-									<c:when test="${item.PRICE_S eq 2 }">♥♥</c:when>
-									<c:when test="${item.PRICE_S eq 3 }">♥♥♥</c:when>
-									<c:when test="${item.PRICE_S eq 4 }">♥♥♥♥</c:when>
-									<c:when test="${item.PRICE_S eq 5 }">♥♥♥♥♥</c:when>
-								</c:choose>
-							</p>
-						</div>
-						<div class="col-md-4">
-							친절도
-							<p style="color: pink;">
-								<c:choose>
-									<c:when test="${item.GOOD_S eq 1 }">♥</c:when>
-									<c:when test="${item.GOOD_S eq 2 }">♥♥</c:when>
-									<c:when test="${item.GOOD_S eq 3 }">♥♥♥</c:when>
-									<c:when test="${item.GOOD_S eq 4 }">♥♥♥♥</c:when>
-									<c:when test="${item.GOOD_S eq 5 }">♥♥♥♥♥</c:when>
-								</c:choose>
-							</p>
-						</div>
-						<div class="col-md-4">
-							접근성
-							<p style="color: pink;">
-								<c:choose>
-									<c:when test="${item.LOCATION_S eq 1 }">♥</c:when>
-									<c:when test="${item.LOCATION_S eq 2 }">♥♥</c:when>
-									<c:when test="${item.LOCATION_S eq 3 }">♥♥♥</c:when>
-									<c:when test="${item.LOCATION_S eq 4 }">♥♥♥♥</c:when>
-									<c:when test="${item.LOCATION_S eq 5 }">♥♥♥♥♥</c:when>
-								</c:choose>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<hr />
-		</c:forEach>
+				<hr />
+			</c:forEach>
 		</div>
 
 	</div>
@@ -669,7 +718,7 @@ hr {
 	<div class="modal-dialog">
 
 		<!-- Modal content-->
-		<div class="modal-content" style="width:90%;">
+		<div class="modal-content" style="width: 90%;">
 			<div class="jumbotron" align="center"
 				style="margin-bottom: 0px; font-family: 'Lobster';">
 				<h1>My Review</h1>
@@ -680,69 +729,85 @@ hr {
 				<form action="/review/basic" method="post">
 					<!-- hidden >> id+tel 넘김 -->
 					<input type="hidden" name="id" value="${sessionScope.auth_id }" />
-					<input type="hidden" name="like" value="${like}" />
-					<input type="hidden" name="tel" value="${store.tel }" /> <input
-						type="hidden" id="wStatus" name="weather"
-						value="${Wstatus}" /> <input type="hidden" id="type"
-						name="type" value="single" />
+					<input type="hidden" name="like" value="${like}" /> <input
+						type="hidden" name="tel" value="${store.tel }" /> <input
+						type="hidden" id="wStatus" name="weather" value="${Wstatus}" /> <input
+						type="hidden" id="type" name="type" value="single" />
 
 					<h3 style="margin-top: 0px">
 						#1. 날씨가 어땠나요?<br>
 					</h3>
 					<div align="center">
-					<c:choose>
-						<c:when test="${Wstatus eq 'sunny'}">
-						<a class="btn btn-lg" id="wb1" onclick="wBox(1, 'sunny')" style="border: 2px solid #ff9400;"> <img
-							class="weather_box" src="/img_weather/sunny.png" />
-						</a> <a class="btn btn-lg" id="wb2" onclick="wBox(2, 'cloudy')"> <img
-							class="weather_box" src="/img_weather/cloudy.png" />
-						</a> <a class="btn btn-lg" id="wb3" onclick="wBox(3,'rainy')"> <img
-							class="weather_box" src="/img_weather/rainy.png" />
-						</a> <a class="btn btn-lg" id="wb4" onclick="wBox(4,'snowy')"> <img
-							class="weather_box" src="/img_weather/snowy.png" />
-						</a>
-						</c:when>
-						<c:when test="${Wstatus eq 'cloudy'}">
-						<a class="btn btn-lg" id="wb1" onclick="wBox(1, 'sunny')"> <img
-							class="weather_box" src="/img_weather/sunny.png" />
-						</a> <a class="btn btn-lg" id="wb2" onclick="wBox(2, 'cloudy')"  style="border: 2px solid #ff9400;"> <img
-							class="weather_box" src="/img_weather/cloudy.png" />
-						</a> <a class="btn btn-lg" id="wb3" onclick="wBox(3,'rainy')"> <img
-							class="weather_box" src="/img_weather/rainy.png" />
-						</a> <a class="btn btn-lg" id="wb4" onclick="wBox(4,'snowy')"> <img
-							class="weather_box" src="/img_weather/snowy.png" />
-						</a>
-						</c:when>
-						<c:when test="${Wstatus eq 'rainy'}">
-						<a class="btn btn-lg" id="wb1" onclick="wBox(1, 'sunny')" > <img
-							class="weather_box" src="/img_weather/sunny.png" />
-						</a> <a class="btn btn-lg" id="wb2" onclick="wBox(2, 'cloudy')" > <img
-							class="weather_box" src="/img_weather/cloudy.png" />
-						</a> <a class="btn btn-lg" id="wb3" onclick="wBox(3,'rainy')" style="border: 2px solid #ff9400;"> <img
-							class="weather_box" src="/img_weather/rainy.png" />
-						</a> <a class="btn btn-lg" id="wb4" onclick="wBox(4,'snowy')"> <img
-							class="weather_box" src="/img_weather/snowy.png" />
-						</a>
-						</c:when>
-						<c:when test="${Wstatus eq 'snowy'}">
-							<a class="btn btn-lg" id="wb1" onclick="wBox(1, 'sunny')"> <img
-							class="weather_box" src="/img_weather/sunny.png" />
-						</a> <a class="btn btn-lg" id="wb2" onclick="wBox(2, 'cloudy')"> <img
-							class="weather_box" src="/img_weather/cloudy.png" />
-						</a> <a class="btn btn-lg" id="wb3" onclick="wBox(3,'rainy')" > <img
-							class="weather_box" src="/img_weather/rainy.png" />
-						</a> <a class="btn btn-lg" id="wb4" onclick="wBox(4,'snowy')" style="border: 2px solid #ff9400;"> <img
-							class="weather_box" src="/img_weather/snowy.png" />
-						</a>
-						</c:when>
-					</c:choose>
+						<c:choose>
+							<c:when test="${Wstatus eq 'sunny'}">
+								<a class="btn btn-lg" id="wb1" onclick="wBox(1, 'sunny')"
+									style="border: 2px solid #ff9400;"> <img
+									class="weather_box" src="/img_weather/sunny.png" />
+								</a>
+								<a class="btn btn-lg" id="wb2" onclick="wBox(2, 'cloudy')">
+									<img class="weather_box" src="/img_weather/cloudy.png" />
+								</a>
+								<a class="btn btn-lg" id="wb3" onclick="wBox(3,'rainy')"> <img
+									class="weather_box" src="/img_weather/rainy.png" />
+								</a>
+								<a class="btn btn-lg" id="wb4" onclick="wBox(4,'snowy')"> <img
+									class="weather_box" src="/img_weather/snowy.png" />
+								</a>
+							</c:when>
+							<c:when test="${Wstatus eq 'cloudy'}">
+								<a class="btn btn-lg" id="wb1" onclick="wBox(1, 'sunny')"> <img
+									class="weather_box" src="/img_weather/sunny.png" />
+								</a>
+								<a class="btn btn-lg" id="wb2" onclick="wBox(2, 'cloudy')"
+									style="border: 2px solid #ff9400;"> <img
+									class="weather_box" src="/img_weather/cloudy.png" />
+								</a>
+								<a class="btn btn-lg" id="wb3" onclick="wBox(3,'rainy')"> <img
+									class="weather_box" src="/img_weather/rainy.png" />
+								</a>
+								<a class="btn btn-lg" id="wb4" onclick="wBox(4,'snowy')"> <img
+									class="weather_box" src="/img_weather/snowy.png" />
+								</a>
+							</c:when>
+							<c:when test="${Wstatus eq 'rainy'}">
+								<a class="btn btn-lg" id="wb1" onclick="wBox(1, 'sunny')"> <img
+									class="weather_box" src="/img_weather/sunny.png" />
+								</a>
+								<a class="btn btn-lg" id="wb2" onclick="wBox(2, 'cloudy')">
+									<img class="weather_box" src="/img_weather/cloudy.png" />
+								</a>
+								<a class="btn btn-lg" id="wb3" onclick="wBox(3,'rainy')"
+									style="border: 2px solid #ff9400;"> <img
+									class="weather_box" src="/img_weather/rainy.png" />
+								</a>
+								<a class="btn btn-lg" id="wb4" onclick="wBox(4,'snowy')"> <img
+									class="weather_box" src="/img_weather/snowy.png" />
+								</a>
+							</c:when>
+							<c:when test="${Wstatus eq 'snowy'}">
+								<a class="btn btn-lg" id="wb1" onclick="wBox(1, 'sunny')"> <img
+									class="weather_box" src="/img_weather/sunny.png" />
+								</a>
+								<a class="btn btn-lg" id="wb2" onclick="wBox(2, 'cloudy')">
+									<img class="weather_box" src="/img_weather/cloudy.png" />
+								</a>
+								<a class="btn btn-lg" id="wb3" onclick="wBox(3,'rainy')"> <img
+									class="weather_box" src="/img_weather/rainy.png" />
+								</a>
+								<a class="btn btn-lg" id="wb4" onclick="wBox(4,'snowy')"
+									style="border: 2px solid #ff9400;"> <img
+									class="weather_box" src="/img_weather/snowy.png" />
+								</a>
+							</c:when>
+						</c:choose>
 					</div>
 
 					<h3>
 						#2. 누구와 방문했나요? <br>
 					</h3>
-					<a class="btn btn-lg" id="t1" onclick="tBox(1,'single')" style="border: 2px solid #ff9400;"> <img
-						class="weather_box" src="/img_weather/single.png" />
+					<a class="btn btn-lg" id="t1" onclick="tBox(1,'single')"
+						style="border: 2px solid #ff9400;"> <img class="weather_box"
+						src="/img_weather/single.png" />
 					</a> <a class="btn btn-lg" id="t2" onclick="tBox(2,'couple')"> <img
 						class="weather_box" src="/img_weather/couple.png" />
 					</a> <a class="btn btn-lg" id="t3" onclick="tBox(3,'friend')"> <img
@@ -1104,5 +1169,45 @@ hr {
 		}
 
 
+</script>
+<script>
+var myRadar = $("#myRadar");
+var radar_data = {
+	    labels: ["청결도", "맛평가", "접근성", "친절도", "가격평가"],
+	    datasets: [
+	        {
+	            label: '${store.title}의 세부평점',
+	            backgroundColor: "#F6CED8",
+	            borderColor: "#FE2E64",
+	            pointBackgroundColor: "rgba(179,181,198,1)",
+	            pointBorderColor: "#fff",
+	            pointHoverBackgroundColor: "#fff",
+	            pointHoverBorderColor: "rgba(179,181,198,1)",
+	            data: [${result[0].scoreMap.CLEAN_S},${result[0].scoreMap.TASTE_S},${result[0].scoreMap.LOCATION_S},${result[0].scoreMap.GOOD_S},${result[0].scoreMap.PRICE_S}]
+	        }]};
+	        
+var myRadarChart = new Chart(myRadar, {
+    type: 'radar',
+    data: radar_data,
+    options: {
+        scale: {
+            ticks: {
+                min : 0,
+                max: 5,
+                stepSize: 1,
+                fontFamily: "Hanna"
+            }
+        },
+        legend : {
+        	labels: {
+        		fontFamily: "Hanna",
+        		fontSize : 15
+            }
+        },
+        title : {
+        	fontFamily : "Hanna"
+        }
+}
+});
 </script>
 <!--review modal-->
