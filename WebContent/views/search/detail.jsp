@@ -1176,7 +1176,7 @@ var radar_data = {
 	    labels: ["청결도", "맛평가", "접근성", "친절도", "가격평가"],
 	    datasets: [
 	        {
-	            label: '${store.title}의 세부평점',
+	            label: '[${store.title}]의 세부평점',
 	            backgroundColor: "#F6CED8",
 	            borderColor: "#FE2E64",
 	            pointBackgroundColor: "rgba(179,181,198,1)",
@@ -1206,6 +1206,9 @@ var myRadarChart = new Chart(myRadar, {
         },
         title : {
         	fontFamily : "Hanna"
+        },
+        global : {
+        	defaultFontFamily : "Hanna"
         }
 }
 });

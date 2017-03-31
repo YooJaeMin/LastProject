@@ -61,7 +61,7 @@
 		<property name="password" value="oracle" />
 	</bean>
 
-	<mongo:mongo-client host="192.168.10.26" port="27017"
+	<mongo:mongo-client host="121.134.125.131" port="27017"
 		id="mongo" />
 	<bean class="org.springframework.data.mongodb.core.MongoTemplate">
 		<constructor-arg name="mongo" ref="mongo" />
