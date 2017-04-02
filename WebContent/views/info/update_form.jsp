@@ -144,7 +144,7 @@ body {
 				<br />
 
 				<p>
-					별명<br /> <input type="email" class="form-control" name="nick"
+					별명<br /> <input type="text" class="form-control" name="nick"
 						value="${map.NICK}" />
 				</p>
 
@@ -274,7 +274,7 @@ body {
 	$(function() {
 		$("#datepicker1").datepicker(
 				{
-					yearRange : "-100:+0",
+					yearRange : "-60:+0",
 					dateFormat : 'yy-mm-dd',
 					prevText : '이전 달',
 					nextText : '다음 달',
