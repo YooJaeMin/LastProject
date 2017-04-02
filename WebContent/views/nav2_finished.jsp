@@ -129,9 +129,8 @@ $('#icon_search').click(function(){
 
 									<form role="form" method="post" Style="padding-bottom: 0%;">
 										<div class="form-group">
-											<label for="id"><span
-												class="glyphicon glyphicon-user"></span> 이메일로 로그인하기</label> <input
-												type="text" class="form-control" id="id1"
+											<label for="id"><span class="glyphicon glyphicon-user"></span> 이메일로 로그인하기</label> <input
+												type="text" class="form-control" id="id1" onkeyup="emailCheck()" 
 												placeholder="이메일 주소">
 										</div>
 										<div class="form-group">
@@ -148,7 +147,7 @@ $('#icon_search').click(function(){
 
 										<div align="center">
 											<button type="button" id="member_id_login"
-												class="btn btn-warning btn-block">
+												class="btn btn-warning btn-block" disabled="true">
 												<span class="glyphicon glyphicon-off"></span>로그인
 											</button>
 										</div>
@@ -173,7 +172,7 @@ $('#icon_search').click(function(){
 											<label for="id"><span
 												class="glyphicon glyphicon-user"></span>이메일로 가입하기</label> <input
 												type="text" class="form-control" id="id2" name="id"
-												placeholder="이메일 주소"><br /> <input type="text"
+												placeholder="이메일 주소" onkeyup="emailCheck2()"><br /> <input type="text"
 												class="form-control" id="name2" name="nick"
 												placeholder="이름(별명)"><br> <input
 												type="password" class="form-control" id="pw2" name="pw"
@@ -189,7 +188,7 @@ $('#icon_search').click(function(){
 									</form>
 									<div align="center">
 										<button type="button" class="btn btn-warning btn-block"
-											id="join_btn">가입하기</button>
+											id="join_btn"   disabled="true">가입하기</button>
 									</div>
 								</div>
 
@@ -283,15 +282,15 @@ $('#icon_search').click(function(){
 			var printRst = '';
 			if (rst == 'yes') {
 
-				printRst = '<h4 class="modal-title">회원가입에 성공하였습니다.</h4>';
+				printRst = '회원가입에 성공하였습니다.';
 
 			} else if (rst == 'chOk') {
 
-				printRst = '<h4 class="modal-title">로그인에 성공하였습니다.</h4>';
+				printRst = '로그인에 성공하였습니다.';
 
 			} else {
 
-				printRst = '<h4 class="modal-title">로그인에 실패하였습니다.</h4>';
+				printRst = '로그인에 실패하였습니다.';
 
 			}
 			window.alert(printRst);
@@ -317,13 +316,13 @@ $('#icon_search').click(function(){
 		}).done(function(rst) {
 			var printRst = '';
 			if (rst == 'succed') {
-				printRst = '<h4 class="modal-title">회원가입에 성공하였습니다</h4>';
+				printRst = '회원가입에 성공하였습니다';
 				$("#id2").val("");
 				$("#name2").val("");
 				$("#pw2").val("");
 
 			} else {
-				printRst = '<h4 class="modal-title">회원가입에 실패하였습니다.</h4>';
+				printRst = '회원가입에 실패하였습니다.';
 				$("#name2").val("");
 				$("#pw2").val("");
 
@@ -350,11 +349,11 @@ $('#icon_search').click(function(){
 			var printRst = '';
 			console.log(rst);
 			if (rst == 'succed') {
-				printRst = '<h4 class="modal-title">로그인에 성공하였습니다</h4>';
+				printRst = '로그인에 성공하였습니다';
 
 			} else {
 
-				printRst = '<h4 class="modal-title">로그인에 실패하였습니다.</h4>';
+				printRst = '로그인에 실패하였습니다.';
 
 			}
 			window.alert(printRst);
@@ -368,8 +367,59 @@ $('#icon_search').click(function(){
 	console.log(+naver_id_login.getLocalStorageItemSafely());
 
 	var inner_profileParams = {};
+	//
+
+	
+	//
 </script>
-<!-- //네이버아디디로로그인 Callback페이지 처리 Script -->
+<script>
 
 
+function emailCheck(){
+	var u_email = $('#id1');
+	console.log(u_email.val());
+    var regEmail =  /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    if( !u_email.val() ){
+        u_email.focus();
+    	$("#member_id_login").prop("disabled","true");
+        return false;
+    } else {
+        if(!regEmail.test(u_email.val())) {
+        	console.log(u_email.val());
+            u_email.focus();
+            $("#member_id_login").prop("disabled","true");
+            return false;
+        } else {
+        	console.log(u_email.val());
+            u_email.focus();
+            $("#member_id_login").prop("disabled","");
+        }
+    }
+};
+
+function emailCheck2(){
+	var u_email = $('#id2');
+	console.log(u_email.val());
+    var regEmail =  /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    if( !u_email.val() ){
+        u_email.focus();
+    	$("#join_btn").prop("disabled","true");
+        return false;
+    } else {
+        if(!regEmail.test(u_email.val())) {
+        	console.log(u_email.val());
+            u_email.focus();
+            $("#join_btn").prop("disabled","true");
+            return false;
+        } else {
+        	console.log(u_email.val());
+            u_email.focus();
+            $("#join_btn").prop("disabled","");
+        }
+    }
+};
+
+
+</script>
+w
 
