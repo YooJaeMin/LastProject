@@ -204,6 +204,7 @@ public class SearchController {
 
 		List<Map> reviewList = sd.reviewList(reqMap);
 		mav.addObject("Wstatus",Wstatus);
+		System.out.println("체크중 : "+Wstatus);
 		mav.addObject("reviewList", reviewList);
 		/*태영 고친 부분*/
 		mav.addObject("like", likeRR);

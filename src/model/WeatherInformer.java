@@ -52,16 +52,16 @@ public class WeatherInformer {
 				/**/
 				String wStatus="";
 				String wStatus2="";
-				if (name.equals("SKY_A01")) {
+				if (code.equals("SKY_O01")) {
 					wStatus = "sunny";
 					wStatus2 = "해가 쨍쨍한 날";
 
-				} else if ((name).equals("SKY_A04") || equals("SKY_A08")
-						|| equals("SKY_A010") || equals("SKY_A011") || equals("SKY_A012")) {
+				} else if ((code).equals("SKY_O04") || equals("SKY_O08")
+						 || equals("SKY_O11") || equals("SKY_O12")) {
 					wStatus = "rainy";
 					wStatus2 = "비 주륵 오는 날";
-				} else if ((name).equals("SKY_A05") || equals("SKY_A06")
-						|| equals("SKY_A13") || equals("SKY_A14")) {
+				} else if ((code).equals("SKY_O05") || equals("SKY_O06")|| equals("SKY_O09")|| equals("SKY_O10")
+						|| equals("SKY_O13") || equals("SKY_O14")) {
 					wStatus = "snowy";
 					wStatus2 = "눈이 펑펑오는 날";
 				} else {
