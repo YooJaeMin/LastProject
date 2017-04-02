@@ -127,7 +127,7 @@
 				<!--  -->
 				<div class="input col-sm-3">
 					<div align="center">
-						<span style="font-size: 16pt">${wStatus}</span>
+						<span style="font-size: 16pt">오늘은 ${wStatus}</span>
 					</div>
 
 					<ul>
@@ -183,7 +183,7 @@
 				</div>
 				<div class="input col-sm-4">
 					<div align="center">
-						<span style="font-size: 16pt">${wStatus}</span>
+						<span style="font-size: 16pt">오늘은 ${wStatus}</span>
 					</div>
 
 					<ul>

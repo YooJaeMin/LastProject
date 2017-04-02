@@ -447,8 +447,16 @@ hr {
 			<hr />
 			<div class="col-md-6">리뷰</div>
 			<div class="col-md-6" align="right">
-				<button type="button" class="btn btn-info btn-lg"
-					data-toggle="modal" data-target="#reviewModal">리뷰 등록</button>
+				<c:choose>
+					<c:when test="${sessionScope.auth ne null }">
+						<button type="button" class="btn btn-info btn-lg"
+							data-toggle="modal" data-target="#reviewModal">리뷰 등록</button>
+					</c:when>
+					<c:otherwise>
+						<button type="button" class="btn btn-info btn-lg"
+							onclick="window.alert('로그인 후 이용해주세요!')">리뷰 등록</button>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<br />
 			<hr />
@@ -485,8 +493,8 @@ hr {
 								화창한 날 다녀왔어요!　<img class="weather" src="/img_weather/sunny.png">
 								</c:when>
 								<c:when test="${item.WEATHER eq 'windy' }">
-								화창한 날 다녀왔어요!　<img class="weather" src="/img_weather/windy.png">바람부는 날 다녀왔어요! 
-							</c:when>
+								바람부는 날 다녀왔어요!　<img class="weather" src="/img_weather/windy.png">
+								</c:when>
 							</c:choose>
 						</h4>
 					</div>
@@ -620,8 +628,8 @@ hr {
 								화창한 날 다녀왔어요!　<img class="weather" src="/img_weather/sunny.png">
 									</c:when>
 									<c:when test="${item.WEATHER eq 'windy' }">
-								화창한 날 다녀왔어요!　<img class="weather" src="/img_weather/windy.png">바람부는 날 다녀왔어요! 
-							</c:when>
+								바람부는 날 다녀왔어요!　<img class="weather" src="/img_weather/windy.png">
+									</c:when>
 								</c:choose>
 							</h4>
 						</div>
@@ -741,7 +749,7 @@ hr {
 						<c:choose>
 							<c:when test="${Wstatus eq 'sunny'}">
 								<a class="btn btn-lg" id="wb1" onclick="wBox(1, 'sunny')"
-									style="border: 2px solid #ff9400;"> <img
+									style="border: 2px solid #ff9400;">오늘은 <img
 									class="weather_box" src="/img_weather/sunny.png" />
 								</a>
 								<a class="btn btn-lg" id="wb2" onclick="wBox(2, 'cloudy')">
@@ -759,7 +767,7 @@ hr {
 									class="weather_box" src="/img_weather/sunny.png" />
 								</a>
 								<a class="btn btn-lg" id="wb2" onclick="wBox(2, 'cloudy')"
-									style="border: 2px solid #ff9400;"> <img
+									style="border: 2px solid #ff9400;">오늘은 <img
 									class="weather_box" src="/img_weather/cloudy.png" />
 								</a>
 								<a class="btn btn-lg" id="wb3" onclick="wBox(3,'rainy')"> <img
@@ -777,7 +785,7 @@ hr {
 									<img class="weather_box" src="/img_weather/cloudy.png" />
 								</a>
 								<a class="btn btn-lg" id="wb3" onclick="wBox(3,'rainy')"
-									style="border: 2px solid #ff9400;"> <img
+									style="border: 2px solid #ff9400;">오늘은 <img
 									class="weather_box" src="/img_weather/rainy.png" />
 								</a>
 								<a class="btn btn-lg" id="wb4" onclick="wBox(4,'snowy')"> <img
@@ -795,7 +803,7 @@ hr {
 									class="weather_box" src="/img_weather/rainy.png" />
 								</a>
 								<a class="btn btn-lg" id="wb4" onclick="wBox(4,'snowy')"
-									style="border: 2px solid #ff9400;"> <img
+									style="border: 2px solid #ff9400;">오늘은 <img
 									class="weather_box" src="/img_weather/snowy.png" />
 								</a>
 							</c:when>

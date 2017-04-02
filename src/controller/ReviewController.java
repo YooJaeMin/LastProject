@@ -94,6 +94,7 @@ public class ReviewController {
 
 		List<Map> reviewList = sd.reviewList(newTel);
 		mav.addObject("Wstatus",Wstatus);
+		System.out.println("체크중 " + Wstatus);
 		mav.addObject("reviewList", reviewList);
 		
 		mav.addObject("like", likeRR);
