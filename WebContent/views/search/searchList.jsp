@@ -95,7 +95,7 @@ a {
 						<c:if test="${vs.count ge page*10-10+1 && vs.count le page*10  }">
 							<div class="item_container col-md-6">
 								<div class="col-md-6">
-									<img class="img-box" src="${item.img[0] }" onerror="this.src='/views/memberImg/default2.png'">>
+									<img class="img-box" src="${item.img[0] }" onerror="this.src='/views/memberImg/default2.png'">
 								</div>
 								<div class="col-md-6">
 									<h3>
